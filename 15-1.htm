@@ -1,0 +1,811 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-15-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="15-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="15-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 15.&nbsp;  
+            Kernel (Topic 1.5)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-15-SECT-1></A>
+                  <H3 class=docSection1Title>15.1 Objective 1: Manage Kernel 
+                  Modules at Runtime</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-997></A><A 
+                  name=lpicertnut-IDXTERM-998></A>With Linux, code for system  
+                  devices can be compiled into the kernel. Because the kernel  
+                  already has built-in support for most devices, it is said to  
+                  be <SPAN class=docEmphasis>monolithic</SPAN><A  
+                  name=IXT-15-350643></A>, as the kernel manages all system  
+                  hardware by itself. Monolithic kernels aren't very flexible  
+                  because a new kernel build is necessary for new peripheral  
+                  devices to be added to the system. Monolithic kernels also  
+                  have the potential to be "bloated" by drivers for hardware  
+                  that isn't physically installed. Instead, most users run  
+                  <I>modular</I><A name=IXT-15-350644></A> kernels, in which  
+                  device drivers are inserted into the running kernel as needed.  
+                  Modular configurations can adapt to changes in the hardware  
+                  and provide a convenient way of upgrading driver software  
+                  while a system is running. </P><A  
+                  name=lpicertnut-CHP-15-SECT-1.1></A>
+                  <H4 class=docSection2Title>15.1.1 Module Files</H4>
+                  <P class=docText>Linux <A name=IXT-15-350645></A>kernel  
+                  modules are <A name=IXT-15-350646></A>object files (<I>.o</I>)  
+                  produced by the C compiler but not linked into a completed  
+                  executable (in this case, the kernel executable file). Most  
+                  modules are distributed with the kernel and compiled along  
+                  with it. Because they are so closely related to the kernel,  
+                  separate sets of modules are installed when multiple kernels  
+                  are installed. This reduces the likelihood that a kernel  
+                  module will be inserted into the wrong kernel version. </P> 
+                  <P class=docText>Modules are stored in a directory hierarchy  
+                  headed by <I>/lib/modules/</I><A  
+                  name=IXT-15-350647></A><TT><I>kernel-version</I></TT>, where  
+                  <TT><I>kernel-version</I></TT> is the string reported by <SPAN  
+                  class=docEmphBold>uname -r</SPAN>, such as  
+                  <TT>2.2.5-15smp</TT>. In this example, the modules directory  
+                  would be <I>/lib/modules/2.2.5-15smp</I>. Multiple module  
+                  hierarchies may be available under <I>/lib/modules</I> if  
+                  multiple kernels are installed. </P> 
+                  <P class=docText>Subdirectories that contain modules of a  
+                  particular type exist beneath the  
+                  <I>/lib/modules/</I><TT><I>kernel-version</I></TT> directory.  
+                  For example, for kernel <I>2.2.5-15smp</I>, network interface  
+                  modules are stored in subdirectory  
+                  <I>/lib/modules/2.2.5-15smp/net</I>. This grouping is  
+                  convenient for administrators but also facilitates important  
+                  functionality to the <SPAN class=docEmphBold>modprobe</SPAN>  
+                  command. Typical <A name=IXT-15-350648></A><A  
+                  name=IXT-15-350649></A>module subdirectories are: </P><A  
+                  name=IXT-15-350650></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>block</SPAN></SPAN><A 
+                    name=IXT-15-350650></A></SPAN> 
+                    <DD>
+                    <P class=docList>Modules for a few block-specific devices 
+                    such as RAID controllers or IDE tape drives. </P></DD></DL><A 
+                  name=IXT-15-350651></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>cdrom</SPAN></SPAN><A 
+                    name=IXT-15-350651></A></SPAN> 
+                    <DD>
+                    <P class=docList>Device driver modules for nonstandard 
+                    CD-ROM devices.</P></DD></DL><A name=IXT-15-350652></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>fs</SPAN></SPAN><A 
+                    name=IXT-15-350652></A></SPAN> 
+                    <DD>
+                    <P class=docList>Contains drivers for filesystems such as 
+                    MS-DOS (the <I>msdos.o</I> module). </P></DD></DL><A 
+                  name=IXT-15-350653></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>ipv4</SPAN></SPAN><A 
+                    name=IXT-15-350653></A></SPAN> 
+                    <DD>
+                    <P class=docList>Includes modular kernel features having to 
+                    do with IP processing, such as IP masquerading. 
+                  </P></DD></DL><A name=IXT-15-350654></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>misc</SPAN></SPAN><A 
+                    name=IXT-15-350654></A></SPAN> 
+                    <DD>
+                    <P class=docList>Anything that doesn't fit into one of the 
+                    other subdirectories ends up here. Note that no modules are 
+                    stored at the top of this tree. </P></DD></DL><A 
+                  name=IXT-15-350655></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>net</SPAN></SPAN><A 
+                    name=IXT-15-350655></A></SPAN> 
+                    <DD>
+                    <P class=docList>Network interface driver 
+                  modules.</P></DD></DL><A name=IXT-15-350656></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>scsi</SPAN></SPAN><A 
+                    name=IXT-15-350656></A></SPAN> 
+                    <DD>
+                    <P class=docList>Contains driver modules for the SCSI 
+                    controller.</P></DD></DL><A name=IXT-15-350657></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>video</SPAN></SPAN><A 
+                    name=IXT-15-350657></A></SPAN> 
+                    <DD>
+                    <P class=docList>Special driver modules for video 
+                    adapters.</P></DD></DL>
+                  <P class=docText>Module directories are also referred to as 
+                  <I>tags</I> in the context of module manipulation commands. 
+                  </P><A name=lpicertnut-CHP-15-SECT-1.2></A>
+                  <H4 class=docSection2Title>15.1.2 Manipulating Modules </H4>
+                  <P class=docText>A module is dynamically linked into the 
+                  running kernel when it is loaded. Much of Linux kernel module 
+                  handling is done automatically. However, there may be times 
+                  when it is necessary for you to manipulate the modules 
+                  yourself, and you may come across the manipulation commands in 
+                  scripts. For example, if you're having difficulty with a 
+                  particular driver, you may need to get the source code for a 
+                  newer version of the driver, compile it, and insert the new 
+                  module in the running kernel. The commands listed in this 
+                  section can be used to list, insert, remove, and query 
+                  modules. </P><A name=p2_ch05-5-fm2xml></A><A 
+                  name=IXT-15-350658></A><A name=IXT-15-350659></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>lsmod</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-7-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>lsmod</PRE><A name=p2_ch05-8-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350658></A><A 
+                  name=IXT-15-350659></A>For each kernel module loaded, display  
+                  its name, size, use count, and a list of other referring  
+                  modules. This command yields the same information as is  
+                  available in <I>/proc/modules</I>. </P><A  
+                  name=p2_ch05-9-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Here, <SPAN class=docEmphBold>lsmod</SPAN> 
+                  shows that quite a few kernel modules are loaded, including 
+                  filesystem (<I>vfat</I>, <I>fat</I>), networking 
+                  (<I>3c59x</I>), and sound (<I>soundcore</I>, <I>mpu401</I>, 
+                  etc.) modules, among others: </P><PRE># <B>lsmod</B>
+Module             Size  Used by
+vmnet              9688   2
+vmppuser           5020   0  (unused)
+parport_pc         5044   0  [vmppuser]
+parport            7712   0  [vmppuser parport_pc]
+vmmon             14100   1
+nls_iso8859-1      2020   1  (autoclean)
+nls_cp437          3548   1  (autoclean)
+ide-floppy         8396   1  (autoclean)
+vfat              11612   1  (autoclean)
+fat               25856   1  (autoclean) [vfat]
+nfsd             151192   8  (autoclean)
+lockd             31336   1  (autoclean) [nfsd]
+sunrpc            53572   1  (autoclean) [nfsd lockd]
+3c59x             18984   1  (autoclean)
+opl3              11208   0  (unused)
+opl3sa2            3720   0
+ad1848            15984   0  [opl3sa2]
+mpu401            18576   0  [opl3sa2]
+sound             59064   0  [opl3 opl3sa2 ad1848 mpu401]
+soundlow            304   0  [sound]
+soundcore          2788   7  [sound]
+aic7xxx          107024   8</PRE><A 
+                  name=p2_ch05-10-fm2xml></A><A name=IXT-15-350660></A><A 
+                  name=IXT-15-350661></A><A name=IXT-15-350662></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>insmod</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-12-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>insmod [options] module</PRE><A 
+                  name=p2_ch05-13-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350660></A><A 
+                  name=IXT-15-350661></A>Insert a module into the running  
+                  kernel. The module is located automatically and inserted. You  
+                  must be logged in as the superuser to insert modules. </P><A  
+                  name=p2_ch05-14-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display results on <I>syslog</I> instead of 
+                    the terminal. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Set verbose mode.</P></DD></DL><A 
+                  name=p2_ch05-15-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>The <I>msdos</I><A name=IXT-15-350662></A>  
+                  filesystem module is installed into the running kernel. In  
+                  this example, the kernel was compiled with modular support for  
+                  the <I>msdos</I> filesystem type, a typical configuration for  
+                  a Linux distribution for i386 hardware. To verify that you  
+                  have this module, check for the existence of<I>  
+                  /lib/modules/</I><TT><I>kernel-version</I></TT><I>/fs/msdos.o</I> 
+                  : </P><PRE># <B>insmod msdos</B>
+/lib/modules/2.2.5-15smp/fs/msdos.o: unresolved symbol fat_add_cluster_Rsmp_eb84f594
+/lib/modules/2.2.5-15smp/fs/msdos.o: unresolved symbol fat_cache_inval_inode_Rsmp_6da1654e
+/lib/modules/2.2.5-15smp/fs/msdos.o: unresolved symbol fat_scan_Rsmp_d61c58c7
+  ( ... additional errors omitted ... )
+/lib/modules/2.2.5-15smp/fs/msdos.o: unresolved symbol fat_date_unix2dos_Rsmp_83fb36a1
+# <B>echo $?</B>
+1</PRE> 
+                  <P class=docText>This <SPAN class=docEmphBold>insmod 
+                  msdos</SPAN> command yields a series of unresolved symbol 
+                  messages and an exit status of <TT>1</TT>. This is the same 
+                  sort of message that might be seen when attempting to link a 
+                  program that referenced variables or functions unavailable to 
+                  the linker. In the context of a module insertion, such 
+                  messages indicate that the functions are not available in the 
+                  kernel. From the names of the missing symbols, you can see 
+                  that the <I>fat</I> module is required to support the 
+                  <I>msdos</I> module, so it is inserted first: </P><PRE># <B>insmod fat</B></PRE>
+                  <P class=docText>Now the <I>msdos</I> module can be 
+loaded:</P><PRE># <B>insmod msdos</B></PRE>
+                  <P class=docText>Use the <SPAN 
+                  class=docEmphBold>modprobe</SPAN> command to automatically 
+                  determine these dependencies and install prerequisite modules 
+                  first. </P><A name=p2_ch05-16-fm2xml></A><A 
+                  name=IXT-15-350663></A><A name=IXT-15-350664></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>rmmod</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-18-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>rmmod [options] modules</PRE><A 
+                  name=p2_ch05-19-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350663></A><A 
+                  name=IXT-15-350664></A>Unless a module is in use or referred  
+                  to by another module, the <SPAN  
+                  class=docEmphBold>rmmod</SPAN><I> </I>command is used to  
+                  remove modules from the running kernel. You must be logged in  
+                  as the superuser to remove modules. </P><A  
+                  name=p2_ch05-20-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Remove all unused modules.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display results on <I>syslog</I> instead of 
+                    the terminal. </P></DD></DL><A name=p2_ch05-21-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Starting with both the <I>fat</I> and 
+                  <I>msdos</I> modules loaded, remove the <I>fat</I> module 
+                  (which is used by the <I>msdos</I> module): </P><PRE># <B>lsmod</B>
+Module                  Size  Used by
+msdos                   8348   0  (unused)
+fat                    25856   0  [msdos]
+# <B>rmmod fat</B>
+rmmod: fat is in use</PRE>
+                  <P class=docText>In this example, the <SPAN 
+                  class=docEmphBold>lsmod</SPAN><I> </I>command fails because 
+                  the <I>msdos</I> module is dependent on the <I>fat </I>module. 
+                  So, in order to unload the <I>fat </I>module, the <I>msdos</I> 
+                  module must be unloaded first: </P><PRE># <B>rmmod msdos</B>
+# <B>rmmod fat</B></PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>modprobe 
+                  -r</SPAN> command can be used to automatically determine these 
+                  dependencies and remove modules and their prerequisites. 
+                  </P><A name=p2_ch05-22-fm2xml></A><A name=IXT-15-350665></A><A 
+                  name=IXT-15-350666></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>modinfo</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-24-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>modinfo [options] module_object_file</PRE><A 
+                  name=p2_ch05-25-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350665></A><A 
+                  name=IXT-15-350666></A>Display information about a module from  
+                  its <I>module_object_ file</I>. Some modules contain no  
+                  information at all, some have a short one-line description,  
+                  and others have a fairly descriptive message. </P><A  
+                  name=p2_ch05-26-fm2xml></A>
+                  <H4 class=docRefsectTitle>Options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the module's author.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the module's 
+                  description.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the typed parameters that a module 
+                    may support.</P></DD></DL><A name=p2_ch05-27-fm2xml></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>In these examples, <SPAN 
+                  class=docEmphBold>modinfo</SPAN> is run using modules compiled 
+                  for a multiprocessing (<I>smp</I>) kernel Version 2.2.5. Your 
+                  kernel version, and thus the directory hierarchy containing 
+                  modules, will be different. </P><PRE># <B>modinfo -d /lib/modules/2.2.5-15smp/misc/zftape.o</B>
+zftape for ftape v3.04d 25/11/97 - VFS interface for the 
+       Linux floppy tape driver. Support for QIC-113 
+       compatible volume table and builtin compression 
+       (lzrw3 algorithm)
+
+# <B>modinfo -a /lib/modules/2.2.5-15smp/misc/zftape.o</B>
+(c) 1996, 1997 Claus-Justus Heine 
+       (claus@momo.math.rwth-aachen.de)
+
+# <B>modinfo -p /lib/modules/2.2.5-15smp/misc/ftape.o</B>
+ft_fdc_base int, description &quot;Base address of FDC 
+       controller.&quot;
+Ft_fdc_irq int, description &quot;IRQ (interrupt channel) 
+       to use.&quot;
+ft_fdc_dma int, description &quot;DMA channel to use.&quot;
+ft_fdc_threshold int, description &quot;Threshold of the FDC 
+       Fifo.&quot;
+Ft_fdc_rate_limit int, description &quot;Maximal data rate 
+       for FDC.&quot;
+ft_probe_fc10 int, description &quot;If non-zero, probe for a 
+       Colorado FC-10/FC-20 controller.&quot;
+ft_mach2 int, description &quot;If non-zero, probe for a 
+       Mountain MACH-2 controller.&quot;
+ft_tracing int, description &quot;Amount of debugging output, 
+       0 &lt;= tracing &lt;= 8, default 3.&quot;</PRE><A 
+                  name=p2_ch05-28-fm2xml></A><A name=IXT-15-350667></A><A 
+                  name=IXT-15-350668></A><A name=IXT-15-350669></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>modprobe</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-29-fm2xml></A>
+                  <H4 class=docRefsectTitle></H4><A name=p2_ch05-30-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>modprobe [options] module [symbol=value ...]</PRE><A 
+                  name=p2_ch05-31-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350667></A><A 
+                  name=IXT-15-350668></A>Like <SPAN  
+                  class=docEmphBold>insmod</SPAN>, <SPAN  
+                  class=docEmphBold>modprobe</SPAN> is used to insert  
+                  modules.<SUP class=docFootnote>[1]</SUP> However,  
+                  <SPAN class=docEmphBold>modprobe</SPAN> has the ability to  
+                  load single modules, modules and their prerequisites, or all  
+                  modules stored in a specific directory. The <A  
+                  name=IXT-15-350669></A><SPAN class=docEmphBold>modprobe</SPAN> 
+                  command can also remove modules when combined with the <SPAN  
+                  class=docEmphBold>-r</SPAN> option. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> In fact, 
+                    <SPAN class=docEmphBold>modprobe</SPAN> is a wrapper around 
+                    <SPAN class=docEmphBold>insmod</SPAN> and provides 
+                    additional functionality.</P></BLOCKQUOTE>
+                  <P class=docText>A module is inserted with optional 
+                  <I>symbol=value</I> parameters (see more on parameters in the 
+                  discussion on the module configuration file, later in this 
+                  section). If the module is dependent upon other modules, they 
+                  will be loaded first. The <SPAN 
+                  class=docEmphBold>modprobe</SPAN> command determines 
+                  prerequisite relationships between modules by reading 
+                  <I>modules.dep</I> at the top of the module directory 
+                  hierarchy (i.e., <I>/lib/modules/2.2.5-15smp/modules.dep</I>). 
+                  </P>
+                  <P class=docText>You must be logged in as the superuser to 
+                  insert modules.</P><A name=p2_ch05-32-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Load all modules. When used with the <SPAN 
+                    class=docEmphBold>-t</SPAN> <I>tag</I>, "all" is restricted 
+                    to modules in the <I>tag </I>directory. This action probes 
+                    hardware by successive module-insertion attempts for a 
+                    single type of hardware, such as a network adapter (in which 
+                    case the <I>tag</I> would be <TT>net</TT>, representing 
+                    <I>/lib/modules/</I><TT><I>kernel-version</I></TT><I>/net</I>). 
+                    This may be necessary, for example, to probe for more than 
+                    one kind of network interface. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display a complete module configuration, 
+                    including defaults and directives found in 
+                    <I>/etc/modules.conf</I> (or <I>/etc/conf.modules</I>, 
+                    depending on your distribution). The <SPAN 
+                    class=docEmphBold>-c</SPAN> option is not used with any 
+                    other options. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List modules. When used with the <SPAN 
+                    class=docEmphBold>-t</SPAN> <I>tag</I>, list only modules in 
+                    directory <I>tag</I>. For example, if <I>tag</I> is 
+                    <TT>net</TT>, then modules in 
+                    <I>/lib/modules/</I><TT><I>kernel-version</I></TT><I>/net</I> 
+                    are displayed. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Remove <I>module</I>, similar to <SPAN 
+                    class=docEmphBold>rmmod</SPAN>. Multiple modules may be 
+                    specified. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display results on <I>syslog</I> instead of 
+                    the terminal. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>tag</I></SPAN> 
+                    <DD>
+                    <P class=docList>Attempt to load multiple modules found in 
+                    the directory <I>tag</I> until a module succeeds or all 
+                    modules in <I>tag</I> are exhausted. This action "probes" 
+                    hardware by successive module-insertion attempts for a 
+                    single type of hardware, such as a network adapter (in which 
+                    case <I>tag</I> would be <TT>net</TT>, representing 
+                    <I>/lib/modules/</I><TT><I>kernel-version</I></TT><I>/net</I>). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Set verbose mode.</P></DD></DL><A 
+                  name=p2_ch05-33-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Install the <I>msdos</I> filesystem module 
+                  into the running kernel: </P><PRE># <B>modprobe msdos</B></PRE>
+                  <P class=docText>Module <I>msdos</I> and its dependency, 
+                  <I>fat</I>, will be loaded. <SPAN 
+                  class=docEmphBold>modprobe</SPAN> determines that <I>fat</I> 
+                  is needed by <I>msdos</I> when it looks through 
+                  <I>modules.dep</I>. You can see the dependency listing using 
+                  <SPAN class=docEmphBold>grep</SPAN>: </P><PRE># <B>grep /msdos.o: /lib/modules/2.2.5-15smp/modules.dep</B> 
+/lib/modules/2.2.5-15smp/fs/msdos.o: 
+       /lib/modules/2.2.5-15smp/fs/fat.o</PRE><A 
+                  name=p2_ch05-34-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Remove <I>fat</I> and <I>msdos</I> modules 
+                  from the running kernel, assuming <I>msdos</I> is not in use: 
+                  </P><PRE># <B>modprobe -r fat msdos</B></PRE><A 
+                  name=p2_ch05-35-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Attempt to load available network modules 
+                  until one succeeds:</P><PRE># <B>modprobe -t net</B></PRE><A 
+                  name=p2_ch05-36-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Attempt to load all available network 
+                  modules:</P><PRE># <B>modprobe -at net</B></PRE><A 
+                  name=p2_ch05-37-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>List all modules available for use:</P><PRE># <B>modprobe -l</B>
+/lib/modules/2.2.5-15smp/fs/vfat.o
+/lib/modules/2.2.5-15smp/fs/umsdos.o
+/lib/modules/2.2.5-15smp/fs/ufs.o
+( ... listing continues ... )</PRE><A 
+                  name=p2_ch05-38-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>List all modules in the <I>net</I> directory 
+                  for 3Com network interfaces: </P><PRE># <B>modprobe -lt net | grep 3c</B>
+/lib/modules/2.2.5-15smp/net/3c59x.o
+/lib/modules/2.2.5-15smp/net/3c515.o
+/lib/modules/2.2.5-15smp/net/3c509.o
+/lib/modules/2.2.5-15smp/net/3c507.o
+/lib/modules/2.2.5-15smp/net/3c505.o
+/lib/modules/2.2.5-15smp/net/3c503.o
+/lib/modules/2.2.5-15smp/net/3c501.o</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Familiarize yourself with modules on a 
+                        nonproduction Linux system, and explore the 
+                        <I>/lib/modules</I> hierarchy. Review the 
+                        <I>modules.dep</I> file. Be aware of what a module is, 
+                        how and why it is inserted, what it means to "probe" 
+                        with multiple modules, and how to determine if a module 
+                        is dependent on other modules. Pay special attention to 
+                        <SPAN class=docEmphBold>modprobe</SPAN>. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-15-SECT-1.3></A>
+                  <H4 class=docSection2Title>15.1.3 Configuring Modules </H4>
+                  <P class=docText><A name=IXT-15-350670></A>You may sometimes  
+                  need to control elements of a module such as hardware  
+                  interrupt assignments or Direct Memory Access (DMA) channel  
+                  selections. Other situations may dictate special procedures to  
+                  prepare for, or clean up after, a module insertion or removal.  
+                  This type of special control of modules is implemented in the  
+                  <A name=IXT-15-350671></A>configuration file  
+                  <I>/etc/conf.modules</I><A name=IXT-15-350672></A><A 
+                  name=IXT-15-350673></A> (or in <I>/etc/modules.conf</I>,  
+                  depending on your distribution), which controls the behavior  
+                  of <SPAN class=docEmphBold>modprobe</SPAN>. The  
+                  <I>/etc/conf.modules</I> file can contain the following  
+                  information: </P><A name=IXT-15-350674></A><A 
+                  name=IXT-15-350675></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Comments</SPAN></I> 
+                    <DD>
+                    <P class=docList>Blank lines and lines beginning with  
+                    <TT>#</TT><A name=IXT-15-350674></A> <A  
+                    name=IXT-15-350675></A>are ignored. </P></DD></DL><A  
+                  name=IXT-15-350676></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>keep</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The <TT>keep</TT><A name=IXT-15-350676></A>  
+                    parameter, when found before any <TT>path</TT> directives,  
+                    causes the default paths to be retained and added to any  
+                    paths specified. </P></DD></DL><A name=IXT-15-350677></A> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>depfile</SPAN></SPAN><A 
+                    name=IXT-15-350677></A>=<I>full_path</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directive overrides the default 
+                    location for the modules dependency file, <I>modules.dep</I> 
+                    (described in the next section). For example: </P></DD></DL><PRE>depfile=/lib/modules/2.2.14/modules.dep </PRE><A 
+                  name=IXT-15-350678></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>path</SPAN></SPAN><A 
+                    name=IXT-15-350678></A>=<I>path_directory</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directive specifies a directory to 
+                    search for modules.</P></DD></DL><A name=IXT-15-350679></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>options</SPAN></SPAN><A 
+                    name=IXT-15-350679></A> <I>module opt1=val1 opt2=val2  
+                    ...</I></SPAN> 
+                    <DD>
+                    <P class=docList>Options for modules can be specified using 
+                    the <TT>options</TT> configuration line in 
+                    <I>conf.modules</I> or on the <SPAN 
+                    class=docEmphBold>modprobe</SPAN> command line. The command 
+                    line overrides configurations in the file. <I>module</I> is 
+                    the name of a single module without the <I>.so</I> 
+                    extension. Options are specified as <I>name=value</I> pairs, 
+                    where the <I>name</I> is understood by the module and 
+                    reported using <SPAN class=docEmphBold>modinfo -p</SPAN>. 
+                    For example: </P></DD></DL><PRE>options opl3 io=0x388</PRE><A name=IXT-15-350680></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>alias</SPAN></SPAN><A 
+                    name=IXT-15-350680></A></SPAN> 
+                    <DD>
+                    <P class=docList>Aliases can be used to associate a generic 
+                    name with a specific module. For example: </P></DD></DL><PRE>alias scsi_hostadapter aic7xxx
+alias eth0 3c59x
+alias parport_lowlevel parport_pc</PRE><A 
+                  name=IXT-15-350681></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>pre-install</SPAN></SPAN><A 
+                    name=IXT-15-350681></A> <I>module</I> <I>command</I></SPAN>  
+                    <DD>
+                    <P class=docList>This directive causes some shell 
+                    <I>command</I> to be executed prior to insertion of 
+                    <I>module</I>. For example, PCMCIA services need to be 
+                    started prior to installing the <I>pcmcia_core </I>module: 
+                    </P></DD></DL><PRE>pre-install pcmcia_core /etc/rc.d/init.d/pcmcia start</PRE>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>install</SPAN></SPAN> <I>module</I> 
+                    <I>command</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directive allows a specific shell 
+                    <I>command</I> to override the default module-insertion 
+                    command. </P></DD></DL><A name=IXT-15-350682></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>post-install</SPAN></SPAN><A 
+                    name=IXT-15-350682></A> <I>module</I></SPAN>  
+                    <DD>
+                    <P class=docList>This directive causes some shell 
+                    <I>command</I> to be executed after insertion of 
+                    <I>module</I>. </P></DD></DL><A name=IXT-15-350683></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>pre-remove</SPAN></SPAN><A 
+                    name=IXT-15-350683></A> <I>module</I></SPAN>  
+                    <DD>
+                    <P class=docList>This directive causes some shell 
+                    <I>command</I> to be executed prior to removal of 
+                    <I>module</I>. </P></DD></DL><A name=IXT-15-350684></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>remove</SPAN></SPAN><A 
+                    name=IXT-15-350684></A> <I>module</I></SPAN>  
+                    <DD>
+                    <P class=docList>This directive allows a specific shell 
+                    <I>command</I> to override the default module-removal 
+                    command. </P></DD></DL><A name=IXT-15-350685></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>post-remove</SPAN></SPAN><A 
+                    name=IXT-15-350685></A> <I>module</I></SPAN>  
+                    <DD>
+                    <P class=docList>This directive causes some shell 
+                    <I>command</I> to be executed after removal of 
+                    <I>module</I>. </P></DD></DL>
+                  <P class=docText>The following is an example the 
+                  <I>/etc/conf.modules</I> file: </P><PRE>alias scsi_hostadapter aic7xxx
+alias eth0 3c59x
+alias parport_lowlevel parport_pc
+pre-install pcmcia_core /etc/rc.d/init.d/pcmcia start
+alias sound opl3sa2
+pre-install sound insmod sound dmabuf=1
+alias midi opl3
+options opl3 io=0x388
+options opl3sa2 mss_io=0x530 irq=5 dma=0 dma2=1 
+       mpu_io=0x388 io=0x370</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that the files 
+                        <I>conf.modules</I> and <I>modules.conf</I> are the same 
+                        file, depending on distribution. Also, while it is 
+                        important for you to understand the configuration lines 
+                        <I>/etc/conf.modules</I>, detailed module configuration 
+                        is beyond the scope of the LPIC Level 1 exams. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-15-SECT-1.4></A>
+                  <H4 class=docSection2Title>15.1.4 Module Dependency File</H4>
+                  <P class=docText><SPAN class=docEmphBold>modprobe</SPAN><A 
+                  name=IXT-15-350686></A> <A name=IXT-15-350687></A>can  
+                  determine <A name=IXT-15-350688></A>module <A  
+                  name=IXT-15-350689></A>dependencies and install prerequisite  
+                  modules automatically. To do this, <SPAN  
+                  class=docEmphBold>modprobe</SPAN><I> </I>scans the first  
+                  column of <I>/lib/modules/</I><A  
+                  name=IXT-15-350690></A><TT>kernel-version</TT><I>/modules.dep</I> 
+                  to find the module it is to install. Lines in  
+                  <I>modules.dep</I> are in the following form: </P><PRE>module_name.o: dependency1 dependency2 ...</PRE> 
+                  <P class=docText>A typical dependency looks like this:</P><PRE>/lib/modules/2.2.5-15smp/fs/msdos.o: 
+       /lib/modules/2.2.5-15smp/fs/fat.o</PRE>
+                  <P class=docText>Here, the <I>msdos </I>module is dependent 
+                  upon <I>fat</I>. </P>
+                  <P class=docText>All of the modules available on the system  
+                  are listed in the <I>modules.dep </I><A  
+                  name=IXT-15-350691></A>file and are referred to with their  
+                  full path and filenames, including their <I>.o </I>extension.  
+                  Those that are not dependent on other modules are listed, but  
+                  without dependencies. Dependencies that are listed are  
+                  inserted into the kernel by <SPAN  
+                  class=docEmphBold>modprobe</SPAN> first, and when all of them  
+                  are successfully inserted, the subject module itself can be  
+                  loaded. </P>
+                  <P class=docText>The <I>modules.dep</I> file must be kept 
+                  current to ensure the correct operation of <SPAN 
+                  class=docEmphBold>modprobe</SPAN>. If module dependencies were 
+                  to change without a corresponding modification to 
+                  <I>modules.dep</I>, then <SPAN 
+                  class=docEmphBold>modprobe</SPAN> may fail, because a 
+                  dependency could be missed. As a result, <I>modules.dep</I> is 
+                  created each time the system is booted. On most distributions, 
+                  the <SPAN class=docEmphBold>depmod -a</SPAN> command is called 
+                  during <I>rc.sysinit</I>: </P><PRE>echo &quot;Finding module dependencies&quot; 
+/sbin/depmod -a</PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>depmod -a</SPAN> 
+                  command recreates and overwrites <I>modules.dep</I> each time 
+                  the system is booted. This procedure is also necessary after 
+                  any change in module dependencies. (The <SPAN 
+                  class=docEmphBold>depmod</SPAN> command is actually a link to 
+                  the same executable as <SPAN 
+                  class=docEmphBold>modprobe</SPAN>. The functionality of the 
+                  command differs depending on which name is used to call it.) 
+                  The <SPAN class=docEmphBold>depmod</SPAN> command is not 
+                  specifically called out in the LPIC Level 1 Objectives, but it 
+                  is important to understand how the command works since it 
+                  generates <I>modules.dep</I>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure you know what is in  
+                        <I>modules.dep</I>, as well as what the file is used  
+                        for, how it is created, and when it is created. Be  
+                        prepared to cite the consequences of a missing or  
+                        obsolete <I>modules.dep</I> file.<A name=IXTR3-75></A>  
+                        <A name=IXTR3-76></A></P></TD></TR></TBODY></TABLE><A  
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="15-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-15-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-15-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-15-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)485ms
+(xml)328ms
+(xsl)47ms
+(ent)0ms
+(buf)0ms
+
+(tot)1157ms
+--></BODY></HTML>

@@ -1,0 +1,584 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="14-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="14-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 14.&nbsp;  
+            Linux Installation and Package Management (Topic  
+            2.2)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-14-SECT-5></A>
+                  <H3 class=docSection1Title>14.5 Objective 5: Use Debian 
+                  Package Management</H3>
+                  <P class=docText>The <A name=lpicertnut-IDXTERM-954></A><A  
+                  name=lpicertnut-IDXTERM-955></A>Debian package management  
+                  system is a versatile and automated suite of tools used to  
+                  acquire and manage software packages for Debian Linux. The  
+                  system automatically handles many of the management details  
+                  associated with interdependent software running on your  
+                  system. </P><A name=lpicertnut-CHP-14-SECT-5.1></A>
+                  <H4 class=docSection2Title>14.5.1 Debian Package Management 
+                  Overview</H4>
+                  <P class=docText>Each Debian package contains program and 
+                  configuration files, documentation, and noted dependencies on 
+                  other packages. The names of Debian packages have three common 
+                  elements, including: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Package name</SPAN></I> 
+                    <DD>
+                    <P class=docList>A Debian package name is short and 
+                    descriptive. When multiple words are used in the name, they 
+                    are separated by hyphens. Typical names include 
+                    <I>binutils</I>, <I>kernel-source</I>, and <I>telnet</I>. 
+                    </P></DD></DL><A name=IXT-14-350611></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Version number</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each package has a <A  
+                    name=IXT-14-350611></A>version number. Most package versions  
+                    are the same as that of the software they contain, thus the  
+                    format of package versions varies from package to package.  
+                    Most are numeric, with major, patch, and release numbers,  
+                    but other information may appear as well. Typical versions  
+                    are <I>0.6.7-7</I>, <I>0.96a-14</I>, <I>6.05</I>,  
+                    <I>80b2-8</I>, and <I>2.0.7.19981211</I>. The version is  
+                    separated from the package name with an underscore.  
+                  </P></DD></DL><A name=IXT-14-350612></A><A 
+                  name=IXT-14-350613></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>A file extension</SPAN></I> 
+                    <DD>
+                    <P class=docList>By default, all Debian packages end with  
+                    <I>.deb</I><A name=IXT-14-350612></A> <A  
+                    name=IXT-14-350613></A>file extension. </P></DD></DL> 
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-14-FIG-1">Figure  
+                  14-1</a> illustrates a Debian package name.</P> 
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-14-FIG-1></A>Figure 14-1. The structure of  
+                  a Debian GNU/Linux package name</H5><IMG height=95  
+                  alt=figs/lpi_1401.gif src="14-5.files/lpi_1401.gif" width=198 
+                  border=0></CENTER><A name=lpicertnut-CHP-14-SECT-5.2></A>
+                  <H4 class=docSection2Title>14.5.2 Managing Debian Packages 
+                  </H4>
+                  <P class=docText>The original Debian package management tool 
+                  is <SPAN class=docEmphBold>dpkg</SPAN>, which operates 
+                  directly on <I>.deb</I> package files and can be used to 
+                  automate the installation and maintenance of software 
+                  packages. The alternative <SPAN 
+                  class=docEmphBold>apt-get</SPAN> tool operates using package 
+                  names, obtaining them from a predefined source (such as 
+                  CD-ROMs, FTP sites, etc.). Both tools work from the command 
+                  line. </P>
+                  <P class=docText>The <SPAN class=docEmphBold>dselect</SPAN> 
+                  command offers an interactive menu that allows the 
+                  administrator to select from a list of available packages and 
+                  mark them for subsequent installation. The <SPAN 
+                  class=docEmphBold>alien</SPAN> command allows the use of 
+                  non-Debian packages, such as the Red Hat RPM format. </P>
+                  <P class=docText>For complete information on Debian package 
+                  management commands, see details in their respective manpages. 
+                  </P><A name=p2_ch04-53-fm2xml></A><A name=IXT-14-350614></A><A 
+                  name=IXT-14-350615></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>dpkg</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-55-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>dpkg [options] action</PRE><A name=p2_ch04-56-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-14-350614></A>The Debian package  
+                  manager command, <SPAN class=docEmphBold>dpkg</SPAN>, consists  
+                  of an <I>action</I> that specifies a major mode of operation  
+                  as well as zero or more <SPAN  
+                  class=docEmphasis>options</SPAN>, which modify the action's  
+                  behavior. </P>
+                  <P class=docText>The <SPAN class=docEmphBold>dpkg</SPAN>  
+                  command maintains package information in  
+                  <I>/var/lib/dpkg</I><A name=IXT-14-350615></A>. Two files  
+                  located there of particular interest are: </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>available</I></SPAN> 
+                    <DD>
+                    <P class=docList>The list of all available 
+                  packages.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>status</I></SPAN> 
+                    <DD>
+                    <P class=docList>Contains package attributes, such as 
+                    whether it is installed or marked for removal. </P></DD></DL>
+                  <P class=docText>These files are modified by <SPAN 
+                  class=docEmphBold>dpkg</SPAN>, <SPAN 
+                  class=docEmphBold>dselect</SPAN>, and <SPAN 
+                  class=docEmphBold>apt-get</SPAN>, and it is unlikely that they 
+                  will ever need to be edited. </P><A 
+name=p2_ch04-57-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-E</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Using this option, <SPAN 
+                    class=docEmphBold>dpkg</SPAN> will not overwrite a 
+                    previously installed package of the same version. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-G</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Using this option, <SPAN 
+                    class=docEmphBold>dpkg</SPAN> will not overwrite a 
+                    previously installed package with an older version of that 
+                    same package. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-R</SPAN> (also <SPAN class=docEmphBold>-- 
+                    recursive</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>Recursively process package files in 
+                    specified subdirectories. Works with <SPAN 
+                    class=docEmphBold>-i</SPAN>, <SPAN class=docEmphBold>-- 
+                    install</SPAN>, <SPAN class=docEmphBold>-- unpack</SPAN>, 
+                    and so on. </P></DD></DL><A name=p2_ch04-58-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used actions</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    configure</SPAN> <I>package</I></SPAN> 
+                    <DD>
+                    <P class=docList>Configure an unpacked package. This 
+                    involves setup of configuration files. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN> <I>package_ file</I> (also <SPAN 
+                    class=docEmphBold>-- install</SPAN> <I>package_ 
+                    file</I>)</SPAN> 
+                    <DD>
+                    <P class=docList>Install the package contained in 
+                    <I>package_ file</I>. This involves backup of old files, 
+                    unpacking and installation of new files, and configuration. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN> <SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>pattern</I><SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>]</SPAN></SPAN> 
+                    (also <SPAN class=docEmphBold>-- list</SPAN> <SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>pattern</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>Display information for installed package 
+                    names that match <I>pattern</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-L</SPAN> <I>package</I> (also <SPAN 
+                    class=docEmphBold>-- listfiles</SPAN> <I>package</I>)</SPAN> 
+
+                    <DD>
+                    <P class=docList>List files installed from 
+                    <I>package</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    print-avail</SPAN> <I>package</I></SPAN> 
+                    <DD>
+                    <P class=docList>Display details found in 
+                    <I>/var/lib/dpkg/available</I> about <I>package</I>. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    -purge</SPAN> <I>package</I></SPAN> 
+                    <DD>
+                    <P class=docList>Remove everything for 
+                    <I>package</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN> <I>package</I> (also <SPAN 
+                    class=docEmphBold>-- remove</SPAN> <I>package</I>)</SPAN> 
+                    <DD>
+                    <P class=docList>Remove everything except configuration 
+                    files for <I>package</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN> <I>package</I> (also <SPAN 
+                    class=docEmphBold>-- status</SPAN> <I>package</I>)</SPAN> 
+                    <DD>
+                    <P class=docList>Report the status of 
+                    <I>package</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-S</SPAN> <I>search_pattern</I> (also 
+                    <SPAN class=docEmphBold>-- search</SPAN> <I>search_ 
+                    pattern</I>)</SPAN> 
+                    <DD>
+                    <P class=docList>Search for a filename matching <I>search_ 
+                    pattern</I> from installed packages. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    unpack</SPAN> <I>package_ file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Unpack <I>package_ file,</I> but don't 
+                    install the package it contains. </P></DD></DL><A 
+                  name=lpicertnut-CHP-14-SECT-5.2.1></A>
+                  <H5 class=docSection3Title>14.5.2.1 Example 1</H5>
+                  <P class=docText>Install a package using <SPAN 
+                  class=docEmphBold>dpkg -i</SPAN> with the name of an available 
+                  package file: </P><PRE># <B>dpkg -i ./hdparm_3.3-3.deb</B>
+(Reading database ... 54816 files and directories 
+  currently installed.)
+Preparing to replace hdparm 3.3-3 (using hdparm_3.3-3.deb)
+Unpacking replacement hdparm ...
+Setting up hdparm (3.3-3) ...</PRE>
+                  <P class=docText>Alternatively, use <SPAN 
+                  class=docEmphBold>apt-get install</SPAN> with the name of the 
+                  package. In this case, the package comes from the location or 
+                  locations configured in <I>/etc/apt/sources.list</I>. For this 
+                  example, the location is <A class=docLink 
+                  href="http://http.us.debian.org/" 
+                  target=_blank>http://http.us.debian.org/</A>: </P><PRE># <B>apt-get install elvis</B>
+Reading Package Lists... Done
+Building Dependency Tree... Done
+The following extra packages will be installed:
+  libncurses4 xlib6g
+The following NEW packages will be installed:
+  elvis
+2 packages upgraded, 1 newly installed, 0 to remove 
+  and 376 not upgraded.
+Need to get 1678kB of archives. After unpacking 2544kB 
+  will be used.
+Do you want to continue? [Y/n] <B>y</B>
+Get:1 http://http.us.debian.org stable/main 
+  libncurses4 4.2-9 [180kB]
+Get:2 http://http.us.debian.org stable/main 
+  xlib6g 3.3.6-11 [993kB]
+Get:3 http://http.us.debian.org stable/main 
+  elvis 2.1.4-1 [505kB]
+Fetched 1678kB in 4m11s (6663B/s)
+(Reading database ... 54730 files and directories 
+  currently installed.)
+Preparing to replace libncurses4 4.2-3 (using 
+  .../libncurses4_4.2-9_i386.deb) ...
+Unpacking replacement libncurses4 ...
+(installation continues...)</PRE><A 
+                  name=lpicertnut-CHP-14-SECT-5.2.2></A>
+                  <H5 class=docSection3Title>14.5.2.2 Example 2</H5>
+                  <P class=docText><A name=IXT-14-350616></A>Upgrading a package  
+                  is no different from installing one. However, you should use  
+                  the <SPAN class=docEmphBold>-G</SPAN> option when upgrading  
+                  with <SPAN class=docEmphBold>dpkg</SPAN> to ensure that the  
+                  installation won't proceed if a newer version of the same  
+                  package is already installed. </P><A  
+                  name=lpicertnut-CHP-14-SECT-5.2.3></A>
+                  <H5 class=docSection3Title>14.5.2.3 Example 3</H5>
+                  <P class=docText>Use <SPAN class=docEmphBold>dpkg -r</SPAN> or 
+                  <SPAN class=docEmphBold>dpkg -- purge</SPAN> to remove a 
+                  package: </P><PRE># <B>dpkg --purge elvis</B>
+(Reading database ... 54816 files and directories 
+  currently installed.)
+Removing elvis ...
+(purge continues...)</PRE><A 
+                  name=lpicertnut-CHP-14-SECT-5.2.4></A>
+                  <H5 class=docSection3Title>14.5.2.4 Example 4</H5>
+                  <P class=docText>Use the <SPAN class=docEmphBold>dpkg 
+                  -S</SPAN> command to find a package containing specific files. 
+                  In this example, <SPAN class=docEmphBold>apt-get</SPAN> is 
+                  contained in the <SPAN class=docEmphBold>apt</SPAN> package: 
+                  </P><PRE># <B>dpkg -S apt-get</B>
+apt: /usr/share/man/man8/apt-get.8.gz
+apt: /usr/bin/apt-get</PRE><A 
+                  name=lpicertnut-CHP-14-SECT-5.2.5></A>
+                  <H5 class=docSection3Title>14.5.2.5 Example 5</H5>
+                  <P class=docText>Obtain package status information, such as 
+                  version, content, dependencies, integrity, and installation 
+                  status, using <SPAN class=docEmphBold>dpkg -s</SPAN>: </P><PRE># <B>dpkg -s apt</B>
+Package: apt
+Status: install ok installed
+Priority: optional
+Section: admin
+Installed-Size: 1388
+(listing continues...)</PRE><A 
+                  name=lpicertnut-CHP-14-SECT-5.2.6></A>
+                  <H5 class=docSection3Title>14.5.2.6 Example 6</H5>
+                  <P class=docText>List the files in a package using <SPAN 
+                  class=docEmphBold>dpkg -L</SPAN> and process the output using 
+                  <SPAN class=docEmphBold>grep</SPAN> or <SPAN 
+                  class=docEmphBold>less</SPAN>: </P><PRE># <B>dpkg -L apt | grep '^/usr/bin'</B>
+/usr/bin
+/usr/bin/apt-cache
+/usr/bin/apt-cdrom
+/usr/bin/apt-config
+/usr/bin/apt-get</PRE><A 
+name=lpicertnut-CHP-14-SECT-5.2.7></A>
+                  <H5 class=docSection3Title>14.5.2.7 Example 7</H5>
+                  <P class=docText>List the installed packages using <SPAN 
+                  class=docEmphBold>dpkg -l</SPAN>; if you don't specify a 
+                  pattern, all packages will be listed: </P><PRE># <B>dpkg -l xdm</B>
+ii  xdm             3.3.2.3a-11    X display manager</PRE><A 
+                  name=lpicertnut-CHP-14-SECT-5.2.8></A>
+                  <H5 class=docSection3Title>14.5.2.8 Example 8</H5>
+                  <P class=docText>Use <SPAN class=docEmphBold>dpkg -S</SPAN> to 
+                  determine the package from which a particular file was 
+                  installed with the filename: </P><PRE># <B>dpkg -S /usr/bin/nl</B>
+textutils: /usr/bin/nl</PRE><A name=p2_ch04-67-fm2xml></A><A 
+                  name=IXT-14-350617></A><A name=IXT-14-350618></A><A 
+                  name=IXT-14-350619></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>apt-get</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-69-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>apt-get [options] [command] [package_name ...]</PRE><A 
+                  name=p2_ch04-70-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-14-350617></A>The <SPAN  
+                  class=docEmphBold>apt-get</SPAN> command is part of the  
+                  Advanced Package Tool (APT) management system. It does not  
+                  work directly with <I>.deb</I> files like <SPAN  
+                  class=docEmphBold>dpkg</SPAN>, but uses package names instead.  
+                  <SPAN class=docEmphBold>apt-get</SPAN> maintains a database of  
+                  package information that enables the tool to automatically  
+                  upgrade packages and their dependencies as new package  
+                  releases become available. </P><A name=p2_ch04-71-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Download files, but do not install. This is 
+                    useful when you wish to get a large number of package files 
+                    but delay their installation to prevent installation errors 
+                    from stopping the download process. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Simulate the steps in a package change, but 
+                    do not actually change the system. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-y</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Automatically respond "yes" to all prompts, 
+                    instead of prompting you for a response during package 
+                    installation/removal. </P></DD></DL><A 
+                  name=p2_ch04-72-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used commands</H4><A 
+                  name=IXT-14-350618></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>dist-upgrade</SPAN><A 
+                    name=IXT-14-350618></A></SPAN> 
+                    <DD>
+                    <P class=docList>This command is used to automatically 
+                    upgrade to new versions of Debian Linux. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>install</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The <SPAN class=docEmphBold>install</SPAN> 
+                    command is used to install or upgrade one or more packages 
+                    by name. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>remove</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This command is used to remove the 
+                    specified packages.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>update</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Running <SPAN class=docEmphBold>apt-get 
+                    update</SPAN> fetches a list of currently available 
+                    packages. This is typically done before any changes are made 
+                    to existing packages. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>upgrade</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The <SPAN class=docEmphBold>upgrade</SPAN> 
+                    command is used to safely upgrade a system's complete set of 
+                    packages to current versions. It is conservative and will 
+                    not process upgrades that could cause a conflict or break an 
+                    existing configuration; it also will not remove packages. 
+                    </P></DD></DL>
+                  <P class=docText>Additional commands and options are 
+                  available. See the <SPAN class=docEmphBold>apt-get</SPAN> 
+                  manpage for more information. </P>
+                  <P class=docText><SPAN class=docEmphBold>apt-get</SPAN> uses  
+                  <I>/etc/apt/sources.list</I><A name=IXT-14-350619></A> to  
+                  determine where packages should be obtained. This file is not  
+                  in the Objectives for Exam 102. </P><A  
+                  name=p2_ch04-73-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Remove the <I>elvis</I> package using 
+                  <I>apt-get</I>. </P><PRE># <B>apt-get remove elvis</B>
+Reading Package Lists... Done
+Building Dependency Tree... Done
+The following packages will be REMOVED:
+  elvis
+0 packages upgraded, 0 newly installed, 1 to remove 
+  and 376 not upgraded.
+Need to get 0B of archives. After unpacking 1363kB 
+  will be freed.
+Do you want to continue? [Y/n] <B>y</B>
+(Reading database ... 54816 files and directories 
+  currently installed.)
+Removing elvis ...
+(removal continues...)</PRE>
+                  <P class=docText>In this example, the user is required to 
+                  respond with <TT><B>y</B></TT> when promted to continue. Using 
+                  the <SPAN class=docEmphBold>-y</SPAN> option to <SPAN 
+                  class=docEmphBold>apt-get</SPAN> would eliminate this 
+                  interaction. </P><A name=p2_ch04-74-fm2xml></A><A 
+                  name=IXT-14-350620></A><A name=IXT-14-350621></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>dselect</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-76-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>dselect</PRE><A name=p2_ch04-77-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><SPAN class=docEmphBold>dselect</SPAN><A 
+                  name=IXT-14-350620></A> <A name=IXT-14-350621></A>is an  
+                  interactive, menu-driven, frontend tool for <SPAN  
+                  class=docEmphBold>dpkg</SPAN> and is usually invoked without  
+                  parameters. The <SPAN class=docEmphBold>dselect</SPAN> command  
+                  lets you interactively manage packages by selecting them for  
+                  installation, removal, configuration, and so forth. Selections  
+                  are made from a locally stored list of available packages,  
+                  which may be updated while running <SPAN  
+                  class=docEmphBold>dselect</SPAN>. Package actions initiated by  
+                  <SPAN class=docEmphBold>dselect</SPAN> are carried out using  
+                  <SPAN class=docEmphBold>dpkg</SPAN>. </P><A 
+                  name=p2_ch04-78-fm2xml></A><A name=IXT-14-350622></A><A 
+                  name=IXT-14-350623></A><A name=IXTR3-69></A><A 
+                  name=IXTR3-70></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>alien</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-80-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>alien [--to-deb] [--patch=patchfile] [options] file</PRE><A 
+                  name=p2_ch04-81-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-14-350622></A><A 
+                  name=IXT-14-350623></A>Convert to or install a non-Debian (or  
+                  "alien") package. Supported package types include Red Hat  
+                  <I>.rpm</I>, Stampede <I>.slp</I>, Slackware <I>.tgz</I>, and  
+                  generic <I>.tar.gz</I> files. <SPAN  
+                  class=docEmphBold>rpm</SPAN> must also be installed on the  
+                  system in order to convert an RPM package into a <I>.deb  
+                  </I>package. The <SPAN class=docEmphBold>alien</SPAN> command  
+                  produces an <SPAN class=docEmphasis>output package</SPAN> in  
+                  Debian format by default after conversion. </P><A  
+                  name=p2_ch04-82-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Automatically install the output package 
+                    and remove the converted package file. </P></DD></DL><A 
+                  name=p2_ch04-83-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Install a non-Debian package on Debian system 
+                  using <SPAN class=docEmphBold>alien</SPAN> with the <SPAN 
+                  class=docEmphBold>-i</SPAN> option: </P><PRE>alien -i package.rpm</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText><SPAN class=docEmphBold>dselect</SPAN>,  
+                        <SPAN class=docEmphBold>apt-get</SPAN>, and <SPAN  
+                        class=docEmphBold>alien</SPAN> are important parts of  
+                        Debian package management, but detailed knowledge of  
+                        <SPAN class=docEmphBold>dpkg</SPAN> is of primary  
+                        importance for Exam 102.<A name=IXTR3-69></A> <A  
+                        name=IXTR3-70></A></P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-14-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)515ms
+(xml)438ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)1000ms
+--></BODY></HTML>

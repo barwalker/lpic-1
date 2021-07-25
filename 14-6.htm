@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="14-6.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="14-6.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 14.&nbsp;  
+            Linux Installation and Package Management (Topic  
+            2.2)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-14-SECT-6></A>
+                  <H3 class=docSection1Title>14.6 Objective 6: Use Red Hat 
+                  Package Manager (RPM)</H3>
+                  <P class=docText>The <A name=lpicertnut-IDXTERM-971></A><A  
+                  name=lpicertnut-IDXTERM-972></A>Red Hat Package Manager is  
+                  among the most popular methods for the distribution of  
+                  software for Linux and is installed by default on many  
+                  distributions. It automatically handles many of the management  
+                  details associated with interdependent software running on  
+                  your system. </P><A name=lpicertnut-CHP-14-SECT-6.1></A> 
+                  <H4 class=docSection2Title>14.6.1 RPM Overview</H4>
+                  <P class=docText>RPM automates the installation and 
+                  maintenance of software packages. Built into each package are 
+                  program files, configuration files, documentation, and 
+                  dependencies on other packages. Package files are manipulated 
+                  using the <SPAN class=docEmphBold>rpm</SPAN> command, which 
+                  maintains a database of all installed packages and their 
+                  files. Information from new packages is added to this 
+                  database, and it's consulted on a file-by-file basis for 
+                  dependencies when packages are removed, queried, and 
+                  installed. </P>
+                  <P class=docText>As with Debian packages, RPM filenames have 
+                  three common elements:</P><A name=IXT-14-350624></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Name</SPAN></I> 
+                    <DD>
+                    <P class=docList>An RPM <A name=IXT-14-350624></A>package  
+                    name<I> </I>is short and descriptive. If multiple words are  
+                    used, they are separated by hyphens (not underscores, as you  
+                    might expect). Typical names include <I>binutils</I>,  
+                    <I>caching-nameserver</I>, <I>cvs</I>, <I>gmc</I>,  
+                    <I>kernel-source</I>, and <I>telnet</I>. </P></DD></DL><A  
+                  name=IXT-14-350625></A><A name=IXT-14-350626></A><A 
+                  name=IXT-14-350627></A><A name=IXT-14-350628></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Version</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each package has a version. Most <A  
+                    name=IXT-14-350625></A><A name=IXT-14-350626></A><A 
+                    name=IXT-14-350627></A><A name=IXT-14-350628></A>package  
+                    versions are the same as that of the software they contain,  
+                    thus the format of package versions varies from package to  
+                    package. Most are numeric, with major, patch, and release  
+                    numbers, but other information may appear as well. Typical  
+                    versions are <I>3.0beta5-7</I>, <I>1.05a-4</I>,  
+                    <I>2.7-5</I>, <I>1.10.5-2</I>, <I>1.1.1pre2-2</I>,  
+                    <I>1.14r4-4</I>, <I>6.5.2-free3-rsaref</I>, and  
+                    <I>0.9_alpha3-6</I>. The version is separated from the name  
+                    by a hyphen. </P></DD></DL> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Architecture</SPAN></I> 
+                    <DD>
+                    <P class=docList>Packages containing binary (compiled) files 
+                    are by their nature specific to a particular type of system. 
+                    For PCs, the RPM architecture designation is <I>i386</I>, 
+                    meaning the Intel 80386 and subsequent line of 
+                    microprocessors and compatibles. For Sun and Sun-compatible 
+                    processors, the architecture is <I>sparc</I>. The 
+                    architecture is separated from the version with a dot. 
+                    </P></DD></DL><A name=IXT-14-350629></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor>A <I>.rpm</I> extension </SPAN>
+                    <DD>
+                    <P class=docList>All RPM files end with <I>.rpm </I><A  
+                    name=IXT-14-350629></A>extension by default. </P></DD></DL> 
+                  <P class=docText>An RPM filename is constructed by tying these  
+                  elements together in one long string, as shown in <a class="docLink" href="#lpicertnut-CHP-14-FIG-2">Figure  
+                  14-2</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-14-FIG-2></A>Figure 14-2. The structure of  
+                  an RPM package name</H5><IMG height=43 alt=figs/lpi_1402.gif  
+                  src="14-6.files/lpi_1402.gif" width=310 border=0></CENTER>
+                  <P class=docText>As you can see, there are three uses for <A  
+                  name=IXT-14-350630></A><A name=IXT-14-350631></A>hyphens in  
+                  RPM filenames. They appear as word separators in package  
+                  names, as a delimiter between names and versions, and as part  
+                  of the version. This may be confusing at first, but the  
+                  version is usually obvious, making the use of hyphens  
+                  unambiguous.<SUP class=docFootnote>[9]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[9]</A></SUP> Perhaps 
+                    this won't be clear at first glance, but once you're used to 
+                    RPM names you'll know what to expect.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-14-SECT-6.2></A>
+                  <H4 class=docSection2Title>14.6.2 Running rpm</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>rpm</SPAN>  
+                  command provides for the installation, removal, upgrade,  
+                  verification, and other management of RPM packages and has a  
+                  bewildering array of options. Some are of the traditional  
+                  single-letter style, while others are the <SPAN  
+                  class=docEmphasis>-- option</SPAN> variety. In most cases,  
+                  both styles exist and are interchangeable. At first glance,  
+                  configuring <SPAN class=docEmphBold>rpm</SPAN> may appear to  
+                  be a bit daunting. However, its operation is segmented into  
+                  <SPAN class=docEmphasis>modes</SPAN>, which are enabled using  
+                  one (and only one) of the <SPAN class=docEmphasis>mode  
+                  options</SPAN><A name=IXT-14-350632></A>. Within a mode,  
+                  additional mode-specific options become available to modify  
+                  the behavior of <SPAN class=docEmphBold>rpm</SPAN>. The major  
+                  modes of <SPAN class=docEmphBold>rpm</SPAN> and some of the  
+                  most frequently used mode-specific options follow. For  
+                  complete information on how to use and manage RPM packages,  
+                  see the <SPAN class=docEmphBold>rpm</SPAN> manpage or the  
+                  synopsis offered by <SPAN class=docEmphBold>rpm --  
+                  help</SPAN>.<A name=lpicertnut-IDXTERM-982></A> </P><A 
+                  name=p2_ch04-88-fm2xml></A><A name=IXT-14-350633></A><A 
+                  name=IXT-14-350634></A><A name=IXT-14-350635></A><A 
+                  name=IXT-14-350636></A><A name=IXT-14-350637></A><A 
+                  name=IXT-14-350638></A><A name=IXT-14-350639></A><A 
+                  name=IXT-14-350640></A><A name=IXTR3-71></A><A 
+                  name=IXTR3-72></A><A name=IXTR3-73></A><A name=IXTR3-74></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>rpm</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-90-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>rpm <SPAN class=docEmphBold>-</SPAN>i (also rpm <SPAN class=docEmphBold> --</SPAN>  install), 
+rpm <SPAN class=docEmphBold>-</SPAN>U (also rpm <SPAN class=docEmphBold> --</SPAN> upgrade)
+rpm <SPAN class=docEmphBold>-</SPAN>e (also <SPAN class=docEmphBold> --</SPAN> uninstall)
+rpm <SPAN class=docEmphBold>-</SPAN>q (also <SPAN class=docEmphBold> --</SPAN> query)
+rpm <SPAN class=docEmphBold>-</SPAN>V</PRE><A 
+                  name=p2_ch04-91-fm2xml></A>
+                  <H4 class=docRefsectTitle>Install/Upgrade mode</H4>
+                  <P class=docText>The <SPAN class=docEmphasis>install  
+                  mode</SPAN><A name=IXT-14-350633></A> (<SPAN  
+                  class=docEmphBold>rpm -i</SPAN>) is used to install new  
+                  packages. A variant of install mode is the <I>upgrade  
+                  mode</I><A name=IXT-14-350634></A> (<SPAN  
+                  class=docEmphBold>rpm -U</SPAN>), where an installed package  
+                  is upgraded to a more recent version. </P><A  
+                  name=p2_ch04-92-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used install- and 
+                  upgrade-mode options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    force</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This option allows the replacement of 
+                    existing packages and of files from previously installed 
+                    packages; for upgrades, it allows the replacement of a newer 
+                    package with an older one. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN> (also <SPAN class=docEmphBold>-- 
+                    hash</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>This option adds a string of 50 hash marks 
+                    (<TT>#</TT>) during installation as a sort of progress 
+                    indicator. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    nodeps</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><SPAN class=docEmphBold>rpm</SPAN> will 
+                    skip dependency checking with this option enabled. This 
+                    allows you to install a package without regard to 
+                    dependencies. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    test</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This option will run through all the 
+                    motions except for actually writing files; it's useful to 
+                    verify that a package will install correctly prior to making 
+                    the attempt. Note that verbose and hash options cannot be 
+                    used with <SPAN class=docEmphBold>-- test</SPAN>, but <SPAN 
+                    class=docEmphBold>-vv</SPAN> can. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This option sets verbose mode.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-vv</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This sets really verbose mode. The manpage 
+                    describes this as "print lots of ugly debugging 
+                    information." </P></DD></DL><A name=p2_ch04-93-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>To install a new package, simply use the 
+                  <SPAN class=docEmphBold>rpm -i</SPAN> command with the name of 
+                  a package file. If the new package depends upon another 
+                  package, the install fails, like this: </P><PRE># <B>rpm -iv netscape-communicator-4.72-3.i386.rpm</B>
+error: failed dependencies:
+        netscape-common = 4.72 is needed by 
+        netscape-communicator-4.72-3</PRE>
+                  <P class=docText>To correct the problem, the dependency must 
+                  first be satisfied. In this example, 
+                  <I>netscape-communicator</I> is dependent on 
+                  <I>netscape-common</I>, which is installed first: </P><PRE># <B>rpm -iv netscape-common-4.72-3.i386.rpm</B>
+netscape-common             
+# <B>rpm -iv netscape-communicator-4.72-3.i386.rpm</B>
+netscape-communicator</PRE><A name=p2_ch04-94-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Upgrading an existing package to a newer 
+                  version can be done with the <SPAN class=docEmphBold>-U</SPAN> 
+                  option. Upgrade mode is really a special case of the install 
+                  mode, where existing packages can be superseded by newer 
+                  versions. Using <SPAN class=docEmphBold>-U</SPAN>, a package 
+                  can be installed even if it doesn't already exist, in which 
+                  case it behaves just like <SPAN class=docEmphBold>-i</SPAN>: 
+                  </P><PRE># <B>rpm -U netscape-common-4.72-3.i386.rpm</B></PRE><A 
+                  name=p2_ch04-95-fm2xml></A>
+                  <H4 class=docRefsectTitle>Uninstall mode</H4>
+                  <P class=docText><A name=IXT-14-350635></A><A 
+                  name=IXT-14-350636></A>This mode is used to remove installed  
+                  packages from the system. By default, <SPAN  
+                  class=docEmphBold>rpm</SPAN> uninstalls a package only if no  
+                  other packages are dependent on it. </P><A  
+                  name=p2_ch04-96-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used uninstall-mode 
+                  options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    nodeps</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><SPAN class=docEmphBold>rpm</SPAN> skips 
+                    dependency checking with this option enabled. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    test</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This option runs through all the motions 
+                    except for actually uninstalling things; it's useful to 
+                    verify that a package can be uninstalled correctly without 
+                    breaking other dependencies prior to making the attempt. 
+                    Note that verbose and hash options cannot be used with <SPAN 
+                    class=docEmphBold>-- test</SPAN>, but <SPAN 
+                    class=docEmphBold>-vv</SPAN> can. </P></DD></DL><A 
+                  name=p2_ch04-97-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Package removal is the opposite of 
+                  installation and has the same dependency constraints: </P><PRE># <B>rpm -e netscape-common</B>
+error: removing these packages would break dependencies:
+        netscape-common = 4.72 is needed by 
+        netscape-communicator-4.72-3</PRE><A 
+                  name=p2_ch04-98-fm2xml></A>
+                  <H4 class=docRefsectTitle>Query mode</H4>
+                  <P class=docText><A name=IXT-14-350637></A><A 
+                  name=IXT-14-350638></A>Installed packages and raw package  
+                  files can be queried using the <SPAN class=docEmphBold>rpm  
+                  -q</SPAN> command. Query-mode options exist for package and  
+                  information selection. </P><A name=p2_ch04-99-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used query-mode package 
+                  selection options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN> (also <SPAN class=docEmphBold>-- 
+                    all</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>Display a list of all packages installed on 
+                    the system. This is particularly useful when piped to <SPAN 
+                    class=docEmphBold>grep</SPAN> if you're not sure of the name 
+                    of a package or when you want to look for packages that 
+                    share a common attribute. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>filename</I> (also <SPAN 
+                    class=docEmphBold>-- file</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>Display the package that contains a 
+                    particular file.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN> <I>package_ filename</I></SPAN> 
+                    <DD>
+                    <P class=docList>Query a package file. Most useful with 
+                    <SPAN class=docEmphBold>-i</SPAN>, described next. 
+                  </P></DD></DL><A name=p2_ch04-100-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used query-mode 
+                  information selection options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN> (also <SPAN class=docEmphBold>-- 
+                    configfiles</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>List only configuration files.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> (also <SPAN class=docEmphBold>-- 
+                    docfiles</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>List only documentation files.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN> <I>package</I></SPAN> 
+                    <DD>
+                    <P class=docList>Not to be confused with the <I>install 
+                    mode.</I> Display information about an installed package, or 
+                    when combined with <SPAN class=docEmphBold>-p</SPAN>, about 
+                    a package file. In the latter case, <I>package</I> is a 
+                    filename. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN> <I>package</I> (also <SPAN 
+                    class=docEmphBold>-- list</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>List all of the files contained in 
+                    <I>package</I>. When used with <SPAN 
+                    class=docEmphBold>-p</SPAN>, the <I>package</I> is a 
+                    filename. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-R</SPAN> (also <SPAN class=docEmphBold>-- 
+                    requires</SPAN>)</SPAN> 
+                    <DD>
+                    <P class=docList>List packages on which this package 
+                    depends.</P></DD></DL><A name=p2_ch04-101-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>To determine the version of the software 
+                  contained in an RPM file, use the query and package 
+                  information options: </P><PRE># <B>rpm -qpi xv-3.10a-13.i386.rpm | grep Version</B> 
+Version     : 3.10a                Vendor: Red Hat Software</PRE>
+                  <P class=docText>For installed packages, omit the <SPAN 
+                  class=docEmphBold>-p</SPAN> option and specify a package name 
+                  instead of a package filename: </P><PRE># <B>rpm -qi kernel-source | grep Version</B>
+Version     : 2.2.5                Vendor: Red Hat Software</PRE><A 
+                  name=p2_ch04-102-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Enter query mode and list the files contained 
+                  in a package:</P><PRE># <B>rpm -qlp gnucash-1.3.0-1.i386.rpm </B>
+/usr/bin/gnc-prices
+/usr/bin/gnucash
+/usr/bin/gnucash.gnome
+/usr/doc/gnucash
+/usr/doc/gnucash/CHANGES
+ <I> (...output continues ...)</I></PRE>
+                  <P class=docText>For an installed package, enter query mode 
+                  and use the <SPAN class=docEmphBold>-l</SPAN> option along 
+                  with the package name: </P><PRE># <B>rpm -ql kernel-source </B>
+/usr/src/linux-2.2.5/COPYING
+/usr/src/linux-2.2.5/CREDITS
+/usr/src/linux-2.2.5/Documentation
+/usr/src/linux-2.2.5/Documentation/00-INDEX
+/usr/src/linux-2.2.5/Documentation/ARM-README
+ <I> (...output continues ...)</I></PRE><A 
+                  name=p2_ch04-103-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>List the documentation files in a 
+package:</P><PRE># <B>rpm -qd at</B>      
+/usr/doc/at-3.1.7/ChangeLog
+/usr/doc/at-3.1.7/Copyright
+/usr/doc/at-3.1.7/Problems
+/usr/doc/at-3.1.7/README
+/usr/doc/at-3.1.7/timespec
+/usr/man/man1/at.1
+/usr/man/man1/atq.1
+/usr/man/man1/atrm.1
+/usr/man/man1/batch.1
+/usr/man/man8/atd.8
+/usr/man/man8/atrun.8</PRE>
+                  <P class=docText>Use <SPAN class=docEmphBold>-p</SPAN> for 
+                  package filenames.</P><A name=p2_ch04-104-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>List configuration files or scripts in a 
+                  package:</P><PRE># <B>rpm -qc at</B> 
+/etc/at.deny
+/etc/rc.d/init.d/atd</PRE><A name=p2_ch04-105-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>Determine the package from which a particular 
+                  file was installed. Of course, not all files originate from 
+                  packages: </P><PRE># <B>rpm -qf /etc/issue</B> 
+file /etc/issue is not owned by any package</PRE>
+                  <P class=docText>Those that are package members look like 
+                  this:</P><PRE># <B>rpm -qf /etc/aliases</B>
+sendmail-8.9.3-10</PRE><A name=p2_ch04-106-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>List the packages that have been installed on 
+                  the system (all or a subset): </P><PRE># <B>rpm -qa </B>
+<I> (... hundreds of packages are listed ...)</I></PRE>
+                  <P class=docText>To search for a subset with <I>kernel</I> in 
+                  the name, pipe the previous command to <SPAN 
+                  class=docEmphBold>grep</SPAN>: </P><PRE># <B>rpm -qa | grep kernel</B>
+kernel-headers-2.2.5-15
+kernel-2.2.5-15
+kernel-pcmcia-cs-2.2.5-15
+kernel-smp-2.2.5-15
+kernel-source-2.2.5-15
+kernelcfg-0.5-5
+kernel-ibcs-2.2.5-15
+kernel-doc-2.2.5-15</PRE><A name=p2_ch04-107-fm2xml></A>
+                  <H4 class=docRefsectTitle>Verify mode</H4>
+                  <P class=docText><A name=IXT-14-350639></A><A 
+                  name=IXT-14-350640></A>Files from installed packages can be  
+                  compared against their expected configuration from the RPM  
+                  database by using <SPAN class=docEmphBold>rpm -V</SPAN>. The  
+                  output is described in <a class="docLink" href="21-1.htm">Section  
+                  21.1</a>. </P><A name=p2_ch04-108-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used verify-mode 
+                  options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    nofiles</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Ignores missing files.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    nomd5</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Ignores MD5 checksum errors.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    nopgp</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Ignores PGP checking errors.</P></DD></DL><A 
+                  name=p2_ch04-109-fm2xml></A>
+                  <H4 class=docRefsectTitle>Additional operational modes</H4>
+                  <P class=docText>There are also modes in RPM for building, 
+                  rebuilding, signing, and checking the signature of RPM files; 
+                  however, these are beyond the scope of the LPIC Level 1 exams. 
+                  </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Make certain that you are aware of  
+                        RPM's major operational modes and their commonly used  
+                        mode-specific options. Knowledge of specific options  
+                        will be necessary. Read through the <SPAN  
+                        class=docEmphBold>rpm</SPAN> manpage at least once.<A  
+                        name=IXTR3-71></A> <A name=IXTR3-72></A><A  
+                        name=IXTR3-73></A><A 
+                  name=IXTR3-74></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="14-6.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-14-SECT-6
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)563ms
+(xml)312ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)906ms
+--></BODY></HTML>

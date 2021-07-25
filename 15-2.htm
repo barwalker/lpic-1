@@ -1,0 +1,663 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-15-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="15-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="15-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 15.&nbsp;  
+            Kernel (Topic 1.5)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-15-SECT-2></A>
+                  <H3 class=docSection1Title>15.2 Objective 2: Reconfigure, 
+                  Build, and Install a Custom Kernel and Modules</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1050></A><A 
+                  name=lpicertnut-IDXTERM-1051></A>Because Linux is an open  
+                  source operating system, you are free to create a customized  
+                  Linux kernel that suits your specific needs and hardware. For  
+                  example, you may wish to create a kernel for your system if  
+                  your distribution installed a generic kernel that was compiled  
+                  using the 80386 instruction set. Such a kernel will run on any  
+                  compatible processor but may not utilize some of the  
+                  capabilities of newer processors. Running a kernel optimized  
+                  for your particular CPU can enhance its performance. </P> 
+                  <P class=docText>You can also install new kernels to add 
+                  features, fix bugs, or experiment with kernels still under 
+                  development. While the compilation of such kernels isn't much 
+                  of a leap beyond recompiling your existing version, it's 
+                  beyond the scope of the LPIC Level 1 exams. </P><A 
+                  name=lpicertnut-CHP-15-SECT-2.1></A>
+                  <H4 class=docSection2Title>15.2.1 Kernel Background</H4>
+                  <P class=docText>If you are new to the idea of building a 
+                  custom kernel, don't feel intimidated. Linux developers have 
+                  created a simple and reliable process that you can follow, and 
+                  everything you need is available in your Linux distribution. 
+                  </P><A name=lpicertnut-CHP-15-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>15.2.1.1 Kernel versions</H5>
+                  <P class=docText><A name=IXT-15-350692></A>Nearly all software  
+                  projects, even small ones, use a numerical versioning scheme  
+                  to describe each successive release. <A  
+                  name=IXT-15-350693></A>Kernel versions are numbered using the  
+                  following convention: </P> 
+                  <P class=docText><TT><I>major.minor.patchlevel</I></TT></P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Major release</SPAN></I> 
+                    <DD>
+                    <P class=docList>Increments in the major release indicate 
+                    major developmental milestones in the kernel. The present 
+                    release is 2.x.x (don't let the low major release number 
+                    fool you -- there have been plenty of developmental 
+                    milestones in the Linux kernel's history). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Minor release</SPAN></I> 
+                    <DD>
+                    <P class=docList>The minor release indicates significant 
+                    changes and additions, which taken together will culminate 
+                    in a new major release. The Linux kernel minor release 
+                    numbers fall into one of the following categories: </P>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Even-numbered releases 
+                      </SPAN></I>
+                      <DD>
+                      <P class=docList>Kernels with even-numbered kernel 
+                      versions (2.0, 2.2, 2.4, and so on) are considered stable. 
+                      </P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Odd-numbered releases 
+                      </SPAN></I>
+                      <DD>
+                      <P class=docList>Kernels with odd-numbered minor release 
+                      versions (2.1, 2.3, and so on) are in development and are 
+                      primarily used by kernel developers. When goals for the 
+                      development of a minor release are met and testing shows 
+                      that the kernel is stable, a new even-numbered minor 
+                      release is created. This is how development kernels are 
+                      released as production kernels. </P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Patch level</SPAN></I> 
+                    <DD>
+                    <P class=docList>As bugs are found and corrected or as 
+                    planned features are added, the kernel patch level is 
+                    incremented (2.2.15, 2.3.38, and so on). Generally speaking, 
+                    it is safest to run the latest patch level of the kernel to 
+                    be assured of having the most current bug fixes. In reality, 
+                    it is more important to track kernel development and upgrade 
+                    your kernel only if your existing version is found to have a 
+                    serious problem or if you are already experiencing 
+                    difficulty. </P></DD></DL><A 
+                  name=lpicertnut-CHP-15-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>15.2.1.2 Required tools and 
+                  software</H5>
+                  <P class=docText><A name=IXT-15-350694></A>To compile a custom  
+                  kernel, you need development tools including a C compiler,  
+                  assembler, linker, and the <SPAN class=docEmphBold>make</SPAN>  
+                  utility. If you selected a kernel development option when you  
+                  installed Linux, you should already have these tools on your  
+                  system. The C compiler is the program that translates C source  
+                  code into the binary form used by your system. The standard  
+                  compiler on most Linux systems is the GNU C Compiler, <SPAN  
+                  class=docEmphBold>gcc</SPAN>. The assembler and linker are  
+                  needed for some portions of the kernel compilation. </P> 
+                  <P class=docText>The compilation process is controlled by  
+                  <SPAN class=docEmphBold>make</SPAN>, a utility that executes  
+                  commands such as <SPAN class=docEmphBold>gcc</SPAN> as  
+                  directed by a list of dependency rules. These rules are stored  
+                  in the <I>Makefile</I>. A brief introduction to <SPAN  
+                  class=docEmphBold>make</SPAN> is provided in <a class="docLink" href="14-3.htm">Section  
+                  14.3</a>. </P>
+                  <P class=docText>Of course, you also need the kernel source 
+                  code. Your Linux distribution will come with one or more 
+                  packages containing everything you need. For example, on a Red 
+                  Hat system, use the following two RPM packages (listed here 
+                  without their version numbers): </P><A name=IXT-15-350695></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>kernel-source</SPAN></SPAN><A 
+                    name=IXT-15-350695></A></SPAN> 
+                    <DD>
+                    <P class=docList>This package contains the C language source 
+                    code for the kernel and modules. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>kernel-headers</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This package contains C language header 
+                    files for the kernel. The header files define structures and 
+                    constants that are needed for building most C programs, as 
+                    well as the kernel itself. </P></DD></DL>
+                  <P class=docText><A name=IXT-15-350696></A>On most systems,  
+                  the kernel's source code can be found in  
+                  <I>/usr/src/linux</I><A name=IXT-15-350697></A>, which should  
+                  be a symbolic link to the specific version of the kernel  
+                  you're using. For example, here is the <I>/usr/src</I>  
+                  directory for a system with several kernel versions: </P><PRE># <B>ls -l /usr/src</B>
+lrwxrwxrwx  1 root  root      12  Feb 16 04:19 
+        linux -&gt; linux-2.3.45
+drwxr-xr-x 15 root  root    1024  Jan 29 01:13 linux-2.2.14
+drwxr-xr-x 17 root  root    1024  Feb 16 03:00 linux-2.2.5
+drwxr-xr-x 14 root  root    1024  Feb 16 04:35 linux-2.3.45</PRE> 
+                  <P class=docText>In this example, symbolic link 
+                  <I>/usr/src/linux</I> points to the directory hierarchy for 
+                  development kernel 2.3.45. The <I>/usr/src/linux</I> link is 
+                  important when you work with multiple kernels, as it is 
+                  assumed that the link will be manually removed before 
+                  installing new kernel source trees. For the purposes of Exam 
+                  102, you need to be concerned only with the kernel source 
+                  installed by your distribution. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You will need to know where the kernel 
+                        source code is stored (e.g., <I>/usr/src/linux</I>). 
+                        Explore the kernel source tree to familiarize yourself 
+                        with its contents. Pay particular attention to 
+                        <I>.config</I> and the <I>Makefile</I>. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-15-SECT-2.2></A>
+                  <H4 class=docSection2Title>15.2.2 Compiling a Custom 
+                  Kernel</H4>
+                  <P class=docText><A name=IXT-15-350698></A><A 
+                  name=IXT-15-350699></A>This section provides an overview of  
+                  kernel compilation and installation by way of example. This  
+                  example uses kernel Version 2.2.5, and our objective is to  
+                  create a single-processor 2.2.5 kernel for a Pentium system  
+                  with IDE disks<SUP class=docFootnote>[2]</SUP> to replace a  
+                  generic kernel that came with the distribution. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> A system 
+                    that boots from a SCSI disk and has the SCSI driver compiled 
+                    as a module requires the use of an initial RAM disk, which 
+                    is not covered here.</P></BLOCKQUOTE>
+                  <P class=docText>Assume that the development environment -- 
+                  including compiler, <SPAN class=docEmphBold>make</SPAN>, 
+                  kernel source code, and kernel headers -- is installed. The 
+                  <I>root</I> account will be used to create and install the 
+                  kernel, although any user can compile a kernel given the 
+                  appropriate filesystem permissions. Before building a 
+                  customized kernel, you should read 
+                  <I>/usr/doc/HOWTO/Kernel-HOWTO</I> and 
+                  <I>/usr/src/linux/README</I>. </P><A 
+                  name=lpicertnut-CHP-15-SECT-2.2.1></A>
+                  <H5 class=docSection3Title>15.2.2.1 Creating a kernel 
+                  configuration</H5>
+                  <P class=docText><A name=IXT-15-350700></A>The first step in  
+                  creating a kernel is configuration. There are more than 500  
+                  options for the kernel, such as filesystem, SCSI, and  
+                  networking support. Many of the options list kernel features  
+                  that can be either compiled directly into the kernel or  
+                  compiled as modules. During configuration, you indicate for  
+                  each option whether you want that feature: </P> 
+                  <UL>
+                    <LI>
+                    <P class=docList>Compiled into the kernel ("<SPAN 
+                    class=docEmphasis>yes"</SPAN> response) </P>
+                    <LI>
+                    <P class=docList>Compiled as a module (<SPAN 
+                    class=docEmphBold>module</SPAN> response) </P>
+                    <LI>
+                    <P class=docList>Don't want the feature at all ("<SPAN 
+                    class=docEmphasis>no"</SPAN> response) </P></LI></UL>
+                  <P class=docText>Some selections imply a group of other 
+                  selections. For example, when you indicate that you wish to 
+                  include SCSI support, additional options become available for 
+                  specific SCSI drivers and features. The results from all of 
+                  these choices are stored in the kernel configuration file 
+                  <I>/usr/src/linux/.config</I>, which is a plain text file that 
+                  lists the options as shell variables set to one of <I>y</I>, 
+                  <I>m</I>, or <I>n</I> in accordance with your response for 
+                  each item. </P>
+                  <P class=docText>To begin, set the current working directory 
+                  to the top of the source tree: </P><PRE># <B>cd /usr/src/linux</B></PRE>
+                  <P class=docText>There are several ways to set up  
+                  <I>.config</I>. Although you can do so, you should not edit  
+                  the file manually. Instead, you may select from three  
+                  interactive approaches. An additional option is available to  
+                  construct a default configuration. Each is started using <A  
+                  name=lpicertnut-IDXTERM-1061></A><SPAN 
+                  class=docEmphBold>make</SPAN>. </P><A 
+                  name=p2_ch05-55-fm2xml></A><A name=IXT-15-350701></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>make config</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-57-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>make config</PRE><A name=p2_ch05-58-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Running <SPAN class=docEmphBold>make  
+                  config</SPAN><A name=IXT-15-350701></A><I> </I>is the most  
+                  rudimentary of the automated kernel-configuration methods and  
+                  does not depend on any form of display capability on your  
+                  terminal. In response to <SPAN class=docEmphBold>make  
+                  config</SPAN>, the system presents you with a question in your  
+                  console or window for each kernel option. You respond to the  
+                  questions with <I>y</I>, <I>m</I>, or <I>n</I> for <I>yes</I>,  
+                  <I>module</I>, or <I>no</I>, respectively. This method can  
+                  admittedly get a bit tedious and has the liability that you  
+                  must answer all the questions before being asked if you wish  
+                  to save your <I>.config</I> file and exit. However, it is  
+                  helpful if you do not have sufficient capability to use one of  
+                  the menu-based methods (described next). A <SPAN  
+                  class=docEmphBold>make config</SPAN><I> </I>session looks like  
+                  this: </P><PRE># <B>make config</B>
+rm -f include/asm
+( cd include ; ln -sf asm-i386 asm)
+/bin/sh scripts/Configure arch/i386/config.in
+#
+# Using defaults found in arch/i386/defconfig
+#
+*
+* Code maturity level options
+*
+Prompt for development and/or incomplete code/drivers 
+(CONFIG_EXPERIMENTAL) [Y/n/?]<B>Y</B></PRE>
+                  <P class=docText>Each option is offered in this manner.</P><A 
+                  name=p2_ch05-59-fm2xml></A><A name=IXT-15-350702></A><A 
+                  name=IXT-15-350703></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>make menuconfig</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-61-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>make menuconfig</PRE><A name=p2_ch05-62-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350702></A>This configuration  
+                  method is more intuitive and can be used as an alternative to  
+                  <SPAN class=docEmphBold>make config</SPAN>. It creates a  
+                  text-mode-windowed environment where you may use  
+                  up/down/left/right and other keys to configure the kernel. The  
+                  menu depends on the ability of your terminal or terminal  
+                  window to use <I>curses</I><A name=IXT-15-350703></A>, a  
+                  standard library of terminal cursor manipulation instructions.  
+                  If your terminal does not support curses (though most do), you  
+                  must select another method. The <SPAN class=docEmphBold>make  
+                  menuconfig</SPAN><I> </I>window is illustrated in <a class="docLink" href="#lpicertnut-CHP-15-FIG-1">Figure  
+                  15-1</a> in an <SPAN class=docEmphBold>xterm</SPAN>. </P> 
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-15-FIG-1></A>Figure 15-1. The make  
+                  menuconfig menu display</H5><IMG height=231  
+                  alt=figs/lpi_1501.gif src="15-2.files/lpi_1501.gif" width=431 
+                  border=0></CENTER><A name=p2_ch05-63-fm2xml></A><A 
+                  name=IXT-15-350704></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>make xconfig</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-65-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>make xconfig</PRE><A name=p2_ch05-66-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-15-350704></A>If you are running  
+                  the X Window System, the <SPAN class=docEmphBold>make  
+                  xconfig</SPAN><I> </I>configuration method presents a GUI menu  
+                  with radio buttons to make the selections. It is the most  
+                  appealing visually but requires a graphical console or X  
+                  display. <a class="docLink" href="#lpicertnut-CHP-15-FIG-2">Figure  
+                  15-2</a> shows the top-level <SPAN class=docEmphBold>make  
+                  xconfig</SPAN><I> </I>window. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-15-FIG-2></A>Figure 15-2. The make xconfig  
+                  menu display</H5><IMG height=228 alt=figs/lpi_1502.gif  
+                  src="15-2.files/lpi_1502.gif" width=431 border=0></CENTER>
+                  <P class=docText>The options presented in each case are the 
+                  same, as is the outcome. </P><A name=p2_ch05-67-fm2xml></A><A 
+                  name=IXT-15-350705></A><A name=IXT-15-350706></A><A 
+                  name=IXT-15-350707></A><A name=IXT-15-350708></A><A 
+                  name=IXT-15-350709></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>make oldconfig</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-69-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>make oldconfig</PRE><A name=p2_ch05-70-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><SPAN class=docEmphBold>make 
+                  oldconfig</SPAN><A name=IXT-15-350705></A> can create a  
+                  default <I>.config</I> file. This method sets up a default  
+                  <I>.config</I> file without interaction from the user. This is  
+                  convenient if you need a starting point and your distribution  
+                  did not install a default <I>.config</I> file. This method  
+                  will also build a new <I>.config</I> file from one customized  
+                  for a previous kernel release, but this is beyond the scope of  
+                  Exam 102. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="15-2.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText><A name=IXT-15-350706></A>In the  
+                              absence of user responses, <SPAN  
+                              class=docEmphBold>menuconfig</SPAN> and <SPAN  
+                              class=docEmphBold>xconfig</SPAN> will create a  
+                              default <I>.config</I> file, equivalent to the one  
+                              created by <SPAN  
+                              class=docEmphBold>oldconfig</SPAN>. 
+                          </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch05-72-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>To create the <I>.config</I> file for this  
+                  example, the target processor is set as Pentium. Using <SPAN  
+                  class=docEmphBold>make xconfig</SPAN>, the selection looks  
+                  like the window shown in <a class="docLink" href="#lpicertnut-CHP-15-FIG-3">Figure  
+                  15-3</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-15-FIG-3></A>Figure 15-3. The make xconfig  
+                  processor-selection window</H5><IMG height=192  
+                  alt=figs/lpi_1503.gif src="15-2.files/lpi_1503.gif" width=400 
+                  border=0></CENTER>
+                  <P class=docText>By setting the <SPAN 
+                  class=docEmphasis>Processor family</SPAN> parameter to 
+                  <I>Pentium/K6/TSC</I> and saving the configuration, the 
+                  following revised configuration lines are written in 
+                  <I>.config</I>: </P><PRE># Processor type and features
+#
+# CONFIG_M386 is not set
+# CONFIG_M486 is not set
+# CONFIG_M586 is not set
+CONFIG_M586TSC=y
+# CONFIG_M686 is not set
+CONFIG_X86_WP_WORKS_OK=y
+CONFIG_X86_INVLPG=y
+CONFIG_X86_BSWAP=y
+CONFIG_X86_POPAD_OK=y
+CONFIG_X86_TSC=y
+CONFIG_MATH_EMULATION=y
+CONFIG_MTRR=y
+# CONFIG_SMP is not set</PRE>
+                  <P class=docText>The complete <I>.config</I><A  
+                  name=IXT-15-350707></A> file will contain approximately 800  
+                  lines. You should look through the other kernel options with  
+                  one of the windowed selectors first to familiarize yourself  
+                  with what is available before making your selections. </P> 
+                  <P class=docText>Now that <I>.config</I> is created, one small  
+                  change is made to <I>Makefile</I><A name=IXT-15-350708></A> to  
+                  differentiate our new custom kernel from the generic one.  
+                  Examining <I>/usr/src/linux/Makefile</I><A  
+                  name=IXT-15-350709></A>, the first four lines look like this:  
+                  </P><PRE>VERSION = 2
+PATCHLEVEL = 2
+SUBLEVEL = 5
+EXTRAVERSION = -15</PRE>
+                  <P class=docText>You can see that the kernel version is 2.2.5 
+                  and that an additional version number is available. In this 
+                  case, the generic kernel had the extra version suffix of 
+                  <I>-</I><TT>15</TT>, yielding a complete kernel version number 
+                  2.2.5-15. This <TT>EXTRAVERSION</TT> parameter can be used to 
+                  indicate just about anything. In this example it denotes the 
+                  15th build of kernel 2.2.5, but <TT>-pentium</TT> is added to 
+                  the end for our custom version. Edit <I>Makefile</I> and 
+                  change <TT>EXTRAVERSION</TT> as follows: </P><PRE>EXTRAVERSION = -15-pentium</PRE>
+                  <P class=docText>This change completes the configuration for 
+                  this example.</P><A name=lpicertnut-CHP-15-SECT-2.2.2></A>
+                  <H5 class=docSection3Title>15.2.2.2 Compiling the kernel</H5>
+                  <P class=docText><A name=IXT-15-350710></A>Once the  
+                  <I>.config</I> and <I>Makefile </I>files are customized, the  
+                  new kernel can be compiled by running the following commands:  
+                  </P><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>make dep</SPAN><A 
+                    name=IXT-15-350711></A> </P>
+                    <P class=docList>In this step, source files (<I>.c</I>) are 
+                    examined for dependencies on header files. A file called 
+                    <I>.depend</I> is created in each directory containing 
+                    source files to hold the resulting list, with a line for 
+                    each compiled object file (<I>.o</I>). The <I>.depend</I> 
+                    files are automatically included in subsequent <SPAN 
+                    class=docEmphBold>make</SPAN> operations to be sure that 
+                    changes in header files are compiled into new objects. Since 
+                    kernel code isn't being developed here, no header file 
+                    changes are needed. Nevertheless, <SPAN 
+                    class=docEmphBold>make dep</SPAN><I> </I>is an essential 
+                    first step in the compilation process. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>make clean</SPAN><A 
+                    name=IXT-15-350712></A> </P>
+                    <P class=docList>The "clean" operation removes old output 
+                    files that may exist from previous kernel builds. These 
+                    include core files, system map files, and others. They must 
+                    be removed in order to compile a new, clean kernel. 
+                    </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>make 
+                    bzImage</SPAN><A name=IXT-15-350713></A> </P>
+                    <P class=docList>The <I>bzImage</I><A  
+                    name=IXT-15-350714></A> file is our ultimate goal, a <A  
+                    name=IXT-15-350715></A>bootable kernel image file,  
+                    compressed using the <I>bzip2</I> utility.<SUP  
+                    class=docFootnote>[3]</SUP> It is  
+                    created in this step along with some additional support  
+                    files needed for boot time. </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[3]</A></SUP> <SPAN  
+                      class=docEmphBold>bzip2</SPAN> <A  
+                      name=IXT-15-350716></A>is a compression utility similar to  
+                      the more familiar <SPAN class=docEmphBold>gzip</SPAN>.  
+                      <SPAN class=docEmphBold>bzip2</SPAN> uses a different  
+                      compression algorithm that generally produces better  
+                      compression results. See the <SPAN  
+                      class=docEmphBold>bzip2</SPAN> manpage for more  
+                      information.</P></BLOCKQUOTE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>make 
+                    modules</SPAN><A name=IXT-15-350717></A> </P>
+                    <P class=docList>Device drivers and other items that were 
+                    configured as modules are compiled in this step. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>make 
+                    modules_install</SPAN><A name=IXT-15-350718></A> </P>
+                    <P class=docList>All of the modules compiled during <SPAN 
+                    class=docEmphBold>make modules</SPAN> are installed under 
+                    <I>/lib/modules/</I><TT><I>kernel-version</I></TT> in this 
+                    step. A directory are created there for each kernel version, 
+                    including various extraversions. </P></SPAN></LI></OL></SPAN>
+                  <P class=docText>The <I>bzImage</I> and <I>modules 
+                  </I>portions of the kernel-compilation process will take the 
+                  most time. Overall, the time required to build a kernel 
+                  depends on your system's capabilities. </P>
+                  <P class=docText>After completing this series of <SPAN  
+                  class=docEmphBold>make</SPAN> processes, compilation is  
+                  complete. The new <A name=IXT-15-350719></A>kernel image is  
+                  now located in <I>/usr/src/linux/arch/i386/boot/bzImage</I>.<A  
+                  name=IXTR3-77></A> </P><A 
+                  name=lpicertnut-CHP-15-SECT-2.2.3></A>
+                  <H5 class=docSection3Title>15.2.2.3 Installing the new kernel 
+                  and configuring LILO</H5>
+                  <P class=docText>Now that the new kernel has been compiled, 
+                  the system can be configured to boot it: </P><SPAN 
+                  style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>The first step is to put a copy of our new 
+                    <I>bzImage</I> on the root partition so it can be booted by 
+                    LILO. The copy is named just as it was named during 
+                    compilation, including the extraversion: </P><PRE># <B>cp -p /usr/src/linux/arch/i386/boot/bzImage </B>
+<B>       /boot/vmlinuz-2.2.5-15-pentium</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Now, a listing of kernels should show at 
+                    least your default kernel and your new one, 
+                    <I>vmlinuz-2.2.5-15-pentium</I>: </P><PRE># <B>ls -1 /boot/vmlinuz*</B>
+/boot/vmlinuz
+/boot/vmlinuz-2.2.14
+/boot/vmlinuz-2.2.5-15
+/boot/vmlinuz-2.2.5-15-pentium
+/boot/vmlinuz-2.2.5-15smp
+/boot/vmlinuz-2.3.45</PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><I></I><A name=IXT-15-350720></A>Next, add  
+                    a new <TT>image</TT> section to the bottom of  
+                    <I>/etc/lilo.conf</I><A name=IXT-15-350721></A> : </P><PRE>image=/boot/vmlinuz-2.2.5-15-pentium
+    label=linux-pentium
+    root=/dev/sda1
+    read-only</PRE></SPAN> 
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Finally, <SPAN  
+                    class=docEmphBold>lilo</SPAN> <A name=IXT-15-350722></A>(the  
+                    map installer) is run again to incorporate the new kernel:  
+                    </P><PRE># <B>lilo</B>
+Added linux-smp *
+Added linux-up
+Added latest
+Added linux-pentium</PRE></SPAN></LI></OL></SPAN>
+                  <P class=docText>It's not uncommon to forget the execution of 
+                  <SPAN class=docEmphBold>lilo</SPAN>. If you do forget, <SPAN 
+                  class=docEmphBold>lilo</SPAN> won't know about the new kernel 
+                  you've installed despite the fact that it's listed in the 
+                  <I>lilo.conf</I> file. This is because <I>lilo.conf</I> is not 
+                  consulted at boot time. </P>
+                  <P class=docText>If everything has gone according to plan, 
+                  it's time to reboot and attempt to load the new kernel. </P>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="15-2.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>As you review the <I>README</I>  
+                              file that comes with the kernel source, you may  
+                              see suggestions for overwriting your existing  
+                              kernel, perhaps with a generic name such as  
+                              <I>vmlinuz</I>, and reusing your existing LILO  
+                              configuration unaltered (i.e., without changing  
+                              <I>lilo.conf</I> ). Unless you're absolutely sure  
+                              about what you are doing, overwriting a known-good  
+                              kernel is a bad idea. Instead, keep the working  
+                              kernel around as a fallback position in case  
+                              there's a problem with your new one.<A  
+                              name=IXTR3-78></A> <A  
+                          name=IXTR3-79></A></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-15-SECT-2.2.4></A>
+                  <H5 class=docSection3Title>15.2.2.4 Examine the new 
+                  modules</H5>
+                  <P class=docText>Now that the new kernel is installed, you 
+                  should take a look at <I>/lib/modules</I>, which now has a new 
+                  directory for the new kernel: </P><PRE># <B>ls -1 /lib/modules</B>
+2.2.14
+2.2.5-15
+2.2.5-15-pentium
+2.2.5-15smp
+2.3.45</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember the series of <SPAN 
+                        class=docEmphBold>make</SPAN> steps required to build 
+                        the kernel: <SPAN class=docEmphBold>config</SPAN> (or 
+                        <SPAN class=docEmphBold>menuconfig</SPAN> or <SPAN 
+                        class=docEmphBold>xconfig</SPAN>), <SPAN 
+                        class=docEmphBold>dep</SPAN>, <SPAN 
+                        class=docEmphBold>clean</SPAN>, <SPAN 
+                        class=docEmphBold>bzImage</SPAN>, <SPAN 
+                        class=docEmphBold>modules</SPAN>, and <SPAN 
+                        class=docEmphBold>modules-install</SPAN>. Be aware of 
+                        where the kernel source code is installed. Also, note 
+                        that you need to copy the kernel image file 
+                        (<I>bzImage</I>) to the root filesystem and that you 
+                        must rerun <SPAN class=docEmphBold>lilo</SPAN> before 
+                        you can boot it. By all means, practice compiling and 
+                        installing a kernel at least once before taking Exam 
+                        102. </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-15-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-15-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-15-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)1391ms
+(xml)391ms
+(xsl)46ms
+(ent)0ms
+(buf)0ms
+
+(tot)1859ms
+--></BODY></HTML>

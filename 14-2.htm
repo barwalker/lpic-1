@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="14-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="14-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 14.&nbsp;  
+            Linux Installation and Package Management (Topic  
+            2.2)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-14-SECT-2></A>
+                  <H3 class=docSection1Title>14.2 Objective 2: Install a Boot 
+                  Manager</H3>
+                  <P class=docText><A name=IXT-14-350577></A><A 
+                  name=IXT-14-350578></A>While it is possible to boot Linux from  
+                  a floppy disk, most Linux installations boot from the  
+                  computer's hard disk.<SUP class=docFootnote>[2]</SUP> This is a  
+                  two-step process that begins after the system BIOS is  
+                  initialized and ready to run an operating system. Starting  
+                  Linux consists of the following two basic phases: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> This 
+                    isn't to say that you can't boot from other media such as 
+                    floppies -- many people do.</P></BLOCKQUOTE>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Run lilo from the boot 
+                    disk</SPAN></I> 
+                    <DD>
+                    <P class=docList>It is Linux loader's (LILO's) job to find 
+                    the selected kernel and get it loaded into memory, including 
+                    any user-supplied options. </P>
+                    <DT><I><SPAN class=docPubcolor>Launch the Linux kernel and 
+                    start processes</SPAN></I> 
+                    <DD>
+                    <P class=docList>LILO starts the loaded kernel. LILO's job 
+                    at this point is complete and the hardware is placed under 
+                    the control of the running kernel, which sets up shop and 
+                    begins running processes. </P></DD></DL><A 
+                  name=lpicertnut-CHP-14-SECT-2.1></A>
+                  <H4 class=docSection2Title>14.2.1 LILO</H4>
+                  <P class=docText>The <A name=lpicertnut-IDXTERM-908></A>Linux  
+                  Loader (LILO) is a small utility designed to load the Linux  
+                  kernel (or the boot sector of another operating system) into  
+                  memory and start it. A program that performs this function is  
+                  commonly called a boot loader. While other boot loaders exist,  
+                  LILO is the most popular and is installed as the default boot  
+                  loader on most Linux distributions. LILO consists of two  
+                  parts: </P><A name=IXT-14-350579></A><A 
+name=IXT-14-350580></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>The boot loader</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-14-350579></A>This part of LILO  
+                    is a two-stage program intended to find and load a  
+                    kernel.<SUP class=docFootnote>[3]</SUP> The first  
+                    stage of LILO usually resides in the <A  
+                    name=IXT-14-350580></A>Master Boot Record (MBR) of the hard  
+                    disk. This is the code that is started at boot time by the  
+                    system BIOS. It locates and launches a second, larger stage  
+                    of the boot loader that resides elsewhere on disk. The  
+                    second stage offers a user prompt to allow boot-time and  
+                    kernel image selection options, finds the kernel, loads it  
+                    into memory, and launches it. </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[3]</A></SUP> It's a 
+                      two-stage operation because the boot sector of the disk is 
+                      too small to hold the entire boot loader program. The code 
+                      located in the boot sector is compact because its only 
+                      function is to launch the second stage, which is the 
+                      interactive portion.</P></BLOCKQUOTE></DD></DL><A 
+                  name=IXT-14-350581></A><A name=IXT-14-350582></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>The lilo command</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-14-350581></A>Also called the  
+                    <SPAN class=docEmphasis>map installer</SPAN><A 
+                    name=IXT-14-350582></A>, <SPAN class=docEmphBold>lilo</SPAN>  
+                    is used to install and configure the LILO boot loader. The  
+                    <SPAN class=docEmphBold>lilo</SPAN> command reads a  
+                    configuration file, which describes where to find kernel  
+                    images, video information, the default boot disk, and so on.  
+                    It encodes this information along with physical disk  
+                    information and writes it in files for use by the boot  
+                    loader. </P></DD></DL><A 
+name=lpicertnut-CHP-14-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>14.2.1.1 The boot loader</H5>
+                  <P class=docText>When the system BIOS launches, LILO presents 
+                  you with the following prompt: </P><PRE>LILO:</PRE>
+                  <P class=docText>The <A name=IXT-14-350583></A><TT>LILO</TT>  
+                  prompt is designed to allow you to select from multiple  
+                  kernels or operating systems installed on the computer and to  
+                  pass parameters to the kernel when it is loaded. Pressing the  
+                  <SPAN class=docEmphBold>Tab</SPAN> key at the LILO prompt  
+                  yields a list of available kernel images. One of the listed  
+                  images will be the default as designated by an asterisk next  
+                  to the name: </P><PRE>LILO: <B>&lt;TAB&gt;</B>
+linux*    linux_586_smp   experimental</PRE> 
+                  <P class=docText>Under many circumstances, you won't need to 
+                  select a kernel at boot time because LILO will boot the kernel 
+                  configured as the default during the install process. However, 
+                  if you later create a new kernel, have special hardware 
+                  issues, or are operating your system in a dual-boot 
+                  configuration, you may need to use some of LILO's options to 
+                  load the kernel or operating system you desire. </P><A 
+                  name=lpicertnut-CHP-14-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>14.2.1.2 The LILO map installer and 
+                  its configuration file</H5>
+                  <P class=docText>Before any boot sequence can complete from 
+                  your hard disk, the boot loader and associated information 
+                  must be installed by the LILO map installer utility. The <SPAN 
+                  class=docEmphBold>lilo</SPAN> command writes the portion of 
+                  LILO that resides in the MBR, customized for your particular 
+                  system. Your installation program will do it, then you'll 
+                  repeat it manually if you build a new kernel yourself. </P><A 
+                  name=p2_ch04-14-fm2xml></A><A name=lpicertnut-IDXTERM-914></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>lilo</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-16-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>lilo [options]</PRE>
+                  <P class=docText><A name=lpicertnut-IDXTERM-914></A>The <SPAN  
+                  class=docEmphBold>lilo</SPAN> map installer reads a  
+                  configuration file and writes a map file, which contains  
+                  information needed by the boot loader to locate and launch  
+                  Linux kernels or other operating systems. </P><A  
+                  name=p2_ch04-17-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-C</SPAN> <I>config_ file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Read the <I>config_ file </I>file instead 
+                    of the default <I>/etc/lilo.conf.</I> </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-m</SPAN> <I>map_file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Write <SPAN class=docEmphasis>map_ 
+                    file</SPAN> in place of the default as specified in the 
+                    configuration file. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Query the current 
+configuration.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Increase verbosity.</P></DD></DL>
+                  <P class=docText>LILO's configuration file contains options  
+                  and kernel image information. An array of options is  
+                  available. Some are global, affecting LILO overall, while  
+                  others are specific to a particular listed kernel image. Most  
+                  basic Linux installations use only a few of the configuration  
+                  options. <a class="docLink" href="#lpicertnut-CHP-14-EX-1">Example  
+                  14-1</a> shows a simple LILO configuration file. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-14-EX-1></A>Example 14-1. Sample  
+                  /etc/lilo.conf File </H5><PRE>boot = /dev/hda
+timeout = 50
+prompt
+read-only
+map=/boot/map
+install=/boot/boot.b
+image = /boot/vmlinuz-2.2.5-15
+  label = linux
+  root = /dev/hda1</PRE> 
+                  <P class=docText>Each of these lines is described in the 
+                  following list:</P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>boot</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The boot directive tells <SPAN 
+                    class=docEmphBold>lilo</SPAN> the name of the hard disk 
+                    partition device that contains the boot sector. For PCs with 
+                    IDE disk drives, the devices will be <I>/dev/hda</I>, 
+                    <I>/dev/hdb</I>, and so on. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>timeout</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The timeout directive sets the timeout in 
+                    tenths of a second (deciseconds) for any user input from the 
+                    keyboard. To enable an unattended reboot, this parameter is 
+                    required if the <TT>prompt</TT> directive is used. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>prompt</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This directive instructs the boot loader to 
+                    prompt the user. This behavior can be stimulated without the 
+                    prompt directive if the user holds down the <SPAN 
+                    class=docEmphBold>Shift</SPAN>, <SPAN 
+                    class=docEmphBold>Ctrl</SPAN>, or <SPAN 
+                    class=docEmphBold>Alt</SPAN> key when LILO starts. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>read-only</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This directive specifies that the root 
+                    filesystem should initially be mounted read-only. Typically, 
+                    the system startup procedure will remount it later as 
+                    read/write. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>map</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The map directive specifies the location of 
+                    the map file, which defaults to <I>/boot/map.</I> 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>install</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The install directive specifies the file to 
+                    install as the new boot sector, which defaults to 
+                    <I>/boot/boot.b.</I> </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>image</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>An image line specifies a kernel image to 
+                    offer for boot. It points to a specific kernel file. 
+                    Multiple image lines may be used to configure LILO to boot 
+                    multiple kernels and operating systems. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>label</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The optional label parameter is used after 
+                    an image line and offers a label for that image. This label 
+                    can be anything and generally describes the kernel image. 
+                    Examples include <TT>linux</TT>, or perhaps <TT>smp</TT> for 
+                    a multiprocessing kernel. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>root</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This parameter is used after each image 
+                    line and specifies the device to be mounted as root for that 
+                    image. </P></DD></DL>
+                  <P class=docText>There is more to configuring and setting up  
+                  <I>LILO</I>, but a detailed knowledge of LILO is not required  
+                  for this LPI Objective. It is important to review one or two  
+                  sample LILO configurations to make sense of the boot process.  
+                  A discussion on using LILO to boot multiple kernels is  
+                  presented in <a class="docLink" href="15-0.htm">Chapter  
+                  15</a>. </P><A name=lpicertnut-CHP-14-SECT-2.1.3></A>
+                  <H5 class=docSection3Title>14.2.1.3 LILO locations</H5>
+                  <P class=docText>During installation, LILO can be placed  
+                  either in the boot sector of the disk or in your root  
+                  partition. If the system is intended as a Linux-only system,  
+                  you won't need to worry about other boot loaders, and LILO can  
+                  safely be placed into the boot sector. However, if you're  
+                  running another operating system such as Windows, you should  
+                  place its boot loader in the boot sector.<SUP  
+                  class=docFootnote>[4]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> 
+                    Multiple-boot and multiple-OS configurations are beyond the 
+                    scope of the LPIC Level 1 exams.</P></BLOCKQUOTE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>It is important to understand the  
+                        distinction between <SPAN class=docEmphBold>lilo</SPAN>,  
+                        the map installer utility run interactively by the  
+                        system administrator, and the boot loader, which is  
+                        launched by the system BIOS at boot time. Both are parts  
+                        of the LILO package.<A name=IXTR3-62></A> <A  
+                        name=IXTR3-63></A></P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-14-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)484ms
+(xml)329ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)860ms
+--></BODY></HTML>

@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-13-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="13-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="13-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 13.&nbsp;  
+            Hardware and Architecture (Topic 1.1)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-13-SECT-1></A>
+                  <H3 class=docSection1Title>13.1 Objective 1: Configure 
+                  Fundamental System Hardware </H3>
+                  <P class=docText><A name=IXT-13-350526></A><A 
+                  name=IXT-13-350527></A>Setting up a PC for Linux (or any other  
+                  operating system) requires some familiarity with the devices  
+                  installed in the system and their configuration. Items to be  
+                  aware of include installed modems, serial and parallel ports,  
+                  network adapters, SCSI (pronounced "scuzzy") adapters, and  
+                  sound cards. Many of these devices, particularly older ones,  
+                  require manual configuration of some kind to avoid conflicting  
+                  resources. The rest of the configuration for the system  
+                  hardware is done in the PC's firmware, or BIOS. </P><A  
+                  name=lpicertnut-CHP-13-SECT-1.1></A>
+                  <H4 class=docSection2Title>13.1.1 BIOS</H4>
+                  <P class=docText><A name=IXT-13-350528></A>The firmware  
+                  located in a PC, commonly called the Basic Input/Output  
+                  System, or BIOS, is responsible for bringing all of the system  
+                  hardware to a state at which it is ready to boot an operating  
+                  system. Systems vary, but this process usually includes system  
+                  initialization, the testing of memory and other devices, and  
+                  ultimately locating an operating system from among several  
+                  storage devices. In addition, the BIOS provides a low-level  
+                  system configuration interface, allowing the user to choose  
+                  such things as boot devices and resource assignments. Quite a  
+                  few vendors of BIOS firmware provide customized versions of  
+                  their products for various PC system architectures.<SUP  
+                  class=docFootnote>[1]</SUP> Due to these  
+                  variations, it's impossible to test specifics, but the LPIC  
+                  Level 1 exams do require an understanding of the basics. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> For 
+                    example, a laptop BIOS may differ significantly from a 
+                    desktop system of similar capability from the same 
+                    manufacturer.</P></BLOCKQUOTE>
+                  <P class=docText>At boot time, most PCs display a method of 
+                  entering the BIOS configuration utility, usually by entering a 
+                  specific keystroke during startup. Once the utility is 
+                  started, a menu-based screen in which system settings can be 
+                  configured appears. Depending on the BIOS vendor, these will 
+                  include settings for disks, memory behavior, onboard ports 
+                  (such as serial and parallel ports), the clock, as well as 
+                  many others. </P><A name=lpicertnut-CHP-13-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>13.1.1.1 Date and time</H5>
+                  <P class=docText>One of the basic functions of the BIOS is to  
+                  manage the onboard hardware clock. This <A  
+                  name=IXT-13-350529></A>clock is initially set in the BIOS  
+                  configuration by entering the date and time in the appropriate  
+                  fields. Once set, the internal clock keeps track of time and  
+                  makes the time available to the operating system. The  
+                  operating system can also set the hardware clock, which is  
+                  often useful if an accurate external time reference is  
+                  available on the network while the system is running. </P><A  
+                  name=lpicertnut-CHP-13-SECT-1.1.2></A>
+                  <H5 class=docSection3Title>13.1.1.2 Disks and boot 
+devices</H5>
+                  <P class=docText>Another fundamental configuration item 
+                  required in BIOS settings is the selection of storage devices. 
+                  Modern PCs can contain a variety of removable and fixed media, 
+                  including floppy disks, hard disks, CD-ROMs, CD-RWs, DVD-ROMs, 
+                  and Zip and/or Jaz drives. Newer systems are able to detect 
+                  and properly configure much of this hardware automatically. 
+                  However, older BIOS versions require manual configuration. 
+                  This may include the selection of floppy disk sizes and disk 
+                  drive parameters. </P>
+                  <P class=docText>Most PCs have at least three <A  
+                  name=IXT-13-350530></A>bootable media types: an internal hard  
+                  disk (IDE or SCSI, or perhaps both), a CD-ROM drive (again IDE  
+                  or SCSI), and a floppy disk. After initialization, the BIOS  
+                  seeks an operating system (or an operating system loader such  
+                  as the Linux Loader, LILO) on one or more of these media. By  
+                  default, many BIOS configurations enable booting from the  
+                  floppy or CD-ROM first, then the hard disk, but the order is  
+                  configurable in the BIOS settings. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be familiar with the general 
+                        configuration requirements and layout of the BIOS 
+                        configuration screens for a typical PC. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-13-SECT-1.2></A>
+                  <H4 class=docSection2Title>13.1.2 Resource Assignments</H4>
+                  <P class=docText>Some of the details in the BIOS configuration  
+                  pertain to the internal resources of the PC architecture,  
+                  including selections for <SPAN  
+                  class=docEmphasis>interrupts</SPAN><A name=IXT-13-350531></A> 
+                  (or IRQs), <A name=IXT-13-350532></A>I/O Addresses, and <A  
+                  name=IXT-13-350533></A>Direct Memory Access (DMA) Channels.  
+                  Interrupts are electrical signals sent to the PC's  
+                  microprocessor, instructing it to stop its current activity  
+                  and respond to an asynchronous event (a keystroke, for  
+                  example). Modern devices in PCs often share interrupts, but  
+                  older hardware requires manual verification that interrupt  
+                  settings are unique to avoid conflicts with other devices.  
+</P>
+                  <P class=docText>I/O addresses are locations in the 
+                  microprocessor's <SPAN class=docEmphasis>memory map</SPAN> (a 
+                  list of defined memory addresses) reserved for input/output 
+                  devices such as network interfaces. The microprocessor can 
+                  write to the devices in the same way it writes to memory, 
+                  which simplifies the device interface. If multiple devices 
+                  inadvertently share the same I/O address, the system might 
+                  behave oddly or crash. </P>
+                  <P class=docText>DMA allows some devices to work directly with 
+                  memory through a DMA "channel," freeing the microprocessor for 
+                  other tasks. Without DMA, data must be read from I/O ports for 
+                  a device and stored in memory -- all by the microprocessor. A 
+                  device that has DMA capabilities has direct access to memory 
+                  and writes its own data there when the microprocessor is busy 
+                  with computation. This can improve performance. </P>
+                  <P class=docText>All of these are finite resources, and it is  
+                  important to avoid conflicting settings. <A  
+                  name=IXT-13-350534></A>Common devices such as serial and  
+                  parallel ports have standard assignments, as shown in <a class="docLink" href="#lpicertnut-CHP-13-TABLE-1">Table  
+                  13-1</a>. </P><A name=lpicertnut-CHP-13-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 13-1. Common Device Settings 
+                    </H5></CAPTION>
+                    <COLGROUP span=4>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Device</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>I/O Address</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>IRQ</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>DMA</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>ttyS0 (COM1)</I></P></TD>
+                      <TD class=docTableCell><PRE>3f8</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>4</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NA<SUP class=docFootnote>[2]</SUP></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>ttyS1 (COM2)</I></P></TD>
+                      <TD class=docTableCell><PRE>2f8</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>3</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NA</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>ttyS2 (COM3)</I></P></TD>
+                      <TD class=docTableCell><PRE>3e8</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>4</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NA</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>ttyS3 (COM4)</I></P></TD>
+                      <TD class=docTableCell><PRE>2e8</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>3</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NA</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>lp0 (LPT1)</I></P></TD>
+                      <TD class=docTableCell><PRE>378-37f</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>7</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NA</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>lp1 (LPT2) <SUP class=docFootnote>[3]</SUP></I>  
+                        </P></TD>
+                      <TD class=docTableCell><PRE>278-27f</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>5</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NA</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>fd0, fd1 </I>(floppies 1 and 
+                      2)</P></TD>
+                      <TD class=docTableCell><PRE>3f0-3f7</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>6</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>fd2, fd3 </I>(floppies 3 and 
+                      4)</P></TD>
+                      <TD class=docTableCell><PRE>370-377</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>10</P></TD>
+                      <TD class=docTableCell>
+                        <P 
+class=docText>3</P></TD></TR></TBODY></TABLE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> NA: not 
+                    applicable.</P></BLOCKQUOTE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> <I>lp1 
+                    </I>uses IRQ 5. Some older PC audio devices commonly use 
+                    this interrupt, which could be a problem if two parallel 
+                    ports are required. </P></BLOCKQUOTE>
+                  <P class=docText>Most PCs don't contain all of these devices. 
+                  For example, a typical configuration includes two serial 
+                  ports, <I>ttyS0</I> and <I>ttyS1</I>. These two ports can be 
+                  used to attach external modems or terminals and occupy 
+                  interrupts 4 and 3, respectively. For systems with additional 
+                  serial ports installed, <I>ttyS0</I> and <I>ttyS2</I> share 
+                  interrupt 4, and <I>ttyS1</I> and <I>ttyS3</I> share interrupt 
+                  3. However, the system design does not allow these ports to 
+                  concurrently share the interrupt and exchange serial data. 
+                  Otherwise, communications would fail if both ports from either 
+                  pair were to be used together. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You don't have to memorize all the 
+                        possible device settings for the PC architecture, but 
+                        you should be ready to answer specific questions 
+                        regarding some of the more common ones, such as 
+                        interrupt settings for serial and parallel ports. You 
+                        should also be able to identify conflicting I/O and IRQ 
+                        assignments given a scenario. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-13-SECT-1.3></A>
+                  <H4 class=docSection2Title>13.1.3 1024 -Cylinder Limit</H4>
+                  <P class=docText>With most PC operating systems, data loaded  
+                  by the BIOS to boot the operating system is found at the  
+                  beginning of the disk in the <A name=IXT-13-350535></A>Master  
+                  Boot Record, or MBR. Windows users rarely have to think about  
+                  the MBR because there is no alternate location for the boot  
+                  record. With Linux, however, the user can place the boot  
+                  loader (<A name=IXT-13-350536></A>LILO) into either the MBR or  
+                  the root partition. This flexibility can lead to a problem for  
+                  the BIOS and LILO and cause a failure at boot time. The  
+                  failure can occur because the BIOS must load LILO into memory  
+                  and start it, but the BIOS can't always access portions of the  
+                  disk beyond the 1024th cylinder. If the BIOS can't read all of  
+                  LILO, the boot fails. Also, older versions of LILO must have a  
+                  kernel image located within the first 1024 cylinders for  
+                  similar reasons. These limitations aren't significant, but do  
+                  require planning during the partitioning of disks at  
+                  installation time. This Topic is discussed further in <a class="docLink" href="14-2.htm">Section  
+                  14.2</a>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be aware that LILO and kernels should 
+                        be installed below cylinder 1024 on larger disks. 
+                    </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-13-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-13-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-13-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)593ms
+(xml)328ms
+(xsl)32ms
+(ent)0ms
+(buf)0ms
+
+(tot)953ms
+--></BODY></HTML>

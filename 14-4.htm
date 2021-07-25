@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="14-4.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="14-4.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 14.&nbsp;  
+            Linux Installation and Package Management (Topic  
+            2.2)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-14-SECT-4></A>
+                  <H3 class=docSection1Title>14.4 Objective 4: Manage Shared 
+                  Libraries</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-944></A>When a  
+                  program is compiled under Linux, many of the functions  
+                  required by the program are linked from system <SPAN  
+                  class=docEmphasis>libraries</SPAN> <A  
+                  name=IXT-14-350603></A>that handle disks, memory, and other  
+                  functions. For example, when <TT>printf( )</TT><I> </I>is used  
+                  in a program, the programmer doesn't provide the <TT>printf(  
+                  )</TT><I> </I>source code, but instead expects that the system  
+                  already has a library containing such functions. When the  
+                  compiler needs to link the code for <TT>printf( )</TT>, it can  
+                  be found in a system library and copied into the executable. A  
+                  program that contains executable code from these libraries is  
+                  said to be <SPAN class=docEmphasis>statically linked</SPAN>  
+                  because it stands alone, requiring no additional code at  
+                  runtime. </P>
+                  <P class=docText>Statically linked programs can have a few 
+                  liabilities. First, they tend to get large, because they 
+                  include executables for all of the library functions linked 
+                  into them. Also, memory is wasted when many different programs 
+                  running concurrently contain the same library functions. To 
+                  avoid these problems, many programs are <SPAN 
+                  class=docEmphasis>dynamically linked</SPAN>. Such programs 
+                  utilize the same routines but don't contain the library code. 
+                  Instead, they are linked into the executable at runtime. This 
+                  dynamic linking process allows multiple programs to use the 
+                  same library code in memory and makes executable files 
+                  smaller. Dynamically linked libraries are shared among many 
+                  applications and are thus called <SPAN 
+                  class=docEmphasis>shared libraries</SPAN>. A full discussion 
+                  of libraries is beyond the scope of the LPIC Level 1 exams. 
+                  However, a general understanding of some configuration 
+                  techniques is required. </P><A 
+                  name=lpicertnut-CHP-14-SECT-4.1></A>
+                  <H4 class=docSection2Title>14.4.1 Shared Library 
+                  Dependencies</H4>
+                  <P class=docText>Any program that is dynamically linked will 
+                  require at least a few shared libraries. If the required 
+                  libraries don't exist or can't be found, the program will fail 
+                  to run. This could happen, for example, if you attempt to run 
+                  an application written for the GNOME graphical environment but 
+                  haven't installed the required GTK+ libraries. Simply 
+                  installing the correct libraries should eliminate such 
+                  problems. The <SPAN class=docEmphBold>ldd</SPAN> utility can 
+                  be used to determine which libraries are necessary for a 
+                  particular executable. </P><A name=p2_ch04-37-fm2xml></A><A 
+                  name=IXT-14-350604></A><A name=IXT-14-350605></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ldd</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-39-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ldd programs</PRE><A name=p2_ch04-40-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-14-350604></A><A 
+                  name=IXT-14-350605></A>Display shared libraries required by  
+                  each of the <I>programs</I> listed on the command line. The  
+                  results indicate the name of the library and where the library  
+                  is expected to be in the filesystem. </P><A  
+                  name=p2_ch04-41-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>In Objective 3, a trivial executable called 
+                  <SPAN class=docEmphBold>hw</SPAN> was created. Despite its 
+                  small size, however, <SPAN class=docEmphBold>hw</SPAN> 
+                  requires two shared libraries: </P><PRE># <B>ldd /home/jdean/hw</B>
+/home/jdean/hw:
+     libc.so.6 =&gt; /lib/libc.so.6 (0x40018000)
+     /lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>bash</SPAN> shell 
+                  requires three shared libraries: </P><PRE># <B>ldd /bin/bash</B>
+/bin/bash:
+     libtermcap.so.2 =&gt; /lib/libtermcap.so.2 (0x40018000)
+     libc.so.6 =&gt; /lib/libc.so.6 (0x4001c000)
+     /lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</PRE><A 
+                  name=lpicertnut-CHP-14-SECT-4.2></A>
+                  <H4 class=docSection2Title>14.4.2 Linking Shared 
+Libraries</H4>
+                  <P class=docText><A name=IXT-14-350606></A>Dynamically linked  
+                  executables are examined at runtime by the <A  
+                  name=IXT-14-350607></A>shared object dynamic linker,  
+                  <I>ld.so</I><A name=IXT-14-350608></A>. This program looks for  
+                  dependencies in the executable being loaded and attempts to  
+                  satisfy any unresolved links to system-shared libraries. If  
+                  <I>ld.so</I>can't find a specified library, it fails, and the  
+                  executable won't run. </P> 
+                  <P class=docText>To illustrate this, let's assume that the  
+                  <TT>printit( )</TT> function from the <SPAN  
+                  class=docEmphBold>hw</SPAN> example in Objective 3 is moved to  
+                  a shared library instead of being compiled into the program.  
+                  The custom library is called <I>libprintit.so</I> and stored  
+                  in <I>/usr/local/lib</I>. <SPAN class=docEmphBold>hw</SPAN> is  
+                  reconfigured and recompiled to use the new library.<SUP  
+                  class=docFootnote>[8]</SUP> By default,  
+                  <I>ld.so</I>doesn't expect to look in <I>/usr/local/lib</I>  
+                  for libraries, and fails to find <TT>printit( )</TT> at  
+                  runtime: </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[8]</A></SUP> Though 
+                    not complicated, the compilation of <I>libprintit.so </I>and 
+                    <SPAN class=docEmphBold>hw</SPAN> is beyond the scope of the 
+                    LPIC Level 1 exams.</P></BLOCKQUOTE><PRE># <B>./hw</B>
+./hw: error in loading shared libraries: libprintit.so: 
+   cannot open shared object file: No such file or directory</PRE>
+                  <P class=docText>To find the new library, <I>ld.so</I> must be 
+                  instructed to look in <I>/usr/local/lib</I>. There are a few 
+                  ways to do this. One simple way is to add a colon-separated 
+                  list of directories to the shell environment variable 
+                  <TT>LD_LIBRARY_PATH</TT>, which will prompt <I>ld.so</I>to 
+                  look in any directories it finds there. However, this method 
+                  may not be appropriate for system libraries, because users 
+                  might not set their <TT>LD_LIBRARY_PATH</TT> correctly. </P>
+                  <P class=docText>To make the search of <I>/usr/local/lib</I> 
+                  part of the default behavior for <I>ld.so</I>, files in the 
+                  new directory must be included in an index of library names 
+                  and locations. This index is <I>/etc/ld.so.cache</I>. It's a 
+                  binary file, which means it can be read quickly by 
+                  <I>ld.so</I>. To add the new library entry to the cache, its 
+                  directory is first added to the <I>ld.so.conf</I> file, which 
+                  contains directories to be indexed by the <SPAN 
+                  class=docEmphBold>ldconfig</SPAN> utility. </P><A 
+                  name=p2_ch04-43-fm2xml></A><A name=IXT-14-350609></A><A 
+                  name=IXT-14-350610></A><A name=IXTR3-68></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ldconfig</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch04-45-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ldconfig [options] lib_dirs</PRE><A 
+                  name=p2_ch04-46-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-14-350609></A>Update the  
+                  <I>ld.so</I><A name=IXT-14-350610></A> cache file with shared  
+                  libraries specified on the command line in <I>lib_dirs</I>, in  
+                  trusted directories <I>/usr/lib</I> and <I>/lib</I>, and in  
+                  the directories found in <I>/etc/ld.so.conf</I>. </P><A  
+                  name=p2_ch04-47-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the contents of the current cache 
+                    instead of recreating it.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Verbose mode. Display progress during 
+                    execution.</P></DD></DL><A name=p2_ch04-48-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Examine the contents of the <I>ld.so</I> 
+                  library cache:</P><PRE># <B>ldconfig -p</B>
+299 libs found in cache `/etc/ld.so.cache' (version 1.7.0)
+    libzvt.so.2 (libc6) =&gt; /usr/lib/libzvt.so.2
+    libz.so.1 (libc6) =&gt; /usr/lib/libz.so.1
+    libz.so.1 (ELF) =&gt; /usr/i486-linux-libc5/lib/libz.so.1
+    libz.so (libc6) =&gt; /usr/lib/libz.so
+    libx11amp.so.0 (libc6) =&gt; /usr/X11R6/lib/libx11amp.so.0
+    libxml.so.0 (libc6) =&gt; /usr/lib/libxml.so.0 
+(... listing continues ...)</PRE><A 
+name=p2_ch04-49-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Look for a specific library entry in the 
+                  cache:</P><PRE># <B>ldconfig -p | grep &quot;printit&quot;</B>
+    libprintit.so (libc6) =&gt; /usr/local/lib/libprintit.so</PRE><A 
+                  name=p2_ch04-50-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Rebuild the cache:</P><PRE># <B>ldconfig</B></PRE>
+                  <P class=docText>After <I>/usr/local/lib</I> is added, 
+                  <I>ld.so.conf</I> might look like this: </P><PRE>/usr/lib
+/usr/i486-linux-libc5/lib
+/usr/X11R6/lib
+/usr/local/lib</PRE>
+                  <P class=docText>Next, <SPAN class=docEmphBold>ldconfig</SPAN> 
+                  is run to include libraries found in <I>/usr/local/lib</I> in 
+                  <I>/etc/ld.so.cache</I> : </P><PRE># <B>ldconfig</B>
+# <B>./hw</B>
+Hello, world</PRE>
+                  <P class=docText>Now the <SPAN class=docEmphBold>hw</SPAN>  
+                  program can execute correctly because <I>ld.so</I> can find  
+                  <I>libprintit.so</I> in <I>/usr/local/lib</I>. It is important  
+                  to run <SPAN class=docEmphBold>ldconfig</SPAN> after any  
+                  changes in system libraries to be sure that the cache is  
+                  up-to-date.<A name=IXTR3-68></A> </P><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="14-4.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-14-SECT-4
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)531ms
+(xml)329ms
+(xsl)15ms
+(ent)16ms
+(buf)0ms
+
+(tot)907ms
+--></BODY></HTML>

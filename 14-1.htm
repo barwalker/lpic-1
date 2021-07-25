@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="14-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="14-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 14.&nbsp;  
+            Linux Installation and Package Management (Topic  
+            2.2)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-14-SECT-1></A>
+                  <H3 class=docSection1Title>14.1 Objective 1: Design a Hard 
+                  Disk Layout</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-891></A><A 
+                  name=lpicertnut-IDXTERM-892></A>Part of the installation  
+                  process for Linux is the design of the hard disk partitioning  
+                  scheme. If you're used to systems that reside on a single  
+                  partition, this step may seem to complicate installation.  
+                  However, there are advantages to splitting the filesystem into  
+                  multiple partitions, potentially on multiple disks. Details  
+                  about disks, partitions, and Linux filesystem top-level  
+                  directories are provided in <a class="docLink" href="04-0.htm">Chapter  
+                  4</a>. This Topic covers considerations for implementing Linux  
+                  disk layouts. </P><A name=lpicertnut-CHP-14-SECT-1.1></A> 
+                  <H4 class=docSection2Title>14.1.1 System Considerations</H4>
+                  <P class=docText>A variety of factors influence the choice of 
+                  a disk layout plan for Linux, including: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>The amount of disk space</P>
+                    <LI>
+                    <P class=docList>The size of the system</P>
+                    <LI>
+                    <P class=docList>What the system will be used for</P>
+                    <LI>
+                    <P class=docList>How and where backups will be 
+                    performed</P></LI></UL><A 
+                  name=lpicertnut-CHP-14-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>14.1.1.1 Limited disk space</H5>
+                  <P class=docText>Except for read-only filesystems (such as 
+                  CD-ROMs or a shared <I>/usr</I> partition), most Linux 
+                  filesystems should have some free space available. Filesystems 
+                  holding user data should be maintained with a generous amount 
+                  of free space to accommodate user activity. Unfortunately, if 
+                  there are many filesystems and all of them contain free space, 
+                  a significant portion of disk space could be considered 
+                  wasted. This presents a tradeoff between the number of 
+                  filesystems in use and the availability of free disk space. 
+                  Finding the right configuration depends on system requirements 
+                  and available disk resources. </P>
+                  <P class=docText>When disk space is limited, it is desirable  
+                  to reduce the number of <A name=IXT-14-350566></A>filesystems,  
+                  thereby combining free space into a single contiguous pool.  
+                  For example, installing Linux on a PC with only 1 GB of  
+                  available disk space might best be implemented using only a  
+                  few partitions: </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/boot</I></SPAN> 
+                    <DD>
+                    <P class=docList>50 MB. A small <I>/boot</I> filesystem in 
+                    the first partition ensures that all kernels are below the 
+                    1024-cylinder limit. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/swap</I></SPAN> 
+                    <DD>
+                    <P class=docList>100 MB.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/</I></SPAN> 
+                    <DD>
+                    <P class=docList>850 MB. A large root partition holds 
+                    everything on the system that's not in <I>/boot</I>. 
+                    </P></DD></DL>
+                  <P class=docText>The <I>/boot</I> partition could be combined  
+                  with the <A name=IXT-14-350567></A>root partition as long as  
+                  the entire root partition fits within the 1024-cylinder limit  
+                  (see <a class="docLink" href="13-0.htm">Chapter  
+                  13</a>). </P>
+                  <P class=docText>On older systems with smaller hard drives, 
+                  Linux is often installed by spreading the directory tree 
+                  across multiple physical disks. This is no different in 
+                  practice than using multiple partitions on a single disk and 
+                  often encourages the reuse of older hardware. An additional 
+                  disk might be dedicated to <I>/home</I> in order to allow a 
+                  larger work area for the users' home directories. </P><A 
+                  name=lpicertnut-CHP-14-SECT-1.1.2></A>
+                  <H5 class=docSection3Title>14.1.1.2 Larger systems</H5>
+                  <P class=docText><A name=IXT-14-350568></A><A 
+                  name=IXT-14-350569></A>On larger platforms, functional issues  
+                  such as backup strategies and required filesystem sizes can  
+                  dictate disk layout. For example, suppose a file server is to  
+                  be constructed serving 100 GB of executable datafiles to  
+                  end-users via NFS. Such as system will have enough resources  
+                  to compartmentalize various parts of the directory tree into  
+                  separate filesystems and might look like this: </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/boot</I></SPAN> 
+                    <DD>
+                    <P class=docList>50 MB. Keep kernels under the 1024-cylinder 
+                    limit.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/swap</I></SPAN> 
+                    <DD>
+                    <P class=docList>100 MB.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/</I></SPAN> 
+                    <DD>
+                    <P class=docList>100 MB.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr</I></SPAN> 
+                    <DD>
+                    <P class=docList>1 GB. All of the executables in <I>/usr</I> 
+                    are shared to workstations via read-only NFS. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var</I></SPAN> 
+                    <DD>
+                    <P class=docList>500 MB. By placing log files in their own 
+                    partition, they won't threaten system stability if the 
+                    filesystem is full. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/tmp</I></SPAN> 
+                    <DD>
+                    <P class=docList>100 MB. By placing temporary files in their 
+                    own partition, they won't threaten system stability if the 
+                    filesystem is full. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/home</I></SPAN> 
+                    <DD>
+                    <P class=docList>98 GB. This is the big filesystem, offered 
+                    to users for their home directories. </P></DD></DL>
+                  <P class=docText>On production servers, much of the system is 
+                  often placed on redundant media, such as mirrored disks. Large 
+                  filesystems, such as <I>/home</I>, may be stored on some form 
+                  of disk array using a hardware controller. </P><A 
+                  name=lpicertnut-CHP-14-SECT-1.1.3></A>
+                  <H5 class=docSection3Title>14.1.1.3 System role</H5>
+                  <P class=docText><A name=IXT-14-350570></A>The role of the  
+                  system also can dictate disk layout. In a traditional  
+                  Unix-style network with NFS file servers, most of the  
+                  workstations won't necessarily need all of their own  
+                  executable files. In the days when disk space was at a  
+                  premium, this represented a significant savings in disk space.  
+                  While space on workstation disks isn't the problem it once  
+                  was, keeping executables on a server still eliminates the  
+                  administrative headache of distributing updates to  
+                  workstations. </P><A name=lpicertnut-CHP-14-SECT-1.1.4></A>
+                  <H5 class=docSection3Title>14.1.1.4 Backup</H5>
+                  <P class=docText>Some <A name=IXT-14-350571></A>backup schemes  
+                  use disk partitions as the basic unit of system backup. In  
+                  such a scenario, each of the filesystems listed in  
+                  <I>/etc/fstab</I> is backed up separately, and they are  
+                  arranged so that each filesystem fits within the size of the  
+                  backup media. For this reason, the available backup device  
+                  capabilities can play a role in determining the ultimate size  
+                  of partitions. </P><A name=lpicertnut-CHP-14-SECT-1.2></A> 
+                  <H4 class=docSection2Title>14.1.2 Swap Space</H4>
+                  <P class=docText><A name=IXT-14-350572></A>When you install  
+                  Linux, you're asked to configure a <I>swap</I>, or <I>virtual  
+                  memory</I><A name=IXT-14-350573></A>, partition. This special  
+                  disk space is used to temporarily store portions of main  
+                  memory containing programs or program data that is not needed  
+                  constantly, allowing more processes to execute concurrently.  
+                  An old rule of thumb for Linux is to set the size of the  
+                  system's swap space to be equal to the amount of physical RAM  
+                  in the machine. For example, if your system has 64 MB of RAM,  
+                  it would be reasonable to set your swap size to at least 64  
+                  MB. Another rule of thumb that predates Linux says swap space  
+                  should equal three times the main memory size. These are just  
+                  guidelines, of course, because a system's utilization of  
+                  virtual memory depends on what the system does and the number  
+                  and size of processes it runs. Using the size of main memory,  
+                  or thereabouts, is a good starting point. </P> 
+                  <P class=docText>Spreading swap space across multiple disk 
+                  drives can allow better swap performance because multiple 
+                  accesses can occur concurrently when multiple devices are 
+                  used. For even better performance, place those disks on 
+                  separate controllers, increasing bandwidth. For example, you 
+                  could place half of your planned swap space on each of two IDE 
+                  disks in your system. Those disks could be attached to the two 
+                  separate IDE interfaces. </P><A 
+                  name=lpicertnut-CHP-14-SECT-1.3></A>
+                  <H4 class=docSection2Title>14.1.3 General Guidelines</H4>
+                  <P class=docText><A name=IXT-14-350574></A><A 
+                  name=IXT-14-350575></A>Here are some guidelines for  
+                  partitioning a Linux system: </P> 
+                  <UL>
+                    <LI>
+                    <P class=docList>Keep the root filesystem (<I> /</I> ) small 
+                    by distributing larger portions of the directory tree to 
+                    other partitions. A small root filesystem is less likely to 
+                    be corrupted than a large one. </P>
+                    <LI>
+                    <P class=docList>Separate a small <I>/boot</I> partition 
+                    below cylinder 1024 for kernels. </P>
+                    <LI>
+                    <P class=docList>Separate <I>/var</I>. Make certain it is 
+                    big enough to handle your logs and their rotation scheme, 
+                    but not so large that disk space is wasted when the rotation 
+                    is filled. </P>
+                    <LI>
+                    <P class=docList>Separate <I>/tmp</I>. Its size depends on 
+                    the demands of the applications you run. It should be large 
+                    enough to handle temporary files for all of your users 
+                    simultaneously. </P>
+                    <LI>
+                    <P class=docList>Separate <I>/usr</I> and make it big enough 
+                    to accommodate kernel building. Making it standalone allows 
+                    you to share it read-only via NFS. </P>
+                    <LI>
+                    <P class=docList>Separate <I>/home</I><A  
+                    name=IXT-14-350576></A> for machines with multiple users.  
+                    For production use, put it on a disk array subsystem. </P> 
+                    <LI>
+                    <P class=docList>Set swap space around the same size as the 
+                    main memory. If possible, try to split the swap space across 
+                    multiple disks and controllers. </P></LI></UL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Since a disk layout is the product of  
+                        both system requirements and available resources, no  
+                        single example can represent the best configuration.  
+                        Factors to remember include placing the kernel below  
+                        cylinder 1024, ways to effectively utilize multiple  
+                        disks, sizing of partitions to hold various directories  
+                        such as <I>/var</I> and <I>/usr</I>, the importance of  
+                        the root filesystem, and swap space size. Also remember  
+                        the trick of splitting swap space across multiple  
+                        physical disks to increase virtual memory performance<A  
+                        name=IXTR3-60></A> <A name=IXTR3-61></A>.  
+                    </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="14-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-14-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)563ms
+(xml)343ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)922ms
+--></BODY></HTML>

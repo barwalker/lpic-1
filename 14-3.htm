@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="14-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="14-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 14.&nbsp;  
+            Linux Installation and Package Management (Topic  
+            2.2)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-14-SECT-3></A>
+                  <H3 class=docSection1Title>14.3 Objective 3: Make and Install 
+                  Programs from Source</H3>
+                  <P class=docText><A name=IXT-14-350584></A><A 
+                  name=IXT-14-350585></A>Open source software is credited with  
+                  offering value that rivals or even exceeds that of proprietary  
+                  vendors' products. While binary distributions make  
+                  installation simple, you sometimes won't have access to a  
+                  binary package. In these cases, you'll have to compile the  
+                  program from scratch. </P><A  
+                  name=lpicertnut-CHP-14-SECT-3.1></A>
+                  <H4 class=docSection2Title>14.3.1 Getting Open Source and Free 
+                  Software</H4>
+                  <P class=docText><A name=IXT-14-350586></A>Source code for the  
+                  software that makes up a Linux distribution is available from  
+                  a variety of sources. Your distribution media contain both  
+                  source code and compiled binary forms of many software  
+                  projects. Since much of the code that comes with Linux  
+                  originates from the Free Software Foundation (FSF), the GNU  
+                  web site contains a huge array of software.<SUP  
+                  class=docFootnote>[5]</SUP> Major  
+                  projects, such as Apache (<A class=docLink  
+                  href="http://www.apache.org/" 
+                  target=_blank>http://www.apache.org/</A>), distribute their  
+                  own code. Whatever outlet you choose, the source code must be  
+                  packaged for your use, and among the most popular packaging  
+                  methods for source code is the tarball. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> Not just 
+                    for Linux, either. Although Linux distributions are largely 
+                    made up of GNU software, that software runs on many other 
+                    Unix and Unix-like operating systems, including the various 
+                    flavors of BSD (e.g., FreeBSD, NetBSD, and 
+                  OpenBSD).</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-14-SECT-3.1.1></A>
+                  <H5 class=docSection3Title>14.3.1.1 What's a tarball?</H5>
+                  <P class=docText><A name=IXT-14-350587></A>Code for a  
+                  significant project that a software developer wishes to  
+                  distribute is originally stored in a hierarchical tree of  
+                  directories. Included are the source code (in the C language),  
+                  a <I>Makefile</I><A name=IXT-14-350588></A>, and some  
+                  documentation. In order to share the code, the entire tree  
+                  must be encapsulated in a way that is efficient and easy to  
+                  send and store electronically. A common method of doing this  
+                  is to use <SPAN class=docEmphBold>tar</SPAN> to create a  
+                  single <I>tarfile</I><A name=IXT-14-350589></A> containing the  
+                  directory's contents, and then use <SPAN  
+                  class=docEmphBold>gzip</SPAN> to compress it for efficiency.  
+                  The resulting compressed file is referred to as a  
+                  <I>tarball</I>. This method of distribution is popular because  
+                  both <SPAN class=docEmphBold>tar</SPAN> and <SPAN  
+                  class=docEmphBold>gzip</SPAN> are widely available and  
+                  understood, ensuring a wide audience. A tarball is usually  
+                  indicated by the use of the multiple extensions <I>.tar</I>  
+                  and <I>.gz</I>, put together into <I>.tar.gz</I>. A combined  
+                  single extension of <I>.tgz</I> is also popular. </P><A  
+                  name=lpicertnut-CHP-14-SECT-3.1.2></A>
+                  <H5 class=docSection3Title>14.3.1.2 Opening a tarball</H5>
+                  <P class=docText><A name=IXT-14-350590></A>The contents of a  
+                  tarball is obtained through a two-step process. The file is  
+                  first uncompressed with <SPAN class=docEmphBold>gzip</SPAN> <A  
+                  name=IXT-14-350591></A><A name=IXT-14-350592></A>and then  
+                  extracted with <SPAN class=docEmphBold>tar</SPAN>. Following  
+                  is an example, starting with <I>tarball.tar.gz</I>: </P><PRE># <B>gzip -d tarball.tar.gz</B>
+# <B>tar xvf tarball.tar</B></PRE> 
+                  <P class=docText>The <SPAN class=docEmphBold>-d</SPAN> option 
+                  to <SPAN class=docEmphBold>gzip</SPAN> indicates "decompress 
+                  mode." If you prefer, you can use <SPAN 
+                  class=docEmphBold>gunzip</SPAN> in place of <SPAN 
+                  class=docEmphBold>gzip -d</SPAN> to do the same thing: </P><PRE># <B>gunzip tarball.tar.gz</B>
+# <B>tar xvf tarball.tar</B></PRE>
+                  <P class=docText>You can also avoid the intermediate unzipped 
+                  file by piping the output of <SPAN 
+                  class=docEmphBold>gzip</SPAN> straight into <SPAN 
+                  class=docEmphBold>tar</SPAN>: </P><PRE># <B>gzip -dc tarball.tar.gz | tar xv</B></PRE>
+                  <P class=docText>In this case, the <SPAN  
+                  class=docEmphBold>-c</SPAN> option to <SPAN  
+                  class=docEmphBold>gzip</SPAN> tells it to keep the compressed  
+                  file in place. By avoiding the full-sized version, disk space  
+                  is saved. For even more convenience, avoid using <SPAN  
+                  class=docEmphBold>gzip</SPAN> entirely and use the  
+                  decompression capability in <SPAN  
+                  class=docEmphBold>tar</SPAN>:<SUP class=docFootnote>[6]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> GNU <SPAN 
+                    class=docEmphBold>tar</SPAN> offers compression; older <SPAN 
+                    class=docEmphBold>tar</SPAN> programs didn't.</P></BLOCKQUOTE><PRE># <B>tar zxvf tarball.tar.gz</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>All of these methods achieve the same 
+                        result. Be sure you understand that <SPAN 
+                        class=docEmphBold>tar</SPAN> can archive directly to 
+                        files (not just to a tape drive) and that a compressed 
+                        version of a tarfile is made with <SPAN 
+                        class=docEmphBold>gzip</SPAN>. Be familiar with the 
+                        various ways you could extract files from a tarball, 
+                        including <SPAN class=docEmphBold>gzip -d</SPAN>; <SPAN 
+                        class=docEmphBold>tar</SPAN>, <SPAN 
+                        class=docEmphBold>gunzip</SPAN>; <SPAN 
+                        class=docEmphBold>tar</SPAN>, <SPAN 
+                        class=docEmphBold>gzip -d | tar</SPAN>; and <SPAN 
+                        class=docEmphBold>tar z</SPAN>. You should be 
+                        comfortable using <SPAN class=docEmphBold>tar</SPAN> and 
+                        <SPAN class=docEmphBold>gzip</SPAN> and their more 
+                        common options. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-14-SECT-3.2></A>
+                  <H4 class=docSection2Title>14.3.2 Compiling Open Source 
+                  Software</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-926></A><A 
+                  name=lpicertnut-IDXTERM-927></A>Once you've extracted the  
+                  source code, you're ready to compile it. You'll need to have  
+                  the appropriate tools available on your system, namely a <SPAN  
+                  class=docEmphBold>configure</SPAN> script, the GNU C compiler,  
+                  <SPAN class=docEmphBold>gcc</SPAN>, and the dependency  
+                  checker, <SPAN class=docEmphBold>make</SPAN>. </P><A  
+                  name=lpicertnut-CHP-14-SECT-3.2.1></A>
+                  <H5 class=docSection3Title>14.3.2.1 configure</H5>
+                  <P class=docText>Most larger <A name=IXT-14-350593></A><A  
+                  name=IXT-14-350594></A>source code packages include a <SPAN  
+                  class=docEmphBold>configure</SPAN> script<SUP  
+                  class=docFootnote>[7]</SUP> located at  
+                  the top of the source code tree. This script needs no  
+                  modification or configuration from the user. When it executes,  
+                  it examines your system to verify the existence of a compiler,  
+                  libraries, utilities, and other items necessary for a  
+                  successful compile. It uses the information it finds to  
+                  produce a custom <I>Makefile</I> for the software package on  
+                  your particular system. If <SPAN  
+                  class=docEmphBold>configure</SPAN> finds that something is  
+                  missing, it fails and gives you a terse but descriptive  
+                  message. <SPAN class=docEmphBold>configure</SPAN> succeeds in  
+                  most cases, leaving you ready to begin the actual compile  
+                  process. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[7]</A></SUP> <SPAN 
+                    class=docEmphBold>configure</SPAN> is produced for you by 
+                    the programmer using the <SPAN 
+                    class=docEmphBold>autoconf</SPAN> utility. <SPAN 
+                    class=docEmphBold>autoconf</SPAN> is beyond the scope LPIC 
+                    Level 1 exams.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-14-SECT-3.2.2></A>
+                  <H5 class=docSection3Title>14.3.2.2 make</H5>
+                  <P class=docText><SPAN class=docEmphBold>make</SPAN> <A  
+                  name=lpicertnut-IDXTERM-930></A>is a utility for <A  
+                  name=IXT-14-350595></A>compiling software. When multiple  
+                  source-code files are used in a project, it is rarely  
+                  necessary to compile all of them for every build of the  
+                  executable. Instead, only the source files that have changed  
+                  since the last compilation really need to be compiled again.  
+                  </P>
+                  <P class=docText><SPAN class=docEmphBold>make</SPAN> works by  
+                  defining <I>targets</I><A name=IXT-14-350596></A> and their  
+                  <I>dependencies</I><A name=IXT-14-350597></A>. The ultimate  
+                  target in a software build is the executable file or files.  
+                  They depend on object files, which in turn depend on  
+                  source-code files. When a source file is edited, its date is  
+                  more recent than that of the last compiled object. <SPAN  
+                  class=docEmphBold>make</SPAN> is designed to automatically  
+                  handle these dependencies and do the right thing. </P> 
+                  <P class=docText>To illustrate the basic idea, consider this 
+                  trivial and silly example. Suppose you're writing a program 
+                  with code in two files. The C file, <I>main.c</I>, holds the 
+                  <TT>main( )</TT> function: </P><PRE>int main(  ) {
+  printit(  );
+}</PRE>
+                  <P class=docText>and <I>printit.c</I> contains the 
+                  <TT>printit( )</TT> function, which is called by <TT>main( 
+                  )</TT>: </P><PRE>#include &lt;stdio.h&gt;
+void printit(  ) {
+  printf(&quot;Hello, world\n&quot;);
+}</PRE>
+                  <P class=docText>Both source files must be compiled into 
+                  objects <I>main.o</I> and <I>printit.o</I>, and then linked 
+                  together to form an executable application called <SPAN 
+                  class=docEmphBold>hw</SPAN>. In this scenario, <SPAN 
+                  class=docEmphBold>hw</SPAN> depends on the two object files, a 
+                  relationship that could be defined like this: </P><PRE>hw: main.o printit.o</PRE>
+                  <P class=docText>Using this syntax, the dependency of the 
+                  object files on the source files would look like this: </P><PRE>main.o: main.c
+printit.o: printit.c</PRE>
+                  <P class=docText>With these three lines, there is a clear 
+                  picture of the dependencies involved in the project. The next 
+                  step is to add the commands necessary to satisfy each of the 
+                  dependencies. Compiler directives are added next: </P><PRE>gcc -c main.c
+gcc -c printit.c
+gcc -o hw main.o printit.o</PRE>
+                  <P class=docText>To allow for a change of compilers in the 
+                  future, a variable can be defined to hold the actual compiler 
+                  name: </P><PRE>CC = gcc</PRE>
+                  <P class=docText>To use the variable, use the syntax 
+                  <TT>$(</TT><TT><I>variable</I></TT><TT>)</TT> for substitution 
+                  of the contents of the variable. Combining all this, the 
+                  result is: </P><PRE>CC = gcc
+
+hw: main.o printit.o
+      $(CC) -o hw main.o printit.o
+
+main.o: main.c
+      $(CC) -c main.c
+
+printit.o: printit.c
+      $(CC) -c printit.c</PRE>
+                  <P class=docText>This illustrates a simple <I>Makefile</I>, 
+                  the default control file for <SPAN 
+                  class=docEmphBold>make</SPAN>. It defines three targets: <SPAN 
+                  class=docEmphBold>hw</SPAN> (the application), and 
+                  <I>main.o</I> and <I>printit.o </I>(the two object files). A 
+                  full compilation of the <SPAN class=docEmphBold>hw</SPAN> 
+                  program is invoked by running <SPAN 
+                  class=docEmphBold>make</SPAN> and specifying <SPAN 
+                  class=docEmphBold>hw</SPAN> as the desired target: </P><PRE># <B>make hw</B>
+gcc -c main.c
+gcc -c printit.c
+gcc -o hw main.o printit.o</PRE>
+                  <P class=docText><SPAN class=docEmphBold>make</SPAN> 
+                  automatically expects to find its instructions in 
+                  <I>Makefile</I>. If a subsequent change is made to one of the 
+                  source files, <SPAN class=docEmphBold>make</SPAN> will handle 
+                  the dependency: </P><PRE># <B>touch printit.c</B>
+# <B>make hw</B>
+gcc -c printit.c
+gcc -o hw main.o printit.o</PRE>
+                  <P class=docText>This trivial example doesn't illustrate a 
+                  real-world use of <SPAN class=docEmphBold>make</SPAN> or the 
+                  <I>Makefile</I> syntax. <SPAN class=docEmphBold>make</SPAN> 
+                  also has powerful rule sets that allow commands for known 
+                  dependency relationships to be issued automatically. These 
+                  rules would shorten even this tiny <I>Makefile</I>. </P><A 
+                  name=lpicertnut-CHP-14-SECT-3.2.3></A>
+                  <H5 class=docSection3Title>14.3.2.3 Installing the compiled 
+                  software</H5>
+                  <P class=docText><A name=IXT-14-350598></A><A 
+                  name=IXT-14-350599></A>Most mature source-code projects come  
+                  with a predetermined location in the filesystem for the  
+                  executable files created by compilation. In many cases,  
+                  they're expected to go to <I>/usr/local/bin</I>. To facilitate  
+                  installation to these default locations, many <I>Makefiles</I>  
+                  contain a special target called <I>install</I>. By executing  
+                  the <SPAN class=docEmphBold>make install</SPAN><A  
+                  name=IXT-14-350600></A> command, files are copied and set with  
+                  the appropriate attributes. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=36 
+                              src="14-3.files/warning_yellow.gif" width=51></TD>
+                            <TD vAlign=top>
+                              <P class=docText>The <A name=IXT-14-350601></A><A  
+                              name=IXT-14-350602></A>default installation  
+                              directory included in a project's <I>Makefile</I>  
+                              may differ from that defined by your Linux  
+                              distribution. If you upgrade software you are  
+                              already using, this could lead to confusion over  
+                              versions. 
+                  </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>A basic understanding of <SPAN  
+                        class=docEmphBold>make</SPAN> is sufficient for Exam  
+                        102. In addition, be prepared to add to or modify the  
+                        contents of variables in a <I>Makefile</I>, such as  
+                        <I>include</I> directories or paths. This could be  
+                        necessary, for example, if additional libraries must be  
+                        included in the compilation or if a command must be  
+                        customized.<A name=IXTR3-64></A> 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-14-SECT-3.2.4></A>
+                  <H5 class=docSection3Title>14.3.2.4 Example: Compiling 
+                  bash</H5>
+                  <P class=docText><A name=lpicertnut-IDXTERM-940></A>GNU's  
+                  <SPAN class=docEmphBold>bash</SPAN> shell is presented here as  
+                  an example of the process of compiling. You can find a  
+                  compressed tarball of the <SPAN class=docEmphBold>bash</SPAN>  
+                  source at the GNU FTP site, ftp://ftp.gnu.org/gnu/bash/.  
+                  Multiple versions might be available. Version 2.03 is used in  
+                  this example (you will find more recent versions). The  
+                  compressed tarball is <I>bash-2.03.tar.gz</I>. As you can see  
+                  by its name, it is a <SPAN class=docEmphasis>tar</SPAN> file  
+                  that has been compressed with <SPAN  
+                  class=docEmphBold>gzip</SPAN>. To uncompress the contents, use  
+                  the compression option in <SPAN class=docEmphBold>tar</SPAN>:  
+                  </P><PRE># <B>tar zxvf bash-2.03.tar.gz</B>
+bash-2.03/
+bash-2.03/CWRU/
+bash-2.03/CWRU/misc/
+bash-2.03/CWRU/misc/open-files.c
+bash-2.03/CWRU/misc/sigs.c
+bash-2.03/CWRU/misc/pid.c
+... (extraction continues) ...</PRE>
+                  <P class=docText>Next move into the new directory, take a look 
+                  around, and read some basic documentation: </P><PRE># <B>cd bash-2.03</B>
+# <B>ls</B>
+AUTHORS        NEWS
+CHANGES        NOTES
+COMPAT         README
+COPYING        Y2K
+CWRU           aclocal.m4
+INSTALL        alias.c
+MANIFEST       alias.h
+Makefile.in    ansi_stdlib.h
+... (listing continues) ...
+# <B>less README</B></PRE>
+                  <P class=docText>The build process for <SPAN 
+                  class=docEmphBold>bash</SPAN> is started by using the <SPAN 
+                  class=docEmphasis>dot-slash</SPAN> prefix to launch <SPAN 
+                  class=docEmphBold>configure</SPAN>: </P><PRE># <B>./configure</B>
+creating cache ./config.cache
+checking host system type... i686-pc-linux-gnu
+Beginning configuration for bash-2.03 for i686-pc-linux-gnu
+checking for gcc... gcc
+checking whether the C compiler (gcc  ) works... yes
+checking whether the C compiler (gcc  ) is a 
+  cross-compiler... no
+checking whether we are using GNU C... yes
+checking whether gcc accepts -g... yes
+checking whether large file support needs explicit 
+  enabling... yes
+checking for POSIXized ISC... no
+checking how to run the C preprocessor... gcc -E # make
+... (configure continues) ...</PRE>
+                  <P class=docText>Next, compile:</P><PRE># <B>make</B>
+/bin/sh ./support/mkversion.sh -b -s release -d 2.03 \
+  -p 0 -o newversion.h &amp;&amp; mv newversion.h version.h
+
+***********************************************************
+*                                                         *
+* Making Bash-2.03.0-release for a i686 running linux-gnu
+*                                                         *
+***********************************************************
+
+rm -f shell.o
+gcc  -DPROGRAM='&quot;bash&quot;' -DCONF_HOSTTYPE='&quot;i686&quot;' \
+  -DCONF_OSTYPE='&quot;linux-gnu&quot;' -DCONF_MACHTYPE='&quot;i686
+-pc-linux-gnu&quot;' -DCONF_VENDOR='&quot;pc&quot;' -DSHELL \
+  -DHAVE_CONFIG_H  -D_FILE_OFFSET_BITS=64  -I.  -I. -I./
+lib -I/usr/local/include -g -O2 -c shell.c
+rm -f eval.o
+... (compile continues) ...</PRE>
+                  <P class=docText>If the compile yields fatal errors, <SPAN 
+                  class=docEmphBold>make</SPAN> terminates and the errors must 
+                  be addressed before installation. Errors might include 
+                  problems with the source code (unlikely), missing header files 
+                  or libraries, and other problems. Error messages will usually 
+                  be descriptive enough to lead you to the source of the 
+                  problem. </P>
+                  <P class=docText>The final step of installation requires that 
+                  you are logged in as <SPAN class=docEmphasis>root</SPAN> in 
+                  order to copy the files to the system directories: </P><PRE># <B>make install</B>
+/usr/bin/install -c -m 0755 bash /usr/local/bin/bash
+/usr/bin/install -c -m 0755 bashbug /usr/local/bin/bashbug
+( cd ./doc ; make  \
+        man1dir=/usr/local/man/man1 man1ext=1 \
+        man3dir=/usr/local/man/man3 man3ext=3 \
+        infodir=/usr/local/info install )
+make[1]: Entering directory `/home/ftp/bash-2.03/doc'
+test -d /usr/local/man/man1 || /bin/sh ../support/mkdirs /usr/local/man/man1
+test -d /usr/local/info || /bin/sh ../support/mkdirs 
+  /usr/local/info
+/usr/bin/install -c -m 644 ./bash.1 
+  /usr/local/man/man1/bash.1
+/usr/bin/install -c -m 644 ./bashbug.1 
+  /usr/local/man/man1/bashbug.1
+/usr/bin/install -c -m 644 ./bashref.info 
+  /usr/local/info/bash.info
+if /bin/sh -c 'install-info --version' 
+  &gt;/dev/null 2&gt;&amp;1; then \
+  install-info --dir-file=/usr/local/info/dir 
+  /usr/local/info/bash.info; \
+else true; fi
+make[1]: Leaving directory `/home/ftp/bash-2.03/doc'</PRE>
+                  <P class=docText>The installation places the new version of 
+                  <SPAN class=docEmphBold>bash</SPAN> in <I>/usr/local/bin</I>. 
+                  Now, two working versions of <SPAN 
+                  class=docEmphBold>bash</SPAN> are available on the system: 
+                  </P><A name=IXTR3-65></A><PRE># <B>which bash</B>
+/bin/bash
+# <B>/bin/bash -version</B>
+GNU bash, version 1.14.7(1)
+# <B>/usr/local/bin/bash -version</B>
+GNU bash, version 2.03.0(1)-release (i686-pc-linux-gnu)
+Copyright 1998 Free Software Foundation, Inc. </PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Familiarize yourself with the  
+                        acquisition, configuration, compilation, and  
+                        installation of software from source. Be prepared to  
+                        answer questions on <SPAN class=docEmphBold>make</SPAN>  
+                        and <I>Makefile</I>, the function of the <SPAN  
+                        class=docEmphBold>configure</SPAN> utility, <SPAN  
+                        class=docEmphBold>gzip</SPAN>, and <SPAN  
+                        class=docEmphBold>tar</SPAN>.<A name=IXTR3-66></A> <A  
+                        name=IXTR3-67></A></P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-14-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-14-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)501ms
+(xml)390ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)922ms
+--></BODY></HTML>

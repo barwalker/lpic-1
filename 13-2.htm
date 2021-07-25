@@ -1,0 +1,502 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-13-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="13-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="13-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 13.&nbsp;  
+            Hardware and Architecture (Topic 1.1)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-13-SECT-2></A>
+                  <H3 class=docSection1Title>13.2 Objective 2: Set Up SCSI and 
+                  NIC Devices </H3>
+                  <P class=docText><A name=IXT-13-350537></A>As <A  
+                  name=IXT-13-350538></A>described in Objective 1, when you add  
+                  hardware to a PC you must accommodate the resource  
+                  requirements of all installed devices. Some devices, in  
+                  particular SCSI controllers and older network interfaces,  
+                  require special configuration. This Objective describes in  
+                  general terms some of these considerations. </P><A  
+                  name=lpicertnut-CHP-13-SECT-2.1></A>
+                  <H4 class=docSection2Title>13.2.1 NICs</H4>
+                  <P class=docText>More than ever before, today's PCs are  
+                  expected to be connected to a network. This means that some  
+                  form of <SPAN class=docEmphasis>network interface card</SPAN>  
+                  <A name=IXT-13-350539></A>(or NIC) is used to make the  
+                  connection between the computer and the network. Older  
+                  hardware, particularly <A name=IXT-13-350540></A><A  
+                  name=IXT-13-350541></A>Industry Standard Architecture (ISA)  
+                  bus hardware, requires manual configuration. Exam 102 requires  
+                  familiarity with these configuration problems. </P> 
+                  <P class=docText>Generally speaking, we may think about device 
+                  configuration methodologies from one of three general eras: 
+                  </P><A name=IXT-13-350542></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Jumper era</SPAN></I> 
+                    <DD>
+                    <P class=docList>This hardware was constructed in such a way  
+                    that settings were controlled by changing the position of  
+                    shorting <A name=IXT-13-350542></A>jumpers on terminal  
+                    strips. This method is inconvenient in that it requires  
+                    internal access to the PC as well as available documentation  
+                    on the jumper locations. On the other hand, it is a  
+                    hardware-only solution, and the settings are obvious to the  
+                    observer. Many such devices are still in service on older  
+                    PCs. </P></DD></DL><A name=IXT-13-350543></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Nonvolatile era</SPAN></I> 
+                    <DD>
+                    <P class=docList>These more recent hardware designs  
+                    abandoned jumpers in favor of settings that, while still  
+                    manually set, are stored in a <A  
+                    name=IXT-13-350543></A>nonvolatile memory space. This design  
+                    eliminated the physical access problem with jumpered  
+                    hardware, but introduced a requirement that custom  
+                    configuration programs be written, supported, and provided  
+                    to consumers by hardware vendors. This software was almost  
+                    always based on MS-DOS. Using these configuration tools to  
+                    program a card for use under Linux may require a working  
+                    MS-DOS machine to provide initial configuration.  
+</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Modern era </SPAN></I>
+                    <DD>
+                    <P class=docList>Most recent NICs work with the PCI bus to 
+                    automatically configure themselves. The settings are done 
+                    during system initialization, prior to loading the operating 
+                    system. This automation eliminates manual configuration and 
+                    frees the user from worrying about device conflicts. 
+                    </P></DD></DL>
+                  <P class=docText>To configure an older NIC, you may need to 
+                  set jumpers or possibly run MS-DOS and a proprietary 
+                  configuration utility. More often than not, factory default 
+                  settings can be used with the Linux networking drivers. 
+                  However manual configuration is accomplished, you'll need to 
+                  be sure that you don't have conflicts with IRQs, I/O 
+                  addresses, and possibly DMA channel assignments. </P><A 
+                  name=lpicertnut-CHP-13-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>13.2.1.1 Using the /proc 
+                  filesystem</H5>
+                  <P class=docText>When adding new hardware to an existing Linux  
+                  system, you may wish to verify which resources the existing  
+                  devices are using. The <I>/proc</I><A name=IXT-13-350544></A>  
+                  filesystem, the kernel's status repository, contains this  
+                  information. The <I>proc</I> files -- <I>interrupts</I><A  
+                  name=IXT-13-350545></A>, <I>dma</I><A name=IXT-13-350546></A>,  
+                  and <I>ioports -- </I><A name=IXT-13-350547></A>show how <A  
+                  name=IXT-13-350548></A>system resources are currently  
+                  utilized. Here is an example of <I>/proc/interrupts</I><A  
+                  name=IXT-13-350549></A> from a dual-CPU system with an Adaptec  
+                  dual-AIC7895 SCSI controller: </P><PRE># <B>cat /proc/interrupts</B>
+           CPU0       CPU1
+  0:   98663989          0          XT-PIC  timer
+  1:      34698      34858    IO-APIC-edge  keyboard
+  2:          0          0          XT-PIC  cascade
+  5:       7141       7908    IO-APIC-edge  MS Sound System
+  6:          6          7    IO-APIC-edge  floppy
+  8:   18098274   18140354    IO-APIC-edge  rtc
+ 10:    3234867    3237313   IO-APIC-level  aic7xxx, eth0
+ 11:         36         35   IO-APIC-level  aic7xxx
+ 12:     233140     216205    IO-APIC-edge  PS/2 Mouse
+ 13:          1          0          XT-PIC  fpu
+ 15:      44118      43935    IO-APIC-edge  ide1
+NMI:          0
+ERR:          0</PRE> 
+                  <P class=docText>In this example, you can see that interrupt 5 
+                  is used for the sound system, thus it isn't available for a 
+                  second parallel port. The two SCSI controllers are using 
+                  interrupts 10 and 11, respectively, while the Ethernet 
+                  controller shares interrupt 10. You may also notice that only 
+                  one of the two standard IDE interfaces is enabled in the 
+                  system BIOS, freeing interrupt 14 use for another device. </P>
+                  <P class=docText>Here are the <I>/proc/dma</I><A  
+                  name=IXT-13-350550></A> and <I>/proc/ioports</I><A  
+                  name=IXT-13-350551></A> files from the same system: </P><PRE># <B>cat /proc/dma</B>
+ 0: MS Sound System
+ 1: MS Sound System
+ 2: floppy
+ 4: cascade
+# <B>cat /proc/ioports</B>
+0000-001f : dma1
+0020-003f : pic1
+0040-005f : timer
+0060-006f : keyboard
+0070-007f : rtc
+0080-008f : dma page reg
+00a0-00bf : pic2
+00c0-00df : dma2
+00f0-00ff : fpu
+0170-0177 : ide1
+02f8-02ff : serial(auto)
+0370-0371 : OPL3-SAx
+0376-0376 : ide1
+0388-0389 : mpu401
+03c0-03df : vga+
+03f0-03f5 : floppy
+03f7-03f7 : floppy DIR
+03f8-03ff : serial(auto)
+0530-0533 : WSS config
+0534-0537 : MS Sound System
+e800-e8be : aic7xxx
+ec00-ecbe : aic7xxx
+ef00-ef3f : eth0
+ffa0-ffa7 : ide0
+ffa8-ffaf : ide1</PRE> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be aware of the default  
+                        resource assignments listed in <a class="docLink" href="13-1.htm#lpicertnut-CHP-13-TABLE-1">Table  
+                        13-1</a>. You should also know how to examine a running  
+                        Linux system's resource assignments using the  
+                        <I>/proc</I> filesystem. </P></TD></TR></TBODY></TABLE><A  
+                  name=lpicertnut-CHP-13-SECT-2.2></A>
+                  <H4 class=docSection2Title>13.2.2 SCSI</H4>
+                  <P class=docText><A name=IXT-13-350552></A>SCSI <A  
+                  name=lpicertnut-IDXTERM-869></A><A 
+                  name=lpicertnut-IDXTERM-870></A>is an interface for streaming  
+                  devices and block storage devices such as tape drives, hard  
+                  disks, CD-ROMs, and other peripheral instruments. SCSI is the  
+                  standard interface on server-style PCs, Unix workstations, and  
+                  many older Apple models (mostly 604 and earlier systems).  
+                  Desktop PCs and newer Apple systems (G3 and above) usually opt  
+                  for the IDE (ATA)-style disk interfaces because they are less  
+                  expensive. The advantage that SCSI has over IDE is that it  
+                  offers much more flexibility and expandability, as well as  
+                  faster throughput. </P> 
+                  <P class=docText>SCSI defines a <SPAN  
+                  class=docEmphasis>bus</SPAN><A name=IXT-13-350553></A> to  
+                  which multiple devices are connected. The medium is a  
+                  high-quality cable or a series of cables connected to  
+                  daisy-chained devices in series. One of the devices in the  
+                  chain is the <SPAN class=docEmphasis>SCSI controller</SPAN><A  
+                  name=IXT-13-350554></A>, which is the host interface to the  
+                  other connected SCSI devices. The controller and all of the  
+                  other devices on the bus are assigned a permanent <SPAN  
+                  class=docEmphasis>SCSI address</SPAN><A 
+                  name=IXT-13-350555></A>, also known as the <SPAN  
+                  class=docEmphasis>SCSI ID</SPAN><A name=IXT-13-350556></A>,  
+                  which defines each SCSI device uniquely on the bus. The  
+                  controller can access devices individually by using the unique  
+                  SCSI address to access a specific device. </P><A  
+                  name=lpicertnut-CHP-13-SECT-2.2.1></A>
+                  <H5 class=docSection3Title>13.2.2.1 SCSI types</H5>
+                  <P class=docText>The world of <A name=IXT-13-350557></A>SCSI  
+                  can be a little confusing, despite the standards set by ANSI.  
+                  The original SCSI-1 interface is a 5-MBps (megabytes per  
+                  second) 8-bit interface. It uses a 50-pin Centronics  
+                  connector, similar to but larger than those found on most  
+                  printers. This interface is still in popular use today,  
+                  although the connector is usually replaced by a 50-pin micro-D  
+                  connector. (This connector is similar to the DB-25 used for  
+                  serial ports but has a much higher pin density.) As  
+                  performance demands escalated, manufacturers began offering  
+                  enhanced products with faster data transfer rates: </P> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>SCSI-1</SPAN></I> 
+                    <DD>
+                    <P class=docList>The original: 8-bit, 5-MBps Centronics 50 
+                    connector. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>SCSI-2</SPAN></I> 
+                    <DD>
+                    <P class=docList>8-bit, 5-MBps Micro-D 50-pin connector. 
+                    Interchangeable with SCSI-1. This interface is still 
+                    adequate for low-end to midrange tape drives but is too slow 
+                    for current technology disks. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Wide SCSI</SPAN></I> 
+                    <DD>
+                    <P class=docList>16-bit, 10-MBps, Micro-D 68-pin connector. 
+                    This standard uses a wider cable to support 16-bit 
+                    transfers, obtaining faster throughput using the same clock 
+                    rate. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Fast SCSI</SPAN></I> 
+                    <DD>
+                    <P class=docList>8-bit, 10-MBps, Micro-D 50-pin connector. 
+                    Higher throughput is obtained by doubling the original clock 
+                    rate. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Fast Wide SCSI</SPAN></I> 
+                    <DD>
+                    <P class=docList>16-bit, 20-MBps, Micro-D 68-pin connector. 
+                    This interface combines both the higher clock rate and the 
+                    wider bus. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Ultra SCSI</SPAN></I> 
+                    <DD>
+                    <P class=docList>8-bit, 20-MBps, Micro-D 50-pin connector. 
+                    Additional changes to clocking yield still better 
+                    performance. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Ultra Wide SCSI (also known 
+                    as SCSI-3)</SPAN></I> 
+                    <DD>
+                    <P class=docList>16-bit, 40-MBps.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Ultra2</SPAN></I> 
+                    <DD>
+                    <P class=docList>8-bit, 40-MBps.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Wide Ultra2</SPAN></I> 
+                    <DD>
+                    <P class=docList>16-bit, 80-MBps.</P></DD></DL>
+                  <P class=docText>Recent developments have yielded additional 
+                  SCSI interface types with up to 160 MBps throughput, and 
+                  efforts continue to keep SCSI competitive with other 
+                  technologies. As performance increases, however, constraints 
+                  on cabling and connectors become more significant. Such 
+                  constraints are a major factor in deploying large SCSI-based 
+                  systems. Also, with the variety of connectors, cables, and 
+                  transfer rates available in the SCSI standards, it's important 
+                  to plan carefully. The other inhibiting factor, at least on 
+                  the consumer level, is that SCSI hard drives tend to cost two 
+                  to three times the amount of a similar-sized IDE drive. </P><A 
+                  name=lpicertnut-CHP-13-SECT-2.3></A>
+                  <H4 class=docSection2Title>13.2.3 SCSI IDs</H4>
+                  <P class=docText>Each device on a <A  
+                  name=IXT-13-350558></A>SCSI bus, including the controller, has  
+                  an address based on a binary reading of the address lines. The  
+                  8-bit SCSI buses have three address lines and thus will  
+                  accommodate 2<SUP>3</SUP>=8 devices, including the controller.  
+                  For the 16-bit busses, there are four address lines resulting  
+                  in a possible 2<SUP>4</SUP>=16 devices. This results in a  
+                  maximum of 7 and 15 devices, respectively. These addresses can  
+                  be configured using jumpers (typical for disk drives) or  
+                  switches. SCSI addresses run from to 7 for 8-bit buses and  
+                  from to 15 for 16-bit buses. It is customary for the  
+                  controller to occupy address 7 for both bus widths. Disks and  
+                  other devices must be assigned a unique address on the bus,  
+                  and they must be provided with proper <SPAN  
+                  class=docEmphasis>termination</SPAN>, discussed later in this  
+                  section. </P><A name=lpicertnut-CHP-13-SECT-2.3.1></A>
+                  <H5 class=docSection3Title>13.2.3.1 SCSI logical unit 
+                  numbers</H5>
+                  <P class=docText>Some SCSI devices, such as RAID controllers,  
+                  appear to the SCSI controller as a disk drive with a single  
+                  SCSI address. In order for the controller to access multiple  
+                  logical devices using a single SCSI address, an accompanying  
+                  <SPAN class=docEmphasis>logical unit number</SPAN><A 
+                  name=IXT-13-350559></A> <A name=IXT-13-350560></A>(LUN), is  
+                  reported to the controller. Single disks and tape drives don't  
+                  usually use the LUN or report LUN zero. </P><A  
+                  name=lpicertnut-CHP-13-SECT-2.3.2></A>
+                  <H5 class=docSection3Title>13.2.3.2 Linux SCSI disk device 
+                  files</H5>
+                  <P class=docText>On Linux systems, <A  
+                  name=IXT-13-350561></A>IDE disk devices are known as  
+                  <I>/dev/hda</I>, <I>/dev/hdb</I>, <I>/dev/hdc</I>, and  
+                  <I>/dev/hdd</I>. For SCSI, a similar pattern emerges, with  
+                  <I>/dev/sda</I>, <I>/dev/sdb</I>, and so on. The first  
+                  partition on disk <I>/dev/sda</I> will be <I>/dev/sdal</I> --  
+                  but remember that the partition number has nothing to do with  
+                  the SCSI ID. Instead, the letter names of the Linux SCSI  
+                  devices start with <I>sda</I> and proceed across all SCSI IDs  
+                  and LUNs. The numbers are sequentially assigned to partitions  
+                  on a single ID/LUN combination. </P> 
+                  <P class=docText>For example, a SCSI-2 bus with two disks, a  
+                  tape drive, a RAID controller with two LUNs, and the SCSI  
+                  controller might be assigned addresses as shown in <a class="docLink" href="#lpicertnut-CHP-13-TABLE-2">Table  
+                  13-2</a>. </P><A name=lpicertnut-CHP-13-TABLE-2></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 13-2. Sample SCSI 
+                    Configuration </H5></CAPTION>
+                    <COLGROUP span=4>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Device</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>SCSI Address</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>LUN</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Linux Device</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Disk 0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>-</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/sda</I></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Disk 1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>-</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/sdb</I></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Tape drive</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>5</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>-</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/st0</I></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>RAID controller device 0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>6</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/sdc</I></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>RAID controller device 1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>6</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/sdd</I></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Controller</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>7</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>-</P></TD>
+                      <TD class=docTableCell>
+                        <P 
+class=docText>-</P></TD></TR></COLGROUP></TBODY></TABLE>
+                  <P class=docText>If a disk on the SCSI bus is to be bootable, 
+                  you may need to configure the SCSI controller's BIOS with the 
+                  disk's address. By default, address is expected to be a 
+                  bootable disk. </P><A name=lpicertnut-CHP-13-SECT-2.3.3></A>
+                  <H5 class=docSection3Title>13.2.3.3 Termination</H5>
+                  <P class=docText>Another facet of SCSI that can be confusing  
+                  is <A name=IXT-13-350562></A><A  
+                  name=IXT-13-350563></A>termination. A SCSI bus can be  
+                  considered a cable with devices connected along its length,  
+                  but not at the ends. Instead of devices, the ends of the SCSI  
+                  bus have terminators, which are simple electrical devices that  
+                  condition the signal and reduce electrical noise on the bus.  
+                  However, most external terminators look like a bare connector  
+                  at the end of a SCSI cable. Without a terminator, a SCSI bus  
+                  can be marginally functional, but it's more likely that it  
+                  will fail completely, so proper termination is extremely  
+                  important. Termination can be particularly problematic if you  
+                  attempt to mix 8- and 16-bit devices on a single bus and use  
+                  an 8-bit terminator, leaving half of the 16-bit SCSI bus  
+                  unterminated. </P>
+                  <P class=docText>External terminators are straightforward 
+                  because they are visible. Most device manufacturers include 
+                  termination circuitry on their devices, so the application of 
+                  an external terminator device is not always necessary. SCSI 
+                  controllers can terminate one end of the SCSI bus while an 
+                  external terminator or a disk's internal terminator is used on 
+                  the other end. Whichever type of terminator is being used, you 
+                  must be sure that exactly one terminator is placed at each end 
+                  of the SCSI bus (for a total of exactly two terminators), 
+                  otherwise the bus may fail. </P><A 
+                  name=lpicertnut-CHP-13-SECT-2.3.4></A>
+                  <H5 class=docSection3Title>13.2.3.4 SCSI controllers on 
+                  PCs</H5>
+                  <P class=docText>Most PCs don't come with integrated SCSI 
+                  controllers, but a number of add-on cards are available. SCSI 
+                  controllers have their own firmware installed along with an 
+                  accompanying BIOS, which has its own configuration menus. If 
+                  you're using SCSI on a PC, it's important to be able to 
+                  manipulate these settings appropriately. </P>
+                  <P class=docText>Like the BIOS, a SCSI controller BIOS usually 
+                  has a keyboard combination, announced at boot time, to enter 
+                  the setup utility. Once the utility is launched, you can 
+                  control a number of aspects of the controller, including: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Controller SCSI 
+                    address</SPAN></I> 
+                    <DD>
+                    <P class=docList>The default controller address is usually 
+                    7, but you may use any address. </P>
+                    <DT><I><SPAN class=docPubcolor>Default boot 
+                    device</SPAN></I> 
+                    <DD>
+                    <P class=docList>Typically this is set to address 0 for a 
+                    hard disk.</P>
+                    <DT><I><SPAN class=docPubcolor>Onboard 
+                    termination</SPAN></I> 
+                    <DD>
+                    <P class=docList>Depending upon how a controller is utilized 
+                    (internal or external bus, or both) you may elect to turn on 
+                    the controller's terminator. </P>
+                    <DT><I><SPAN class=docPubcolor>SCSI bus speed</SPAN></I> 
+                    <DD>
+                    <P class=docList>Most SCSI adapters that are capable of 
+                    higher speeds (Ultra SCSI, for example) can be manually set 
+                    to lower speeds to accommodate older devices or longer cable 
+                    lengths. </P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure to be familiar with SCSI IDs,  
+                        termination, the SCSI BIOS, and Linux SCSI device naming  
+                        for the 102 exam.<A name=IXTR3-56></A> <A  
+                        name=IXTR3-57></A></P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-13-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-13-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-13-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)500ms
+(xml)343ms
+(xsl)126ms
+(ent)0ms
+(buf)0ms
+
+(tot)985ms
+--></BODY></HTML>
