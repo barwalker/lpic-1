@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-16-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="16-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="16-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 16.&nbsp;  
+            Text-Editing, Processing, and Printing (Topic  
+1.7)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-16-SECT-1></A>
+                  <H3 class=docSection1Title>16.1 Objective 1: Perform Basic 
+                  File Editing Operations Using vi</H3>
+                  <P class=docText>When working on multiple systems, the  
+                  availability of a text editor may be of prime importance.  
+                  Since an editor is an essential configuration tool for Linux,  
+                  learning at least the basics of the resident editor is a  
+                  requirement. For Linux and nearly all other Unix systems, the  
+                  universally available editor is <SPAN  
+                  class=docEmphBold>vi</SPAN>. This Objective covers <SPAN  
+                  class=docEmphBold>vi</SPAN> basics.<SUP class=docFootnote>[1]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> Some  
+                    Linux systems come with a newer version of <SPAN  
+                    class=docEmphBold>vi</SPAN>, called <SPAN  
+                    class=docEmphBold>vim</SPAN><A name=IXT-16-350723></A>,  
+                    which is an open source <SPAN class=docEmphBold>vi</SPAN>  
+                    clone, with improvements. Additional information on <SPAN  
+                    class=docEmphBold>vim</SPAN> can be found online at <A  
+                    class=docLink href="http://www.vim.org/" 
+                    target=_blank>http://www.vim.org/</A>.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-16-SECT-1.1></A>
+                  <H4 class=docSection2Title>16.1.1 Invoking vi</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1088></A>The <SPAN  
+                  class=docEmphBold>vi</SPAN> editor has two modes of operation:  
+                  <SPAN class=docEmphasis>command</SPAN> <A  
+                  name=IXT-16-350724></A><A name=IXT-16-350725></A>or <SPAN  
+                  class=docEmphasis>insert</SPAN>. In command mode, <SPAN  
+                  class=docEmphBold>vi</SPAN> allows you to navigate around your  
+                  file and enter commands. To enter new text, put <SPAN  
+                  class=docEmphBold>vi</SPAN> into insert mode. In command mode,  
+                  the keyboard keys are interpreted as <SPAN  
+                  class=docEmphBold>vi</SPAN> commands instead of text. The  
+                  convenience of being able to manipulate the editor without  
+                  moving your hands from the keyboard is considered one of <SPAN  
+                  class=docEmphBold>vi</SPAN>'s strengths. </P> 
+                  <P class=docText>To start <SPAN class=docEmphBold>vi</SPAN>, 
+                  simply provide one or more text files on the command line: 
+</P><PRE>$ <B>vi file1.txt file2.txt</B></PRE>
+                  <P class=docText>You are presented with a main window showing 
+                  the contents of <I>file1.txt</I>, or if the specified files 
+                  don't already exist, a blank screen with tilde (<TT>~</TT>) 
+                  characters running the length of the left column (they 
+                  indicate areas of the screen containing no text, not even 
+                  blank lines). </P>
+                  <P class=docText>Commands are brief, case-sensitive 
+                  combinations of one or more letters. For example, to switch 
+                  from command to insert mode, press the <SPAN 
+                  class=docEmphBold>i</SPAN> key. To terminate insert mode, 
+                  press the <SPAN class=docEmphBold>Escape</SPAN> key (<SPAN 
+                  class=docEmphBold>Esc</SPAN>), which puts you back in command 
+                  mode. </P><A name=lpicertnut-CHP-16-SECT-1.2></A>
+                  <H4 class=docSection2Title>16.1.2 Terminating vi</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1091></A><A 
+                  name=lpicertnut-IDXTERM-1092></A>Once you've started <SPAN  
+                  class=docEmphBold>vi</SPAN>, the first thing you need to know  
+                  is how to stop it. When in command mode, you can use any of  
+                  the key sequences shown in <a class="docLink" href="#lpicertnut-CHP-16-TABLE-1">Table  
+                  16-1</a>. If you're in insert mode, you must first switch back  
+                  to command mode in order to exit, by pressing the <SPAN  
+                  class=docEmphBold>Esc</SPAN>. </P><A 
+                  name=lpicertnut-CHP-16-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 16-1. Common Commands for 
+                    Exiting vi </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Key Command</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:n</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Next file; when multiple files are 
+                        specified for editing, this command loads the next file. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:q</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Quit without saving changes.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:q!</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Quit without saving changes and without 
+                        confirmation.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:wq</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Write the file contents (if changed) 
+                        and quit.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:x</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Write the file contents (if changed) 
+                        and quit (the <SPAN class=docEmphBold>ex</SPAN> 
+                        equivalent of <TT>ZZ</TT>). </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>ZZ</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Write the file contents (if changed) 
+                        and quit.</P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-16-SECT-1.3></A>
+                  <H4 class=docSection2Title>16.1.3 Basic Navigation 
+                  Commands</H4>
+                  <P class=docText>While in command mode, you can move around  
+                  your file by character, word, sentence, paragraph, and major  
+                  section. You can position the cursor at various places in  
+                  lines or relative to the screen. <a class="docLink" href="#lpicertnut-CHP-16-TABLE-2">Table  
+                  16-2</a> lists some of the most frequently used navigation  
+                  commands. </P><A name=lpicertnut-CHP-16-TABLE-2></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 16-2. Commands for Moving 
+                    Around in vi </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Key Command</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><SPAN 
+                        class=docEmphBold>Ctrl-b</SPAN></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move up one screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><SPAN 
+                        class=docEmphBold>Ctrl-f</SPAN></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move down one screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>0 <I>(zero)</I></PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to the beginning of the current 
+                        line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>^</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to the first non-whitespace 
+                        character on the current line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>$</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to the end of the current 
+                      line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>b</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move backward one word.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>G</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to the end of the file.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>h</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move left one character.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>H</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to the top of the 
+screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>j</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move down one line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>k</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move up one line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>l</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move right one character.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>L</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to the bottom of the 
+                    screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>w</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move forward one 
+                    word.</P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-16-SECT-1.4></A>
+                  <H4 class=docSection2Title>16.1.4 Basic Editing Commands</H4>
+                  <P class=docText><A name=IXT-16-350726></A>To edit in <SPAN  
+                  class=docEmphBold>vi</SPAN>, you use one of its text-editing  
+                  commands, including those that enter insert mode, copy and  
+                  paste, and search for text. Here are some of the frequently  
+                  used editing commands, grouped by category: </P> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Inserting</SPAN></I> 
+                    <DD>
+                    <P class=docList>To insert new text, first navigate to the 
+                    location where the text belongs, then enter insert mode and 
+                    begin typing: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>i</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Enter insert mode to place text before 
+                      the cursor.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>a</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Enter insert mode to append, or place 
+                      text after the cursor.</P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Editing</SPAN></I> 
+                    <DD>
+                    <P class=docList>Here are a few handy editing commands:</P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>C</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Delete to end-of-line and enter insert 
+                      mode.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>R</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Enter <SPAN class=docEmphasis>replace 
+                      mode</SPAN> (a variant of insert mode) and overwrite 
+                      existing characters. </P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Deleting</SPAN></I> 
+                    <DD>
+                    <P class=docList>Delete a text block defined by a movement 
+                    command relative to the location where the command started: 
+                    </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>dl</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Delete the next character.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>dw</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Delete the current word.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>dG</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Delete to end-of-file.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>dd</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Delete the entire current 
+                    line.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>D</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Delete to end-of-line (same as <SPAN 
+                      class=docEmphBold>d$</SPAN>).</P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Copy and paste</SPAN></I> 
+                    <DD>
+                    <P class=docList>The <SPAN class=docEmphBold>yank<SUP  
+                    class=docFootnote>[2]</SUP></SPAN> 
+                    command is used to copy a text block defined by a movement  
+                    command relative to the location where the command started:  
+                    </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[2]</A></SUP> Emacs 
+                      users should be careful not to confuse the <SPAN 
+                      class=docEmphBold>vi</SPAN> definition of <SPAN 
+                      class=docEmphBold>yank</SPAN> (copy) with that of Emacs 
+                      (paste).</P></BLOCKQUOTE>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>yl</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Yank forward one character.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>yw</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Yank forward one word.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>yG</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Yank to end-of-file.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>yy</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Yank the entire current line.</P></DD></DL>
+                    <P class=docList>Paste operations insert text that was 
+                    previously cut:</P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>P</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Paste text one line above the 
+                      cursor.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>p</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Paste text one line below the 
+                      cursor.</P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Find</SPAN></I> 
+                    <DD>
+                    <P class=docList>The following commands can be used to 
+                    search for text:</P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>/</SPAN><I>pattern</I></SPAN> 
+                      <DD>
+                      <P class=docList>Search forward for 
+                      <I>pattern</I>.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>?</SPAN><I>pattern</I></SPAN> 
+                      <DD>
+                      <P class=docList>Search backward for 
+                      <I>pattern</I>.</P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Repeat the last search.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>N</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Repeat the last search in the opposite 
+                    direction.</P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You'll need to be familiar with <SPAN  
+                        class=docEmphBold>vi</SPAN>'s command and insert modes,  
+                        how to switch between them, and how to perform basic  
+                        navigation and editing tasks.<A name=IXTR3-80></A> <A  
+                        name=IXTR3-81></A><A 
+                  name=IXTR3-82></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="16-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-16-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-16-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-16-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)546ms
+(xml)547ms
+(xsl)32ms
+(ent)0ms
+(buf)0ms
+
+(tot)1141ms
+--></BODY></HTML>

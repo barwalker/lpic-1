@@ -1,0 +1,871 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-17-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="17-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="17-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 17.&nbsp;  
+            Shells, Scripting, Programming, and Compiling (Topic  
+            1.9)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-17-SECT-1></A>
+                  <H3 class=docSection1Title>17.1 Objective 1: Customize and Use 
+                  the Shell Environment</H3>
+                  <P class=docText>This Objective could be considered a brief 
+                  "getting started with shells" overview because it details many 
+                  of the basic concepts necessary to utilize the shell 
+                  environment on Linux. These concepts are fundamental and very 
+                  important for system administrators working on Linux and Unix 
+                  systems. If you're new to shells and shell scripting, take 
+                  heart. You can think of it as a combination of computer 
+                  interaction (conversation) and computer programming 
+                  (automation). It is nothing more than that, but the result is 
+                  far more than this simplicity implies. If you're an old hand 
+                  with shell programming, you may want to skip ahead to brush up 
+                  on some of the particulars necessary for Exam 102. </P><A 
+                  name=lpicertnut-CHP-17-SECT-1.1></A>
+                  <H4 class=docSection2Title>17.1.1 An Overview of Shells</H4>
+                  <P class=docText>A shell is a fundamental and important part 
+                  of your Linux computing environment. Shells are user programs 
+                  not unlike other text-based programs and utilities. They offer 
+                  a rich customizable interface to your system. Some of the main 
+                  items provided by your shell are: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>An interactive textual user 
+                    interface to the operating system</SPAN></I> 
+                    <DD>
+                    <P class=docList>In this the role, the shell is a command 
+                    interpreter and display portal to the system. It offers you 
+                    a communications channel to the kernel and is often thought 
+                    of as the "shell around the kernel." That's where the name 
+                    <SPAN class=docEmphasis>shell</SPAN> originates and is a 
+                    good metaphor for conceptualizing how shells fit into the 
+                    overall Linux picture. </P></DD></DL><A 
+                  name=IXT-17-350782></A><A name=IXT-17-350783></A><A 
+                  name=IXT-17-350784></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>An operating 
+                    environment</SPAN></I> 
+                    <DD>
+                    <P class=docList>Shells set up an <SPAN  
+                    class=docEmphasis>environment</SPAN><A 
+                    name=IXT-17-350782></A> for the execution of other programs,  
+                    which affect the way some of them behave. This environment  
+                    consists of any number of <SPAN  
+                    class=docEmphasis>environment variables</SPAN><A 
+                    name=IXT-17-350783></A>, each of which describes one  
+                    particular environment property by defining a  
+                    <I>name=value</I> pair. Other features such as <SPAN  
+                    class=docEmphasis>aliases</SPAN><A name=IXT-17-350784></A> 
+                    enhance your operating environment by offering shorthand  
+                    notations for commonly used commands. </P></DD></DL> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>A facility for launching and 
+                    managing commands and programs</SPAN></I> 
+                    <DD>
+                    <P class=docList>Shells are used not only by users but also 
+                    by the system to launch programs and support those programs 
+                    with an operating environment. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>A programming 
+                    language</SPAN></I> 
+                    <DD>
+                    <P class=docList>Shells offer their own programming 
+                    languages. At its simplest, this feature allows user 
+                    commands to be assembled into useful sequences. At the other 
+                    end of the spectrum, complete programs can be written in 
+                    shell languages, with loop control, variables, and all of 
+                    the capabilities of Linux's rich set of operating system 
+                    commands. </P></DD></DL>
+                  <P class=docText>On a Linux system, you have a choice of at 
+                  least five different shells. There are two basic families: 
+                  </P><A name=IXT-17-350785></A><A name=IXT-17-350786></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Bourne-derived 
+                    shells</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-17-350785></A>Many shells are  
+                    related to the <SPAN class=docEmphasis>Bourne shell</SPAN><A  
+                    name=IXT-17-350786></A>, <SPAN class=docEmphBold>sh</SPAN>,  
+                    named for creator Steve Bourne. <SPAN  
+                    class=docEmphBold>sh</SPAN> is the oldest of the currently  
+                    available shells and lacks several features considered  
+                    necessary for modern interactive use. However, it is well  
+                    understood, is used regularly for programming, and can be  
+                    found on nearly every Unix or Unix-like system. One of the  
+                    descendants of <SPAN class=docEmphBold>sh</SPAN> is <SPAN  
+                    class=docEmphBold>bash</SPAN>, which is described in the  
+                    next section. </P></DD></DL><A name=IXT-17-350787></A> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>C-shells</SPAN></I> 
+                    <DD>
+                    <P class=docList>For interactive use, many people like to  
+                    use the <A name=IXT-17-350787></A>C-shell, <SPAN  
+                    class=docEmphBold>csh</SPAN>, or its descendant, <SPAN  
+                    class=docEmphBold>tcsh</SPAN>. These shells have some  
+                    elements in their associated programming language syntax  
+                    that are similar to the C language. Despite this, many feel  
+                    that programming in the C-shell is less than satisfactory  
+                    due to some missing features. Additional shells include  
+                    <SPAN class=docEmphBold>zsh</SPAN> and <SPAN  
+                    class=docEmphBold>ksh</SPAN>. </P></DD></DL>
+                  <P class=docText>All of the shells share some common 
+                  concepts:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>They are all distinct from the kernel and 
+                    run as user programs.</P>
+                    <LI>
+                    <P class=docList>Each shell can be customized by tuning the 
+                    shell's operating environment. </P>
+                    <LI>
+                    <P class=docList>Shells are run for both interactive use by 
+                    end users and noninteractive use by the system. </P>
+                    <LI>
+                    <P class=docList>A shell can be run from within another 
+                    shell, enabling you to try a shell other than your default 
+                    shell. To do this, you simply start the other shell from the 
+                    command line of your current shell. In fact, this happens 
+                    constantly on your system as scripts are executed and 
+                    programs are launched. The new shell does not replace the 
+                    shell that launched it. Instead, the new shell is a process 
+                    running with the original shell as a parent process. When 
+                    you terminate the child shell, you go back to the original 
+                    one. </P>
+                    <LI>
+                    <P class=docList>Shells use a series of <SPAN  
+                    class=docEmphasis>configuration files</SPAN><A 
+                    name=IXT-17-350788></A> to establish their operating  
+                    environment. </P>
+                    <LI>
+                    <P class=docList>Shells pass on environment variables to 
+                    child processes.</P></LI></UL><A 
+                  name=lpicertnut-CHP-17-SECT-1.2></A>
+                  <H4 class=docSection2Title>17.1.2 The bash Shell</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1172></A><A 
+                  name=lpicertnut-IDXTERM-1173></A>To enhance the Bourne shell  
+                  while retaining its programming constructs, a few descendants  
+                  have been written over the years. Among those descendants is  
+                  <SPAN class=docEmphBold>bash</SPAN>, which stands for  
+                  Bourne-again shell, from the Free Software Foundation (the FSF  
+                  is famous for tongue-in-cheek command names). While there are  
+                  a number of shells available to choose from on a Linux system,  
+                  <SPAN class=docEmphBold>bash</SPAN> is very popular and  
+                  powerful, and is the default shell for new accounts. Exam 102  
+                  concentrates on its use and configuration. The next few  
+                  sections deal with general shell concepts, but the examples  
+                  are specific to <SPAN class=docEmphBold>bash</SPAN>. </P><A  
+                  name=lpicertnut-CHP-17-SECT-1.2.1></A>
+                  <H5 class=docSection3Title>17.1.2.1 Shell and environment 
+                  variables</H5>
+                  <P class=docText>Many programs running under Linux require 
+                  information about you and your personal preferences to operate 
+                  sensibly. While you could instruct each program you run with 
+                  important details it needs to proceed, much of the information 
+                  you'd convey would be redundant because you'd be telling every 
+                  command you enter the same ancillary information at each 
+                  invocation. For example, you'd need to tell your paging 
+                  program about the size and nature of your terminal or terminal 
+                  window each time you use it. You would also need to give fully 
+                  qualified directory names for the programs you run. </P>
+                  <P class=docText>Rather than force users to include so much 
+                  detail to issue commands, the shell handles much of this 
+                  information for you automatically. You've already seen that 
+                  the shell creates an operating environment for you. That 
+                  environment is made up of a series of <SPAN 
+                  class=docEmphasis>variables</SPAN>, each of which has a value 
+                  that is used by programs and other shells. There are two types 
+                  of variables used by most shells: </P><A 
+                  name=IXT-17-350789></A><A name=IXT-17-350790></A><A 
+                  name=IXT-17-350791></A><A name=IXT-17-350792></A><A 
+                  name=IXT-17-350793></A><A name=IXT-17-350794></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Environment 
+                    variables</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-17-350789></A>These variables  
+                    can be thought of as <SPAN class=docEmphasis>global  
+                    variables</SPAN> <A name=IXT-17-350790></A>because they are  
+                    passed on to all processes started by the shell, including  
+                    other shells. This means that child processes inherit the  
+                    environment. By convention, environment variables are given  
+                    uppercase names.<SUP class=docFootnote>[1]</SUP> Your shell  
+                    maintains many environment variables, including the  
+                    following examples: </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[1]</A></SUP> <SPAN 
+                      class=docEmphBold>bash</SPAN> doesn't require the case 
+                      convention; it's intended for clarity to 
+                    humans.</P></BLOCKQUOTE><A name=IXT-17-350791></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>PATH</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList><A name=IXT-17-350791></A>A list of  
+                      directories through which the shell looks for executable  
+                      programs as you enter them on the command line. All of the  
+                      directories that contain programs that you'll want to  
+                      execute are stored together in the <TT>PATH</TT>  
+                      environment variable. Your shell looks through this list  
+                      in sequence, from left to right, searching for each  
+                      command you enter. Your <TT>PATH</TT> may differ from the  
+                      <TT>PATH</TT> s of other users on your system because you  
+                      may use programs found in different locations or you may  
+                      have a local directory with your own custom programs that  
+                      need to be available. The <TT>PATH</TT> variable can  
+                      become quite long as more and more directories are added.  
+                      </P></DD></DL><A name=IXT-17-350792></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>HOME</SPAN></SPAN><A 
+                      name=IXT-17-350792></A></SPAN> 
+                      <DD>
+                      <P class=docList>Your home directory, such as 
+                      <I>/home/bsmith</I>.</P></DD></DL><A name=IXT-17-350793></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>USERNAME</SPAN></SPAN><A 
+                      name=IXT-17-350793></A></SPAN> 
+                      <DD>
+                      <P class=docList>Your username.</P></DD></DL><A 
+                    name=IXT-17-350794></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>TERM</SPAN></SPAN><A 
+                      name=IXT-17-350794></A></SPAN> 
+                      <DD>
+                      <P class=docList>The type of terminal or terminal window 
+                      you are running. This variable is likely to have a value 
+                      such as <I>xterm</I> or <I>xterm-color</I>. If you are 
+                      running on a physical VT100 (or compatible) terminal, 
+                      <TT>TERM</TT> is set to <I>vt100</I>. 
+                  </P></DD></DL></DD></DL><A name=IXT-17-350795></A><A 
+                  name=IXT-17-350796></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Shell variables</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-17-350795></A>These variables  
+                    can be thought of as <I>local</I><A name=IXT-17-350796></A>  
+                    because they are specific only to the current shell. Child  
+                    processes do not inherit them. Some shell variables are  
+                    automatically set by the shell and are available for use in  
+                    shell scripts. By convention, shell variables are given  
+                    lowercase names. </P></DD></DL> 
+                  <P class=docText>In the <SPAN class=docEmphBold>csh</SPAN> and  
+                  <SPAN class=docEmphBold>tcsh</SPAN><I> </I>shells, environment  
+                  variables and shell variables are differentiated by their  
+                  case, and shell variables are always local while environment  
+                  variables are always global. In <SPAN  
+                  class=docEmphBold>bash</SPAN>, this distinction is blurred  
+                  somewhat, because variables are <A  
+                  name=IXT-17-350797></A>shell variables until they are <SPAN  
+                  class=docEmphasis>exported to the environment</SPAN>, making  
+                  them environment variables that will be passed on to child  
+                  shells and programs. In addition, nearly all the shell and  
+                  environment variables you'll encounter in <SPAN  
+                  class=docEmphBold>bash</SPAN><I> </I>will be uppercase. </P> 
+                  <P class=docText>To create a new <SPAN 
+                  class=docEmphBold>bash</SPAN> shell variable, simply enter a 
+                  <I>name=value </I>pair on the command line: </P><PRE># <B>PI=3.14</B></PRE>
+                  <P class=docText>To see that this value is now assigned to the 
+                  local variable PI, use the <SPAN class=docEmphBold>echo</SPAN> 
+                  command to display its contents: </P><PRE># <B>echo $PI</B>
+3.14</PRE>
+                  <P class=docText><A name=IXT-17-350798></A>The <A  
+                  name=IXT-17-350799></A>dollar sign <A  
+                  name=IXT-17-350800></A>preceding the variable name indicates  
+                  that the name will be replaced with the variable's value.  
+                  Without the dollar sign, <SPAN class=docEmphBold>echo</SPAN>  
+                  would just return the text that was typed, which in this case  
+                  is the variable name <TT>PI</TT>. At this point, <TT>PI</TT>  
+                  is a local variable and is not available to child shells or  
+                  programs. To make it available to other shells or programs,  
+                  the variable must be exported to the environment: </P><PRE># <B>export PI</B></PRE><A  
+                  name=lpicertnut-CHP-17-SECT-1.2.2></A>
+                  <H5 class=docSection3Title>17.1.2.2 Aliases</H5>
+                  <P class=docText><A name=IXT-17-350801></A><A 
+                  name=IXT-17-350802></A>Among the features missing from <SPAN  
+                  class=docEmphBold>sh</SPAN>was the ability to easily make new  
+                  commands or modify existing commands. <SPAN  
+                  class=docEmphBold>bash</SPAN><I> </I>has the ability to set an  
+                  <SPAN class=docEmphBold>alias</SPAN> for commonly used  
+                  commands or sequences of commands. For example, if you  
+                  habitually call for the older pager <SPAN  
+                  class=docEmphBold>more</SPAN> but actually prefer <SPAN  
+                  class=docEmphBold>less</SPAN>, an alias can be handy to get  
+                  the desired behavior, regardless of the command you use: </P><PRE>$ <B>alias more='less'</B></PRE> 
+                  <P class=docText>This has the effect of intercepting any 
+                  command entries for <SPAN class=docEmphBold>more</SPAN>, 
+                  substituting <SPAN class=docEmphBold>less</SPAN> instead. The 
+                  revised command is passed along to the shell's command 
+                  interpreter. </P>
+                  <P class=docText>Another common use for an alias is to modify 
+                  a command slightly so that its default behavior is more to 
+                  your liking. Many people, particularly when operating with 
+                  superuser privileges, will use this alias: </P><PRE>$ <B>alias cp='cp -i'</B></PRE>
+                  <P class=docText>With this alias in effect, the use of the  
+                  <SPAN class=docEmphBold>cp</SPAN><A name=IXT-17-350803></A> 
+                  (copy) command becomes safer, because with the <SPAN  
+                  class=docEmphBold>-i</SPAN> option always enforced by the  
+                  alias, <SPAN class=docEmphBold>cp</SPAN> prompts you for  
+                  approval before overwriting a file of the same name.  
+                  Additional options you enter on the command line are appended  
+                  to the end of the new command, such that <SPAN  
+                  class=docEmphBold>cp -p</SPAN> becomes <SPAN  
+                  class=docEmphBold>cp -i -p</SPAN> and so on. </P> 
+                  <P class=docText>If the righthand side of the aliased command  
+                  is bigger than a single word or if it contains multiple  
+                  commands (separated by semicolons, <SPAN  
+                  class=docEmphBold>bash</SPAN>'s command terminator), you  
+                  probably need to enclose it in single <A  
+                  name=IXT-17-350804></A><A name=IXT-17-350805></A>quotation  
+                  marks to get your point across. This is because you need to  
+                  prevent the shell in which you're working (your current <SPAN  
+                  class=docEmphBold>bash</SPAN> process) from interpreting file  
+                  globbing or other characters that might be part of your alias  
+                  value. For example, suppose you wished to use a single alias  
+                  to pair two simple commands: </P><PRE>$ <B>alias lsps=ls -l;ps</B></PRE> 
+                  <P class=docText>Your current <SPAN 
+                  class=docEmphBold>bash</SPAN> process will interpret this 
+                  command not as a single alias but as two separate commands. 
+                  First the alias <SPAN class=docEmphBold>lsps</SPAN> will be 
+                  created for <SPAN class=docEmphBold>ls -l</SPAN>, and then a 
+                  <SPAN class=docEmphBold>ps</SPAN> command will be added for 
+                  immediate execution. What you really want is: </P><PRE>$ <B>alias lsps='ls -l;ps'</B></PRE>
+                  <P class=docText>Now, entering the command <SPAN 
+                  class=docEmphBold>lsps</SPAN> will be aliased to <SPAN 
+                  class=docEmphBold>ls -l; ps,</SPAN> and will correctly 
+                  generate <SPAN class=docEmphBold>ls</SPAN> output immediately 
+                  followed by <SPAN class=docEmphBold>ps</SPAN> output, as this 
+                  example shows: </P><PRE>$ <B>lsps</B>
+total 1253
+drwx------  5 root  root    1024 May 27 17:15 dir1
+drwxr-xr-x  3 root  root    1024 May 27 22:41 dir2
+-rw-r--r--  1 root  root   23344 May 27 22:44 file1
+drwxr-xr-x  2 root  root   12288 May 25 16:13 dir3
+  PID TTY          TIME CMD
+  892 ttyp0    00:00:00 bash
+ 1388 ttyp0    00:00:00 ps</PRE>
+                  <P class=docText>Admittedly, this isn't a very useful command, 
+                  but it is built upon in the next section. </P>
+                  <P class=docText>After adding aliases, it may become easy to 
+                  confuse which commands are aliases or native. To list the 
+                  aliases defined for your current shell, simply enter the <SPAN 
+                  class=docEmphBold>alias</SPAN> command by itself. This results 
+                  in a listing of all the aliases currently in place: </P><PRE>$ <B>alias</B>
+alias cp='cp -i'
+alias lsps='ls -l;ps'
+alias mv='mv -i'
+alias rm='rm -i'</PRE>
+                  <P class=docText>Note that aliases are local to your shell and 
+                  are not passed down to programs or to other shells. You'll see 
+                  how to ensure that your aliases are always available in the 
+                  section on configuration files. </P>
+                  <P class=docText>Aliases are mainly used for simple command 
+                  replacement. The shell inserts your aliased text in place of 
+                  your alias name before interpreting the command. Aliases don't 
+                  offer logical constructs and are limited to a few simple 
+                  variable replacements. Aliases can also get messy when the use 
+                  of complicated quoting is necessary, usually to prevent the 
+                  shell from interpreting characters in your alias. </P><A 
+                  name=lpicertnut-CHP-17-SECT-1.2.3></A>
+                  <H5 class=docSection3Title>17.1.2.3 Functions</H5>
+                  <P class=docText>In addition to aliases, <SPAN  
+                  class=docEmphBold>bash</SPAN> also offers <SPAN  
+                  class=docEmphasis>functions</SPAN><A name=IXT-17-350806></A> 
+                  <A name=IXT-17-350807></A>. They work in much the same way as  
+                  aliases, in that some function name of your choosing is  
+                  assigned to a more complex construction. However, in this case  
+                  that construction is a small program rather than a simple  
+                  command substitution. Functions have a simple syntax: </P><PRE>$ <B>[ function ] NAME (  ) { COMMAND-LIST; }</B></PRE> 
+                  <P class=docText>This declaration defines a function called  
+                  <TT>NAME</TT>. The word <TT>function</TT> is optional, and the  
+                  parentheses after <TT>NAME</TT> are required if  
+                  <TT>function</TT> is omitted. The body of the function is the  
+                  <TT>COMMAND-LIST</TT> between the <A name=IXT-17-350808></A><A  
+                  name=IXT-17-350809></A>curly brackets (<TT>{</TT> and  
+                  <TT>}</TT>). This list is a series of commands, separated by  
+                  semicolons or by new lines. The series of commands are  
+                  executed whenever <TT>NAME</TT> is specified as a command. The  
+                  simple <SPAN class=docEmphBold>lsps</SPAN><I> </I>alias shown  
+                  earlier could be implemented as a function like this: </P><PRE>$ <B>lsps (  ) { ls -l; ps; }</B></PRE> 
+                  <P class=docText>Using this new function as a command yields 
+                  exactly the same result the alias did. However, by 
+                  implementing this command using a function, parameters can be 
+                  added to the command. Here is a new version of the same 
+                  function, this time entered on multiple lines (which 
+                  eliminates the need for semicolons within the function): </P><PRE>$ <B>lsps (  ) {</B>
+&gt; <B>ls -l $1</B>
+&gt; <B>ps -aux | grep `/bin/basename $1`</B>
+&gt; <B>}</B></PRE>
+                  <P class=docText>The <TT>&gt;</TT><A name=IXT-17-350810></A>  
+                  characters come from <SPAN class=docEmphBold>bash</SPAN>  
+                  during interactive entry, indicating that <SPAN  
+                  class=docEmphBold>bash</SPAN> is awaiting additional function  
+                  commands or the <TT>}</TT> character, which terminates the  
+                  function definition. This new function allows us to enter a  
+                  single <SPAN class=docEmphasis>argument</SPAN><A  
+                  name=IXT-17-350811></A> to the function, which is inserted  
+                  everywhere <TT>$1</TT> is found in the function. These  
+                  arguments are called <SPAN class=docEmphasis>positional  
+                  parameters</SPAN><A name=IXT-17-350812></A> because each one's  
+                  number denotes its position in the argument list. This example  
+                  uses only one positional parameter; there can be many, and the  
+                  number of parameters is stored for your use in a special  
+                  variable <TT>$#</TT><A name=IXT-17-350813></A> <A  
+                  name=IXT-17-350814></A>. </P>
+                  <P class=docText>The command implemented in the previous 
+                  example function now returns a directory listing and process 
+                  status for any program given as an argument. For example, if 
+                  the Apache web server is running, the command: </P><PRE>$ <B>lsps /usr/sbin/httpd</B></PRE>
+                  <P class=docText>yields a directory listing for 
+                  <I>/usr/sbin/httpd</I> and also displays all currently running 
+                  processes that match <SPAN class=docEmphBold>httpd</SPAN>: 
+</P><PRE>-rwxr-xr-x  1 root root 165740 Apr  7 17:17 /usr/sbin/httpd
+root   3802 0.0  3.8  2384 1192 ?     S 16:34 0:00 httpd
+nobody 3810 0.0  4.2  2556 1292 ?     S 16:34 0:00 httpd
+nobody 3811 0.0  4.2  2556 1292 ?     S 16:34 0:00 httpd
+nobody 3812 0.0  4.2  2556 1292 ?     S 16:34 0:00 httpd
+nobody 3813 0.0  4.2  2556 1292 ?     S 16:34 0:00 httpd
+nobody 3814 0.0  4.2  2556 1292 ?     S 16:34 0:00 httpd
+root   3872 0.0  1.4  1152 432 ttyp0 S 16:45 0:00 grep httpd</PRE><A 
+                  name=lpicertnut-CHP-17-SECT-1.2.4></A>
+                  <H5 class=docSection3Title>17.1.2.4 Configuration files</H5>
+                  <P class=docText>It's a good assumption that every Linux user  
+                  will want to define a few aliases, functions, and environment  
+                  variables to suit his needs. However, it's undesirable to  
+                  manually enter them upon each login or for each new invocation  
+                  of <SPAN class=docEmphBold>bash</SPAN>. In order to set up  
+                  these things automatically, <SPAN  
+                  class=docEmphBold>bash</SPAN> uses a number of <A  
+                  name=IXT-17-350815></A><A name=IXT-17-350816></A>configuration  
+                  files to set its operating environment when it starts. Some of  
+                  these files are used only upon initial log in, while others  
+                  are executed for each instance of <SPAN  
+                  class=docEmphBold>bash</SPAN> you start, including login time.  
+                  Some of these configuration files are system-wide files for  
+                  all users to use, while others reside in your home directory  
+                  for your use alone. </P> 
+                  <P class=docText><SPAN class=docEmphBold>bash</SPAN> 
+                  configuration files important to Exam 102 are listed in <a class="docLink" href="#lpicertnut-CHP-17-TABLE-1">Table  
+                  17-1</a>. </P><A name=lpicertnut-CHP-17-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 17-1. bash Configuration Files 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>File</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/etc/profile</I><A 
+                        name=IXT-17-350817></A> </P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This is the systemwide initialization 
+                        file, executed during log in. It usually contains 
+                        environment variables, including an initial 
+                        <TT>PATH</TT>, and startup programs. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/etc/bashrc</I><A 
+                        name=IXT-17-350818></A> </P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This is another systemwide 
+                        initialization file that may be executed by a user's 
+                        <I>.bashrc</I> for each <SPAN 
+                        class=docEmphBold>bash</SPAN> shell launched. It usually 
+                        contains functions and aliases. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>~/.bash_ profile</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>If this file exists, it is executed 
+                        automatically after <I>/etc/profile</I> during log in. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>~/.bash_login</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>If <I>.bash_ profile</I> doesn't exist, 
+                        this file is executed automatically during log in. 
+                      </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>~/.profile</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>If neither <I>.bash_ profile</I> nor 
+                        <I>.bash_login</I> exist, this file is executed 
+                        automatically during log in. Note that this is the 
+                        original bourne shell configuration file. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>~/.bashrc</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This file is executed automatically 
+                        when <SPAN class=docEmphBold>bash</SPAN> starts. This 
+                        includes login, as well as subsequent interactive and 
+                        noninteractive invocations of <SPAN 
+                        class=docEmphBold>bash</SPAN>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>~/.bash_logout</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This file is executed automatically 
+                        during log out.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>~/.inputrc</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This file contains optional key 
+                        bindings and variables that affect how <SPAN 
+                        class=docEmphBold>bash</SPAN> responds to keystrokes. By 
+                        default, bash is configured to respond like the Emacs 
+                        editor. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>In practice, users will generally (and often 
+                  unknowingly) use the systemwide <I>/etc/profile</I> 
+                  configuration file to start. In addition, they'll often have 
+                  three personal files in their home directory: <I>~/.bash_ 
+                  profile</I>, <I>~/.bashrc</I>, and <I>~/.bash_logout</I>. The 
+                  local files are optional, and <SPAN 
+                  class=docEmphBold>bash</SPAN> does not mind if one or all of 
+                  them are not available in your directory. </P>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="17-1.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>The syntax <TT>~/</TT><A  
+                              name=IXT-17-350819></A> refers to <SPAN  
+                              class=docEmphBold>bash</SPAN>'s "home directory."  
+                              While this shortcut may not represent much of a  
+                              savings in typing, some Linux configurations may  
+                              place users' directories in various and sometimes  
+                              nonobvious places in the filesystem. Using the  
+                              tilde syntax reduces the need for you to know  
+                              exactly where a user's home directory is located.  
+                              </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P class=docText>Each of these configuration files consists  
+                  entirely of plain text. They are typically simple, often  
+                  containing just a few commands to be executed in sequence to  
+                  prepare the shell environment for the user. <A  
+                  name=IXT-17-350820></A>Since they are evaluated by <SPAN  
+                  class=docEmphBold>bash</SPAN> as lines of program code, they  
+                  are said to be <SPAN class=docEmphasis>sourced</SPAN>, or  
+                  interpreted, when <SPAN class=docEmphBold>bash</SPAN> executes  
+                  them. </P>
+                  <P class=docText>Like most programming languages, shell  
+                  programs allow the use of comments. Most shells including  
+                  <SPAN class=docEmphBold>bash</SPAN> consider everything  
+                  immediately following the <A name=IXT-17-350821></A><A  
+                  name=IXT-17-350822></A><A name=IXT-17-350823></A>hash  
+                  (<TT>#</TT>) character on a single line to be a comment.<SUP  
+                  class=docFootnote>[2]</SUP> Comments can  
+                  span an entire line or share a line by following program code.  
+                  All of your shell scripts and configuration files should use  
+                  comments liberally. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> An  
+                    important exception is the <TT>$#</TT><A  
+                    name=IXT-17-350824></A> <A name=IXT-17-350825></A><SPAN  
+                    class=docEmphasis>variable</SPAN>, which has nothing to do  
+                    with comments but contains the number of positional  
+                    parameters passed to a function.</P></BLOCKQUOTE> 
+                  <P class=docText>Files sourced at login time are created  
+                  mainly to establish default settings. These settings include  
+                  such things as where to search for programs requested by the  
+                  user (the <TT>PATH</TT>) and creation of shortcut names for  
+                  commonly used tasks (aliases and functions). After login,  
+                  files sourced by each subsequent shell invocation won't  
+                  explicitly need to do these things again because they <SPAN  
+                  class=docEmphasis>inherit</SPAN><A name=IXT-17-350826></A> the  
+                  environment established by the login shell. Regardless, it  
+                  isn't unusual to see a user's <I>.bashrc</I> file filled with  
+                  all of their personal customizations. It also doesn't hurt  
+                  anything, provided the <I>.bashrc </I>file is small and quick  
+                  to execute. </P> 
+                  <P class=docText>While it is not necessary to have detailed  
+                  knowledge of every item in your shell configuration files,  
+                  Exam 102 requires that you understand them and that you can  
+                  edit them to modify their behavior and your resulting  
+                  operating environment. The following examples are typical of  
+                  those found on Linux systems and are annotated with comments. <a class="docLink" href="#lpicertnut-CHP-17-EX-1">Example  
+                  17-1</a> shows a typical Linux system-wide <I>profile</I><A  
+                  name=IXT-17-350827></A>. This file is executed by every user's  
+                  <SPAN class=docEmphBold>bash</SPAN><I> </I>process at login  
+                  time. A few environment variables and other parameters are set  
+                  in it. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-1></A>Example 17-1. An Example  
+                  System-wide bash profile </H5><PRE># /etc/profile
+# System-wide environment and startup programs
+# Functions and aliases go in system wide /etc/bashrc
+
+# PATH was already set, this is an extension
+PATH=&quot;$PATH:/usr/X11R6/bin&quot;
+
+# Set a default prompt string
+PS1=&quot;[\u@\h \W]\\$ &quot;
+
+# Set an upper limit for &quot;core&quot; files
+ulimit -c 1000000
+
+# Set a default umask, used to set default file permissions
+if [ `id -gn` = `id -un` -a `id -u` -gt 14 ]; then
+   umask 002
+else
+   umask 022
+fi
+
+# Set up some shell variables
+USER=`id -un`
+LOGNAME=$USER
+MAIL=&quot;/var/spool/mail/$USER&quot;
+HOSTNAME=`/bin/hostname`
+HISTSIZE=1000
+HISTFILESIZE=1000
+INPUTRC=/etc/inputrc
+
+# Make all these into environment variables
+export PATH PS1 HOSTNAME HISTSIZE HISTFILESIZE 
+   USER LOGNAME MAIL INPUTRC
+
+# Execute a series of other files
+for i in /etc/profile.d/*.sh ; do
+   if [ -x $i ]; then
+      . $i
+   fi
+done
+
+unset I       # Clean up the variable used above</PRE> 
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-17-EX-2">Example  
+                  17-2</a> shows a system-wide <I>.bashrc </I><A  
+                  name=IXT-17-350828></A>file. This file is not sourced by  
+                  default when <SPAN class=docEmphBold>bash</SPAN> starts.  
+                  Instead, it is optionally sourced by users' local  
+                  <I>.bashrc</I> files. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-2></A>Example 17-2. An Example  
+                  System-wide .bashrc File </H5><PRE># /etc/bashrc
+
+alias more='less'                    # prefer the &quot;less&quot; pager
+alias lsps='ls -l;ps'                # a dubious command</PRE> 
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-17-EX-3">Example  
+                  17-3</a> shows an example user's local <I>.bash_ profile</I><A  
+                  name=IXT-17-350829></A>. Note that this file sources the  
+                  system-wide <I>/etc/bashrc</I>, then goes on to local  
+                  customizations. </P>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-3></A>Example 17-3. An Example User  
+                  .bash_ profile File </H5><PRE># .bash_profile
+
+# Get the aliases and functions from the systems administrator
+if [ -f ~/.bashrc ]; then
+   . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin  # Add my binaries directory to the path
+EDITOR=emacs          # Set my preferred editor to Emacs
+VISUAL=emacs          # Set my preferred editor to Emacs
+PAGER=less            # Set my preferred pager to less
+
+# Make my variables part of the environment
+export PATH EDITOR VISUAL PAGER      </PRE> 
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-17-EX-4">Example  
+                  17-4</a> shows an individual's <I>.bashrc</I> file. Like the  
+                  <I>.bash_profile </I>earlier, this file also sources the  
+                  system-wide <I>/etc/bashrc</I>. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-4></A>Example 17-4. An Example  
+                  User's .bashrc File </H5><PRE># .bashrc
+
+# User-specific aliases and functions
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+   . /etc/bashrc
+fi
+
+alias rm='rm -i'                     # Add a safety net to rm
+alias cp='cp -i'                     # Add a safety net to cp
+alias mv='mv -i'                     # Add a safety net to mv
+
+lsps(  ) {                             # Define a personal function
+   ls -l $1
+   ps -aux | grep `/bin/basename $1`
+}</PRE> 
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-17-EX-5">Example  
+                  17-5</a> shows a short, simple, and not uncommon  
+                  <I>.bash_logout </I><A name=IXT-17-350830></A>file. Probably  
+                  the most likely command to find in a logout file is the <SPAN  
+                  class=docEmphBold>clear</SPAN><A name=IXT-17-350831></A><I> 
+                  </I>command. Including a <SPAN class=docEmphBold>clear</SPAN>  
+                  in your logout file is a nice way of being certain that  
+                  whatever you were doing just before you log out won't linger  
+                  on the screen for the next user to ponder. This file is  
+                  intended to execute commands for a logout from a text session,  
+                  such as a system console or terminal. In a GUI environment  
+                  where logout and login are handled by a GUI program,  
+                  <I>.bash_logout </I>may not be of much value. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-5></A>Example 17-5. A Simple  
+                  .bash_logout File </H5><PRE># .bash_logout
+# This file is executed when a user logs out of the system
+/usr/bin/clear          # clear the screen
+/usr/games/fortune      # print a random adage</PRE> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Make certain that you understand the 
+                        difference between execution at login and execution at 
+                        shell invocation, as well as which of the startup files 
+                        serve each of those purposes. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-17-SECT-1.2.5></A>
+                  <H5 class=docSection3Title>17.1.2.5 Inputrc</H5>
+                  <P class=docText><A name=IXT-17-350832></A>Among the many  
+                  enhancements added to <SPAN class=docEmphBold>bash</SPAN> is  
+                  the ability to perform as if your history of commands is the  
+                  buffer of an editor. That is, your command history is  
+                  available to you, and you may cut, paste, and even search  
+                  among command lines entered previously. This powerful  
+                  capability can significantly reduce typing and increase  
+                  accuracy. By default, <SPAN class=docEmphBold>bash</SPAN><I>  
+                  </I>is configured to emulate the Emacs editor, but a <SPAN  
+                  class=docEmphBold>vi</SPAN> editing interface is also  
+                  available. </P>
+                  <P class=docText>The portion of <SPAN  
+                  class=docEmphBold>bash</SPAN><I> </I>that handles this  
+                  function, and in fact handles all of the line input during  
+                  interactive use, is known as <I>readline</I><A  
+                  name=IXT-17-350833></A>. Readline may be customized by putting  
+                  commands into an initialization file, which by default is in  
+                  your home directory and called <I>.inputrc</I>.<SUP  
+                  class=docFootnote>[3]</SUP> For example,  
+                  to configure <SPAN class=docEmphBold>bash</SPAN> to use <SPAN  
+                  class=docEmphBold>vi</SPAN>-style editing keys, add this line  
+                  to <I>.inputrc</I>: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> You may 
+                    also set the <TT>INPUTRC</TT> variable to the name of 
+                    another file if you prefer. On your system, this variable 
+                    may be set to<I>/etc/initrc </I>by default, which would 
+                    override any settings you put into a local <I>.initrc</I>. 
+                    To use your own file, you must first explicitly place 
+                    <TT>unset INPUTRC in 
+                  your</TT><I>.bash_profile</I>.</P></BLOCKQUOTE><PRE>set editing-mode vi</PRE>
+                  <P class=docText>The default editing facilities enabled in  
+                  <SPAN class=docEmphBold>bash</SPAN> are extensive and are  
+                  beyond the scope of this section and Exam 102. However, you  
+                  need to understand the concepts of adding your own custom <A  
+                  name=IXT-17-350834></A>key bindings to the <I>.inputrc  
+                  </I>file and how they can help automate common keystrokes  
+                  unique to your daily routine for the test. </P> 
+                  <P class=docText>For example, suppose you often use <SPAN  
+                  class=docEmphBold>top</SPAN> to watch your system's activity  
+                  (<SPAN class=docEmphBold>top</SPAN> is a useful  
+                  process-monitoring utility that is described in<a class="docLink" href="03-0.htm">Chapter  
+                  3</a>): </P><PRE>$ <B>top -Ssd1</B></PRE>
+                  <P class=docText>If you do this often enough, you'll get tired 
+                  of typing the command over and over and will eventually want 
+                  an alias for it. To create the alias, simply alias this 
+                  command to <SPAN class=docEmphBold>top</SPAN>: </P><PRE>$ <B>alias top='/usr/bin/top -Ssd1'</B></PRE>
+                  <P class=docText>Better yet, you can use <I>.inputrc</I> to 
+                  create a key binding that will enter it for you. Here's how 
+                  the <I>.inputrc </I>file would look if you were to bind your 
+                  <SPAN class=docEmphBold>top</SPAN><I> </I>command to the key 
+                  sequence <SPAN class=docEmphBold>Ctrl-t</SPAN>: </P><PRE># my .inputrc file
+Control-t: &quot;top -Ssd1 \C-m&quot;</PRE>
+                  <P class=docText>The lefthand side of the second line 
+                  indicates the key combination you wish to use (<SPAN 
+                  class=docEmphBold>Ctrl-t</SPAN>). The righthand side indicates 
+                  what you wish to bind to that key sequence. In this case, 
+                  <SPAN class=docEmphBold>bash</SPAN> outputs <SPAN 
+                  class=docEmphBold>top -Ssd1</SPAN> and a carriage return, 
+                  denoted here by <TT>\C-m</TT> (<SPAN 
+                  class=docEmphBold>Ctrl-m</SPAN>), when <SPAN 
+                  class=docEmphBold>Ctrl-t</SPAN> is pressed. </P>
+                  <P class=docText>Through modifications of your local 
+                  configuration files, you can customize your environment and 
+                  automate many of your daily tasks. You may also override 
+                  system-wide settings in your personal files simply by setting 
+                  variables, aliases, and functions. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You won't need to have detailed  
+                        knowledge of this key-binding syntax, but be aware of  
+                        the <I>.inputrc </I>file and the kinds of things it  
+                        enables <SPAN class=docEmphBold>bash</SPAN> to do.<A  
+                        name=IXTR3-89></A> </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-17-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-17-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-17-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)641ms
+(xml)344ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)1313ms
+--></BODY></HTML>

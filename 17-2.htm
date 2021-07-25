@@ -1,0 +1,1225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-17-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="17-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="17-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 17.&nbsp;  
+            Shells, Scripting, Programming, and Compiling (Topic  
+            1.9)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-17-SECT-2></A>
+                  <H3 class=docSection1Title>17.2 Objective 2: Customize or 
+                  Write Simple Scripts</H3>
+                  <P class=docText>You've seen how the use of <SPAN  
+                  class=docEmphBold>bash</SPAN> configuration files, aliases,  
+                  functions, variables, and key bindings can customize and make  
+                  interaction with your Linux system efficient. The next step in  
+                  your relationship with the shell is to use its natural  
+                  programming capability, or <SPAN class=docEmphasis>scripting  
+                  language</SPAN><A name=IXT-17-350835></A>. The scripting  
+                  language of the original Bourne shell is found throughout a  
+                  Linux system, and <SPAN class=docEmphBold>bash</SPAN><I>  
+                  </I>is fully compatible with it. This section covers essential  
+                  <SPAN class=docEmphBold>bash</SPAN><I> </I>scripting language  
+                  concepts as required for Exam 102. </P> 
+                  <P class=docText>In order to have a full appreciation of shell 
+                  scripting on Linux, it's important to look at your Linux 
+                  system as a collection of unique and powerful tools. Each of 
+                  the commands available on your Linux system, along with those 
+                  you create yourself, has some special capability. Bringing 
+                  these capabilities together to solve problems is among the 
+                  basic philosophies of the Unix world. </P><A 
+                  name=lpicertnut-CHP-17-SECT-2.1></A>
+                  <H4 class=docSection2Title>17.2.1 Script Files</H4>
+                  <P class=docText>Just as the configuration files discussed in  
+                  the last section are plain text files, so are the scripts for  
+                  your shell. In addition, unlike compiled languages such as C  
+                  or Pascal, no compilation of a shell program is necessary  
+                  before it is executed. You can use any editor to create <A  
+                  name=IXT-17-350836></A>script files, and you'll find that many  
+                  scripts you write are portable from Linux to other Unix  
+                  systems. </P><A name=lpicertnut-CHP-17-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>17.2.1.1 Creating a simple bash 
+                  script</H5>
+                  <P class=docText>The simplest scripts are those that simply  
+                  string together some basic commands and perhaps do something  
+                  useful with the output. Of course, this can be done with a  
+                  simple alias or function, but eventually you'll have a  
+                  requirement that exceeds a one-line request, and a shell  
+                  script is the natural solution. Aliases and functions have  
+                  already been used to create a rudimentary new command, <SPAN  
+                  class=docEmphBold>lsps</SPAN>. Now let's look at a shell  
+                  script (<a class="docLink" href="/#lpicertnut-CHP-17-EX-6">Example  
+                  17-6</a>) that accomplishes the same thing. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-6></A>Example 17-6. The lsps Script  
+                  </H5><PRE># a basic lsps command script for bash
+ls -l $1
+ps -aux | grep `/bin/basename $1`</PRE>
+                  <P class=docText>As you can see, the commands used in this  
+                  simple script are identical to those used in the alias and in  
+                  the function created earlier. To make use of this new file,  
+                  instruct your currently running <SPAN  
+                  class=docEmphBold>bash</SPAN> shell to <A  
+                  name=IXT-17-350837></A>source it, giving it an option for the  
+                  <TT>$1</TT><I> </I>positional parameter: </P><PRE>$ <B>source ./lsps /usr/sbin/httpd</B></PRE> 
+                  <P class=docText>If you have <I>/usr/sbin/httpd</I> running, 
+                  you should receive output similar to that found previously for 
+                  the alias. By replacing the word <SPAN 
+                  class=docEmphBold>source</SPAN> with a single dot, you can 
+                  create an alternate shorthand notation to tell <SPAN 
+                  class=docEmphBold>bash</SPAN><I> </I>to source a file, as 
+                  follows: </P><PRE>$ <B>. ./lsps /usr/sbin/httpd</B></PRE>
+                  <P class=docText>Another way to invoke a script is to start a 
+                  new invocation of <SPAN class=docEmphBold>bash</SPAN><I> 
+                  </I>and tell that process to source the file. To do this, 
+                  simply start <SPAN class=docEmphBold>bash</SPAN> and pass the 
+                  script name and argument to it: </P><PRE>$ <B>/bin/bash ./lsps /usr/sbin/httpd</B></PRE>
+                  <P class=docText>This last example gives us the same result; 
+                  however, it is significantly different from the alias, the 
+                  function, or the sourcing of the <SPAN 
+                  class=docEmphBold>lsps</SPAN> file. In this particular case, a 
+                  new invocation of <SPAN class=docEmphBold>bash</SPAN> was 
+                  started to execute the commands in the script. This is 
+                  important, because the environment in which the commands are 
+                  running is distinct from the environment where the user is 
+                  typing. This is described in more detail later. </P>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="17-2.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>The <TT>./</TT> syntax indicates  
+                              that the file you're referring to is in the <A  
+                              name=IXT-17-350838></A>current working directory.  
+                              To avoid specifying <TT>./</TT> for users other  
+                              than the superuser, put the directory <TT>.</TT>  
+                              in the <TT>PATH</TT> . The <TT>PATH</TT> of the  
+                              superuser should not include the current working  
+                              directory, as a security precaution against Trojan  
+                              horse-style attacks.  
+                    </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P class=docText>Thus far, a shell script has been created and 
+                  invoked in a variety of ways, but it hasn't been made into a 
+                  command. A script really becomes useful when it can be called 
+                  by name like any other command. </P><A 
+                  name=lpicertnut-CHP-17-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>17.2.1.2 Executable files</H5>
+                  <P class=docText>On a Linux system, programs are said to be  
+                  <SPAN class=docEmphasis>executable</SPAN><A 
+                  name=IXT-17-350839></A> if they have content that can be run  
+                  by the processor (native execution) or by another program such  
+                  as a shell (interpreted execution). However, in order to be  
+                  eligible for execution when called at the command line, the  
+                  files must have attributes that indicate to the shell that  
+                  they are executable. Conspicuously absent is anything in the  
+                  filename that indicates that the file is executable, such as  
+                  the <A name=IXT-17-350840></A><A name=IXT-17-350841></A>file  
+                  extension of <I>.exe</I> found on MS-DOS and Windows  
+                  applications. It would be possible to name our example file  
+                  <I>lsps.exe</I> if desired, or for that matter <I>lsps.sh  
+                  </I>or <I>lsps.bin</I>. None of these extensions has any  
+                  meaning to the shell, though, and the extension would become  
+                  part of the command entered when executing the program. For  
+                  this reason, most executable Linux programs and scripts don't  
+                  have filename extensions. To make a file executable, it must  
+                  have at least one of its <SPAN class=docEmphasis>executable  
+                  bits</SPAN> set. To turn our example script from a plain text  
+                  file to an executable program, that bit must be set using the  
+                  <SPAN class=docEmphBold>chmod</SPAN><A 
+                  name=IXT-17-350842></A><I> </I>command: </P><PRE>$ <B>chmod a+x lsps</B></PRE>
+                  <P class=docText>Once this is done, the script is executable 
+                  by owner, group members, and everyone else on the system. At 
+                  this point, running the new command from the <SPAN 
+                  class=docEmphBold>bash</SPAN> prompt yields the familiar 
+                  output: </P><PRE>$ <B>./lsps /usr/sbin/httpd</B></PRE>
+                  <P class=docText>When <SPAN class=docEmphBold>lsps</SPAN> is 
+                  called by name, the commands in the script are interpreted and 
+                  executed by the <SPAN class=docEmphBold>bash</SPAN><I> 
+                  </I>shell. However, this isn't ultimately what is desired. In 
+                  many cases, users will be running some other shell 
+                  interactively but will still want to program in <SPAN 
+                  class=docEmphBold>bash</SPAN>. Programmers also use other 
+                  scripting languages such as Perl. To have our scripts 
+                  interpreted correctly, the system must be told which program 
+                  should interpret the commands in our scripts. </P><A 
+                  name=lpicertnut-CHP-17-SECT-2.1.3></A>
+                  <H5 class=docSection3Title>17.2.1.3 She-bang!</H5>
+                  <P class=docText><A name=IXT-17-350843></A><A 
+                  name=IXT-17-350844></A>There are many kinds of script files  
+                  found on a Linux system, and each interpreted language comes  
+                  with a unique and specific command structure. There needs to  
+                  be a way to tell Linux which interpreter to use. This is  
+                  accomplished by using a special line at the top of the script  
+                  naming the appropriate <A name=IXT-17-350845></A>interpreter.  
+                  Linux examines this line and launches the specified  
+                  interpreter program, which then reads the rest of the file.  
+                  The special line must begin with <TT>#!</TT>, a construct  
+                  often called "she-bang." For <SPAN  
+                  class=docEmphBold>bash</SPAN>, the she-bang line is: </P><PRE>#!/bin/bash</PRE> 
+                  <P class=docText>This command explicitly states that the 
+                  program named <SPAN class=docEmphBold>bash</SPAN> can be found 
+                  in the <I>/bin </I>directory and designates <SPAN 
+                  class=docEmphBold>bash</SPAN> to be the interpreter for the 
+                  script. You'll also see other types of lines on script files, 
+                  including: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>#!/bin/sh</I></SPAN> 
+                    <DD>
+                    <P class=docList>The bourne shell.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>#!/bin/csh</I></SPAN> 
+                    <DD>
+                    <P class=docList>The C-shell.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>#!/bin/tcsh</I></SPAN> 
+                    <DD>
+                    <P class=docList>The enhanced C-shell.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>#!/bin/sed</I></SPAN> 
+                    <DD>
+                    <P class=docList>The stream editor.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>#!/usr/bin/awk</I></SPAN> 
+                    <DD>
+                    <P class=docList>The awk programming language.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>#!/usr/bin/perl</I></SPAN> 
+                    <DD>
+                    <P class=docList>The Perl programming language.</P></DD></DL>
+                  <P class=docText>Each of these lines specifies a unique  
+                  command interpreter use for the script lines that follow.<SUP  
+                  class=docFootnote>[4]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> <SPAN 
+                    class=docEmphBold>bash</SPAN> is fully backward compatible 
+                    with <SPAN class=docEmphBold>sh</SPAN>; <SPAN 
+                    class=docEmphBold>sh</SPAN> is just a link to <SPAN 
+                    class=docEmphBold>bash</SPAN> on Linux 
+                  systems.</P></BLOCKQUOTE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>An incorrectly stated she-bang line can 
+                        cause the wrong interpreter to attempt to execute 
+                        commands in a script. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-17-SECT-2.1.4></A>
+                  <H5 class=docSection3Title>17.2.1.4 The shell script's 
+                  environment</H5>
+                  <P class=docText>When running a script with 
+                  <I>#!/bin/bash</I>, a new invocation of <SPAN 
+                  class=docEmphBold>bash</SPAN> with its own environment is 
+                  started to execute the script's commands as the parent shell 
+                  waits. Exported variables in the parent shell are copied into 
+                  the child's environment; the child shell executes the 
+                  appropriate shell configuration files (such as 
+                  <I>.bash_profile</I>). Because configuration files will be 
+                  run, additional shell variables may be set and environment 
+                  variables may be overwritten. If you are depending upon a 
+                  variable in your shell script, be sure that it is either set 
+                  by the shell configuration files or exported into the 
+                  environment for your use, but not both. </P>
+                  <P class=docText>Another important concept regarding your  
+                  shell's environment is <SPAN class=docEmphasis>one-way  
+                  inheritance</SPAN><A name=IXT-17-350846></A>. Although your  
+                  current shell's environment is passed <SPAN  
+                  class=docEmphasis>into</SPAN> a shell script, that environment  
+                  is <SPAN class=docEmphasis>not passed back</SPAN> to the  
+                  original shell when your program terminates. This means that  
+                  changes made to variables during the execution of your script  
+                  are not preserved when the script exits. Instead, the values  
+                  in the parent shell's variables are the same as they were  
+                  before the script executed. This is a basic Unix construct;  
+                  inheritance goes from parent process to child process, and not  
+                  the other way around. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>It is important to remember how 
+                        variables are set, how they are inherited, and that they 
+                        are inherited only from parent process to child process. 
+                        </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-17-SECT-2.1.5></A>
+                  <H5 class=docSection3Title>17.2.1.5 Location, ownership, and 
+                  permissions</H5>
+                  <P class=docText>The ability to run any executable program,  
+                  including a script, under Linux depends in part upon its  
+                  location in the filesystem. Either the user must explicitly  
+                  specify the location of the file to run or it must be located  
+                  in a directory known by the shell to contain executables. Such  
+                  directories are listed in the <TT>PATH</TT><A  
+                  name=IXT-17-350847></A> environment variable. For example, the  
+                  shells on a Linux system (including <SPAN  
+                  class=docEmphBold>bash</SPAN>) are located in <I>/bin</I>.  
+                  This directory is usually in the <TT>PATH</TT>, because you're  
+                  likely to run programs that are stored there. When you create  
+                  shell programs or other utilities of your own, you may want to  
+                  keep them together and add the location to your own  
+                  <TT>PATH</TT>. If you maintain your own <I>bin</I> directory,  
+                  you might add the following line to your <I>.bash_  
+                  profile</I>: </P><PRE>PATH=$PATH:$HOME/bin</PRE>
+                  <P class=docText>This statement modifies your path to include 
+                  your <I>/home/bin </I>directory. If you add personal scripts 
+                  and programs to this directory, <SPAN 
+                  class=docEmphBold>bash</SPAN> finds them automatically. </P>
+                  <P class=docText>Execute permissions (covered in <a class="docLink" href="04-5.htm">Section  
+                  4.5</a>) also affect your ability to run a script. Since a  
+                  script is just a text file, execute permission must be granted  
+                  to them before they are considered executable, as shown  
+                  earlier. </P>
+                  <P class=docText>You may wish to limit access to the file from 
+                  other users using:</P><PRE>$ <B>chmod 700 ~/bin/lsps</B></PRE>
+                  <P class=docText>This prevents anyone but the owner from 
+                  making changes to the script.</P>
+                  <P class=docText>The issue of file ownership is dovetailed 
+                  with making a script executable. By default, you own all of 
+                  the files you create. However, if you are the system 
+                  administrator, you'll often be working as the superuser and 
+                  will be creating files with username <I>root </I>as well. It 
+                  is important to assign the correct ownership and permission to 
+                  scripts to ensure that they are secured. </P><A 
+                  name=lpicertnut-CHP-17-SECT-2.1.6></A>
+                  <H5 class=docSection3Title>17.2.1.6 SUID and GUID rights</H5>
+                  <P class=docText><A name=IXT-17-350848></A><A 
+                  name=IXT-17-350849></A>On rare occasions, it may become  
+                  necessary to allow a user to run a program under the name of a  
+                  different user. This is usually associated with programs run  
+                  by nonprivileged users who need special privileges to execute  
+                  correctly. Linux offers two such rights, known as <SPAN  
+                  class=docEmphasis>set user ID</SPAN><A name=IXT-17-350850></A> 
+                  (SUID) and <SPAN class=docEmphasis>set group ID</SPAN> <A  
+                  name=IXT-17-350851></A>(SGID). </P>
+                  <P class=docText>When an executable file is granted the SUID  
+                  right, processes created to execute it are owned by the user  
+                  who owns the file instead of the user who launched the  
+                  program. This is a security enhancement in that the delegation  
+                  of a privileged task or ability does not imply that the  
+                  superuser password must be widely known. On the other hand,  
+                  any process whose file is owned by root and which has the SUID  
+                  set will run as root for everyone. This could represent an  
+                  opportunity to break the security of a system if the file  
+                  itself is easy to attack (as a script is). For this reason,  
+                  Linux systems will ignore SUID and SGID attributes for script  
+                  files. Setting SUID and SGID attributes is detailed in <a class="docLink" href="04-5.htm">Section  
+                  4.5</a>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure to think through any questions 
+                        that require you to determine a user's right to execute 
+                        a file. Consider location, ownership, execute 
+                        permissions, and SUID/SGID rights together. Also, watch 
+                        for new scripts that haven't been granted any execute 
+                        privileges. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-17-SECT-2.2></A>
+                  <H4 class=docSection2Title>17.2.2 Basic bash Scripts</H4>
+                  <P class=docText>Now that some of the requirements for 
+                  creating and using executable scripts are established, some of 
+                  the features that make them so powerful can be introduced. 
+                  This section contains basic information needed to customize 
+                  and create new <SPAN class=docEmphBold>bash</SPAN><I> 
+                  </I>scripts. </P><A name=lpicertnut-CHP-17-SECT-2.2.1></A>
+                  <H5 class=docSection3Title>17.2.2.1 Return values</H5>
+                  <P class=docText>As shell scripts execute, it is important to  
+                  confirm that their constituent commands complete successfully.  
+                  Most commands offer a <SPAN class=docEmphasis>return  
+                  value</SPAN><A name=IXT-17-350852></A> to the shell when they  
+                  terminate. This value is a simple integer and has meaning  
+                  specific to the program you're using. Almost all programs  
+                  return the value when they are successful, and return a  
+                  nonzero value when a problem is encountered. The value is  
+                  stored in the special bash variable <TT>$?</TT><A  
+                  name=IXT-17-350853></A>, which can be tested in your scripts  
+                  to check for successful command execution. This variable is  
+                  reset for every command executed by the shell, so you must  
+                  test it immediately after execution of the command you're  
+                  verifying. As a simple example, try using the <SPAN  
+                  class=docEmphBold>cat</SPAN> program on a nonexistent file:  
+                  </P><PRE>$ <B>cat bogus_file</B>
+cat: bogus_file: No such file or directory</PRE>
+                  <P class=docText>Then immediately examine the status variable 
+                  twice:</P><PRE>$ <B>echo $?</B>
+1
+$ <B>echo $?</B>
+0</PRE>
+                  <P class=docText>The first <SPAN class=docEmphBold>echo</SPAN> 
+                  yielded <TT>1</TT> (failure) because the <SPAN 
+                  class=docEmphBold>cat</SPAN> program failed to find the file 
+                  you specified. The second <SPAN class=docEmphBold>echo</SPAN> 
+                  yielded <TT>0</TT> (success) because the first <SPAN 
+                  class=docEmphBold>echo</SPAN> command succeeded. A good script 
+                  makes use of these status flags to exit gracefully in case of 
+                  errors. </P>
+                  <P class=docText>If it sounds backward to equate zero with 
+                  success and nonzero with failure, consider how these results 
+                  are used in practice: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Error detection</SPAN></I> 
+                    <DD>
+                    <P class=docList>Scripts that check for errors include 
+                    <I>if-then</I> code to evaluate a command's return status: 
+                    </P><PRE>command
+if (failure_returned) {
+  ...error recovery code...
+}</PRE>
+                    <P class=docList>In a <SPAN class=docEmphBold>bash</SPAN> 
+                    script, <TT>failure_returned</TT> is simply the <TT>$?</TT> 
+                    variable, which contains the result of the command's 
+                    execution. </P>
+                    <DT><I><SPAN class=docPubcolor>Error 
+                    classification</SPAN></I> 
+                    <DD>
+                    <P class=docList>Since commands can fail for multiple 
+                    reasons, many return more than one failure code. For 
+                    example, <SPAN class=docEmphBold>grep</SPAN> returns 
+                    <TT>0</TT> if matches are found and <TT>1</TT> if no matches 
+                    are found; it returns <TT>2</TT> if there is a problem with 
+                    the search pattern or input files. Scripts may need to 
+                    respond differently to various error conditions. 
+</P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Make certain you understand the meaning 
+                        of return values in general and that they are stored in 
+                        the <TT>$?</TT><I> </I>variable. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-17-SECT-2.2.2></A>
+                  <H5 class=docSection3Title>17.2.2.2 File tests</H5>
+                  <P class=docText>During the execution of a shell script,  
+                  specific information about a file -- such as whether it  
+                  exists, is writable, is a directory or a file, and so on --  
+                  may sometimes be required. In <SPAN  
+                  class=docEmphBold>bash</SPAN>, the built-in command <SPAN  
+                  class=docEmphBold>test</SPAN> <A name=IXT-17-350854></A><A  
+                  name=IXT-17-350855></A>performs this function.<SUP  
+                  class=docFootnote>[5]</SUP> <SPAN  
+                  class=docEmphBold>test</SPAN> has two general forms: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> There is 
+                    also a standalone executable version of <SPAN 
+                    class=docEmphBold>test</SPAN> available in <I>/usr/bin 
+                    </I>for non-<SPAN class=docEmphBold>bash</SPAN> 
+                  shells.</P></BLOCKQUOTE>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>test</SPAN> <I>expression</I></SPAN> 
+                    <DD>
+                    <P class=docList>In this form, <SPAN 
+                    class=docEmphBold>test</SPAN> and an <I>expression</I> are 
+                    explicitly stated. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN> <I>expression</I> <SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>In this form, <SPAN 
+                    class=docEmphBold>test</SPAN> isn't mentioned; instead, the 
+                    <I>expression</I> is enclosed inside brackets. </P></DD></DL>
+                  <P class=docText>The <I>expression</I> can be formed to look 
+                  for such things as empty files, the existence of files, the 
+                  existence of directories, equality of strings, and others. 
+                  (See the more complete list with their operators in the next 
+                  section.) </P>
+                  <P class=docText>When used in a script's <TT>if</TT> or 
+                  <TT>while</TT> statement, the brackets (<TT>[</TT> and 
+                  <TT>]</TT>) may appear to be grouping the test logically. In 
+                  reality, <TT>[</TT> is simply another form of the test 
+                  command, which requires the trailing <TT>]</TT>. A side effect 
+                  of this bit of trickery is that the spaces around <TT>[</TT> 
+                  and <TT>]</TT> are mandatory, a detail that is sure to get you 
+                  into trouble eventually. See the later section, "Abbreviated 
+                  bash command reference," for some of the available tests. 
+                  </P><A name=lpicertnut-CHP-17-SECT-2.2.3></A>
+                  <H5 class=docSection3Title>17.2.2.3 Command substitution</H5>
+                  <P class=docText>Bash offers a handy ability to do <SPAN  
+                  class=docEmphasis>command substitution</SPAN><A 
+                  name=IXT-17-350856></A>. This feature allows you to replace  
+                  <TT>$(</TT><TT><I>command</I></TT> <TT>)</TT> with the result  
+                  of <TT><I>command</I></TT>, usually in a script. That is,  
+                  wherever <TT>$(</TT><TT><I>command</I></TT><TT>)</TT> is  
+                  found, its output is substituted prior to interpretation by  
+                  the shell. For example, to set a variable to the number of  
+                  lines in your <I>.bashrc</I> file, you could use <SPAN  
+                  class=docEmphBold>wc -l</SPAN>: </P><PRE>$ <B>RCSIZE=$(wc -l ~/.bashrc)</B></PRE>
+                  <P class=docText>An older form of command substitution 
+                  encloses <TT><I>command</I></TT> in <SPAN 
+                  class=docEmphasis>backquotes</SPAN>: </P><PRE>$ <B>RCSIZE=`wc -l ~/.bashrc`</B></PRE>
+                  <P class=docText>The result is the same, except that the 
+                  backquote syntax allows the backslash character to escape the 
+                  dollar symbol (<TT>$</TT>), the backquote (<TT>`</TT>), and 
+                  another backslash (<TT>\</TT> ). The 
+                  <TT>$(</TT><TT><I>command</I></TT><TT>)</TT> syntax avoids 
+                  this nuance by treating all characters between the parentheses 
+                  literally. </P><A name=lpicertnut-CHP-17-SECT-2.2.4></A>
+                  <H5 class=docSection3Title>17.2.2.4 Mailing from scripts</H5>
+                  <P class=docText>The scripts you write will often be rummaging 
+                  around your system at night when you're asleep or at least 
+                  while you're not watching. Since you're too busy to check on 
+                  every script's progress, a script will sometimes need to send 
+                  some mail to you or another administrator. This is 
+                  particularly important when something big goes wrong or when 
+                  something important depends on the script's outcome. Sending 
+                  mail is as simple as piping into the <SPAN 
+                  class=docEmphBold>mail</SPAN> command: </P><PRE>echo &quot;Backup failure 5&quot; | mail -s &quot;Backup failed&quot; root</PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>-s</SPAN> option 
+                  indicates that a quoted subject for the email follows. The 
+                  recipient could be yourself, root, or if your system is 
+                  configured correctly, any Internet email address. If you need 
+                  to send a log file, redirect the input of mail from that file: 
+                  </P><PRE>mail -s &quot;subject&quot; recipient &lt; logfile</PRE>
+                  <P class=docText>Sending email from scripts is easy and makes 
+                  tracking status easier than reviewing log files every day. On 
+                  the downside, having an inbox full of "success" messages can 
+                  be a nuisance too, so many scripts are written so that mail is 
+                  sent only in response to an important event, such as a fatal 
+                  error. </P><A name=lpicertnut-CHP-17-SECT-2.2.5></A>
+                  <H5 class=docSection3Title>17.2.2.5 Abbreviated bash command 
+                  reference</H5>
+                  <P class=docText>This section lists some of the important 
+                  <SPAN class=docEmphBold>bash</SPAN><I> </I>built-in commands 
+                  used when writing scripts. Please note that not all of the 
+                  <SPAN class=docEmphasis>bash</SPAN> commands are listed here; 
+                  for a complete overview of the <SPAN 
+                  class=docEmphBold>bash</SPAN> shell, see <SPAN 
+                  class=docEmphasis>Learning the bash Shell</SPAN> by Cameron 
+                  Newham and Bill Rosenblatt (O'Reilly &amp; Associates). </P><A 
+                  name=p2_ch07-36-fm2xml></A><A name=IXT-17-350857></A><A 
+                  name=IXT-17-350858></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>break</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-38-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>break [n]</PRE><A name=p2_ch07-39-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350857></A><A 
+                  name=IXT-17-350858></A>Exit from the innermost (most deeply  
+                  nested) <I>for</I>, <I>while</I>, or <I>until </I>loop or from  
+                  the <I>n</I> innermost levels of the loop. </P><A  
+                  name=p2_ch07-40-fm2xml></A><A name=IXT-17-350859></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>case</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-41-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>case string
+in
+   regex1)
+   commands1
+   ;;
+   regex2)
+   commands2
+   ;;
+   ...
+esac</PRE><A name=p2_ch07-42-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350859></A>Choose  
+                  <I>string</I> from among a series of possible regular  
+                  expressions. If <I>string</I> matches regular expression  
+                  <I>regex1</I>, perform the subsequent <I>commands1</I>. If  
+                  string matches <I>regex2</I>, perform<I>commands2</I>. Proceed  
+                  down the list of regular expressions until one is found. To  
+                  catch all remaining strings, use <TT>*)</TT> at the end.  
+                  </P><A name=p2_ch07-43-fm2xml></A><A name=IXT-17-350860></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>continue</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-45-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>continue [n]</PRE><A name=p2_ch07-46-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350860></A>Skip remaining  
+                  commands in a <I>for</I>, <I>while</I>, or <I>until </I>loop,  
+                  resuming with the next iteration of the loop (or skipping  
+                  <SPAN class=docEmphasis>n</SPAN> loops). </P><A  
+                  name=p2_ch07-47-fm2xml></A><A name=IXT-17-350861></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>echo</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-49-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>echo [options] [string]</PRE><A 
+                  name=p2_ch07-50-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350861></A>Write <I>string</I>  
+                  to standard output, terminated by a newline. If no  
+                  <I>string</I> is supplied, echo only a newline. </P><A  
+                  name=p2_ch07-51-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-e</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables interpretation of escape 
+                    characters.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Suppresses the trailing newline in the 
+                    output.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>\a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Sounds an audible alert.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>\b</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Inserts a backspace.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>\c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Suppresses the trailing newline (same as 
+                    <SPAN class=docEmphBold>-n</SPAN>). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>\f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Form feed.</P></DD></DL><A 
+                  name=p2_ch07-52-fm2xml></A><A name=IXT-17-350862></A><A 
+                  name=IXT-17-350863></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>exit</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-54-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>exit [n]</PRE><A name=p2_ch07-55-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350862></A><A 
+                  name=IXT-17-350863></A>Exit a shell script with status  
+                  <I>n</I>. The value for <I>n </I>can be (success) or nonzero  
+                  (failure). If <I>n </I>is not given, the exit status is that  
+                  of the most recent command. </P><A name=p2_ch07-56-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Example</H4><PRE>if ! test -f somefile
+then
+  echo &quot;Error: Missing file somefile&quot;
+  exit 1
+fi
+for x [in list]
+do
+   commands
+done</PRE><A name=p2_ch07-57-fm2xml></A><A 
+                  name=IXT-17-350864></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>for</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-59-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>for x in list
+do
+   commands
+done</PRE><A name=p2_ch07-60-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350864></A>Assign each word in  
+                  <I>list</I> to <I>x </I>in turn and execute <I>commands</I>.  
+                  If <I>list </I>is omitted, it is assumed that positional  
+                  parameters from the command line, which are stored in  
+                  <TT>$@</TT>, are to be used. </P><A  
+name=p2_ch07-61-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE>for filename in bigfile*
+{
+  echo &quot;Compressing $filename&quot;
+  gzip $filename
+}</PRE><A name=p2_ch07-62-fm2xml></A><A 
+name=IXT-17-350865></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>function</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-64-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>function name
+{
+   commands
+}</PRE><A name=p2_ch07-65-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350865></A>Define function  
+                  <I>name</I>. Positional parameters (<TT>$1</TT>, <TT>$2</TT>,  
+                  ...) can be used within <I>commands</I>. </P><A  
+                  name=p2_ch07-66-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example </H4><PRE># function myfunc
+{
+  echo &quot;parameter is $1&quot;
+}
+# myfunc 1
+parameter is 1
+# myfunc two
+parameter is two</PRE><A name=p2_ch07-67-fm2xml></A><A 
+                  name=IXT-17-350866></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>getopts</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-69-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>getopts  string name [args]</PRE><A 
+                  name=p2_ch07-70-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350866></A>Process  
+                  command-line arguments (or <I>args</I>, if specified) and  
+                  check for legal options. The <SPAN  
+                  class=docEmphBold>getopts</SPAN> command is used in shell  
+                  script loops and is intended to ensure standard syntax for  
+                  command-line options. The <I>string</I> contains the option  
+                  letters to be recognized by <SPAN  
+                  class=docEmphBold>getopts</SPAN> when running the script.  
+                  Valid options are processed in turn and stored in the shell  
+                  variable <I>name</I>. If an option letter is followed by a  
+                  colon, the option must be followed by one or more arguments  
+                  when the command is entered by the user. </P><A  
+                  name=p2_ch07-71-fm2xml></A><A name=IXT-17-350867></A><A 
+                  name=IXT-17-350868></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>if</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-73-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>if expression1
+then
+    commands1
+elif expression2
+then
+    commands2
+else
+    commands
+fi</PRE><A name=p2_ch07-74-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350867></A><A 
+                  name=IXT-17-350868></A>The <TT>if</TT> command is used to  
+                  define a conditional statement. There are three possible  
+                  formats for using the <TT>if</TT> command: </P><PRE>if-then-fi
+if-then-else-fi 
+if-then-elif-then-...fi</PRE> 
+                  <P class=docText>The <I>expressions</I> are made up of tests 
+                  (or <TT>[]</TT> commands). </P><A 
+                  name=p2_ch07-75-fm2xml></A><A name=IXT-17-350869></A><A 
+                  name=IXT-17-350870></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>kill</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-77-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>kill [options] IDs</PRE><A name=p2_ch07-78-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350869></A>Send signals to  
+                  each specified process or job <I>ID</I>, which you must own  
+                  unless you are a privileged user. The default signal sent with  
+                  the <SPAN class=docEmphBold>kill</SPAN> command is  
+                  <TT>TERM</TT><A name=IXT-17-350870></A>, instructing processes  
+                  to shut down. </P><A name=p2_ch07-79-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List the signal names.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN> <I>signal</I> or -<SPAN 
+                    class=docEmphBold>signal</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Specifies the signal number or 
+                    name.</P></DD></DL><A name=p2_ch07-80-fm2xml></A><A 
+                  name=IXT-17-350871></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>read</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-82-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>read [options] variable1 [variable2...]</PRE><A 
+                  name=p2_ch07-83-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350871></A>Read one line of  
+                  standard input, and assign each word to the corresponding  
+                  <I>variable</I>, with all remaining words assigned to the last  
+                  variable. </P><A name=p2_ch07-84-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE>echo -n &quot;Enter last-name, age, height, and weight &gt; &quot;
+read lastname everythingelse
+echo $lastname
+echo $everythingelese</PRE>
+                  <P class=docText>The name entered is placed in variable 
+                  <TT>$lastname</TT>; all of the other values, including the 
+                  spaces between them, are placed in <TT>$everythingelse</TT>. 
+                  </P><A name=p2_ch07-85-fm2xml></A><A name=IXT-17-350872></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>return</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-87-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>return [n]</PRE><A name=p2_ch07-88-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350872></A>This command is  
+                  used inside a function definition to exit the function with  
+                  status <I>n</I>. If <I>n </I>is omitted, the exit status of  
+                  the previously executed command is returned. </P><A  
+                  name=p2_ch07-89-fm2xml></A><A name=IXT-17-350873></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>shift</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-91-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>shift [n]</PRE><A name=p2_ch07-92-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-17-350873></A>Shift positional  
+                  parameters down <I>n</I> elements. If <I>n </I>is omitted, the  
+                  default is 1, so <TT>$2</TT> becomes <TT>$1</TT>, <TT>$3</TT>  
+                  becomes <TT>$2</TT>, and so on. </P><A  
+                  name=p2_ch07-93-fm2xml></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>source</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-95-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>source file [arguments]
+. file [arguments]</PRE><A name=p2_ch07-96-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Read and execute lines in <I>file</I>. The 
+                  <I>file </I>does not need to be executable but must be in a 
+                  directory listed in <TT>PATH</TT>. The "dot" syntax is 
+                  equivalent to stating <SPAN class=docEmphBold>source</SPAN>. 
+                  </P><A name=p2_ch07-97-fm2xml></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>test</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-99-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>test expression
+[ expression ]</PRE><A name=p2_ch07-100-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Evaluate the conditional <I>expression</I> 
+                  and return a status of (true) or 1 (false). The first form 
+                  explicitly calls out the <SPAN class=docEmphBold>test</SPAN> 
+                  command. The second form implies the test command. The spaces 
+                  around <I>expression</I> are required in the second form. 
+                  <I>expression</I> is constructed using options. </P><A 
+                  name=p2_ch07-101-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and is a 
+                    directory</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-e</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and is a regular 
+                    file</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-L</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and is a 
+                    symbolic link</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN> <I>string</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if the length of <I>string</I> is 
+                    nonzero</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and is 
+                    readable</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and has a size 
+                    greater than zero </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and is 
+                    writable</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-x</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file</I> exists and is 
+                    executable</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-z</SPAN> <I>string</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if the length of <I>string</I> is 
+                    zero</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>file1</I> <SPAN 
+                    class=docEmphBold>-ot</SPAN> <I>file2</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if <I>file1</I> is older than 
+                    <I>file2</I> </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>string1</I> <SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>=</SPAN></SPAN> 
+                    <I>string2</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if the strings are equal</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>string1</I> <SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>!=</SPAN></SPAN> 
+                    <I>string2</I></SPAN> 
+                    <DD>
+                    <P class=docList>True if the strings are not 
+                  equal</P></DD></DL><A name=p2_ch07-102-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>To determine if a file exists and is 
+                  readable, use the <SPAN class=docEmphBold>-r</SPAN> option: 
+                  </P><PRE>if test -r file
+then
+   echo &quot;file exists&quot;
+fi</PRE>
+                  <P class=docText>Using the <TT>[ ]</TT> form instead, the same 
+                  test looks like this: </P><PRE>if [ -r file ]
+then
+   echo &quot;file exists&quot;
+fi</PRE><A name=p2_ch07-103-fm2xml></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>until</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-105-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>until
+    test-commands
+do
+    commands
+done</PRE><A name=p2_ch07-106-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Execute <I>test-commands</I> (usually a test 
+                  command) and if the exit status is nonzero (that is, the test 
+                  fails), perform <I>commands</I> ; repeat. Opposite of <SPAN 
+                  class=docEmphBold>while</SPAN>. </P><A 
+                  name=p2_ch07-107-fm2xml></A><A name=IXTR3-90></A><A 
+                  name=IXTR3-91></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>while</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch07-109-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>while
+    test-commands
+do
+    commands
+done</PRE><A name=p2_ch07-110-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Execute <I>test-commands </I>(usually a test 
+                  command) and if the exit status is zero, perform 
+                  <I>commands</I>; repeat. Opposite of <SPAN 
+                  class=docEmphBold>until</SPAN>. </P><A 
+                  name=p2_ch07-111-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-17-EX-7">Example  
+                  17-7</a> shows a typical script from a Linux system. This  
+                  example is <I>/etc/rc.d/init.d/sendmail</I>, which is the  
+                  script that starts and stops sendmail. This script  
+                  demonstrates many of the built-in commands referenced in the  
+                  last section. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-17-EX-7></A>Example 17-7. Sample sendmail  
+                  Startup Script </H5><PRE>#!/bin/sh
+#
+# sendmail     This shell script takes care of starting 
+#              and stopping sendmail.
+#
+# chkconfig: 2345 80 30
+# description: Sendmail is a Mail Transport Agent, which
+#              is the program that moves mail from one 
+#              machine to another.
+# processname: sendmail
+# config: /etc/sendmail.cf
+# pidfile: /var/run/sendmail.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Source sendmail configuration.
+if [ -f /etc/sysconfig/sendmail ] ; then
+  . /etc/sysconfig/sendmail
+else
+  DAEMON=yes
+  QUEUE=1h
+fi
+
+# Check that networking is up.
+[ ${NETWORKING} = &quot;no&quot; ] &amp;&amp; exit 0
+
+[ -f /usr/sbin/sendmail ] || exit 0
+
+# See how we were called.
+case &quot;$1&quot; in
+  start)
+  # Start daemons.
+  echo -n &quot;Starting sendmail: &quot;
+  /usr/bin/newaliases &gt; /dev/null 2&gt;&amp;1
+  for i in virtusertable access domaintable mailertable ; do
+    if [ -f /etc/mail/$i ] ; then
+      makemap hash /etc/mail/$i &lt; /etc/mail/$i
+    fi
+  done
+  daemon /usr/sbin/sendmail $([ &quot;$DAEMON&quot; = yes ] \
+    &amp;&amp; echo -bd) $([ -n &quot;$QUEUE&quot; ] &amp;&amp; echo -q$QUEUE)
+  echo
+  touch /var/lock/subsys/sendmail
+  ;;
+
+  stop)
+  # Stop daemons.
+  echo -n &quot;Shutting down sendmail: &quot;
+  killproc sendmail
+  echo
+  rm -f /var/lock/subsys/sendmail
+  ;;
+
+  restart)
+  $0 stop
+  $0 start
+  ;;
+
+  status)
+  status sendmail
+  ;;
+
+  *)
+  echo &quot;Usage: sendmail {start|stop|restart|status}&quot;
+  exit 1
+esac
+
+exit 0</PRE> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be familiar with a script's  
+                        general structure, as well as the use of she-bang,  
+                        <I>test</I>, <I>if</I> statements and their syntax  
+                        (including the trailing <I>fi</I> ), return values, exit  
+                        values, and so on.<A name=IXTR3-90></A> <A  
+                        name=IXTR3-91></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="17-2.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-17-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-17-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-17-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)562ms
+(xml)438ms
+(xsl)47ms
+(ent)0ms
+(buf)0ms
+
+(tot)1375ms
+--></BODY></HTML>

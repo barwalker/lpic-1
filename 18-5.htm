@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="18-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="18-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 18.&nbsp; X  
+            (Topic 2.10)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-18-SECT-5></A>
+                  <H3 class=docSection1Title>18.5 Objective 4: Install and 
+                  Customize a Window Manager Environment</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1301></A>The  
+                  selection of a desktop environment for X is a personal  
+                  decision. At a minimum, you need a window manager such as  
+                  <SPAN class=docEmphBold>twm</SPAN> to provide basic window  
+                  frames, menus, and controls. On the more elaborate side, an  
+                  integrated working environment such as KDE or GNOME offers a  
+                  rich set of applications. Regardless of how you configure your  
+                  desktop, it's important to understand some basic customization  
+                  techniques. </P><A name=lpicertnut-CHP-18-SECT-5.1></A>
+                  <H4 class=docSection2Title>18.5.1 Starting X and a Default 
+                  Window Manager</H4>
+                  <P class=docText>Starting XFree86 can be as simple as issuing  
+                  the <SPAN class=docEmphBold>X</SPAN> command as <I>root</I>.  
+                  However, <SPAN class=docEmphBold>X</SPAN> alone doesn't give  
+                  you a working environment. At the very least, you also need to  
+                  start a window manager and an application and set up basic X  
+                  access authority.<SUP class=docFootnote>[8]</SUP> You may also  
+                  wish to choose from among multiple desktop environments and  
+                  window managers installed on your system. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[8]</A></SUP> X 
+                    authority configuration is beyond the scope of the LPIC 
+                    Level 1 certification and is not covered in this 
+                  book.</P></BLOCKQUOTE><A 
+name=lpicertnut-CHP-18-SECT-5.1.1></A>
+                  <H5 class=docSection3Title>18.5.1.1 The XFree86 startup 
+                  process</H5>
+                  <P class=docText>Assuming for the moment that we're not using 
+                  <SPAN class=docEmphBold>xdm</SPAN>, the process of starting X 
+                  goes like this: </P><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>The user issues the <SPAN 
+                    class=docEmphBold>startx</SPAN> command. This is a script 
+                    provided by XFree86 and often modified by distributors and 
+                    administrators. <SPAN class=docEmphBold>startx</SPAN> is 
+                    intended as a frontend to <SPAN 
+                    class=docEmphBold>xinit</SPAN>. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>startx</SPAN> calls 
+                    <SPAN class=docEmphBold>xinit</SPAN> with two main 
+                    arguments: </P><SPAN style="FONT-WEIGHT: bold">
+                    <OL class=docList type=a>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>An <I>Xinitrc</I> script, which contains 
+                      X programs to run. This script could be <I>.xinitrc</I> 
+                      from the user's home directory, or if that doesn't exist, 
+                      a systemwide default found in 
+                      <I>/etc/X11/xinit/xinitrc</I>. </P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Server options, such as X authority 
+                      information.</P></SPAN></LI></OL></SPAN></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList><SPAN class=docEmphBold>xinit</SPAN> 
+                    launches XFree86 and the chosen <I>Xinitrc</I> script. 
+                    </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>XFree86 starts. Note that X itself does not 
+                    provide any applications. They appear only as the result of 
+                    the commands found in the <I>Xinitrc</I> script. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Client programs and a window manager found 
+                    in the <I>Xinitrc</I> script start. 
+                  </P></SPAN></LI></OL></SPAN>
+                  <P class=docText>The contents of <SPAN  
+                  class=docEmphBold>startx</SPAN> and the system default  
+                  <I>/etc/X11/xinit/xinitrc</I> can vary from distribution to  
+                  distribution and can be changed by administrators to suit  
+                  local needs. They may also reference additional files, such as  
+                  <I>/etc/X11/xinit/Xclients,</I> to determine which programs  
+                  and window manager to run. <a class="docLink" href="#lpicertnut-CHP-18-EX-4">Example  
+                  18-4</a> shows the contents of <I>/etc/X11/xinit/xinitrc</I>,  
+                  a modified version of the original distributed with XFree86.  
+                  </P>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-18-EX-4></A>Example 18-4. A System Default  
+                  xinitrc </H5><PRE>#!/bin/sh
+# $XConsortium: xinitrc.cpp,v 1.4 91/08/22 rws Exp $
+
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/usr/X11R6/lib/X11/xinit/.Xresources
+sysmodmap=/usr/X11R6/lib/X11/xinit/.Xmodmap
+
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f $userresources ]; then
+    xrdb -merge $userresources
+fi
+
+if [ -f $usermodmap ]; then
+    xmodmap $usermodmap
+fi
+
+# start some nice programs
+
+(sleep 1; xclock -geometry 50x50-1+1) &amp;
+(sleep 1; xterm -geometry 80x50+494+51) &amp;
+(sleep 1; xterm -geometry 80x20+494-0) &amp;
+exec twm </PRE>
+                  <P class=docText>In this example, resource and keyboard 
+                  mappings are set, a few applications are launched, and the 
+                  <SPAN class=docEmphBold>twm</SPAN> window manager is started. 
+                  <SPAN class=docEmphBold>twm</SPAN> is installed as a basic 
+                  default window manager on most distributions. </P><A 
+                  name=lpicertnut-CHP-18-SECT-5.1.2></A>
+                  <H5 class=docSection3Title>18.5.1.2 Customizing twm</H5>
+                  <P class=docText>Each of the window managers and desktop 
+                  environments has its own style of configuration. In the case 
+                  of <SPAN class=docEmphBold>twm</SPAN>, a single file called 
+                  <I>.twmrc</I> in the user's home directory is used. If 
+                  <I>.twmrc</I> doesn't exist, the system-wide default 
+                  <I>/etc/X11/twm/system.twmrc</I> is used. The file can 
+                  include: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>Font selections</P>
+                    <LI>
+                    <P class=docList>Color selections</P>
+                    <LI>
+                    <P class=docList>Bindings between actions (such as mouse 
+                    clicks) and <SPAN class=docEmphBold>twm</SPAN> responses 
+</P>
+                    <LI>
+                    <P class=docList>Menu definitions</P></LI></UL>
+                  <P class=docText>Even for a basic window manager such as <SPAN  
+                  class=docEmphBold>twm</SPAN>, a wide array of configuration  
+                  options is available to tailor the window manager to your  
+                  personal taste. <a class="docLink" href="#lpicertnut-CHP-18-EX-5">Example  
+                  18-5</a> contains parts of <I>system.twmrc</I>, which defines  
+                  a default options menu, <TT>defops</TT>, and a submenu that  
+                  starts various X terminals. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-18-EX-5></A>Example 18-5. Menu  
+                  Configuration in system.twmrc </H5><PRE>menu &quot;defops&quot;
+{
+&quot;Twm&quot;           f.title
+&quot;Netscape&quot;      f.exec &quot;netscape &amp;&quot;
+&quot;Terminals&quot;     f.menu &quot;Terms&quot;
+}
+
+menu &quot;Terms&quot;
+{
+&quot;Aterm&quot;         f.exec &quot;exec aterm &amp;&quot;
+&quot;Kvt&quot;           f.exec &quot;exec kvt &amp;&quot;
+&quot;Xterm&quot;         f.exec &quot;exec xterm &amp;&quot;}</PRE> 
+                  <P class=docText>For complete information on <SPAN 
+                  class=docEmphBold>twm</SPAN>, see its manpage (<SPAN 
+                  class=docEmphBold>man twm</SPAN>). </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>This Objective requires that you have a  
+                        general understanding of the configuration of menus for  
+                        a window manager. You will not be required to generate  
+                        window manager configuration files for the test, but you  
+                        should be aware of the need to edit and modify them.<A  
+                        name=IXTR3-99></A> </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-18-SECT-5.2></A>
+                  <H4 class=docSection2Title>18.5.2 xterm et al.</H4>
+                  <P class=docText>One of the most important applications  
+                  available to a system administrator working in a graphical  
+                  environment is a <SPAN class=docEmphasis>terminal  
+                  emulator</SPAN><A name=IXT-18-350898></A>. The standard  
+                  terminal emulator distributed with X is <SPAN  
+                  class=docEmphBold>xterm</SPAN><A name=IXT-18-350899></A>,  
+                  which understands DEC VT and Tektronix graphics terminal  
+                  protocols. The VT behavior that is emulated includes cursor  
+                  positioning, character effects, and reverse video, among  
+                  others. In essence, an <SPAN class=docEmphBold>xterm</SPAN> is  
+                  a direct replacement for a hardware terminal. </P> 
+                  <P class=docText><SPAN class=docEmphBold>xterm</SPAN> has a  
+                  large resource configuration file located in  
+                  <I>/usr/lib/X11/app-defaults/XTerm</I><A 
+                  name=IXT-18-350900></A> that contains configurable menus,  
+                  fonts, colors, and actions. You may customize this file to  
+                  alter the default behavior of <SPAN  
+                  class=docEmphBold>xterm</SPAN> on your system. These settings  
+                  can also be overridden by resource settings contained in your  
+                  own<I> .Xdefaults</I> file, located in your home directory.  
+                  </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be familiar with at least 
+                        one of the popular X terminal programs available on your 
+                        Linux system. Remember that some programs have 
+                        system-wide configuration files that can be used to 
+                        fine-tune their behavior and appearance. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-18-SECT-5.3></A>
+                  <H4 class=docSection2Title>18.5.3 X Libraries</H4>
+                  <P class=docText><A name=IXT-18-350901></A>Just as many  
+                  executable programs are dependent upon shared system libraries  
+                  for their execution, most X applications require a number of  
+                  X-specific libraries. XFree86 comes bundled with the necessary  
+                  set of libraries for traditional X applications. However, many  
+                  graphical programming projects are created using toolkits  
+                  whose libraries are not included in the XFree86 distribution.  
+                  In these cases, you need to install the required libraries  
+                  before programs requiring them will compile or execute. </P> 
+                  <P class=docText>For example, the <A  
+                  name=IXT-18-350902></A>GIMP Toolkit (GTK) is used to build  
+                  much of the GNOME desktop environment. This means that GTK  
+                  must be installed on the system in order to run <A  
+                  name=IXT-18-350903></A>GNOME applications, including The GIMP  
+                  (<A class=docLink href="http://www.gimp.org/" 
+                  target=_blank>http://www.gimp.org/</A>). </P>
+                  <P class=docText>Library dependency issues typically occur 
+                  when you try new software. Either the compiler fails as you 
+                  attempt to build the program, or the loader fails when you try 
+                  to run a precompiled dynamic binary. In either case, you need 
+                  to locate the correct version of the libraries and install 
+                  them. It should be relatively easy to find recent versions of 
+                  the popular libraries in your distribution's package format by 
+                  visiting web sites of the library distributor or your Linux 
+                  distribution. </P>
+                  <P class=docText>To manually check for library dependencies,  
+                  you may use the <SPAN class=docEmphBold>ldd</SPAN><A  
+                  name=IXT-18-350904></A> utility, described fully in <a class="docLink" href="14-4.htm">Section  
+                  14.4</a>. </P><A name=lpicertnut-CHP-18-SECT-5.4></A>
+                  <H4 class=docSection2Title>18.5.4 Remote X Clients</H4>
+                  <P class=docText><A name=IXT-18-350905></A>One of the  
+                  fundamental design elements of the X Window System is that it  
+                  is a network protocol, which allows for displays to occur  
+                  remotely across a network. Many sites employ high-powered  
+                  systems for computation and use desktop X servers (X terminals  
+                  or Linux systems, for example) for display rendering. </P> 
+                  <P class=docText>To send the output from an X application to a  
+                  remote machine, you need to set the <TT>display</TT><A  
+                  name=IXT-18-350906></A> environment variable.<SUP  
+                  class=docFootnote>[9]</SUP> This  
+                  variable contains a description of the output destination and  
+                  has three components: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[9]</A></SUP> Many X 
+                    programs also include a command-line option to select the 
+                    display.</P></BLOCKQUOTE><PRE>[host]:display[.screen]</PRE><A name=IXT-18-350907></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>host</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-18-350907></A>This part of the  
+                    description specifies the remote hostname on the network. It  
+                    can be any valid hostname, fully qualified domain name, or  
+                    IP address. <TT>host</TT> is optional; the local system is  
+                    used if the <TT>host</TT> is not specified. </P></DD></DL> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>display</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This specifies which <TT>display</TT> the 
+                    output should be directed toward. A single system can manage 
+                    many displays. Note that the colon is required even if the 
+                    <TT>host</TT> is omitted. </P></DD></DL><A 
+                  name=IXT-18-350908></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>screen</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-18-350908></A>This optional  
+                    parameter is used for multiheaded systems (i.e., systems  
+                    with more than one monitor) and specifies on which output  
+                    screen the application will appear. </P></DD></DL> 
+                  <P class=docText>Setting <TT>display</TT> to "point to" a 
+                  remote host display causes all subsequent X applications to be 
+                  displayed there. For example: </P><PRE># <B>export DISPLAY=</B>yourhost<B>:0.0</B>
+# <B>xterm</B></PRE>
+                  <P class=docText>In this example, the <SPAN  
+                  class=docEmphBold>xterm</SPAN> is displayed on the first  
+                  display on <TT><I>yourhost</I></TT>.<SUP class=docFootnote>[10]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[10]</A></SUP> This 
+                    example ignores X authentication issues.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-18-SECT-5.4.1></A>
+                  <H5 class=docSection3Title>18.5.4.1 Examples</H5>
+                  <P class=docText>The default display on the local host:</P><PRE>:0</PRE>
+                  <P class=docText>The default display on a remote host:</P><PRE>yourhost:0</PRE>
+                  <P class=docText>Display programs on the first screen of the 
+                  second display found on the machine located at 192.168.1.2: 
+                  </P><PRE>192.168.1.2:1.0</PRE>
+                  <P class=docText>Display programs on the first screen of the 
+                  third display on <TT>yourhost</TT>: </P><PRE>yourhost:2.0</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be familiar with the 
+                        <TT>display</TT> environment variable and how to use it 
+                        to direct X client applications to remote X servers. 
+                      </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="18-5.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-18-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)500ms
+(xml)312ms
+(xsl)32ms
+(ent)0ms
+(buf)0ms
+
+(tot)844ms
+--></BODY></HTML>

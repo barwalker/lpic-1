@@ -1,0 +1,484 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-20-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="20-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="20-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 20.&nbsp;  
+            Networking Services (Topic 1.13)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-20-SECT-5></A>
+                  <H3 class=docSection1Title>20.5 Objective 5: Set Up and 
+                  Configure Basic DNS Services</H3>
+                  <P class=docText><A name=IXT-20-351053></A>The <A  
+                  name=IXT-20-351054></A>Domain Name Service (DNS) is the  
+                  distributed database of name-to-IP-address translations.  
+                  Technically, it isn't necessary to use host and domain names  
+                  such as www.lpi.org, because it's the actual <A  
+                  name=IXT-20-351055></A>IP address that the computer requires  
+                  to establish communications. DNS was created to allow the use  
+                  of more convenient global domain names instead. For example,  
+                  when a user enters a DNS name as part of a URL in a browser,  
+                  the name portion is sent to a DNS server to be resolved into  
+                  an IP address. Once the address is found, it is used to  
+                  rewrite the URL and directly fetch the web page. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be familiar with the concept 
+                        of name resolution on the Internet using DNS. 
+                    </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>The server daemon that implements DNS is  
+                  <SPAN class=docEmphBold>named</SPAN>, the <SPAN  
+                  class=docEmphasis>name daemon</SPAN><A name=IXT-20-351056></A> 
+                  <A name=IXT-20-351057></A>, which is part of the <A  
+                  name=IXT-20-351058></A>Berkeley Internet Name Daemon package  
+                  (BIND). It is <SPAN class=docEmphBold>named</SPAN>'s job to  
+                  respond to requests from the resolver and return an IP  
+                  address. </P><A name=lpicertnut-CHP-20-SECT-5.1></A>
+                  <H4 class=docSection2Title>20.5.1 The resolver</H4>
+                  <P class=docText><A name=IXT-20-351059></A>The code that  
+                  resolves names to IP addresses using DNS for client programs  
+                  is implemented in system libraries collectively called the  
+                  <SPAN class=docEmphasis>resolver</SPAN><A 
+                  name=IXT-20-351060></A>. The resolver uses one of several  
+                  means to determine an IP address from a hostname or domain  
+                  name: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Static local files</SPAN></I> 
+
+                    <DD>
+                    <P class=docList>The local file <I>/etc/hosts</I> can 
+                    contain name-to-address mapping for a few systems on a 
+                    network. However, for large enterprises, using static local 
+                    files to manage IP address resolution is problematic due to 
+                    the frequent changes required in the data. Updating all of 
+                    the client systems would be impractical. This resolution 
+                    method is sometimes referred to as the <SPAN 
+                    class=docEmphasis>files</SPAN> method. </P></DD></DL><A 
+                  name=IXT-20-351061></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Network Information Service 
+                    (NIS)</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-20-351061></A>Some private  
+                    networks use a shared information service that can include  
+                    address resolution. This is NIS, or a later version of it  
+                    called NIS+, and is referred to as the <TT>nis</TT> method  
+                    of resolution. Both services are beyond the scope of the  
+                    LPIC Level 1 exams. </P></DD></DL><A name=IXT-20-351062></A> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Domain Name Service 
+                    (DNS)</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-20-351062></A>Because addresses  
+                    and domains on the public Internet change frequently and are  
+                    so numerous, static local files can't handle resolution far  
+                    outside the enterprise. As already mentioned, DNS is a  
+                    distributed database. That is, small portions of the DNS are  
+                    managed by local authorities that are responsible only for  
+                    their particular slice of the system. As you'd expect, using  
+                    DNS for name resolution is called the <TT>dns</TT> method.  
+                    </P></DD></DL>
+                  <P class=docText>In most cases, <I>/etc/hosts</I> will be used 
+                  for name resolution of the local host and perhaps a few other 
+                  nearby systems. DNS, perhaps together with NIS in enterprise 
+                  environments, will handle everything else. </P>
+                  <P class=docText><I>/etc/hosts</I> and the other files used to  
+                  configure the resolver are described in <a class="docLink" href="19-2.htm">Section  
+                  19.2</a> but here's a quick recap: </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hosts</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file lists statically defined 
+                    name-to-address translations.</P></DD></DL><A 
+                  name=IXT-20-351063></A><A name=IXT-20-351064></A><A 
+                  name=IXT-20-351065></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/nsswitch.conf</I> (or 
+                    <I>/etc/host.conf</I> on older Linux systems)</SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-20-351063></A>The <A  
+                    name=IXT-20-351064></A>"name <I></I><A  
+                    name=IXT-20-351065></A>service switch" file  
+                    (<I>nsswitch.conf </I>) defines the order of name server  
+                    methods to be used in succession by the resolver (it can  
+                    also control other things such as passwords, but those don't  
+                    apply here). Typically, this single entry is used to control  
+                    name resolution: </P></DD></DL><PRE>hosts:  files dns</PRE> 
+                  <P class=docText>This entry instructs the resolver to resolve 
+                  names using <I>/etc/hosts</I> first, and if a match isn't 
+                  found, to make a DNS query. </P><A name=IXT-20-351066></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/resolv.conf</I></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-20-351066></A>This file lists  
+                    the IP addresses of name servers: </P></DD></DL><PRE>nameserver 127.0.0.1
+nameserver 192.168.1.5
+nameserver 192.168.250.2</PRE> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure that you understand how 
+                        <I>/etc/nsswitch</I> controls the resolution order, that 
+                        <I>/etc/resolv.conf</I> identifies DNS servers by 
+                        address, and that <I>/etc/hosts</I> is for local, 
+                        statically resolved addresses. Also remember that older 
+                        versions of Linux used <I>/etc/host.conf</I> to 
+                        configure the resolution order instead of 
+                        <I>/etc/nsswitch.conf</I>. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>When the resolver determines that a DNS query 
+                  is required, it sends a request containing a domain name to 
+                  one of the DNS servers listed in <I>/etc/resolv.conf</I>. The 
+                  DNS server uses its own records to find the domain or may 
+                  resort to escalating to other DNS servers if the information 
+                  isn't readily available. When a result is found by the DNS 
+                  servers, the IP address corresponding to the requested name is 
+                  returned to the originating client. </P><A 
+                  name=lpicertnut-CHP-20-SECT-5.1.1></A>
+                  <H5 class=docSection3Title>20.5.1.1 Domain registration</H5>
+                  <P class=docText><A name=IXT-20-351067></A>Domain names are  
+                  assigned through a registration process with one of the domain  
+                  name registrars available on the Internet (<A class=docLink  
+                  href="http://www.internic.net/regist.html" 
+                  target=_blank>http://www.internic.net/regist.html</A>).  
+                  Originally, a single authority managed domain names. As  
+                  commercial uses for domain names spread, additional entities  
+                  sought the ability to charge for the service of domain  
+                  registration, and today there are a number of qualified  
+                  registrars (a search for "domain registrar" on one of the  
+                  popular search engines will yield a daunting list). Once a  
+                  domain name is registered, it is listed in a worldwide  
+                  database along with contact information for the owners or  
+                  their agents. The name servers that contain DNS information  
+                  for the domain can go along with this record. </P> 
+                  <P class=docText>Most registrants offer a domain name search 
+                  service, so you can test desired domain names for 
+                  availability. If the domain name you're seeking is available, 
+                  you can provide payment information to a registrant and 
+                  purchase rights to use the name, usually for one or two years. 
+                  </P><A name=lpicertnut-CHP-20-SECT-5.1.2></A>
+                  <H5 class=docSection3Title>20.5.1.2 Using named as a local 
+                  caching-only name server</H5>
+                  <P class=docText><SPAN class=docEmphBold>named</SPAN><A 
+                  name=IXT-20-351068></A> is often configured to serve DNS  
+                  requests even when it does not have local information for a  
+                  domain. Instead, it is used for its caching ability. When a  
+                  client program requests an address resolution from the local  
+                  <SPAN class=docEmphBold>named</SPAN><A name=IXT-20-351069></A> 
+                  <A name=IXT-20-351070></A>, the daemon first checks its local  
+                  cache. If it doesn't find the domain there, it goes to other  
+                  DNS servers as usual. If the cache does contain the domain, it  
+                  is returned immediately to the client from the cache, which  
+                  speeds the resolution process. </P> 
+                  <P class=docText>Some Linux distributions come with a 
+                  caching-only <SPAN class=docEmphBold>named</SPAN> 
+                  configuration pre-installed. If this isn't the case for you, 
+                  simply follow the brief instructions in section 3 of the 
+                  <I>DNS HOWTO</I> available from <A class=docLink 
+                  href="http://www.linuxdoc.org/" 
+                  target=_blank>http://www.linuxdoc.org/</A> (or in your 
+                  <I>/usr/doc/HOWTO</I> directory). Part of the configuration 
+                  includes setting your local system as the default DNS server 
+                  in <I>/etc/resolv.conf </I>: </P><PRE>nameserver 127.0.0.1</PRE>
+                  <P class=docText>You can test the configuration using the 
+                  <SPAN class=docEmphBold>nslookup</SPAN> utility: </P><PRE># <B>nslookup</B>
+Default Server:  localhost
+Address:  127.0.0.1
+
+&gt; <B>lpi.org</B>
+Server:  localhost
+Address:  127.0.0.1
+
+Name:    lpi.org
+Address:  209.167.177.93
+
+&gt; <B>lpi.org</B>
+Server:  localhost
+Address:  127.0.0.1
+
+Non-authoritative answer:
+Name:    lpi.org
+Address:  209.167.177.93
+
+&gt; <B>exit</B></PRE>
+                  <P class=docText>In this example, <SPAN  
+                  class=docEmphBold>nslookup</SPAN><A name=IXT-20-351071></A> 
+                  attaches to the default server <TT>localhost</TT>  
+                  (<TT>127.0.0.1</TT>). In the first query for <TT>lpi.org</TT>,  
+                  the local <SPAN class=docEmphBold>named</SPAN> must find the  
+                  address from external DNS servers. However, the result is  
+                  found in the cache on the second try, as indicated by the  
+                  <TT>Non-authoritative answer</TT> response. If this behavior  
+                  isn't seen, there may be a problem with the <SPAN  
+                  class=docEmphBold>named</SPAN> configuration in  
+                  <I>/etc/named.conf</I>. </P>
+                  <P class=docText>Some debugging information can be found in 
+                  <I>/var/log/messages</I>. For example, the highlighted line in 
+                  this short excerpt shows an error in the configuration file: 
+                  </P><PRE>smp named[216]: starting.  named 
+smp named[216]: cache zone &quot;&quot; (IN) loaded (serial 0)
+smp named[216]: Zone &quot;0.0.127.in-addr.arpa&quot; 
+  (file named.local): No default TTL
+  set using SOA minimum instead
+smp named[216]: master zone &quot;0.0.127.in-addr.arpa&quot; 
+  (IN) loaded (serial 1997022700)
+<B>smp named[216]: /etc/named.conf:18: can't redefine </B>
+<B>channel 'default_syslog'</B>
+smp named[216]: listening on [127.0.0.1].53 (lo)
+smp named[216]: listening on [192.168.1.30].53 (eth0)
+smp named[216]: listening on [172.16.132.1].53 (vmnet1)
+smp named[216]: Forwarding source address is [0.0.0.0].1855
+smp named[216]: Ready to answer queries.</PRE>
+                  <P class=docText>Note that configuration of a caching-only 
+                  name server is beyond the scope of the LPIC Level 1 exams but 
+                  is a useful exercise in understanding the configuration of 
+                  <SPAN class=docEmphBold>named</SPAN>. </P><A 
+                  name=lpicertnut-CHP-20-SECT-5.1.3></A>
+                  <H5 class=docSection3Title>20.5.1.3 DNS query utilities</H5>
+                  <P class=docText>A few tools exist to verify the operation of 
+                  DNS name resolution. Here's a brief synopsis of <SPAN 
+                  class=docEmphBold>nslookup</SPAN> and <SPAN 
+                  class=docEmphBold>host</SPAN>, both specifically mentioned in 
+                  this Objective. The <SPAN class=docEmphBold>host</SPAN> 
+                  utility does not offer interactive mode but uses a syntax 
+                  similar to <SPAN class=docEmphBold>nslookup</SPAN>. </P><A 
+                  name=p2_ch10-47-fm2xml></A><A name=IXT-20-351072></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>nslookup</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch10-49-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>nslookup host [dnsserver]</PRE><A 
+                  name=p2_ch10-50-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-20-351072></A>Look up  
+                  <I>host</I>, optionally specifying a particular  
+                  <I>dnsserver</I>. <SPAN class=docEmphBold>nslookup</SPAN> can  
+                  be used in either interactive or noninteractive modes. If  
+                  <I>host</I> is provided on the command line, noninteractive  
+                  mode is used. In interactive mode, a number of commands are  
+                  available to control <SPAN class=docEmphBold>nslookup</SPAN>  
+                  (the <SPAN class=docEmphBold>ls</SPAN> command to <SPAN  
+                  class=docEmphBold>nslookup</SPAN> is used in the example). See  
+                  the manpage for more details. </P><A  
+                  name=p2_ch10-51-fm2xml></A>
+                  <H4 class=docRefsectTitle>Noninteractive example</H4>
+                  <P class=docText>In this example, <SPAN 
+                  class=docEmphBold>nslookup</SPAN> provides immediate results 
+                  because <I>host</I>, in this case <TT>oreillynet.com</TT>, is 
+                  provided on the command line: </P><PRE># <B>nslookup oreillynet.com 192.168.1.2</B>
+Server:  ns1.mydomain.com
+Address:  192.168.1.2
+
+Non-authoritative answer:
+Name:    oreillynet.com
+Address:  208.201.239.36  </PRE><A name=p2_ch10-52-fm2xml></A>
+                  <H4 class=docRefsectTitle>Interactive example</H4>
+                  <P class=docText>Here, <SPAN class=docEmphBold>nslookup</SPAN> 
+                  is used interactively with DNS server <TT>192.168.1.2</TT> to 
+                  find records from <TT>yourdomain.com</TT> : </P><PRE># <B>nslookup</B>
+Default Server:  localhost
+Address:  127.0.0.1
+
+&gt; <B>server 192.168.1.2</B>
+Default Server:  ns1.mydomain.com
+Address:  192.168.1.2
+
+&gt; <B>ls -a yourdomain.com</B>
+[ns1.mydomain.com]
+$ORIGIN yourdomain.com.
+ipass                   2D IN CNAME     snoopy
+smtp                    2D IN CNAME     charlie
+mail                    2D IN CNAME     charlie
+pop                     2D IN CNAME     lucy
+yourdomain              2D IN CNAME     charlie
+ww2                     2D IN CNAME     linus
+www                     2D IN CNAME     sally
+&gt; <B>exit</B></PRE><A name=p2_ch10-53-fm2xml></A><A 
+                  name=IXT-20-351073></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>host</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch10-55-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>host [options] host [dnsserver]</PRE><A 
+                  name=p2_ch10-56-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-20-351073></A>Look up  
+                  <I>host</I>, optionally specifying a particular  
+                  <I>dnsserver</I>. </P><A name=p2_ch10-57-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enable debugging, showing network 
+                    transactions in detail.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use verbose mode. Results are displayed in 
+                    the official domain master file format. </P></DD></DL><A 
+                  name=p2_ch10-58-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE># <B>host -v oreillynet.com</B>
+Trying null domain
+rcode = 0 (Success), ancount=1
+The following answer is not authoritative:
+oreillynet.com  1991 IN A       208.201.239.36
+For authoritative answers, see:
+oreillynet.com  167591 IN       NS      NS1.SONIC.NET
+oreillynet.com  167591 IN       NS      NS.SONGLINE.COM
+Additional information:
+NS1.SONIC.NET   167591 IN       A       208.201.224.11
+NS.SONGLINE.COM 167591 IN       A       208.201.239.31</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Detailed knowledge of <SPAN 
+                        class=docEmphBold>nslookup</SPAN> and <SPAN 
+                        class=docEmphBold>host</SPAN> are not required, but you 
+                        must be familiar with their purpose and basic operation. 
+                        </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>Additional utilities, such as <SPAN 
+                  class=docEmphBold>dig</SPAN> and <SPAN 
+                  class=docEmphBold>dnsquery</SPAN>, also can help you with DNS 
+                  queries, though they are not mentioned in this exam Objective. 
+                  </P><A name=lpicertnut-CHP-20-SECT-5.1.4></A>
+                  <H5 class=docSection3Title>20.5.1.4 BIND Version 4 versus 
+                  Version 8 configuration files</H5>
+                  <P class=docText><A name=IXT-20-351074></A>It's likely <A  
+                  name=IXT-20-351075></A>that a Linux administrator will  
+                  maintain or install systems running BIND v4.x as well as the  
+                  newer v8.x. This LPI Objective requires an understanding of  
+                  the differences between the configuration files for these two  
+                  BIND versions. Under BIND v4, the configuration file was  
+                  called <I>/etc/named.boot</I><A name=IXT-20-351076></A>. <a class="docLink" href="#lpicertnut-CHP-20-EX-5">Example  
+                  20-5</a> shows a trivial BIND v4 configuration file. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-20-EX-5></A>Example 20-5. BIND v4  
+                  named.boot File </H5><PRE>directory                                /var/named
+cache   .                                root.hints
+primary 0.0.127.IN-ADDR.ARPA             127.0.0.zone
+primary localhost                        localhost.zone</PRE> 
+                  <P class=docText>In BIND v8, the configuration file was  
+                  renamed <I>/etc/named.conf</I><A name=IXT-20-351077></A>. <a class="docLink" href="#lpicertnut-CHP-20-EX-6">Example  
+                  20-6</a> shows the equivalent configuration in the BIND v8  
+                  format. </P>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-20-EX-6></A>Example 20-6. BIND v8  
+                  named.conf File </H5><PRE>// generated by named-bootconf.pl
+
+options {
+        directory &quot;/var/named&quot;;
+};
+
+zone &quot;.&quot; {
+        type hint;
+        file &quot;root.hints&quot;;
+};
+
+zone &quot;0.0.127.IN-ADDR.ARPA&quot; {
+        type master;
+        file &quot;127.0.0.zone&quot;;
+};
+
+zone &quot;localhost&quot; {
+        type master;
+        file &quot;localhost.zone&quot;;
+};</PRE><PRE>};</PRE> 
+                  <P class=docText>As you can see, the information contained in 
+                  the files is largely the same, but the v8 format contains a 
+                  more formal structure. For those upgrading to Version 8, the 
+                  Perl script <I>named-bootconf.pl </I>is included in the v8 
+                  package to upgrade <I>named.boot</I> to <I>named.conf</I>. 
+</P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be generally familiar with 
+                        the structural differences between the configuration 
+                        files for BIND v4 and v8. However, detailed <SPAN 
+                        class=docEmphBold>named</SPAN> configuration is beyond 
+                        the scope of the LPIC Level 1 exams. 
+                  </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-20-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-20-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-20-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)453ms
+(xml)328ms
+(xsl)32ms
+(ent)0ms
+(buf)0ms
+
+(tot)813ms
+--></BODY></HTML>

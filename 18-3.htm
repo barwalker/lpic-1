@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="18-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="18-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 18.&nbsp; X  
+            (Topic 2.10)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-18-SECT-3></A>
+                  <H3 class=docSection1Title>18.3 Objective 2: Set Up xdm</H3>
+                  <P class=docText>The <A name=lpicertnut-IDXTERM-1292></A>X  
+                  Display Manager, or <SPAN class=docEmphBold>xdm</SPAN>, is a  
+                  tool to manage X sessions on physical displays both locally  
+                  and across the network. Part of its job is to handle user  
+                  authentication through a graphical login screen, which  
+                  replaces the familiar text-mode login. </P><A  
+                  name=lpicertnut-CHP-18-SECT-3.1></A>
+                  <H4 class=docSection2Title>18.3.1 Configuring xdm</H4>
+                  <P class=docText><SPAN class=docEmphBold>xdm</SPAN> is 
+                  distributed as part of XFree86 and is configured by a series 
+                  of files located in <I>/etc/X11/xdm</I>. These files include: 
+                  </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>Xaccess</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file controls inbound requests from 
+                    remote hosts.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>Xresources</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file is similar to <I>.Xresources</I>, 
+                    discussed earlier. It holds configuration information for 
+                    some <SPAN class=docEmphBold>xdm</SPAN> resources, including 
+                    the graphical login screen. This file can be edited to 
+                    modify the appearance of the <SPAN 
+                    class=docEmphBold>xdm</SPAN> login screen. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>Xservers</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file associates the X display names 
+                    (<TT>:0</TT>, <TT>:1</TT>, ...) with either the local X 
+                    server software or a foreign display such as an X terminal. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>Xsession</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file contains the script <SPAN 
+                    class=docEmphBold>xdm</SPAN> launches after a successful 
+                    login. It usually looks for <I>.xsession</I> in the user's 
+                    home directory and executes the commands found there. If 
+                    such a file doesn't exist, <I>Xsession</I> starts a default 
+                    window manager (or environment) and applications. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>Xsetup_0</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file is a script started before the 
+                    graphical login screen. It often includes commands to set 
+                    colors, display graphics, or run other programs. This script 
+                    is executed as root. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>xdm-config</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file associates <SPAN 
+                    class=docEmphBold>xdm</SPAN> configuration resources with 
+                    the other files in this list. It usually isn't necessary to 
+                    make changes in this file unless an expert administrator 
+                    plans to customize <SPAN class=docEmphBold>xdm</SPAN> 
+                    configuration. </P></DD></DL><A 
+                  name=lpicertnut-CHP-18-SECT-3.1.1></A>
+                  <H5 class=docSection3Title>18.3.1.1 Running xdm manually</H5>
+                  <P class=docText><SPAN class=docEmphBold>xdm</SPAN> uses the X 
+                  server to run on your local display. Therefore, you must have 
+                  a working X configuration prior to using a display manager. 
+                  Then, to start <SPAN class=docEmphBold>xdm</SPAN><I>,</I> 
+                  simply enter it as <SPAN class=docEmphasis>root</SPAN>: </P><PRE># <B>xdm</B></PRE>
+                  <P class=docText><SPAN class=docEmphBold>xdm</SPAN> launches 
+                  the X server and display the graphical login, and you can log 
+                  in as usual. <SPAN class=docEmphBold>xdm</SPAN> then starts 
+                  your graphical environment. After you log out, <SPAN 
+                  class=docEmphBold>xdm</SPAN> resets and again displays the 
+                  login screen. </P>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1293></A><A 
+                  name=lpicertnut-IDXTERM-1294></A>Most Linux distributions  
+                  enable virtual consoles. You can switch among them using the  
+                  key combinations <SPAN class=docEmphBold>Ctrl-Alt-F1</SPAN>,  
+                  <SPAN class=docEmphBold>Ctrl-Alt-F2</SPAN>, and so on.  
+                  Typically, the first six consoles are set up as text-mode  
+                  screens, and X launches on console 7 (<SPAN  
+                  class=docEmphBold>Ctrl-Alt-F7</SPAN>). This means that, as  
+                  with <SPAN class=docEmphBold>startx</SPAN>, your original  
+                  text-mode console remains unchanged after you manually start  
+                  <SPAN class=docEmphBold>xdm</SPAN>. Therefore, you must log  
+                  out of your text-mode console if you plan to leave the system  
+                  unattended with <SPAN class=docEmphBold>xdm</SPAN> running  
+                  manually.<A name=IXTR3-96></A> <A name=IXTR3-97></A></P> 
+                  <P class=docText>If you want to stop <SPAN 
+                  class=docEmphBold>xdm</SPAN>, you first must be sure that all 
+                  of the X sessions under its management are logged out. 
+                  Otherwise, they'll die when <SPAN class=docEmphBold>xdm</SPAN> 
+                  exits and you could lose data. Then simply stop the <SPAN 
+                  class=docEmphBold>xdm</SPAN> process using <SPAN 
+                  class=docEmphBold>kill</SPAN> or <SPAN 
+                  class=docEmphBold>killall</SPAN> from a text console: </P><PRE># <B>killall xdm</B></PRE>
+                  <P class=docText>Of course, <SPAN class=docEmphBold>xdm</SPAN> 
+                  isn't very useful for your local system if you must always 
+                  start it manually. That's why most Linux distributions include 
+                  a boot-time option to start <SPAN class=docEmphBold>xdm</SPAN> 
+                  for you, eliminating the text-mode login completely. </P><A 
+                  name=lpicertnut-CHP-18-SECT-3.1.2></A>
+                  <H5 class=docSection3Title>18.3.1.2 Running xdm 
+                  automatically</H5>
+                  <P class=docText>For Linux systems using the System-V-style 
+                  initialization, a runlevel is usually reserved for login under 
+                  <SPAN class=docEmphBold>xdm</SPAN>. This line at the bottom of 
+                  <I>/etc/inittab</I> instructs <SPAN 
+                  class=docEmphBold>init</SPAN> to start <SPAN 
+                  class=docEmphBold>xdm</SPAN> for runlevel 5: </P><PRE># Run xdm in runlevel 5
+x:5:respawn:/usr/X11R6/bin/xdm -nodaemon</PRE>
+                  <P class=docText>Using this configuration, when the system  
+                  enters runlevel 5, <SPAN class=docEmphBold>xdm</SPAN> starts  
+                  and presents the graphical login as before. See <a class="docLink" href="05-2.htm">Section  
+                  5.2</a> for more information on runlevels. </P> 
+                  <P class=docText>It's also possible to automatically start 
+                  <SPAN class=docEmphBold>xdm</SPAN> simply by adding it to the 
+                  end of an initialization script, such as <I>rc.local</I>. This 
+                  method offers less control over <SPAN 
+                  class=docEmphBold>xdm</SPAN> but may be adequate for some 
+                  situations and for Linux distributions that don't offer 
+                  runlevels. </P><A name=lpicertnut-CHP-18-SECT-3.1.3></A>
+                  <H5 class=docSection3Title>18.3.1.3 Basic xdm 
+                  customization</H5>
+                  <P class=docText>You may wish to personalize the look of <SPAN  
+                  class=docEmphBold>xdm</SPAN> for your system. The look of the  
+                  graphical login screen can be altered by manipulating the  
+                  resources in <I>/etc/X11/xdm/Xresources</I>.<SUP  
+                  class=docFootnote>[6]</SUP> For example,  
+                  the following excerpt shows settings to control the greeting  
+                  (<SPAN class=docEmphasis>Welcome to Linux on smp-pc</SPAN>),  
+                  other prompts, and colors: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> Note that 
+                    <I>Xresources </I>uses <TT>!</TT> to initiate 
+                  comments.</P></BLOCKQUOTE><PRE>! Xresources file
+xlogin*borderWidth: 10
+xlogin*greeting: Welcome to Linux on CLIENTHOST
+xlogin*namePrompt: Login:\040
+xlogin*fail: Login incorrect - try again!
+xlogin*failColor: red
+xlogin*Foreground: Yellow
+xlogin*Background: MidnightBlue</PRE>
+                  <P class=docText>You can also include command-line options to 
+                  the X server in <I>/etc/X11/xdm/Xservers</I> if you wish to 
+                  override those found in <I>XF86Config</I>. For example, to 
+                  change the default color depth, add the <SPAN 
+                  class=docEmphBold>-bpp</SPAN> (bits per pixel) option for the 
+                  local display: </P><PRE># Xservers file
+:0 local /usr/X11R6/bin/X -bpp 24</PRE>
+                  <P class=docText>To include additional X programs or settings 
+                  on the graphical login screen, put them in 
+                  <I>/etc/X11/xdm/Xsetup_0</I>. In this example, the background 
+                  color of the X display is set to a solid color (in hexadecimal 
+                  form), and a clock is added at the lower righthand corner of 
+                  the screen: </P><PRE>#!/bin/sh
+# Xsetup 
+/usr/X11R6/bin/xsetroot -solid &quot;#356390&quot;
+/usr/X11R6/bin/xclock -digital -update 1 -geometry -5-5 &amp;</PRE>
+                  <P class=docText>Note that in this example, <TT>xsetroot</TT> 
+                  exits immediately after it sets the color, allowing the 
+                  <I>Xsetup_0</I> script to continue. <TT>xclock</TT>, however, 
+                  does not exit and must be put into the background using an 
+                  <TT>&amp;</TT> at the end of the command line. If such 
+                  commands are not placed into the background, the 
+                  <I>Xsetup_0</I> script hangs, and the login display does not 
+                  appear. </P><A name=lpicertnut-CHP-18-SECT-3.2></A>
+                  <H4 class=docSection2Title>18.3.2 X Stations</H4>
+                  <P class=docText><SPAN class=docEmphasis>X stations</SPAN>, 
+                  also known as <SPAN class=docEmphasis>X terminals</SPAN>, 
+                  sadly are a vanishing breed of low-cost display devices for X. 
+                  They are usually diskless systems that implement an X server 
+                  and drive a monitor. Such devices can be configured to access 
+                  a remote host to find an <SPAN class=docEmphBold>xdm</SPAN> 
+                  daemon or will broadcast to the entire network looking for a 
+                  "willing host" to offer <SPAN class=docEmphBold>xdm</SPAN><I> 
+                  </I>services. The selected system will run an X session across 
+                  the network with the X terminal as the target display. With 
+                  this setup, a large number of relatively inexpensive X 
+                  terminals can make use of a few high-powered host systems to 
+                  run graphical clients. </P><A 
+                  name=lpicertnut-CHP-18-SECT-3.2.1></A>
+                  <H5 class=docSection3Title>18.3.2.1 xdm for X terminals</H5>
+                  <P class=docText>To use an X terminal with your host, <SPAN 
+                  class=docEmphBold>xdm</SPAN> must first be running on the host 
+                  machine. The host listens for inbound connections from the X 
+                  terminals using <I>XDMCP</I>, the <SPAN 
+                  class=docEmphBold>xdm</SPAN> Control Protocol (the default 
+                  port for <I>xdmcp</I> is 177). When a request is received, 
+                  <SPAN class=docEmphBold>xdm</SPAN> responds with the same 
+                  graphical login screen that's used on the local system. The 
+                  difference is that the X server is implemented in the X 
+                  terminal hardware, not in the XFree86 software on the <SPAN 
+                  class=docEmphBold>xdm</SPAN> host, and all of the graphics 
+                  information is transmitted over the network. </P>
+                  <P class=docText>You can configure access to your system's 
+                  <SPAN class=docEmphBold>xdm</SPAN> daemon in the 
+                  <I>/etc/X11/xdm/Xaccess</I> file. This file is a simple list 
+                  of hosts that are to be restricted or enabled. To enable a 
+                  host, simply enter its name. To restrict a host, enter its 
+                  name with an exclamation point (<TT>!</TT>) before it. The 
+                  <TT>*</TT> wildcard is also allowed to handle groups of 
+                  devices. </P>
+                  <P class=docText>The following example allows access to all X 
+                  terminals on the local domain but prohibits access from 
+                  <TT>xterm1</TT> on an outside domain: </P><PRE>*.localdomain.com
+!xterm1.outsidedomain.com</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be aware of the  
+                        configuration files for <SPAN  
+                        class=docEmphBold>xdm</SPAN>, how they are used, and  
+                        where they are located. In particular, remember that the  
+                        <I>Xresources</I> file controls graphical login  
+                        properties. Also remember that <SPAN  
+                        class=docEmphBold>xdm</SPAN> can be started using a  
+                        special runlevel and that <SPAN  
+                        class=docEmphBold>xdm</SPAN> must be running for X  
+                        terminals to connect via XDMCP.<A name=IXTR3-98></A>  
+                      </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="18-3.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-18-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)500ms
+(xml)328ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)860ms
+--></BODY></HTML>

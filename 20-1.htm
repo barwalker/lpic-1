@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-20-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="20-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="20-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 20.&nbsp;  
+            Networking Services (Topic 1.13)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-20-SECT-1></A>
+                  <H3 class=docSection1Title>20.1 Objective 1: Configure and 
+                  Manage inetd and Related Services</H3>
+                  <P class=docText>Most <A name=IXT-20-350983></A>network  
+                  services execute as software <SPAN  
+                  class=docEmphasis>daemons</SPAN><A name=IXT-20-350984></A>,  
+                  which "listen" to a specific port for inbound requests from  
+                  client software on the outside. (See <a class="docLink" href="19-1.htm">Section  
+                  19.1</a> for a discussion on ports.) For example, the Telnet  
+                  daemon, <A name=IXT-20-350985></A><A  
+                  name=IXT-20-350986></A><SPAN class=docEmphBold>telnetd</SPAN>,  
+                  listens on port 23 for inbound requests from Telnet clients.  
+                  Each such request is handled by the daemon, which starts the  
+                  login process for the client. If a single server were to offer  
+                  many such services, many of the <SPAN  
+                  class=docEmphBold>telnetd</SPAN> daemons would be running at  
+                  any one time to handle multiple inbound Telnet requests. </P> 
+                  <P class=docText><A name=lpicertnut-IDXTERM-1426></A><A 
+                  name=lpicertnut-IDXTERM-1427></A>In <A  
+                  name=IXT-20-350987></A>order to reduce the number of daemons  
+                  necessary to service requests, the <SPAN  
+                  class=docEmphasis>Internet superdaemon</SPAN>, or <SPAN  
+                  class=docEmphBold>inetd</SPAN>, was created. Instead of  
+                  running individual daemons for each service, <SPAN  
+                  class=docEmphBold>inetd</SPAN> runs as a single service  
+                  listening to all of the desired port numbers (23 for <SPAN  
+                  class=docEmphBold>telnet</SPAN>, 21 for <SPAN  
+                  class=docEmphBold>ftp</SPAN>, etc.). When an inbound request  
+                  is received, it is handed off to the actual daemon for  
+                  processing. With this scheme, the host daemons are still used  
+                  as before, but they run only when needed and are started by  
+                  <SPAN class=docEmphBold>inetd</SPAN>, freeing resources for  
+                  other tasks. </P> 
+                  <P class=docText>This scheme also offers another convenience.  
+                  Instead of launching the target daemons directly, <SPAN  
+                  class=docEmphBold>inetd</SPAN> is usually configured to use  
+                  the TCP wrappers access control facility. TCP wrappers, or  
+                  <SPAN class=docEmphBold>tcpd</SPAN><A 
+                  name=IXT-20-350988></A><A name=IXT-20-350989></A> <A  
+                  name=IXT-20-350990></A>, allows the administrator to define  
+                  restrictions on the origin of inbound requests. TCP wrappers  
+                  is described fully in <a class="docLink" href="21-1.htm">Section  
+                  21.1</a>. </P>
+                  <P class=docText><SPAN class=docEmphBold>inetd</SPAN> is well 
+                  suited for services requested on a relatively infrequent 
+                  basis, such as <SPAN class=docEmphBold>telnet</SPAN> and <SPAN 
+                  class=docEmphBold>ftp</SPAN>. However, using <SPAN 
+                  class=docEmphBold>inetd</SPAN> on services such as Apache 
+                  would significantly impact the performance of a heavily used 
+                  server under constant load. In such cases, it is common to 
+                  simply configure the web server to handle its own connections. 
+                  </P><A name=lpicertnut-CHP-20-SECT-1.1></A>
+                  <H4 class=docSection2Title>20.1.1 The inetd Configuration 
+                  File</H4>
+                  <P class=docText><SPAN class=docEmphBold>inetd</SPAN><A 
+                  name=IXT-20-350991></A> is <A name=IXT-20-350992></A>usually  
+                  started during system initialization and continues to run  
+                  indefinitely (or until the process is stopped). When started  
+                  (and later in response to signal <TT>SIGHUP</TT>), <SPAN  
+                  class=docEmphBold>inetd</SPAN> reads its configuration file  
+                  from <I>/etc/inetd.conf</I><A name=IXT-20-350993></A>, which  
+                  is nothing more than a plain text file that defines the  
+                  services managed by <SPAN class=docEmphBold>inetd</SPAN>.  
+                  (Commented lines begin with <TT>#</TT>.) <a class="docLink" href="#lpicertnut-CHP-20-EX-1">Example  
+                  20-1</a> shows portions of an <I>inetd.conf</I><A  
+                  name=IXT-20-350994></A>, with lines wrapped to fit the page  
+                  (your <I>inetd.conf</I> will be different and should be  
+                  configured with your security requirements in mind; more on  
+                  this later). </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-20-EX-1></A>Example 20-1. Sample  
+                  inetd.conf File </H5><PRE># /etc/inetd.conf
+# Internet server configuration database
+# See inetd(8) for further information.
+#
+&lt;service_name&gt; &lt;socket_type&gt; &lt;proto&gt; &lt;flags&gt; &lt;user&gt;  &lt;server_path&gt;      &lt;args&gt;
+#
+ftp              stream       tcp    nowait   root    /user/sbin/tcpd   /user/sbin/in.ftpd
+telnet           stream       tcp    nowait   root    /usr/sbin/tcpd    /usr/sbin/in.telnetd
+#
+pop-2            stream       tcp    nowait   root    /usr/sbin/tcpd    ipop2d
+pop-3            stream       tcp    nowait   root    /usr/sbin/tcpd    ipop3d
+imap             stream       tcp    nowait   root    /usr/sbin/tcpd    imapd
+#
+finger           stream       tcp    nowait   nobody  /usr/sbin/tcpd    /usr/sbin/in-fingerd
+ident            stream       tcp    nowait   nobody  /usr/sbin/identd  identd -I
+#
+tftp             dgram        udp    wait     nobody  /usr/sbin/tcpd    /usr/sbin/in.tftpd /boot
+bootps           dgram        udp    wait     root    /usr/sbin/bootpd  bootpd -i -t 120</PRE> 
+                  <P class=docText><A name=IXT-20-350995></A>Each noncommented  
+                  line in <I>inetd.conf</I> must contain each of the following  
+                  fields: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>service_name</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This is the name of a service as defined in 
+                    <I>/etc/services</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>socket_type</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This entry specifies one of a few types of 
+                    communications the service will use. It's usually 
+                    <TT>stream</TT> or <TT>dgram</TT>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>proto</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This field specifies the service's protocol 
+                    from among those in <I>/etc/protocols</I>. For most 
+                    services, it will be either <TT>tcp</TT> or <TT>udp</TT>, 
+                    which correspond to the <TT>stream</TT> and <TT>dgram</TT> 
+                    socket types. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>flags</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The <TT>wait</TT>/<TT>nowait</TT> 
+                    (<TT>.max</TT>) flag is used only for datagram services, 
+                    where it helps to control the handling of inbound requests 
+                    and is typically set to <TT>wait</TT>. It should be set to 
+                    <TT>nowait</TT> for others. You can limit the number of 
+                    server instances spawned by <SPAN 
+                    class=docEmphBold>inetd</SPAN> within any 60-second interval 
+                    by appending a dot and the maximum number (<TT>.max</TT>). 
+                    For example, to limit the service to 20 instances, use 
+                    <TT>.20</TT> after the <TT>nowait</TT> flag: </P></DD></DL><PRE>nowait.20</PRE>
+                  <P class=docText>The default maximum is 40 instances 
+                  (<TT>.40</TT>).</P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>user[.group]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This entry specifies the username (and 
+                    optionally the group name) under which the service should 
+                    execute, allowing them to be run with fewer permissions than 
+                    <I>root</I>. A typical entry is the user <TT>nobody</TT>. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>server_ path</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This field is the full path to the  
+                    executable daemon of the server program. When TCP wrappers  
+                    is used, this entry specifies <TT>tcpd</TT>, as shown in <a class="docLink" href="#lpicertnut-CHP-20-EX-1">Example  
+                    20-1</a>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>args</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This last entry on the line may consist of  
+                    multiple fields. It contains the name of the server daemon  
+                    and all arguments that are to be passed to it.<SUP  
+                    class=docFootnote>[1]</SUP> </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[1]</A></SUP> The 
+                      daemon name is actually the first argument, or 
+                      <TT>argv[0]</TT> from a programming point of 
+                    view.</P></BLOCKQUOTE></DD></DL>
+                  <P class=docText>In many Linux installations, a majority of 
+                  the lines in <I>inetd.conf</I> are commented out to increase 
+                  security. The fewer services a system offers, the more likely 
+                  it is to stand up to an attack. You should review your file to 
+                  be certain that only necessary services are offered. </P><A 
+                  name=lpicertnut-CHP-20-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>20.1.1.1 TCP wrappers with 
+                  inetd</H5>
+                  <P class=docText><A name=IXT-20-350996></A><A 
+                  name=IXT-20-350997></A>If you have a need to <A  
+                  name=IXT-20-350998></A>control access to <SPAN  
+                  class=docEmphBold>inetd</SPAN>-managed services by IP address  
+                  or by domain name, you may wish to configure TCP wrappers. For  
+                  each inbound connection to a service protected by TCP  
+                  wrappers, <SPAN class=docEmphBold>tcpd</SPAN> consults two  
+                  files that define access: </P><A name=IXT-20-350999></A> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hosts.allow</I></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-20-350999></A>If a rule in this  
+                    file is met, access to the service is allowed.  
+                  </P></DD></DL><A name=IXT-20-351000></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hosts.deny</I></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-20-351000></A>If a rule in this  
+                    file is met, access to the service is denied. </P></DD></DL> 
+                  <P class=docText>Rules in these files can be constructed to  
+                  match all services or alternatively to match specific  
+                  services. If no match occurs in the two files, access to the  
+                  service (or services) is allowed. It is common to specify  
+                  particular rules in the <I>.allow</I><A  
+                  name=IXT-20-351001></A> <A name=IXT-20-351002></A>file and  
+                  provide a blanket denial in the <I>.deny</I> file, thereby  
+                  limiting access to clients you specifically allow. </P> 
+                  <P class=docText>The language in the control files consists of 
+                  a service list, followed by a colon, followed by a list of 
+                  hosts. Hosts may be specified by name or by IP address. For 
+                  example, to deny access to all service except inbound 
+                  <TT>ftp</TT> from the local domain, these two simple files 
+                  could be used: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>hosts.allow</I></SPAN> 
+                    <DD>
+                    <P class=docList>This entry allows FTP access to clients in 
+                    the local domain:</P></DD></DL><PRE>ftp: LOCAL</PRE>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>hosts.deny</I></SPAN> 
+                    <DD>
+                    <P class=docList>This entry denies access to all services 
+                    from all clients:</P></DD></DL><PRE>ALL: ALL</PRE>
+                  <P class=docText>The <I>hosts.deny</I> file is consulted after 
+                  <I>hosts.allow</I>, enabling the administrator to define 
+                  specific allow rules that will be matched prior to deny rules 
+                  or a blanket denial. </P><A 
+                  name=lpicertnut-CHP-20-SECT-1.2></A>
+                  <H4 class=docSection2Title>20.1.2 Starting and Stopping 
+                  Services</H4>
+                  <P class=docText><A name=IXT-20-351003></A>If <SPAN  
+                  class=docEmphBold>inetd</SPAN> is not running, all of the  
+                  services it manages are disabled. Likewise, if <SPAN  
+                  class=docEmphBold>inetd</SPAN> is reconfigured, any changes to  
+                  individual managed services take effect at the same time. To  
+                  cause <SPAN class=docEmphBold>inetd</SPAN> to reread its  
+                  configuration file, simply send it <TT>SIGHUP</TT>: </P><PRE>$ <B>killall -HUP inetd</B></PRE> 
+                  <P class=docText>All <SPAN class=docEmphBold>inetd</SPAN>  
+                  services that are commented out or missing from  
+                  <I>/etc/inetd.conf</I> will be disabled. However, a number of  
+                  other services on Linux systems are managed through other  
+                  means -- typically through the runlevel system and the series  
+                  of scripts and links in <I>/etc/rc.d</I>. See <a class="docLink" href="05-2.htm">Section  
+                  5.2</a> for details on starting and stopping services such as  
+                  Apache (<SPAN class=docEmphBold>httpd</SPAN>). </P> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be generally familiar with the  
+                        content and function of <I>inetd.conf</I>,  
+                        <I>hosts.allow</I>, and <I>hosts.deny</I>. Memorizing  
+                        configuration details is not necessary, but be prepared  
+                        for questions on available services and the effect of  
+                        TCP wrappers rules in the <I>hosts.allow</I> and  
+                        <I>hosts.deny</I> files. Be sure you understand what  
+                        happens to services that are commented out of  
+                        <I>inetd.conf</I>, and that <SPAN  
+                        class=docEmphBold>inetd</SPAN> must be signaled to  
+                        reread the control file after any changes.<A  
+                        name=IXTR3-117></A> <A  
+                    name=IXTR3-118></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="20-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-20-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-20-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-20-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)531ms
+(xml)313ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)891ms
+--></BODY></HTML>

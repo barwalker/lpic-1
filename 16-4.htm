@@ -1,0 +1,479 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-16-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="16-4.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="16-4.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 16.&nbsp;  
+            Text-Editing, Processing, and Printing (Topic  
+1.7)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-16-SECT-4></A>
+                  <H3 class=docSection1Title>16.4 Objective 4: Install and 
+                  Configure Local and Remote Printers</H3>
+                  <P class=docText><A name=IXT-16-350764></A><A 
+                  name=IXT-16-350765></A>If <A  
+                  name=lpicertnut-IDXTERM-1145></A>you've been able to run the  
+                  commands listed in Objectives 2 and 3, you already have the  
+                  printing system installed on your system. However, if you  
+                  don't have the package, you can get the source code from  
+                  MetaLab (ftp://ibiblio.org/pub/linux/system/printing), along  
+                  with the other software mentioned later in this Objective. You  
+                  should be able to build the software simply using <SPAN  
+                  class=docEmphBold>make</SPAN> followed by <SPAN  
+                  class=docEmphBold>make install</SPAN>. </P>
+                  <P class=docText>The printing system implemented by the <SPAN 
+                  class=docEmphBold>lpd</SPAN> suite is primitive by today's 
+                  standards. It provides for queuing, administrative control, 
+                  and some handling of special file formats but doesn't directly 
+                  address the recent trend away from character-oriented printers 
+                  to more programmable machines. Fortunately, the software is 
+                  modular, making its foundation easy to build upon, making it 
+                  sufficient for most printing situations. </P><A 
+                  name=lpicertnut-CHP-16-SECT-4.1></A>
+                  <H4 class=docSection2Title>16.4.1 /etc/printcap</H4>
+                  <P class=docText>The printing process on Linux systems is  
+                  governed by the "printer capability" file  
+                  <I>/etc/printcap</I><A name=IXT-16-350766></A> <A  
+                  name=IXT-16-350767></A>. This text file defines all of the  
+                  system's available print queues and their characteristics. The  
+                  file is parsed by <SPAN class=docEmphBold>lpd</SPAN><I>,</I>  
+                  which ignores blank lines and comments beginning with a pound  
+                  sign (<TT>#</TT>). Each printer definition in the file  
+                  comprises one logical line, which is often broken up among  
+                  multiple physical lines in the file using the <TT>\</TT>  
+                  line-continuation character. The definition itself is made up  
+                  of fields delimited by colons. The first field, which begins  
+                  in the first column of the file, holds the system name for the  
+                  printer, such as <SPAN class=docEmphBold>lp</SPAN>. This field  
+                  may contain aliases for the printer name separated by vertical  
+                  bars. The rest of the fields in the definition hold mnemonics  
+                  providing control flags and printer parameters. A basic  
+                  <I>printcap</I> file defining a single printer is shown in <a class="docLink" href="#lpicertnut-CHP-16-EX-1">Example  
+                  16-1</a>. </P>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-16-EX-1></A>Example 16-1. A Basic  
+                  /etc/printcap File </H5><PRE># A basic /etc/printcap
+#
+lp|ljet:\
+        :sd=/var/spool/lpd/lp:\
+        :mx#0:\
+        :sh:\
+        :lp=/dev/lp0:\
+        :if=/var/spool/lpd/lp/filter:
+        :lf=/var/spool/lpd/lp/log:</PRE> 
+                  <P class=docText>In this example, printer <TT>lp</TT> is 
+                  defined with the alias <TT>ljet</TT>. Either name could be 
+                  used to print with this printer, using <SPAN 
+                  class=docEmphBold>lpr -Plp</SPAN> or <SPAN 
+                  class=docEmphBold>lpr -Pljet</SPAN>. <TT>lp</TT> is the 
+                  default printer unless the user overrides it by placing a 
+                  different name in the <TT>PRINTER</TT> environment variable. 
+                  Note that the name of the printer has a trailing colon, 
+                  followed by the line-continuation character. The subsequent 
+                  lines contain printer attributes inside colon pairs. Some of 
+                  the frequently used attributes are: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>if=</SPAN></SPAN><I>input_ 
+                    filter</I></SPAN> 
+                    <DD>
+                    <P class=docList>Input filter (see <a class="docLink" href="16-2.htm#lpicertnut-CHP-16-SECT-2.2">Section  
+                    16.2.2</a> for additional information). </P></DD></DL> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>lp=</SPAN></SPAN><I>printer_device</I></SPAN> 
+
+                    <DD>
+                    <P class=docList>Local printer device, such as 
+                    <I>/dev/lp0</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>lf=</SPAN></SPAN><I>log_ file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Error message log file.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>mx=</SPAN></SPAN><I>max_size</I></SPAN> 
+                    <DD>
+                    <P class=docList>Maximum size of a print job in blocks. A 
+                    maximum size of <TT>#0</TT> indicates no limit. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>sd=</SPAN></SPAN><I>spool_directory</I></SPAN> 
+
+                    <DD>
+                    <P class=docList>Spool directory under 
+                    <I>/var/spool/lpd</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>sh</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Suppress header pages for a single printer 
+                    definition.</P></DD></DL>
+                  <P class=docText>Both locally attached and remote printers 
+                  will have queues defined in <I>/etc/printcap</I>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Familiarize yourself with the  
+                        <I>/etc/printcap</I> file and the attribute variables.  
+                        Remember that a single printer definition can have  
+                        multiple names and that multiple printer definitions can  
+                        refer to the same hardware.<A name=IXTR3-87></A>  
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-16-SECT-4.2></A>
+                  <H4 class=docSection2Title>16.4.2 Filters</H4>
+                  <P class=docText><A name=IXT-16-350768></A><A 
+                  name=IXT-16-350769></A>The printing process involves the  
+                  rendering of various data formats by a single hardware device.  
+                  Considering the wide range of possible formats (plain text,  
+                  HTML, PostScript, troff, TeX, and graphics files such as JPEG  
+                  and TIFF, just to name a few), affordable printers can't be  
+                  expected to natively handle them all. Instead, Linux systems  
+                  use a two-step transformation process: </P><SPAN  
+                  style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Raw input data is translated by a <SPAN  
+                    class=docEmphasis>filter</SPAN> program into a standard <A  
+                    name=IXT-16-350770></A>Page Description Language (PDL),  
+                    which is a form of PostScript for <A  
+                    name=IXT-16-350771></A>Linux. PostScript data is not printed  
+                    itself but is interpreted as a program to be executed by a  
+                    PostScript interpreter. PostScript can handle images, fonts,  
+                    and complex page layout. </P></SPAN> 
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>The PostScript program is sent to the  
+                    Ghostscript utility (<SPAN class=docEmphBold>gs</SPAN>) from  
+                    Aladdin Enterprises.<SUP class=docFootnote>[5]</SUP> <A  
+                    name=IXT-16-350772></A><A name=IXT-16-350773></A>Ghostscript  
+                    is a PostScript interpreter that contains a number of  
+                    specific printer drivers. As a result, it can translate  
+                    PostScript into a printer-specific format and send it to the  
+                    printer. </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[5]</A></SUP> A GPL'd 
+                      version of <SPAN class=docEmphBold>gs</SPAN> is offered 
+                      for free by Aladdin, which makes it appropriate for 
+                      inclusion in Linux 
+                    distributions.</P></BLOCKQUOTE></SPAN></LI></OL></SPAN>
+                  <P class=docText>This translation process and its intermediate  
+                  data formats are depicted in <a class="docLink" href="#lpicertnut-CHP-16-FIG-1">Figure  
+                  16-1</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-16-FIG-1></A>Figure 16-1. Print data  
+                  translation steps</H5><IMG height=106 alt=figs/lpi_1601.gif  
+                  src="16-4.files/lpi_1601.gif" width=349 border=0></CENTER>
+                  <P class=docText>Each print queue found in 
+                  <I>/etc/printcap</I> can use a different input filter, as 
+                  directed by the <TT>if=</TT><I>filter</I> specification. </P>
+                  <P class=docText>This data translation process sometimes isn't 
+                  necessary. For example, plain text can be printed directly by 
+                  most printers, making the translation to PostScript and 
+                  subsequent Ghostscript invocation unnecessary for basic 
+                  output. Many printers, particularly laser printers, have a 
+                  built-in PostScript interpreter, making Ghostscript 
+                  unnecessary. These situations are detected and controlled by 
+                  the filter program. </P>
+                  <P class=docText>A filter can be very simple. For example, you  
+                  may have implemented a filter yourself by using a utility like  
+                  <SPAN class=docEmphBold>pr</SPAN> to add a margin to a plain  
+                  text print job before piping it into <SPAN  
+                  class=docEmphBold>lpr</SPAN>. In practice, filters are  
+                  conceptually similar, but are more complex and capable than  
+                  this and usually handle multiple input formats. They do this  
+                  by looking at the <I>magic number</I> at the beginning of the  
+                  data file to be printed.<SUP class=docFootnote>[6]</SUP> As a result,  
+                  the filters are referred to as <SPAN class=docEmphasis>magic  
+                  filters</SPAN>. Two such filters are <SPAN  
+                  class=docEmphBold>APSfilter</SPAN> and <SPAN  
+                  class=docEmphBold>magicfilter</SPAN>. Your familiarity with  
+                  both filters is required for Exam 102. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> See the 
+                    <SPAN class=docEmphBold>file</SPAN> command's manpage for 
+                    more information on <I>magic </I>and <I>magic 
+                    numbers</I>.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-16-SECT-4.2.1></A>
+                  <H5 class=docSection3Title>16.4.2.1 APSfilter</H5>
+                  <P class=docText><A name=IXT-16-350774></A>This popular filter  
+                  program accepts files in the PostScript, TeX DVI, ASCII, PCL,  
+                  GIF, TIFF, Sun Raster files, FIG, PNM (pbmplus), HTML, and PDF  
+                  formats. As mentioned earlier, <SPAN  
+                  class=docEmphBold>APSfilter</SPAN> and the other software  
+                  discussed here can be found at MetaLab. After downloading  
+                  <SPAN class=docEmphBold>APSfilter</SPAN>, the compressed  
+                  tarball should be unpacked in <I>/usr/lib</I>. Then, simply  
+                  invoke <SPAN class=docEmphBold>cd apsfilter</SPAN> and run the  
+                  installer, <SPAN class=docEmphBold>. /SETUP</SPAN>. This  
+                  interactive program presents a menu-based installation, where  
+                  you direct such things as the Ghostscript printer driver  
+                  selection, the choice of printer interface (such as  
+                  <I>/dev/lp0</I>), the default print resolution, the use of  
+                  color, and the output paper format. It then creates new  
+                  printer entries in <I>/etc/printcap</I>, as well as creates  
+                  new printer spool directories, and sets file permissions and  
+                  ownership. It also compiles a few utilities necessary for the  
+                  proper use of the filter. Once <SPAN  
+                  class=docEmphBold>APSfilter</SPAN> is installed, your  
+                  <I>/etc/printcap</I> will look something like that shown in <a class="docLink" href="#lpicertnut-CHP-16-EX-2">Example  
+                  16-2</a>.<SUP class=docFootnote>[7]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[7]</A></SUP> <I>SETUP 
+                    </I>makes a backup copy of <I>/etc/printcap </I>called 
+                    <I>/etc/printcap.orig </I>before creating its new 
+                    <I>printcap </I>file.</P></BLOCKQUOTE>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-16-EX-2></A>Example 16-2. The APSfilter  
+                  /etc/printcap Description </H5><PRE># apsfilter setup Tue Mar 21 02:38:48 EST 2000
+#
+ascii|lp1|ljet3d-letter-ascii-mono|ljet3d ascii mono:\
+        :lp=/dev/lp0:\
+        :sd=/var/spool/lpd/ljet3d-letter-ascii-mono:\
+        :lf=/var/spool/lpd/ljet3d-letter-ascii-mono/log:\
+        :af=/var/spool/lpd/ljet3d-letter-ascii-mono/acct:\
+        :if=/usr/lib/apsfilter/filter/\
+aps-ljet3d-letter-ascii-mono:\
+        :mx#0:\
+        :sh:
+#
+lp|lp2|ljet3d-letter-auto-mono|ljet3d auto mono:\
+        :lp=/dev/lp0:\
+        :sd=/var/spool/lpd/ljet3d-letter-auto-mono:\
+        :lf=/var/spool/lpd/ljet3d-letter-auto-mono/log:\
+        :af=/var/spool/lpd/ljet3d-letter-auto-mono/acct:\
+        :if=/usr/lib/apsfilter/filter/\
+aps-ljet3d-letter-auto-mono:\
+        :mx#0:\
+        :sh:
+#
+raw|lp3|ljet3d-letter-raw|ljet3d auto raw:\
+        :lp=/dev/lp0:\
+        :sd=/var/spool/lpd/ljet3d-raw:\
+        :lf=/var/spool/lpd/ljet3d-raw/log:\
+        :af=/var/spool/lpd/ljet3d-raw/acct:\
+        :if=/usr/lib/apsfilter/filter/\
+aps-ljet3d-letter-raw:\
+        :mx#0:\
+        :sh:</PRE> 
+                  <P class=docText>As you can see, the installation creates 
+                  three printer definitions, each with multiple aliases and each 
+                  using the same output device. This allows some degree of 
+                  control over the filter, because the selection of the queue 
+                  implies specific print parameters. The first definition 
+                  (<TT>ascii</TT>) is intended to allow the user to force the 
+                  printing of plain text even if the data is a PostScript 
+                  program. The second entry (<SPAN class=docEmphBold>lp</SPAN>, 
+                  the default) is the standard magic <SPAN 
+                  class=docEmphBold>APSfilter</SPAN>, which tries to identify 
+                  the data type itself. The last definition allows users to 
+                  force <SPAN class=docEmphBold>APSfilter</SPAN> to send raw 
+                  data directly to the printer with no intervention. This can be 
+                  useful, for example, if you wish to print a PostScript file's 
+                  programming instructions. <SPAN 
+                  class=docEmphBold>APSfilter</SPAN> also configures logging and 
+                  accounting for each printer queue. Finally, the setup routine 
+                  optionally prints a graphical test page to verify your 
+                  installation. </P>
+                  <P class=docText>After <SPAN 
+                  class=docEmphBold>APSfilter</SPAN> is installed, you must 
+                  restart <SPAN class=docEmphBold>lpd</SPAN> to enable the new 
+                  print queues: </P><PRE># lpc restart all</PRE>
+                  <P class=docText>or: </P><PRE># /etc/rc.d/init.d/lpd stop
+# /etc/rc.d/init.d/lpd start</PRE>
+                  <P class=docText><SPAN class=docEmphBold>APSfilter</SPAN> 
+                  allows for some controls in <I>/etc/apsfilterrc</I> (and the 
+                  user file <I>~/.apsfilterrc</I>). Examples of these controls 
+                  are configuration for Ghostscript features, special control 
+                  sequences for printers, and configuration for the use of a 
+                  particular filter method. While this file is beyond the scope 
+                  of LPIC Level 1 Objectives, you should be familiar with it and 
+                  its purpose. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should install <SPAN 
+                        class=docEmphBold>APSfilter</SPAN> to become familiar 
+                        with the software and its setup. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-16-SECT-4.2.2></A>
+                  <H5 class=docSection3Title>16.4.2.2 Magicfilter</H5>
+                  <P class=docText>Another filter you may wish to try is <SPAN  
+                  class=docEmphBold>magicfilter</SPAN><A 
+                  name=IXT-16-350775></A>, which can also be obtained from  
+                  MetaLab. Unlike <SPAN class=docEmphBold>APSfilter</SPAN>,  
+                  which is implemented as scripts, <SPAN  
+                  class=docEmphBold>magicfilter</SPAN> is compiled from C and  
+                  comes with a traditional <SPAN  
+                  class=docEmphBold>configure</SPAN>, <SPAN  
+                  class=docEmphBold>make</SPAN>, <SPAN class=docEmphBold>make  
+                  install</SPAN> procedure.<SUP class=docFootnote>[8]</SUP> Building and  
+                  installing <SPAN class=docEmphBold>magicfilter</SPAN> is  
+                  straightforward and shouldn't cause any difficulty. However,  
+                  the installation does not automatically create print queues in  
+                  <I>/etc/printcap</I>, although you can easily define one by  
+                  setting the input filter to <I>/usr/local/bin/magicfilter</I>,  
+                  as shown in <a class="docLink" href="#lpicertnut-CHP-16-EX-3">Example  
+                  16-3</a>. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[8]</A></SUP> See <a class="docLink" href="14-3.htm">Section  
+                    14.3</a> for additional information on how to install  
+                    software.</P></BLOCKQUOTE>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-16-EX-3></A>Example 16-3. The magicfilter  
+                  Print Queue </H5><PRE>lp|lpmagic:\
+        :sd=/var/spool/lpd/lp:\
+        :mx#0:\
+        :sh:\
+        :lp=/dev/lp0:\
+        :if=/usr/local/bin/magicfilter:</PRE><A  
+                  name=lpicertnut-CHP-16-SECT-4.2.3></A>
+                  <H5 class=docSection3Title>16.4.2.3 Multiple filters</H5>
+                  <P class=docText>When a filter is installed, it is placed in a 
+                  directory where it can be called from as needed. The printer 
+                  definitions in <I>/etc/printcap</I> put the filter into 
+                  service. Because you can create as many printer definitions as 
+                  you like, it is possible to have multiple filters in place at 
+                  the same time. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should have a working knowledge of 
+                        the printing process, the role of filters, the role of 
+                        Ghostscript, and where PostScript data is used. Also 
+                        remember that PostScript is rendered directly on some 
+                        printers, eliminating the need for Ghostscript. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-16-SECT-4.3></A>
+                  <H4 class=docSection2Title>16.4.3 Remote lpd and Samba 
+                  Printers</H4>
+                  <P class=docText><A name=IXT-16-350776></A><A 
+                  name=IXT-16-350777></A><A name=IXT-16-350778></A>Configuring  
+                  your system to use a remote Linux printer (or other <SPAN  
+                  class=docEmphBold>lpd</SPAN> device, such as a  
+                  network-attached printer) can be as simple as adding a local  
+                  printer. Two additional configuration variables are added to  
+                  the printer definition in <I>/etc/printcap</I> to specify the  
+                  remote host and the queue name on that host. For example: </P><PRE>rlp:\
+        :sd=/var/spool/lpd/rlp:\
+        :rm=lphost:\
+        :rp=rlp:\
+        :mx#0:\
+        :sh:\
+        :if=/usr/local/bin/magicfilter:</PRE> 
+                  <P class=docText>Here, this local print queue will send jobs 
+                  to printer <TT>rlp</TT> residing on <TT>lphost</TT>. Since 
+                  remote printers still have local queues, you must create the 
+                  spool directory, in this example, <I>/var/spool/lpd/rlp</I>. 
+                  </P>
+                  <P class=docText>Configuring a remote printer that's on a 
+                  Windows network is also straightforward. (The Windows printer 
+                  must be properly shared and you must have Samba installed and 
+                  running.) First, a local spool directory is created as usual 
+                  -- for example, <I>/var/spool/lpd/winpr</I>. Next, an 
+                  <I>/etc/printcap</I> entry is added that looks something like 
+                  this: </P><PRE>winpr:\
+        :sd=/var/spool/lpd/winpr:\
+        :mx#0:\
+        :sh:\
+        :if=/usr/bin/smbprint:</PRE>
+                  <P class=docText>The input filter for this printer is 
+                  <TT>smbprint</TT>, a utility from the Samba software suite. 
+                  Finally, a <I>.config</I> file is created in the spool 
+                  directory, which contains: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>The NetBIOS name of the Windows machine 
+                    with the printer</P>
+                    <LI>
+                    <P class=docList>The service name that represents the 
+                    printer</P>
+                    <LI>
+                    <P class=docList>The password used to access that 
+                    service</P></LI></UL>
+                  <P class=docText>The service name and password are set in the 
+                  Sharing dialog box on the Windows machine. The <I>.config</I> 
+                  file might look similar to the following: </P><PRE>server=WINBOX
+service=WINPR
+password=&quot;&quot;</PRE>
+                  <P class=docText>After restarting <SPAN 
+                  class=docEmphBold>lpd</SPAN><I>,</I> you should be able to 
+                  print text documents to the Windows printer. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember the <SPAN  
+                        class=docEmphBold>rm</SPAN> and <SPAN  
+                        class=docEmphBold>rp</SPAN> printer configuration  
+                        variables for remote <SPAN class=docEmphBold>lpd</SPAN>  
+                        printers. For Samba printing on Windows clients,  
+                        remember to use the <SPAN  
+                        class=docEmphBold>smbprint</SPAN> input filter and to  
+                        create the <I>.config</I> file in the local spool  
+                        directory.<A name=IXTR3-88></A> 
+                  </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-16-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-16-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-16-SECT-4
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)672ms
+(xml)312ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)1062ms
+--></BODY></HTML>

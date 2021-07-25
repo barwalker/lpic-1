@@ -1,0 +1,1150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-19-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="19-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="19-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 19.&nbsp;  
+            Networking Fundamentals (Topic 1.12)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-19-SECT-1></A>
+                  <H3 class=docSection1Title>19.1 Objective 1: Fundamentals of 
+                  TCP/IP</H3>
+                  <P class=docText>The <A  
+                  name=lpicertnut-IDXTERM-1314></A>TCP/IP suite of protocols was  
+                  adopted as a military standard in 1983 and has since become  
+                  the world standard for network communications on the Internet  
+                  and on many LANs, replacing proprietary protocols in many  
+                  cases. Much has been written about TCP/IP and the history of  
+                  the Internet. This section includes only material cited by LPI  
+                  Objectives. </P><A name=lpicertnut-CHP-19-SECT-1.1></A>
+                  <H4 class=docSection2Title>19.1.1 Addressing and Masks</H4>
+                  <P class=docText>The <A name=lpicertnut-IDXTERM-1315></A><A  
+                  name=lpicertnut-IDXTERM-1316></A><A 
+                  name=lpicertnut-IDXTERM-1317></A>early specification of the <A  
+                  name=IXT-19-350909></A>Internet Protocol (IP) recognized that  
+                  it would be necessary to divide one's given allotment of IP  
+                  addresses into manageable sub-networks. Such division allows  
+                  for distributed management, added security (fewer hosts can  
+                  potentially snoop network traffic), and the use of multiple  
+                  networking technologies (Ethernet, Token Ring, ATM, etc.). IP  
+                  also enables convenient partitioning of the physical portions  
+                  of a network across physical and geographical boundaries. To  
+                  provide the capability to locally define networks, IP <A  
+                  name=IXT-19-350910></A><A name=IXT-19-350911></A>addresses are  
+                  considered as having two distinct parts: the part that  
+                  specifies a <I>subnet</I><A name=IXT-19-350912></A> <A  
+                  name=IXT-19-350913></A>and the one that specifies a network  
+                  interface.<SUP class=docFootnote>[1]</SUP> The boundary  
+                  between the network and host portions of an IP address is  
+                  delineated by a <I>subnet mask</I><A name=IXT-19-350914></A>,  
+                  <A name=IXT-19-350915></A>required by the TCP/IP configuration  
+                  of any network interface. Like the IP address, the subnet mask  
+                  is simply a 32-bit number specified in four 8-bit segments  
+                  using <I>dotted quad </I><A name=IXT-19-350916></A>decimal  
+                  notation. The familiar class <A  
+                  name=lpicertnut-IDXTERM-1326></A><A 
+                  name=lpicertnut-IDXTERM-1327></A><A 
+                  name=lpicertnut-IDXTERM-1328></A>A, B, and C networks have  
+                  these subnet masks: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> Remember 
+                    that IP addresses are assigned to network interfaces, not 
+                    host computers, which can have multiple interfaces. For this 
+                    discussion, however, we assume a 1:1 relationshipbetween 
+                    hosts and interfaces.</P></BLOCKQUOTE>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Class A: 255.0.0.0 (binary 
+                    11111111.00000000.00000000.00000000)</SPAN></I> 
+                    <DD>
+                    <P class=docList>8-bit network address and 24-bit host 
+                    address</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Class B: 255.255.0.0 (binary 
+                    11111111.11111111.00000000.00000000)</SPAN></I> 
+                    <DD>
+                    <P class=docList>16-bit network address and 16-bit host 
+                    address</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Class C: 255.255.255.0 
+                    (binary 11111111.11111111.11111111.00000000)</SPAN></I> 
+                    <DD>
+                    <P class=docList>24-bit network address and 8-bit host 
+                    address</P></DD></DL>
+                  <P class=docText>When logically AND'd with an IP address, the  
+                  bits set to in the subnet mask obscure the host portion of the  
+                  address. The remaining bits represent the <SPAN  
+                  class=docEmphasis>network address</SPAN><A 
+                  name=IXT-19-350917></A>. For example, a host on a class C  
+                  network might have an IP address of 192.168.1.127. Applying  
+                  the class C subnet mask 255.255.255.0, the network addressof  
+                  the subnet would be 192.168.1.0, and the host address would be  
+                  127, as depicted in <a class="docLink" href="#lpicertnut-CHP-19-FIG-1">Figure  
+                  19-1</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-19-FIG-1></A>Figure 19-1. Host interface  
+                  address calculation</H5><IMG height=116 alt=figs/lpi_1901.gif  
+                  src="19-1.files/lpi_1901.gif" width=389 border=0></CENTER>
+                  <P class=docText>While it is typical to use the predefined 
+                  classes (A, B, and C), the boundary can be moved left or right 
+                  in the IP address, allowing for fewer or more subnets, 
+                  respectively. For example, if a single additional bit were 
+                  added to the class C subnet mask, its IP address would be: 
+</P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>255.255.255.128 (binary 
+                    11111111.11111111.11111111.10000000)</SPAN></I> 
+                    <DD>
+                    <P class=docList>25-bit network address and 7-bit host 
+                    address</P></DD></DL>
+                  <P class=docText>With such a subnet defined on an existing 
+                  class C network such as 192.168.1.0, the 256-bit range is 
+                  split into two subnets, each with seven host bits. The first 
+                  of the two subnets begins at 192.168.1.0 (the subnet address) 
+                  and continues through 192.168.1.127 (the subnet broadcast 
+                  address). The second subnet runs from 192.168.1.128 through 
+                  192.168.1.255. Each of the two subnets can accommodate 126 
+                  hosts. To extend this example, consider two additional bits: 
+                  </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>255.255.255.192 (binary 
+                    11111111.11111111.11111111.11000000)</SPAN></I> 
+                    <DD>
+                    <P class=docList>26-bit network address and 6-bit host 
+                    address</P></DD></DL>
+                  <P class=docText>When applied to a class C network, four  
+                  subnets are created, each with six host bits. Just as before,  
+                  the first subnet begins at 192.168.1.0 but continues only  
+                  through 192.168.1.63. The next subnet runs from 192.168.1.64  
+                  through 192.168.1.127 and so on. Each of the four subnets can  
+                  accommodate 62 hosts. <a class="docLink" href="#lpicertnut-CHP-19-TABLE-1">Table  
+                  19-1</a> shows more detail on class C subnets, considering  
+                  only the host portion of the address. </P><A  
+                  name=lpicertnut-CHP-19-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 19-1. Class C IP Subnet Detail 
+                    </H5></CAPTION>
+                    <COLGROUP span=8>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Subnet Mask</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Number of Subnets</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Network Address</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Broadcast Address</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Minimum IP</P>
+                        <P class=docText>Address</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Maximum IP</P>
+                        <P class=docText>Address</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Number of Hosts</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Total Hosts</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>128</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>127</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>126</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>126</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>128</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>255</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>129</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>254</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>126</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>252</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>192</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>4</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>63</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>62</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>62</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>64</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>127</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>65</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>126</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>62</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>128</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>191</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>129</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>190</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>62</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>192</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>255</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>193</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>254</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>62</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>248</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>224</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>8</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>31</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>32</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>63</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>33</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>62</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>64</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>95</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>65</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>94</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>96</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>127</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>97</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>126</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>128</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>159</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>129</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>158</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>160</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>191</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>161</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>190</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>192</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>223</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>193</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>222</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>&nbsp;</TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell>
+                        <P class=docText>224</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>255</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>225</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>254</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>30</P></TD>
+                      <TD class=docTableCell>
+                        <P 
+                  class=docText>240</P></TD></TR></TBODY></TABLE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be prepared to define network and host  
+                        addresses when provided an IP address and a subnet mask.  
+                        Practice with a few subnet sizes within at least one  
+                        classification (A, B, or C). Also, because the use of  
+                        decimal notation can cloud human interpretation of IP  
+                        addresses and masks, be ready to do binary-to-decimal  
+                        conversion on address numbers.<A name=IXTR3-100></A> <A  
+                        name=IXTR3-101></A><A 
+                    name=IXTR3-102></A></P></TD></TR></TBODY></TABLE>
+                  <P class=docText>As you can see, as the number of subnets  
+                  increases, the total number of hosts that can be deployed  
+                  within the original class C address range reduces. This is due  
+                  to the loss of both broadcast addresses and network addresses  
+                  to the additional subnets.<A name=IXTR3-103></A> <A  
+                  name=IXTR3-104></A><A name=IXTR3-105></A></P><A 
+                  name=lpicertnut-CHP-19-SECT-1.2></A>
+                  <H4 class=docSection2Title>19.1.2 Protocols</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1336></A><A 
+                  name=lpicertnut-IDXTERM-1337></A>TCP/IP is a suite of  
+                  protocols, including the Transmission Control Protocol (TCP),  
+                  Internet Protocol (IP), User Datagram Protocol (UDP), and  
+                  Internet Control Message Protocol (ICMP), among others. Some  
+                  protocols use <SPAN class=docEmphasis>handshaking</SPAN><A  
+                  name=IXT-19-350918></A> (the exchange of control information  
+                  among communicating systems) to establish and maintain a  
+                  connection. Such a protocol is said to be <SPAN  
+                  class=docEmphasis>connection-oriented</SPAN> and <SPAN  
+                  class=docEmphasis>reliable</SPAN>, because the protocol itself  
+                  is responsible for handling transmission errors, lost packets,  
+                  and packet arrival order. A protocol that does not exchange  
+                  control information is said to be <SPAN  
+                  class=docEmphasis>connectionless</SPAN> and <SPAN  
+                  class=docEmphasis>unreliable</SPAN>. In this context,  
+                  "unreliable" simply means that the protocol doesn't handle  
+                  transmission problems itself; they must be corrected in the  
+                  application or system libraries. Connectionless protocols are  
+                  simpler and have less overhead than connection-oriented  
+                  protocols. TCP/IP is often said to be a <I>stack</I><A  
+                  name=IXT-19-350919></A> of protocols, because protocols are  
+                  built in a hierarchy of <SPAN  
+                  class=docEmphasis>layers</SPAN><A name=IXT-19-350920></A>.  
+                  Low-level protocols are used by higher-level protocols on  
+                  adjacent layers of the protocol stack: </P><A  
+                  name=IXT-19-350921></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>TCP</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-19-350921></A>TCP is a  
+                    connection-oriented transport agent used by applications to  
+                    establish a network connection. TCP transports information  
+                    across networks by handshaking and retransmitting  
+                    information as needed in response to errors on the network.  
+                    TCP guarantees packet arrival and provides for the correct  
+                    ordering of received packets. TCP is used by many network  
+                    services, including FTP, Telnet, and SMTP. By using TCP,  
+                    these applications don't need to establish their own  
+                    error-checking mechanisms, thus making their design simpler  
+                    and easier to manage. </P></DD></DL><A name=IXT-19-350922></A> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>IP</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-19-350922></A>IP<SUP 
+                    class=docFootnote>[2]</SUP> can be  
+                    thought of as the fundamental building block of the  
+                    Internet. IP, which is connectionless, defines datagrams  
+                    (the basic unit of transmission), establishes the addressing  
+                    scheme (the IP address), and provides for the routing of  
+                    datagrams between networks.<SUP class=docFootnote>[3]</SUP> IP is said  
+                    to provide a <SPAN class=docEmphasis>datagram delivery  
+                    service</SPAN>. Other higher-level protocols use IP as an  
+                    underlying carrier. </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[2]</A></SUP> IP is 
+                      not specifically mentioned in this LPI Objective, but its 
+                      fundamental importance warrants its mention 
+                    here.</P></BLOCKQUOTE>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[3]</A></SUP> This is 
+                      an oversimplification of IP, of course, but you get the 
+                      idea.</P></BLOCKQUOTE></DD></DL><A name=IXT-19-350923></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>UDP</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-19-350923></A>UDP is a  
+                    connectionless transport agent. It provides application  
+                    programs direct access to IP, allowing them to exchange  
+                    information with a minimum of protocol overhead. On the  
+                    other hand, because UDP offers no assurance that packets  
+                    arrive at destinations as intended, software must manage  
+                    transmission errors and other problems such as missing and  
+                    incorrectly ordered packets. UDP is used by applications  
+                    such as DNS and NFS. </P></DD></DL><A  
+                  name=IXT-19-350924></A><A name=IXT-19-350925></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>ICMP</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-19-350924></A>ICMP is a  
+                    connectionless transport agent that is used to exchange  
+                    control information among networked systems. It uses IP  
+                    datagrams for the following control, error-reporting, and  
+                    informational functions: </P><A name=IXT-19-350925></A> 
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Flow control</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-19-350925></A>Sometimes  
+                      inbound traffic becomes too heavy for a receiving system  
+                      to process. In such cases, the receiving system can send a  
+                      message via ICMP to the source instructing it to  
+                      temporarily stop sending datagrams. </P></DD></DL> 
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Detecting unreachable 
+                      destinations</SPAN></I> 
+                      <DD>
+                      <P class=docList>Various parts of network infrastructure 
+                      are capable of detecting that a network destination is 
+                      unreachable. In this case, ICMP messages are sent to the 
+                      requesting system. </P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Redirecting 
+                      routes</SPAN></I> 
+                      <DD>
+                      <P class=docList>ICMP is used among network components to 
+                      instruct a sender to use a different gateway. </P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Checking remote 
+                      hosts</SPAN></I> 
+                      <DD>
+                      <P class=docList>Hosts can transmit echo messages via ICMP 
+                      to verify that a remote system's Internet Protocol is 
+                      functioning. If so, the original message is returned. This 
+                      is implemented in the <SPAN class=docEmphBold>ping</SPAN> 
+                      command. </P></DD></DL></DD></DL><A name=IXT-19-350926></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>PPP</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-19-350926></A>PPP is used for  
+                    TCP/IP dialup network access via modem. The configuration  
+                    and use of PPP is described later in Objective 4.  
+                  </P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You will need a general understanding 
+                        of the control messages sent via ICMP. In particular, 
+                        note that ICMP does not transmit data and that it is 
+                        used by <SPAN class=docEmphBold>ping</SPAN>. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-19-SECT-1.3></A>
+                  <H4 class=docSection2Title>19.1.3 TCP/IP Services</H4>
+                  <P class=docText><A name=IXT-19-350927></A>When an inbound  
+                  network request is made, such as that from a web browser or  
+                  <I>FTP</I> client, it is sent to the IP address of the server.  
+                  In addition, the request carries inside it a <SPAN  
+                  class=docEmphasis>port number</SPAN><A name=IXT-19-350928></A> 
+                  (or just <SPAN class=docEmphasis>port</SPAN>), which is a  
+                  16-bit value placed near the beginning of a network packet.  
+                  The port number defines the type of server software that  
+                  should respond to the request. For example, by default, web  
+                  browsers send requests encoded for port 80.<SUP  
+                  class=docFootnote>[4]</SUP> Web servers  
+                  "listen" to port 80 and respond to incoming requests. The  
+                  encoded port can be considered part of the address of a  
+                  request. While the IP address specifies a particular host,<SUP  
+                  class=docFootnote>[5]</SUP> the port  
+                  specifies a specific service available on that host. Many port  
+                  numbers are predefined, and the list is expanded as needed to  
+                  accommodate new technologies. The official list of port number  
+                  assignments is managed by the <A  
+                  name=IXT-19-350929></A>Internet Assigned Numbers Authority  
+                  (IANA). The ports known by your system are listed in  
+                  <I>/etc/services</I><A name=IXT-19-350930></A>. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> Port 
+                    numbers are usually referred to in decimal 
+                  notation.</P></BLOCKQUOTE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> Well, 
+                    actually a particular interface.</P></BLOCKQUOTE>
+                  <P class=docText><A name=IXT-19-350931></A>Port numbers 1  
+                  through 1023 are often referred to as <SPAN  
+                  class=docEmphasis>privileged ports</SPAN><A 
+                  name=IXT-19-350932></A> <A name=IXT-19-350933></A>because the  
+                  services that use them often run with superuser authority.  
+                  Many of these, such as ports used for FTP (21), Telnet (23),  
+                  and HTTP (80), are often referred to as <SPAN  
+                  class=docEmphasis>well-known ports</SPAN><A 
+                  name=IXT-19-350934></A> <A name=IXT-19-350935></A>because they  
+                  are standards. Port numbers from 1024 through 65535 (the  
+                  maximum) are <SPAN class=docEmphasis>unprivileged  
+                  ports</SPAN><A name=IXT-19-350936></A> and can be used by  
+                  applications run by ordinary system users. </P> 
+                  <P class=docText>During the initial contact, the client  
+                  includes a local, randomly selected, unprivileged port on the  
+                  client machine for the server to use when responding to the  
+                  request. <A name=IXT-19-350937></A>Client-to-server  
+                  communications use the well-known port and the  
+                  server-to-client communications use the randomly selected  
+                  port. This Objective requires you to be familiar with the  
+                  privileged port numbers detailed in <a class="docLink" href="#lpicertnut-CHP-19-TABLE-2">Table  
+                  19-2</a>. </P><A name=lpicertnut-CHP-19-TABLE-2></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 19-2. Common Privileged Port 
+                    Numbers </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Port Number</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Assigned Use</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>20</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>FTP data </P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>When an FTP session is opened, the 
+                        binary or ASCII data flows to the server using port 20, 
+                        while control </P>
+                        <P class=docText>information flows on port 21. During 
+                        use, both ports are managed by an <SPAN 
+                        class=docEmphasis>ftp daemon</SPAN>, such as <SPAN 
+                        class=docEmphBold>wu-ftpd</SPAN> or <SPAN 
+                        class=docEmphBold>PROftpd</SPAN>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>21</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>FTP control</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>23</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Telnet server</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Inbound Telnet requests are sent to 
+                        server port 23 and processed by <SPAN 
+                        class=docEmphBold>telnetd</SPAN>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>25</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>SMTP server</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This port is used by mail transfer 
+                        agents (MTAs) such as sendmail.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>53</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>DNS server</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Used by the Domain Name System server, 
+                        <SPAN class=docEmphBold>named</SPAN>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>67</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>BOOTP/DHCP server</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A BOOTP, or the more commonly used, 
+                        DHCP server.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>68</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>BOOTP/DHCP client</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The client side for 
+                    BOOTP/DHCP.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>80</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>HTTP server</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Web servers, such as Apache (<SPAN 
+                        class=docEmphBold>httpd</SPAN>), usually listen in on 
+                        this port. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>110</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>POP3</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The Post Office Protocol (POP) is used 
+                        by mail client programs to transfer mail from a server. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>119</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NNTP Server</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This port is used by news servers for 
+                        Usenet news.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>139</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>NetBIOS</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Reserved for Microsoft's LAN network 
+                        manager.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>143</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>IMAP</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>An alternate to POP3, IMAP is another 
+                        type of mail server.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>161</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>SNMP</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Agents running on monitored systems use 
+                        this port for access to the Simple Network Management 
+                        Protocol. </P></TD></TR></COLGROUP></TBODY></TABLE>
+                  <P class=docText>This list is a tiny fraction of the many 
+                  well-known ports, but it may be necessary for you to know them 
+                  both by name and by number. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should commit the list of ports in <a class="docLink" href="#lpicertnut-CHP-19-TABLE-2">Table  
+                        19-2</a> to memory so you can recognize a type of  
+                        network connection solely by its port number. Your exam  
+                        is likely to have at least one question on how a  
+                        specific port is used. </P></TD></TR></TBODY></TABLE><A  
+                  name=lpicertnut-CHP-19-SECT-1.4></A>
+                  <H4 class=docSection2Title>19.1.4 TCP/IP Utilities</H4>
+                  <P class=docText>The following popular applications, while not 
+                  strictly a part of TCP/IP, are usually provided along with a 
+                  TCP/IP implementation. </P><A name=p2_ch09-12-fm2xml></A><A 
+                  name=IXT-19-350938></A><A name=IXT-19-350939></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>dig</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-14-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>dig hostname</PRE><A name=p2_ch09-15-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><SPAN class=docEmphBold>dig</SPAN><A 
+                  name=IXT-19-350938></A> <A name=IXT-19-350939></A>obtains  
+                  information from DNS servers. Note that additional  
+                  command-line arguments and options are available for <SPAN  
+                  class=docEmphBold>dig</SPAN> but are beyond the scope of Exam  
+                  102. </P><A name=p2_ch09-16-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE>$ <B>dig redhat.com</B>
+
+; &lt;&lt;&gt;&gt; DiG 8.2 &lt;&lt;&gt;&gt; redhat.com any
+;; res options: init recurs defnam dnsrch
+;; got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 6
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 4, 
+;; ADDITIONAL: 5 QUERY SECTION:
+;;      redhat.com, type = ANY, class = IN
+
+;; ANSWER SECTION:
+redhat.com.             22h36m45s IN NS  ns.redhat.com.
+redhat.com.             22h36m45s IN NS  ns2.redhat.com.
+redhat.com.             22h36m45s IN NS  ns3.redhat.com.
+redhat.com.             22h36m45s IN NS  speedy.redhat.com.
+redhat.com.             23h48m10s IN MX  10 mail.redhat.com.
+redhat.com.             23h48m10s IN A  207.175.42.154
+
+;; AUTHORITY SECTION:
+redhat.com.             22h36m45s IN NS  ns.redhat.com.
+redhat.com.             22h36m45s IN NS  ns2.redhat.com.
+redhat.com.             22h36m45s IN NS  ns3.redhat.com.
+redhat.com.             22h36m45s IN NS  speedy.redhat.com.
+
+;; ADDITIONAL SECTION:
+ns.redhat.com.          1d23h48m10s IN A  207.175.42.153
+ns2.redhat.com.         1d23h48m10s IN A  208.178.165.229
+ns3.redhat.com.         1d23h48m10s IN A  206.132.41.213
+speedy.redhat.com.      23h48m10s IN A  199.183.24.251
+mail.redhat.com.        23h48m10s IN A  199.183.24.239
+
+;; Total query time: 81 msec
+;; FROM: smp to SERVER: default -- 209.195.201.3
+;; WHEN: Wed Apr  5 03:15:03 2000
+;; MSG SIZE  sent: 28  rcvd: 275</PRE><A 
+                  name=p2_ch09-17-fm2xml></A><A 
+                  name=lpicertnut-IDXTERM-1360></A><A name=IXTR3-106></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ftp</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-19-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ftp [options] host
+...interactive commands...</PRE><A name=p2_ch09-20-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1360></A>Establish  
+                  an interactive File Transfer Protocol (FTP) connection with  
+                  <I>host</I> in order to transfer binary or text files. FTP  
+                  creates an interactive dialog and allows for two-way file  
+                  transfer. The dialog includes username/password  
+                  authentication, user commands, and server responses. </P><A  
+                  name=p2_ch09-21-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns off interactive prompting during 
+                    multiple file transfers (also see the <SPAN 
+                    class=docEmphBold>prompt</SPAN> command). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Sets verbose mode, displays server 
+                    responses and transfer statistics.</P></DD></DL><A 
+                  name=p2_ch09-22-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used commands</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>ascii</SPAN>, <SPAN 
+                    class=docEmphBold>binary</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Establish the transfer mode for files. 
+                    ASCII mode is provided to correctly transfer text among 
+                    computer architectures where character encoding differs. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>get</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Receive a single <I>file</I> from the 
+                    server.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mget</SPAN> <I>files</I></SPAN> 
+                    <DD>
+                    <P class=docList>Receive multiple <I>files</I> from the 
+                    server.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>ls</SPAN> <SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Obtain a directory listing from the server, 
+                    optionally listing <I>files</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>put</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Send a single <I>file</I> to the 
+                    server</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mput</SPAN> <I>files</I></SPAN> 
+                    <DD>
+                    <P class=docList>Send multiple <I>files</I> to the 
+                    server.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>prompt</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Toggle on and off interactive prompting 
+                    during <SPAN class=docEmphBold>mget</SPAN> and <SPAN 
+                    class=docEmphBold>mput</SPAN> (also see the <SPAN 
+                    class=docEmphBold>-i</SPAN> option). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>pwd</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the working remote 
+                  directory.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>quit</SPAN>, <SPAN 
+                    class=docEmphBold>exit</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Cleanly terminate the <I>FTP</I> 
+                    session.</P></DD></DL><A name=p2_ch09-23-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Get a file from machine <TT>smp</TT>:</P><PRE>$ <B>ftp -v smp</B>
+Connected to smp.
+220 smp FTP server (Version wu-2.4.2-VR17(1) 
+Mon Apr 19 09:21:53 EDT 1999) ready.
+Name (smp:root): <B>jdean</B>
+331 Password required for jdean.
+Password:<B>&lt;password here&gt;</B>
+230 User jdean logged in.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; <B>ls myfile</B>
+200 PORT command successful.
+150 Opening ASCII mode data connection for /bin/ls.
+-rw-r--r--   1 jdean    jdean          29 Jan 24 01:28 myfile
+226 Transfer complete.
+ftp&gt; <B>binary</B>
+200 Type set to I.
+ftp&gt; <B>get myfile</B>
+local: myfile remote: myfile
+200 PORT command successful.
+150 Opening BINARY mode data connection for myfile 
+(29 bytes).
+226 Transfer complete.
+29 bytes received in 0.000176 secs (1.6e+02 Kbytes/sec)
+ftp&gt; <B>quit</B>
+221-You have transferred 29 bytes in 1 files.
+221-Total traffic for this session was 773 bytes in 3 transfers.
+221-Thank you for using the FTP service on smp.
+221 Goodbye.</PRE><A name=p2_ch09-24-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Many FTP servers are set up to receive 
+                  requests from nonauthenticated users. Such public access is 
+                  said to be <SPAN class=docEmphasis>anonymous</SPAN>. Anonymous 
+                  FTP is established just like any FTP connection, except that 
+                  <TT>anonymous</TT> is used as the username. An email address 
+                  is commonly used as a password to let the system owner know 
+                  who is transferring files: </P><A name=IXTR3-106></A><PRE># <B>ftp -v smp</B>
+Connected to smp.
+220 smp FTP server (Version wu-2.4.2-VR17(1) 
+Mon Apr 19 09:21:53 EDT 1999) ready.
+Name (smp:root): <B>anonymous</B>
+331 Guest login ok, send your complete e-mail address as password.
+Password: <B>me@mydomain.com</B>
+230 Guest login ok, access restrictions apply.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; <B>&lt;commands follow...&gt;</B></PRE><A 
+                  name=p2_ch09-25-fm2xml></A><A name=IXT-19-350940></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ping</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-27-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ping hostname</PRE><A name=p2_ch09-28-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350940></A>The <SPAN  
+                  class=docEmphBold>ping</SPAN> command is used to send an ICMP  
+                  echo request to <I>hostname</I> and report on how long it  
+                  takes to receive a corresponding ICMP echo reply. Much like  
+                  sonar systems send a pulse (or "ping") to a target and measure  
+                  transit time, <SPAN class=docEmphBold>ping</SPAN> sends a  
+                  network packet to test the availability of a network node.  
+                  This technique is often used as a basic debugging technique  
+                  when network problems arise. </P><A  
+                  name=lpicertnut-CHP-19-SECT-1.4.1></A>
+                  <H5 class=docSection3Title>19.1.4.1 Example</H5>
+                  <P class=docText>Ping a remote host and terminate using <SPAN 
+                  class=docEmphBold>Ctrl-C</SPAN> after five packets are 
+                  transmitted: </P><PRE>$ <B>ping lpi.org</B>
+PING lpi.org (209.167.177.93) from 192.168.1.30 : 
+   56(84) bytes of data.
+64 bytes from new.lpi.org (209.167.177.93): 
+   icmp_seq=0 ttl=240 time=51.959 msec
+64 bytes from new.lpi.org (209.167.177.93): 
+   icmp_seq=1 ttl=240 time=60.967 msec
+64 bytes from new.lpi.org (209.167.177.93): 
+   icmp_seq=2 ttl=240 time=47.173 msec
+64 bytes from new.lpi.org (209.167.177.93): 
+   icmp_seq=3 ttl=240 time=46.887 msec
+64 bytes from new.lpi.org (209.167.177.93): 
+   icmp_seq=4 ttl=240 time=46.836 msec
+ 
+--- lpi.org ping statistics ---
+5 packets transmitted, 5 packets received, 0% packet loss
+round-trip min/avg/max/mdev = 46.836/50.764/60.967/5.460 ms</PRE><A 
+                  name=p2_ch09-29-fm2xml></A><A name=IXT-19-350941></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>telnet</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-31-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>telnet [host] [port]</PRE><A name=p2_ch09-32-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350941></A>Establish a  
+                  connection to <I>host</I> (either a system name or IP address)  
+                  using <I>port</I>. If a specific <I>port</I> is omitted, the  
+                  default port of 23 is assumed. If <I>host</I> is omitted,  
+                  <SPAN class=docEmphBold>telnet</SPAN> goes into an interactive  
+                  mode similar to <SPAN class=docEmphBold>ftp</SPAN>. </P><A  
+                  name=p2_ch09-33-fm2xml></A><A name=IXT-19-350942></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>traceroute</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-35-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>traceroute hostname</PRE><A name=p2_ch09-36-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350942></A>Attempt to display  
+                  the route over which packets must travel to reach a  
+                  destination <I>hostname</I>. It is included here because it is  
+                  mentioned in this Objective, but Objective 3 also requires  
+                  <SPAN class=docEmphBold>traceroute</SPAN>. See the synopsis in  
+                  Objective 3 for full information. </P><A  
+                  name=p2_ch09-37-fm2xml></A><A name=IXT-19-350943></A><A 
+                  name=IXTR3-107></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>whois</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-39-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>whois target[@server]
+fwhois target[@server]</PRE><A name=p2_ch09-40-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350943></A>Query the <SPAN  
+                  class=docEmphBold>whois</SPAN> database for <I>target</I>.  
+                  Such a database contains information on domain names, assigned  
+                  IP addresses, and people associated with them. In the early  
+                  days of the Internet, when domain registration was handled  
+                  solely by the Internet Network Information Center (InterNIC),  
+                  <I>server</I> was understood to be that of the InterNIC.  
+                  Additional registrars now exist to process domain  
+                  registrations, some of which have their own <SPAN  
+                  class=docEmphBold>whois</SPAN> databases for public access.  
+                  </P>
+                  <P class=docText>The version of <SPAN 
+                  class=docEmphBold>whois</SPAN> provided with Linux is a link 
+                  to <SPAN class=docEmphBold>fwhois</SPAN>. <I>target</I> is a 
+                  domain name or user <SPAN class=docEmphasis>handle</SPAN>. 
+                  <I>server</I> is a valid <SPAN class=docEmphBold>whois</SPAN> 
+                  server, which defaults to <I>rs.internic.net</I>. The 
+                  information returned includes contact information, domain 
+                  names, IP addresses, and DNS servers. Note that many web sites 
+                  are available for <SPAN class=docEmphBold>whois</SPAN> 
+                  searches as well, particularly for checking on domain name 
+                  availability. </P><A name=p2_ch09-41-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE>$ <B>fwhois linuxdoc.org@whois.networksolutions.com</B>
+Registrant: 
+Linux Documentation Project (LINUXDOC-DOM) 
+   4428 NE 74th Ave. 
+   Portland, OR 97218
+   US
+   Domain Name: LINUXDOC.ORG
+   Administrative Contact, Technical Contact, Zone Contact: 
+
+      Account, Hostmaster  (AH243-ORG)  
+        hostmaster@LINUXPORTS.COM
+      Command Prompt Software
+      4428 NE 74th Ave. 
+      Portland, OR 97218
+      US
+      (503)493-1611
+   Billing Contact: 
+
+      Account, Hostmaster  (AH243-ORG)
+        hostmaster@LINUXPORTS.COM
+      Command Prompt Software
+      4428 NE 74th Ave. 
+      Portland, OR 97218
+      US
+      (503)493-1611
+   Record last updated on 15-Feb-2000
+   Record created on 20-Feb-1999
+   Database last updated on 5-Apr-2000 12:51:28 EDT
+   Domain servers in listed order:
+   NS1.OPENDOCS.ORG             209.102.107.110
+   NS1.INETARENA.COM            206.129.216.1
+   NS.UNC.EDU                   152.2.21.1</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must have a working knowledge of  
+                        when and how to use the <SPAN  
+                        class=docEmphBold>dig</SPAN>, <SPAN  
+                        class=docEmphBold>ftp</SPAN>, <SPAN  
+                        class=docEmphBold>ping</SPAN>, <SPAN  
+                        class=docEmphBold>telnet</SPAN>, <SPAN  
+                        class=docEmphBold>traceroute</SPAN>, and <SPAN  
+                        class=docEmphBold>whois</SPAN> commands. Practice using  
+                        any that you are unfamiliar with by experimenting on a  
+                        working networked system.<A name=IXTR3-107></A>  
+                    </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="19-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-19-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-19-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-19-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)16ms
+(lib)500ms
+(xml)344ms
+(xsl)156ms
+(ent)0ms
+(buf)0ms
+
+(tot)1312ms
+--></BODY></HTML>

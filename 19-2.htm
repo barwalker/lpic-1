@@ -1,0 +1,1109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-19-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="19-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="19-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 19.&nbsp;  
+            Networking Fundamentals (Topic 1.12)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-19-SECT-2></A>
+                  <H3 class=docSection1Title>19.2 Objective 3: TCP/IP 
+                  Troubleshooting and Configuration</H3>
+                  <P class=docText>Linux distributions offer various automation 
+                  and startup techniques for networks, but most of the essential 
+                  commands and concepts are not distribution-dependent. The exam 
+                  tests fundamental concepts and their relationships to one 
+                  another as well as to system problems. This Objective covers 
+                  the configuration of TCP/IP on common network interfaces such 
+                  as Ethernet. </P><A name=lpicertnut-CHP-19-SECT-2.1></A>
+                  <H4 class=docSection2Title>19.2.1 Network Interfaces</H4>
+                  <P class=docText><A name=IXT-19-350944></A>A computer must  
+                  contain at least one <SPAN class=docEmphasis>network  
+                  interface</SPAN> to be considered part of a network. The  
+                  network interface provides a communications link between the  
+                  computer and external network hardware. This could mean  
+                  typical network adapters such as Ethernet or Token Ring, PPP  
+                  dialup connections, parallel ports, wireless, and other  
+                  networking forms. </P><A  
+name=lpicertnut-CHP-19-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>19.2.1.1 Configuration files</H5>
+                  <P class=docText><A name=IXT-19-350945></A>The following files  
+                  contain important information about your system's network  
+                  configuration: </P><A name=IXT-19-350946></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hostname</I> (or 
+                    sometimes <I>/etc/HOSTNAME</I>)</SPAN> 
+                    <DD>
+                    <P class=docList><I></I><A name=IXT-19-350946></A>This file  
+                    contains the local assigned hostname for the system.  
+                    </P></DD></DL><A name=IXT-19-350947></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hosts</I></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-19-350947></A>This file  
+                    contains simple mappings between IP addresses and names and  
+                    is used for name resolution. For very small private  
+                    networks, <I>/etc/hosts</I> may be sufficient for basic name  
+                    resolution. For example, this file associates the local  
+                    address <TT>192.168.1.30</TT> with the system <TT>smp</TT>  
+                    and also with <TT>smp.mydomain.com</TT> : </P></DD></DL><PRE>127.0.0.1       localhost       localhost.localdomain
+192.168.1.1     gate
+192.168.1.30    smp smp.mydomain.com</PRE><A  
+                  name=IXT-19-350948></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/nsswitch.conf</I></SPAN> 
+
+                    <DD>
+                    <P class=docList><I></I><A name=IXT-19-350948></A>This file  
+                    controls the sources used by various system library lookup  
+                    functions, such as name resolution. It allows the  
+                    administrator to configure the use of traditional local  
+                    files ( <I>/etc/hosts</I>, <I>/etc/passwd </I>), an NIS  
+                    server, or DNS. <I>nsswitch.conf</I> directly affects  
+                    network configuration (among other things) by controlling  
+                    how hostnames and other network parameters are resolved. For  
+                    example, this fragment shows that local files are used for  
+                    password, shadow password, group, and hostname resolution;  
+                    for hostnames, DNS is used if a search of local files  
+                    doesn't yield a result: </P></DD></DL><PRE>passwd:     files nisplus nis
+shadow:     files nisplus nis
+group:      files nisplus nis
+hosts:      files dns nisplus nis</PRE> 
+                  <P class=docText>For more information, view the manpage with 
+                  <SPAN class=docEmphBold>man 5 nsswitch</SPAN>. The 
+                  <I>nsswitch.conf</I> file supersedes <I>host.conf</I>. </P><A 
+                  name=IXT-19-350949></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/host.conf</I></SPAN> 
+                    <DD>
+                    <P class=docList><I></I><A name=IXT-19-350949></A>This file  
+                    controls name resolution sources for pre-<I>glibc2</I>  
+                    systems. It should contain: </P></DD></DL><PRE>order hosts,bind
+multi on</PRE> 
+                  <P class=docText>This configuration has the resolver checking 
+                  <I>/etc/hosts</I> first for name resolution, then DNS. 
+                  <TT>multi</TT> <TT>on</TT> enables multiple IP addresses for 
+                  hosts. Newer Linux system libraries use 
+                  <I>/etc/nsswitch.conf</I> instead of <I>/etc/host.conf</I>. 
+                  </P><A name=IXT-19-350950></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/resolv.conf</I></SPAN> 
+                    <DD>
+                    <P class=docList><I></I><A name=IXT-19-350950></A>This file  
+                    controls the client-side portions of the DNS system, which  
+                    is implemented in system library functions used by all  
+                    programs to resolve system names. In particular,  
+                    <I>/etc/resolv.conf</I> specifies the IP addresses of DNS  
+                    servers. For example: </P></DD></DL><PRE>nameserver 192.168.1.5
+nameserver 192.168.250.2</PRE> 
+                  <P class=docText>Additional parameters are also available. For 
+                  more information, view the manpage with <SPAN 
+                  class=docEmphBold>man 5 resolver</SPAN>. </P><A 
+                  name=IXT-19-350951></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/networks</I></SPAN> 
+                    <DD>
+                    <P class=docList><I></I><A name=IXT-19-350951></A>Like  
+                    <I>/etc/hosts</I>, this file sets up equivalence between  
+                    addresses and names, but here the addresses represent entire  
+                    networks (and thus must be valid network addresses, ending  
+                    in 0). The result is that you can use a symbolic name to  
+                    refer to a network just as you would a specific host. This  
+                    may be convenient (though not required) in NFS or routing  
+                    configuration, for example, and will be shown in commands  
+                    such as <SPAN class=docEmphBold>netstat</SPAN>. For example:  
+                    </P></DD></DL><PRE>loopback    127.0.0.0
+mylan       192.168.1.0</PRE>
+                  <P class=docText>It's not unusual for <I>/etc/networks</I> to 
+                  be left blank. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be familiar with all the files listed 
+                        in this section; each contains specific information 
+                        important for network setup. Watch for questions on 
+                        <I>/etc/host.conf</I>, which is not used in newer 
+                        <I>glibc2</I> libraries. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-19-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>19.2.1.2 Configuration 
+commands</H5>
+                  <P class=docText>The commands listed in this section are used 
+                  to establish, monitor, and troubleshoot a network 
+                  configuration under Linux. </P><A 
+                  name=p2_ch09-49-fm2xml></A><A name=IXT-19-350952></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>host</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-51-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>host [options] host [server]</PRE><A 
+                  name=p2_ch09-52-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350952></A>Look up the system  
+                  with IP address or name <I>host</I> on the DNS <I>server</I>.  
+                  </P><A name=p2_ch09-53-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List the entire domain, dumping all hosts 
+                    registered on the DNS server (this can be very long). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Set verbose mode to view 
+                  output.</P></DD></DL><A name=p2_ch09-54-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4><PRE>$ <B>host oreilly.com</B>
+oreilly.com has address 204.148.40.5</PRE><A 
+                  name=p2_ch09-55-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4><PRE>$ <B>host -v oreilly.com</B>
+Trying null domain
+rcode = 0 (Success), ancount=1
+The following answer is not authoritative:
+The following answer is not verified as authentic by the server:
+oreilly.com     17397 IN        A       204.148.40.5
+For authoritative answers, see:
+oreilly.com     168597 IN       NS      AUTH03.NS.UU.NET
+oreilly.com     168597 IN       NS      NS.oreilly.com
+Additional information:
+AUTH03.NS.UU.NET        168838 IN       A       198.6.1.83
+NS.oreilly.com  168597 IN       A       204.148.40.4 $</PRE>
+                  <P class=docText>See also the <SPAN  
+                  class=docEmphBold>nslookup</SPAN> command in <a class="docLink" href="20-5.htm#lpicertnut-CHP-20-SECT-5.1.3">Section  
+                  20.5.1.3</a> in <a class="docLink" href="20-0.htm">Chapter  
+                  20</a>. </P><A name=p2_ch09-56-fm2xml></A><A 
+                  name=IXT-19-350953></A><A name=IXT-19-350954></A><A 
+                  name=IXT-19-350955></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>hostname, domainname, 
+                        dnsdomainname</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-58-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>hostname [localname]
+domainname [nisname]
+dnsdomainname</PRE><A name=p2_ch09-59-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350953></A><A 
+                  name=IXT-19-350954></A><A name=IXT-19-350955></A>Set or  
+                  display the current host, domain, or node name of the system.  
+                  This is a single program with links defining additional names.  
+                  When called as <SPAN class=docEmphBold>hostname</SPAN>, the  
+                  system's hostname is displayed. If <I>localname</I> is  
+                  provided, the hostname is set. <SPAN  
+                  class=docEmphBold>domainname</SPAN> displays or sets the NIS  
+                  domain name. <SPAN class=docEmphBold>dnsdomainname</SPAN>  
+                  displays the current DNS domain name but does not set it. See  
+                  <SPAN class=docEmphBold>man 1 hostname</SPAN> for full  
+                  information. </P><A name=p2_ch09-60-fm2xml></A><A 
+                  name=IXT-19-350956></A><A name=IXT-19-350957></A><A 
+                  name=IXT-19-350958></A><A name=IXT-19-350959></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ifconfig</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-62-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ifconfig interface parameters</PRE><A 
+                  name=p2_ch09-63-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350956></A><A 
+                  name=IXT-19-350957></A><A name=IXT-19-350958></A><A 
+                  name=IXT-19-350959></A>Configure network interfaces. <SPAN  
+                  class=docEmphBold>ifconfig</SPAN> is used to create and  
+                  configure <I>interfaces</I> and their parameters, usually at  
+                  boot time. Without <I>parameters</I>, the interface and its  
+                  configuration are displayed. If <I>interface</I> is also  
+                  omitted, a list of all active interfaces and their  
+                  configurations is displayed. </P><A  
+name=p2_ch09-64-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used parameters</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>address</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>interface </I>'s IP 
+                  address.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>netmask</SPAN> <I>mask</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>interface </I>'s subnet 
+                    mask.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>up</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Activate an <I>interface</I> (implied if 
+                    <SPAN class=docEmphBold>address</SPAN> is specified). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>down</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Shut down the driver for the 
+                    <I>interface</I>.</P></DD></DL><A name=p2_ch09-65-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display all interfaces:</P><PRE># <B>ifconfig</B>
+eth0      Link encap:Ethernet  HWaddr 00:A0:24:D3:C7:21
+          inet addr:192.168.1.30  Bcast:192.168.1.255  
+          Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1521805 errors:37 dropped:0 
+          overruns:0 frame:37
+          TX packets:715468 errors:0 dropped:0 overruns:0 
+          carrier:0
+          collisions:1955 txqueuelen:100
+          Interrupt:10 Base address:0xef00
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:3924  Metric:1
+          RX packets:366567 errors:0 dropped:0 overruns:0 
+          frame:0
+          TX packets:366567 errors:0 dropped:0 overruns:0 
+          carrier:0
+          collisions:0 txqueuelen:0   </PRE><A 
+                  name=p2_ch09-66-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Shut down <TT>eth0</TT>:</P><PRE># <B>ifconfig eth0 down</B>
+# <B>ifconfig eth0</B>
+eth0      Link encap:Ethernet  HWaddr 00:A0:24:D3:C7:21
+          inet addr:192.168.1.30  Bcast:192.168.1.255  
+          Mask:255.255.255.0
+ <B>         BROADCAST MULTICAST  MTU:1500  Metric:1</B>
+          RX packets:1521901 errors:37 dropped:0 
+          overruns:0 frame:37
+          TX packets:715476 errors:0 dropped:0 overruns:0 
+          carrier:0
+          collisions:1955 txqueuelen:100
+          Interrupt:10 Base address:0xef00  </PRE>
+                  <P class=docText>Note in the emphasized line the lack of the 
+                  <TT>UP</TT> indicator, which is present in Example 1. The 
+                  missing <TT>UP</TT> indicates that the interface is down. 
+                  </P><A name=p2_ch09-67-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Configure <TT>eth0</TT> from scratch:</P><PRE># <B>ifconfig eth0 192.168.1.100 netmask 255.255.255.0</B>
+<B>     broadcast 192.168.1.255</B></PRE><A 
+                  name=p2_ch09-68-fm2xml></A><A name=IXT-19-350960></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>netstat</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-70-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>netstat [options]</PRE><A name=p2_ch09-71-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350960></A>Depending on  
+                  options, <SPAN class=docEmphBold>netstat</SPAN> displays  
+                  network connections, routing tables, interface statistics,  
+                  masquerade connections, netlink messages, and multicast  
+                  memberships. Much of this is beyond the scope of the LPIC  
+                  Level 1 exams, but you must be aware of the command and its  
+                  basic use. </P><A name=p2_ch09-72-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Continuous operation. This option yields a 
+                    <SPAN class=docEmphBold>netstat</SPAN> display every second 
+                    until interrupted with <SPAN 
+                    class=docEmphBold>Ctrl-C</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display a list of interfaces.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Numeric mode. Display addresses instead of 
+                    host, port, and usernames.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Programs mode. Display the PID and process 
+                    name.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Routing mode. Display the routing table in 
+                    the format of the <I>route</I> command. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Verbose mode.</P></DD></DL><A 
+                  name=p2_ch09-73-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Display the interfaces table and statistics 
+                  (the example output is truncated): </P><PRE># <B>netstat -i</B>
+Kernel Interface table
+Iface MTU  Met   RX-OK RX-ERR RX-DRP RX-OVR  TX-OK
+eth0  1500 0   1518801     37      0      0  713297
+lo    3924 0    365816      0      0      0  365816</PRE><A 
+                  name=p2_ch09-74-fm2xml></A><A name=IXT-19-350961></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ping</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-76-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ping [options] destination</PRE><A 
+                  name=p2_ch09-77-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350961></A>Send an ICMP  
+                  <TT>ECHO_REQUEST</TT> datagram to <I>destination</I>,  
+                  expecting an ICMP<I> </I><TT>ECHO_RESPONSE</TT>. <SPAN  
+                  class=docEmphBold>ping</SPAN> is frequently used to test basic  
+                  network connectivity. </P><A name=p2_ch09-78-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN> <I>count</I></SPAN> 
+                    <DD>
+                    <P class=docList>Send and receive <I>count</I> 
+                    packets.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Quiet output. Display only summary lines 
+                    when <SPAN class=docEmphBold>ping</SPAN> starts and 
+                    finishes. </P></DD></DL><A name=p2_ch09-79-fm2xml></A><A 
+                  name=IXT-19-350962></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>route</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-81-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>route [options]
+route add [options and keywords] target
+route del [options and keywords] target</PRE><A 
+                  name=p2_ch09-82-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350962></A>In the first form,  
+                  display the IP routing table. In the second and third forms,  
+                  respectively add or delete routes to <I>target</I> from the  
+                  table. <I>target</I> can be a numeric IP address, a resolvable  
+                  name, or the keyword <I>default</I>. The <SPAN  
+                  class=docEmphBold>route</SPAN> program is typically used to  
+                  establish static routes to specific networks or hosts (such as  
+                  the default gateway) after an interface is configured. On  
+                  systems acting as routers, a potentially complex routing  
+                  scheme can be established initially, but this is beyond the  
+                  scope of the LPIC Level 1 exams. </P><A  
+                  name=p2_ch09-83-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options and 
+                  keywords</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Verbose output.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display a usage message.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Numeric mode; don't resolve 
+                    hostnames.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-net</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Specify that <I>target</I> is a network. 
+                    Mutually exclusive with <SPAN 
+                    class=docEmphBold>-host</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-host</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Specify that <I>target</I> is a single 
+                    host. Mutually exclusive with <SPAN 
+                    class=docEmphBold>-net</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-F</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the kernel routing table (the 
+                    default behavior without <I>add </I>or <I>delete 
+                    </I>keywords). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-C</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the kernel routing 
+                  cache.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>netmask</SPAN> <I>mask</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specify the <I>mask </I>of the route to be 
+                    added. Often, the netmask is not required because it can be 
+                    determined to be class A, B, or C, depending on the 
+                    <I>target</I> address. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>gw</SPAN> <I>gateway</I></SPAN> 
+                    <DD>
+                    <P class=docList>IP packets for <I>target </I>are routed 
+                    through <I>gateway</I>, which must be reachable, probably 
+                    through a static route to <I>gateway</I>, which is already 
+                    established. </P></DD></DL>
+                  <P class=docText>When used to display routes, the following 
+                  routing table columns are printed: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Destination</SPAN></I> 
+                    <DD>
+                    <P class=docList>The destination network or 
+host.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Gateway</SPAN></I> 
+                    <DD>
+                    <P class=docList>The gateway address. If no gateway is set 
+                    for the route, an asterisk (<TT>*</TT>) is displayed by 
+                    default. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Genmask</SPAN></I> 
+                    <DD>
+                    <P class=docList>The netmask for the destination. 
+                    255.255.255.255 is used for a host and 0.0.0.0 is used for 
+                    the default route. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Route status flags</SPAN></I> 
+
+                    <DD>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>U</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Route is up.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>H</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Target is a host.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>G</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Use gateway.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>R</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Reinstate route for dynamic 
+                      routing.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>D</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Dynamically installed by daemon or 
+                      redirect.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>M</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Modified from routing daemon or 
+                      redirect.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>!</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Reject route.</P></DD></DL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Metric</SPAN></I> 
+                    <DD>
+                    <P class=docList>The distance in hops to the 
+                  target.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Ref</SPAN></I> 
+                    <DD>
+                    <P class=docList>Number of references to this route. This is 
+                    displayed for compatibility with other route commands but is 
+                    not used in the Linux kernel. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Use</SPAN></I> 
+                    <DD>
+                    <P class=docList>A count of lookups for the route. Depending 
+                    on the use of <SPAN class=docEmphBold>-F</SPAN><I> </I>and 
+                    <SPAN class=docEmphBold>-C</SPAN>,<I> </I>the Use is either 
+                    route cache misses (<SPAN class=docEmphBold>-F</SPAN>) or 
+                    hits (<SPAN class=docEmphBold>-C</SPAN>). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Iface</SPAN></I> 
+                    <DD>
+                    <P class=docList>The interface to which packets for this 
+                    route are sent.</P></DD></DL><A name=p2_ch09-84-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display the current routing table for a 
+                  workstation:</P><PRE># <B>route</B>
+Kernel IP routing table
+Destination  Gateway Genmask         Flags Met Ref Use Iface
+192.168.1.30 *       255.255.255.255 UH    0   0     0 eth0
+192.168.1.0  *       255.255.255.0   U     0   0     0 eth0
+10.0.0.0     -       255.0.0.0       !     0   -     0 -
+127.0.0.0    *       255.0.0.0       U     0   0     0 lo
+default      gate    0.0.0.0         UG    0   0     0 eth0</PRE>
+                  <P class=docText>In this example, the route to the local host 
+                  <TT>192.168.1.30</TT> uses interface <TT>eth0</TT>. Note the 
+                  mask <TT>255.255.255.255</TT> is used for host routes. The 
+                  route to the local subnet <TT>192.168.1.0</TT> (with 
+                  corresponding class C mask <TT>255.255.255.0</TT>) is also 
+                  through <TT>eth0</TT>. The route to <TT>10.0.0.0</TT> is 
+                  rejected as indicated by the <TT>!</TT> flag. The class A 
+                  loopback network route uses device <TT>lo</TT>. The last route 
+                  shows the <SPAN class=docEmphasis>default gateway</SPAN> 
+                  route, which is used when no others match. This default uses 
+                  <TT>eth0</TT> to send data to router <TT>gate</TT>. The mask 
+                  <TT>0.0.0.0</TT> is used for the default route. </P><A 
+                  name=p2_ch09-85-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Display the current routing cache; the Metric 
+                  (<TT>M</TT>) and Reference (<TT>R</TT>) columns are 
+                  abbreviated here: </P><PRE># <B>route -C</B>
+Kernel IP routing cache
+Source        Destination    Gateway      Flg M R Use Iface
+smp           192.168.1.255 192.168.1.255 bl  0 0   1 eth0
+192.168.1.102 192.168.1.255 192.168.1.255 ibl 0 0   0 lo
+192.168.1.102 smp           smp           il  0 0   1 lo
+192.168.1.50  smp           smp           il  0 0 224 lo
+smp           192.168.1.102 192.168.1.102     0 1   0 eth0
+smp           ns1.mynet.com gate              0 0   2 eth0
+smp           192.168.1.50  192.168.1.50      0 1   0 eth0
+localhost     localhost     localhost     l   0 0  15 lo
+ns1.mynet.com smp           smp           l   0 0   6 lo
+smp           ns1.mynet.com gate              0 0   6 eth0</PRE><A 
+                  name=p2_ch09-86-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Add the default gateway <TT>192.168.1.1</TT> 
+                  via <TT>eth0</TT>: </P><PRE># <B>route add default gw 192.168.1.1 eth0</B></PRE><A 
+                  name=p2_ch09-87-fm2xml></A><A name=IXT-19-350963></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>traceroute</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-89-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>traceroute [options] destination</PRE><A 
+                  name=p2_ch09-90-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350963></A>Display the route  
+                  that packets take to reach <I>destination</I>, showing  
+                  intermediate gateways (routers). There isn't a direct method  
+                  to use to make this determination, so <SPAN  
+                  class=docEmphBold>traceroute</SPAN> uses a trick to obtain as  
+                  much information as it can. By using the <I>time-to-live</I>  
+                  field in the IP header, <SPAN  
+                  class=docEmphBold>traceroute</SPAN> stimulates error responses  
+                  from gateways. The time-to-live field specifies the maximum  
+                  number of gateway hops until the packet should expire. That  
+                  number is decremented at each gateway hop, with the result  
+                  that all packets will die at some point and not roam the  
+                  Internet. To get the first gateway in the route, <SPAN  
+                  class=docEmphBold>traceroute</SPAN> sets the time-to-live  
+                  parameter to 1. The first gateway in the route to  
+                  <I>destination</I> decrements the counter, and finding a  
+                  result, reports an ICMP<I> </I><TT>TIME_EXCEEDED</TT> message  
+                  back to the sending host. The second gateway is identified by  
+                  setting the initial time-to-live value to 2 and so on. This  
+                  continues until a <TT>PORT_UNREACHABLE</TT><I> </I>message is  
+                  returned, indicating that the host has been contacted. To  
+                  account for the potential for multiple gateways at any one hop  
+                  count, each probe is sent three times. </P> 
+                  <P class=docText>The display consists of lines showing each 
+                  gateway, numbered for the initial time-to-live value. If no 
+                  response is seen from a particular gateway, an asterisk is 
+                  printed. This happens for gateways that don't return "time 
+                  exceeded" messages, or do return them but set a very low 
+                  time-to-live on the response. Transit times for each probe are 
+                  also printed. </P><A name=p2_ch09-91-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>ttl</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the initial probe's time-to-live value 
+                    to <I>ttl</I>, instead of 1. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display numeric addresses instead of 
+                    names.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use verbose mode.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN> <I>secs</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the timeout on returned ICMP packets to 
+                    <I>secs</I>, instead of 5. </P></DD></DL><A 
+                  name=p2_ch09-92-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE># <B>traceroute www.lpi.org</B>
+traceroute to www.lpi.org (209.167.177.93), 
+  30 hops max, 40 byte packets
+ 1  gate (192.168.1.1)  
+       3.181 ms  1.200 ms  1.104 ms
+ 2  209.125.145.1 (209.125.135.1)
+       16.041 ms  15.149 ms  14.747 ms
+ 3  a1-9-1-0-1.a01.phl1.us.io.net (137.94.47.1)
+       84.132 ms  133.937 ms  77.865 ms
+ 4  ge-6-0.r01.phlapa01.us.io.net (126.250.29.17)
+       22.450 ms  16.114 ms  16.051 ms
+ 5  p4-6-0-0.r01.nycmny01.us.bb.verio.net (129.250.3.126)
+       18.043 ms  18.485 ms  18.175 ms
+ 6  nyc1.uunet.verio.net (129.250.9.62)
+       19.735 ms  21.135 ms  19.212 ms
+ 7  105.ATM3-0.XR1.NYC1.ALTER.NET (146.188.177.154)
+       20.237 ms  18.515 ms  18.712 ms
+ 8  295.ATM6-0.XR1.NYC4.ALTER.NET (146.188.178.90)
+       26.855 ms  29.540 ms  35.908 ms
+ 9  189.ATM8-0-0.GW5.NYC4.ALTER.NET (146.188.179.225)
+       36.541 ms  36.127 ms  30.849 ms
+10  224.ATM1-0-0.BB1.TOR2.UUNET.CA.ALTER.NET (137.39.75.26)
+       58.823 ms  68.675 ms  62.522 ms
+11  f0-0-0.bb2.tor2.uunet.ca (205.150.242.110)
+       336.310 ms  174.557 ms  394.909 ms
+12  209.167.167.118 (209.167.167.118)
+       56.027 ms  58.555 ms  56.289 ms
+13  209.167.177.90 (209.167.177.90)
+       59.349 ms  57.409 ms  57.993 ms
+14  new.lpi.org (209.167.177.93)
+       57.021 ms  56.162 ms  58.809 ms</PRE>
+                  <P class=docText>In this example, there are 13 hops to 
+                  www.lpi.org, reached with a time-to-live value of 14. All 
+                  three probes of all time-to-live counts are successful. </P>
+                  <P class=docText>Most of these commands will appear in system 
+                  scripts used at boot and shutdown times. Such scripts differ 
+                  among various Linux distributions but are usually found 
+                  somewhere under <I>/etc</I>, such as <I>/etc/rc.d/init.d</I> 
+                  or <I>/etc/sysconfig</I>. You should review the networking 
+                  scripts on a working Linux system to gain a perspective on how 
+                  the various configuration commands are used together. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>While the creation of complete network 
+                        management scripts from scratch is beyond the LPIC Level 
+                        1 exams, you must be familiar with these commands 
+                        individually, their functions, how they are used, as 
+                        well as why they are used. For example, you must be 
+                        familiar with <SPAN class=docEmphBold>route</SPAN> and 
+                        its use in establishing routes to the loopback device, 
+                        the localhost, the gateway machine, and the creation of 
+                        the default gateway route. A general understanding of 
+                        the routing table display is also required. Questions 
+                        may ask you to determine the cause of a network problem 
+                        based on the routing configuration (such as a missing 
+                        default route). </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-19-SECT-2.1.3></A>
+                  <H5 class=docSection3Title>19.2.1.3 Common manual network 
+                  interface tasks</H5>
+                  <P class=docText>Network interfaces are established in the 
+                  kernel at boot time through the probing of Ethernet hardware. 
+                  As a result, these interfaces always exist unless the hardware 
+                  or kernel module is removed. Other types of interfaces, such 
+                  as PPP, are created by user programs. These interfaces are 
+                  transient and exist only when they are in use. </P>
+                  <P class=docText>To list interface parameters, use <SPAN 
+                  class=docEmphBold>ifconfig</SPAN> with the interface name: 
+</P><PRE># <B>ifconfig eth0</B>
+eth0      Link encap:Ethernet  HWaddr 00:A0:24:D3:C7:21
+          inet addr:192.168.1.30  Bcast:192.168.1.255  
+          Mask:255.255.255.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:1857128 errors:46 dropped:0 
+          overruns:0 frame:46
+          TX packets:871709 errors:0 dropped:0 
+          overruns:0 carrier:0
+          collisions:2557 txqueuelen:100
+          Interrupt:10 Base address:0xef00</PRE>
+                  <P class=docText>If you run <SPAN 
+                  class=docEmphBold>ifconfig</SPAN> without any parameters, it 
+                  displays all active interfaces, including the loopback 
+                  interface <TT>lo</TT> and perhaps a PPP interface if a modem 
+                  is dialed into a service provider. </P>
+                  <P class=docText>To shut down a network interface that is 
+                  currently running, simply use <SPAN 
+                  class=docEmphBold>ifconfig</SPAN> with the <SPAN 
+                  class=docEmphBold>down</SPAN> keyword: </P><PRE># <B>ifconfig eth0 down</B></PRE>
+                  <P class=docText>When the interface goes down, any routes 
+                  associated with it are removed from the routing table. For a 
+                  typical system with a single Ethernet interface, this means 
+                  that the routes to both the interface and the default gateway 
+                  will be lost. Therefore, to start a previously configured 
+                  network interface, <SPAN class=docEmphBold>ifconfig</SPAN> is 
+                  used with <SPAN class=docEmphBold>up</SPAN> followed by the 
+                  necessary <SPAN class=docEmphBold>route</SPAN> commands. For 
+                  example: </P><PRE># <B>ifconfig eth0 up</B>
+# <B>route add -host 192.168.1.30 eth0</B>
+# <B>route add default gw 192.168.1.1 eth0</B></PRE>
+                  <P class=docText>To reconfigure interface parameters, follow 
+                  those same procedures and include the changes. For example, to 
+                  change to a different IP address, the address is specified 
+                  when bringing up the interface and adding the interface route: 
+                  </P><PRE># <B>ifconfig eth0 down</B>
+# <B>ifconfig eth0 192.168.1.60 up</B>
+# <B>route add -host 192.168.1.60 eth0</B>
+# <B>route add default gw 192.168.1.1 eth0</B></PRE>
+                  <P class=docText>Your distribution probably supplies scripts 
+                  to handle some of these chores. For example, Red Hat systems 
+                  come with scripts like <SPAN class=docEmphBold>ifup</SPAN>, 
+                  which handle all the details necessary to get an interface and 
+                  its routes up and running. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be prepared to answer questions on the 
+                        use of <SPAN class=docEmphBold>ifconfig</SPAN> and <SPAN 
+                        class=docEmphBold>route</SPAN> for basic interface 
+                        manipulation. Also remember that scripts that use these 
+                        commands, both manually and automatically, are usually 
+                        available at boot time. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-19-SECT-2.2></A>
+                  <H4 class=docSection2Title>19.2.2 DHCP</H4>
+                  <P class=docText>The <A  
+                  name=lpicertnut-IDXTERM-1387></A>Dynamic Host Configuration  
+                  Protocol (DHCP)<SUP class=docFootnote>[6]</SUP> is a  
+                  protocol extension of the <A name=IXT-19-350964></A>BOOTP  
+                  protocol, which provides automated <A  
+                  name=lpicertnut-IDXTERM-1389></A>IP address assignment (among  
+                  other things) to client systems on a network. It handles IP  
+                  address allocation in one of two ways:<SUP  
+                  class=docFootnote>[7]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> DHCP is a 
+                    vendor-neutral protocol.</P></BLOCKQUOTE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[7]</A></SUP> If you 
+                    read RFC 1531, you'll note that a third type of allocation, 
+                    called <SPAN class=docEmphasis>Automatic,</SPAN> is 
+                    mentioned. For the purposes of this discussion, consider 
+                    <SPAN class=docEmphasis>Automatic</SPAN> and <SPAN 
+                    class=docEmphasis>Manual</SPAN> to be equivalent 
+                  methods.</P></BLOCKQUOTE>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Dynamic allocation</SPAN></I> 
+
+                    <DD>
+                    <P class=docList>In this scheme, a DHCP server maintains a 
+                    preset list of IP addresses designated by the system 
+                    administrator. IP addresses are assigned as clients request 
+                    an address from the available addresses in the pool. The 
+                    address can be used, or <SPAN 
+                    class=docEmphasis>leased</SPAN>, for a limited period of 
+                    time. The client must continually renegotiate the lease with 
+                    the server to maintain use of the address beyond the 
+                    allotted period. When the lease expires, the IP address is 
+                    placed back into the pool for use by other requesting 
+                    clients and a new IP address is assigned. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Manual allocation</SPAN></I> 
+                    <DD>
+                    <P class=docList>The system administrator may wish to 
+                    designate specific IP addresses to specific network 
+                    interfaces (for example, to an Ethernet MAC address) while 
+                    still using DHCP to deliver the address to the client. This 
+                    allows the convenience of automated address setup and 
+                    assures the same address each time. </P></DD></DL>
+                  <P class=docText>DHCP can be configured to assign not only the 
+                  IP address to the client but also such things as name servers, 
+                  gateways, and architecture-specific parameters. Here's an 
+                  overview of how it works: </P><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>A DHCP client sends a broadcast message to 
+                    the network in order to discover a DHCP server. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>One or more DHCP servers respond to the 
+                    request via their own broadcast messages, offering an IP 
+                    address to the client. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>The client chooses one of the servers and 
+                    broadcasts an acknowledgment, requesting the chosen server's 
+                    identity. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>The selected server logs the connection 
+                    with the client and responds with an acknowledgement and 
+                    possibly additional information. All of the other servers do 
+                    nothing because the client declined their offer. 
+                    </P></SPAN></LI></OL></SPAN><A 
+                  name=lpicertnut-CHP-19-SECT-2.2.1></A>
+                  <H5 class=docSection3Title>19.2.2.1 Subnets and relays</H5>
+                  <P class=docText>Since DHCP communications are initiated using 
+                  broadcasts, they are normally confined to a single subnet. To 
+                  accommodate DHCP clients and servers separated by one or more 
+                  routers, a DHCP <SPAN class=docEmphasis>relay</SPAN> system 
+                  can be established on subnets without DHCP servers. A relay 
+                  system listens for DHCP client broadcasts, forwards them to a 
+                  DHCP server on another subnet, and returns DHCP traffic back 
+                  to the client. This configuration can centralize DHCP 
+                  management in a large routed environment. </P><A 
+                  name=lpicertnut-CHP-19-SECT-2.2.2></A>
+                  <H5 class=docSection3Title>19.2.2.2 Leases</H5>
+                  <P class=docText>As already mentioned, when a client receives 
+                  a dynamically assigned IP address from a DHCP server, the 
+                  address is said to be <SPAN class=docEmphasis>leased</SPAN> 
+                  for a finite duration. The length of a DHCP lease is 
+                  configurable by the system administrator and typically lasts 
+                  for one or more days. Shorter leases allow for faster turnover 
+                  of addresses and are useful when the number of available 
+                  addresses is small or when many transient systems (such as 
+                  laptops) are being served. Longer leases reduce DHCP activity, 
+                  thus reducing broadcast traffic on the network. </P>
+                  <P class=docText>When a lease expires without being 
+                  renegotiated by the client, it as assumed that the client 
+                  system is unavailable, and the address is put back into the 
+                  free pool of addresses. A lease may also be terminated by a 
+                  client that no longer needs the IP address, in which case it 
+                  is <SPAN class=docEmphasis>released</SPAN>. When this occurs, 
+                  the DHCP server immediately places the IP address back in the 
+                  free pool. </P><A name=lpicertnut-CHP-19-SECT-2.2.3></A>
+                  <H5 class=docSection3Title>19.2.2.3 dhcpd</H5>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1390></A><A 
+                  name=lpicertnut-IDXTERM-1391></A>The DHCP server process is  
+                  called <SPAN class=docEmphBold>dhcpd</SPAN>. It is typically  
+                  started at boot time and listens for incoming DHCP request  
+                  broadcasts. <SPAN class=docEmphBold>dhcpd</SPAN> can serve  
+                  multiple subnets via multiple interfaces, serving a different  
+                  pool of IP addresses to each. </P> 
+                  <P class=docText><SPAN class=docEmphBold>dhcpd</SPAN> is 
+                  configured using the text configuration file 
+                  <I>/etc/dhcpd.conf,</I> which contains one or more <SPAN 
+                  class=docEmphasis>subnet declarations</SPAN>. These are text 
+                  lines of the following form: </P><PRE>subnet network-address netmask subnet-mask {
+  parameter...
+  parameter...
+  ...
+}</PRE>
+                  <P class=docText>Each subnet declaration encloses parameters 
+                  for each subnet between curly braces. Parameters include one 
+                  or more ranges of IP addresses to serve, lease times, and 
+                  optional items such as gateways (routers), DNS servers, and so 
+                  forth. Each parameter line is terminated with a semicolon. For 
+                  example: </P><PRE>subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.200 192.168.1.204;
+  default-lease-time 600;
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 192.168.1.255;
+  option routers 192.168.1.1;
+  option domain-name-servers 192.168.1.25;
+}</PRE>
+                  <P class=docText>In this example, the private class C network 
+                  <TT>192.168.1.0</TT> is served five IP addresses, 200 through 
+                  204. The default DHCP lease is 600 seconds (10 minutes). 
+                  Options are also set for the subnet mask, broadcast address, 
+                  router (or gateway), and DNS server. For full information on 
+                  <I>dhcp.conf,</I> see its manpage. </P>
+                  <P class=docText>The preceding <I>option</I> lines are not 
+                  required to create a minimal DHCP setup that simply serves IP 
+                  addresses. Details on the daemon follow. </P><A 
+                  name=p2_ch09-102-fm2xml></A><A name=IXT-19-350965></A><A 
+                  name=IXT-19-350966></A><A name=IXTR3-108></A><A 
+                  name=IXTR3-109></A><A name=IXTR3-110></A><A 
+name=IXTR3-111></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>dhcpd</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch09-104-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>dhcpd [options]</PRE><A name=p2_ch09-105-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-19-350965></A><A 
+                  name=IXT-19-350966></A>Launch the DHCP server daemon. <SPAN  
+                  class=docEmphBold>dhcpd</SPAN> requires that both its  
+                  configuration file<I> /etc/dhcpd.conf</I> and its lease log  
+                  file <I>/var/state/dhcp/dhcpd.leases</I> (or similar) exist.  
+                  The daemon puts itself in the background and returns control  
+                  to the calling shell. </P><A name=p2_ch09-106-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-cf</SPAN> <I>config-file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Use <I>config-file</I> instead of the 
+                    default <I>/etc/dhcpd.conf</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-lf</SPAN> <I>lease-file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Use <I>lease-file</I> instead of the 
+                    default to store lease information. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use quiet mode. This option suppresses the 
+                    default copyright message, keeping log files a little 
+                    cleaner. </P></DD></DL>
+                  <P class=docText>A full and detailed description of the 
+                  configuration file syntax can be found in the 
+                  <I>dhcpd.conf</I> manpage. When <SPAN 
+                  class=docEmphBold>dhcpd</SPAN> runs, it sends output -- 
+                  including information on each transaction -- to <I>syslog</I>. 
+                  For example, this series of four log entries in 
+                  <I>/var/log/messages</I> shows a successful exchange between 
+                  <SPAN class=docEmphBold>dhcpd</SPAN> and a requesting DHCP 
+                  client: </P><PRE>Apr 24 02:27:00 rh62 dhcpd: DHCPDISCOVER 
+   from 00:60:97:93:f6:8a via eth0
+Apr 24 02:27:00 rh62 dhcpd: DHCPOFFER 
+   on 192.168.1.200 to 00:60:97:93:f6:8a via eth0
+Apr 24 02:27:01 rh62 dhcpd: DHCPREQUEST 
+   for 192.168.1.200 from 00:60:97:93:f6:8a via eth0
+Apr 24 02:27:01 rh62 dhcpd: DHCPACK 
+on 192.168.1.200 to 00:60:97:93:f6:8a via eth0</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be able to configure a basic 
+                        DHCP server. You should understand the basic syntax of 
+                        the <I>dhcpd.conf</I> file and understand the sequence 
+                        of events in a DHCP negotiation. You may be asked to 
+                        locate a DHCP configuration problem given a particular 
+                        scenario. </P>
+                        <P class=docText>The use of DHCP relay systems and the  
+                        detailed configuration of <SPAN  
+                        class=docEmphBold>dhcpd</SPAN> are beyond the scope of  
+                        Exam 102.<A name=IXTR3-108></A><A name=IXTR3-109></A><A  
+                        name=IXTR3-110></A> <A  
+                    name=IXTR3-111></A></P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-19-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-19-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-19-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)594ms
+(xml)391ms
+(xsl)31ms
+(ent)16ms
+(buf)16ms
+
+(tot)1344ms
+--></BODY></HTML>

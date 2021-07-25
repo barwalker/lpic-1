@@ -1,0 +1,900 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="18-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="18-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 18.&nbsp; X  
+            (Topic 2.10)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-18-SECT-2></A>
+                  <H3 class=docSection1Title>18.2 Objective 1: Install and 
+                  Configure XFree86</H3>
+                  <P class=docText><I></I><A 
+                  name=lpicertnut-IDXTERM-1270></A>Most <A  
+                  name=lpicertnut-IDXTERM-1271></A>Linux distributions install  
+                  and automatically configure XFree86, freeing users from much  
+                  of its installation and configuration. However, <A  
+                  name=IXT-18-350881></A>Exam 102 requires specific knowledge of  
+                  some of the underpinnings of X configuration. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=36 
+                              src="18-2.files/warning_yellow.gif" width=51></TD>
+                            <TD vAlign=top>
+                              <P class=docText>Be careful about installing an X 
+                              server on a system that already has X installed. A 
+                              backup should be made prior to the installation. 
+                              </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-18-SECT-2.1></A>
+                  <H4 class=docSection2Title>18.2.1 Selecting and Configuring an 
+                  X Server</H4>
+                  <P class=docText>The <A name=IXT-18-350882></A>XFree86 project  
+                  provides support for an amazing array of graphics hardware.  
+                  This outcome is possible partly due to cooperation by  
+                  manufacturers through public release of graphics device  
+                  documentation and driver software, and partly due to the  
+                  tenacity of the XFree86 developers. Fortunately, many  
+                  manufacturers who were historically uninterested in offering  
+                  technical information to the XFree86 project have become  
+                  cooperative. The result is that most recent video hardware is  
+                  well-supported by XFree86. </P><A  
+                  name=lpicertnut-CHP-18-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>18.2.1.1 Supported video 
+                  hardware</H5>
+                  <P class=docText>To avoid problems, it is important to verify 
+                  XFree86 compatibility with your hardware prior to 
+                  installation. At the very least, you should be aware of these 
+                  items: </P><A name=IXT-18-350883></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Your XFree86 
+                    version</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-18-350883></A>As with any  
+                    software, improvements in XFree86 are made over time,  
+                    particularly in support for hardware devices. You should  
+                    choose a version of XFree86 that offers a good balance  
+                    between the video support and stability you require. To  
+                    determine the version of X you're running, simply issue the  
+                    following command: </P></DD></DL><PRE>$ <B>/usr/X11R6/bin/X -version</B>
+XFree86 Version 4.0.1a / X Window System</PRE><A  
+                  name=IXT-18-350884></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>The video chipset</SPAN></I> 
+                    <DD>
+                    <P class=docList>XFree86 <A name=IXT-18-350884></A>video  
+                    drivers are written for graphics chipsets, not the video  
+                    cards they're installed on. Multiple video cards from a  
+                    variety of manufacturers can carry the same chipset, making  
+                    those cards nearly identical in function. You must verify  
+                    that the chipset on your video card is supported by XFree86  
+                    to use advanced graphics features. </P></DD></DL><A  
+                  name=IXT-18-350885></A><A name=IXT-18-350886></A><A 
+                  name=IXT-18-350887></A><A name=IXT-18-350888></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Monitor type</SPAN></I> 
+                    <DD>
+                    <P class=docList>XFree86 can be configured to handle just  
+                    about any monitor, particularly the newer and very flexible  
+                    multisync <A name=IXT-18-350885></A>monitors sold today,  
+                    which can handle preset configurations provided in the  
+                    XFree86 configuration utilities. However, if you have a  
+                    nonstandard monitor, you need to know some parameters  
+                    describing its capabilities before configuring X, including  
+                    your monitor's <A name=IXT-18-350886></A>horizontal sync  
+                    frequency (in kHz), <A name=IXT-18-350887></A>vertical  
+                    refresh frequency (in Hz), and <A  
+                    name=IXT-18-350888></A>resolution (in pixels). These items  
+                    can usually be found in your monitor's documentation, but  
+                    since most monitors conform to standard display settings  
+                    such as <I>XGA</I> (1024 x 768 pixels at 60 Hz vertical  
+                    refresh), you should be able to use a preset configuration.  
+                    </P></DD></DL>
+                  <P class=docText>As an example of these considerations,  
+                  suppose you're using a Number Nine video chipset in your  
+                  system.<SUP class=docFootnote>[1]</SUP> If you  
+                  examine the chipset support information included with XFree86  
+                  Version 3.3.6, you'll find that the I128 driver handles your  
+                  chipset. However, XFree86 Version 4.0.1 does not, so v4.0.1 is  
+                  not a viable choice. Your chipset must be supported by the  
+                  version of XFree86 you're installing. Check the XFree86  
+                  release notes for specific information on supported chipsets.  
+                  </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> Number 
+                    Nine was the manufacturer of some popular PC video hardware. 
+                    The company is now out of business.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-18-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>18.2.1.2 Installing XFree86 from 
+                  packages</H5>
+                  <P class=docText><A name=IXT-18-350889></A>The procedures for  
+                  installation vary depending on the release of X you're using.  
+                  For example, with versions prior to 4.0, a specific X server  
+                  is required to match your chipset in order to use modes other  
+                  than standard VGA. For versions after 4.0, a newer modular  
+                  design allows a single server program to manage all supported  
+                  chipsets by calling driver modules. In addition, the type of  
+                  XFree86 distribution you're using affects installation.  
+                  XFree86 is available as source code, in precompiled binary  
+                  form, or as an RPM or Debian package. (Because of the  
+                  precompiled and package options, there's little reason to  
+                  compile from scratch.) </P> 
+                  <P class=docText>If you're going to use a version of XFree86  
+                  that came with a Linux distribution, simply use the package  
+                  installation tools from your distribution with the XFree86  
+                  packages. For example, on a Red Hat 6.0 system with XFree86  
+                  v3.3.3.1, the following components of XFree86 were installed  
+                  by the RPM package:<SUP class=docFootnote>[2]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> In this 
+                    example, all of the package names are followed by a version 
+                    number. Here, XFree86 v3.3.3.1 is installed.</P></BLOCKQUOTE><PRE>XFree86-SVGA-3.3.3.1-49
+X11R6-contrib-3.3.2-6
+Xconfigurator-4.2.3-1
+XFree86-3.3.3.1-49
+XFree86-75dpi-fonts-3.3.3.1-49
+XFree86-libs-3.3.3.1-49
+XFree86-xfs-3.3.3.1-49
+XFree86-XF86Setup-3.3.3.1-49</PRE>
+                  <P class=docText>The first item in this list is the SVGA X 
+                  server (<I>XFree86-SVGA-3.3.3.1-49</I>), which supports a 
+                  number of video chipsets (other server programs, packaged 
+                  separately, may be needed to support other video chipsets). 
+                  The XFree86 package (<I>XFree86-3.3.3.1-49 </I>in the list) is 
+                  the core of XFree86. The other items are either required or 
+                  recommended packages. Such recommendations can come from the 
+                  installation program or from notes accompanying the package. 
+                  For example, the XFree86 package indicates that: </P>
+                  <BLOCKQUOTE>
+                    <P class=docText>In addition to installing the [XFree86] 
+                    package, you will need to install the <I>XFree86</I> package 
+                    [that] corresponds to your video card, the <I>X11R6-contrib 
+                    </I>package, the <I>Xconfigurator </I>package, and the 
+                    <I>XFree86-libs </I>package. You may also need to install 
+                    one of the XFree86 fonts [<SPAN 
+                    class=docEmphasis>sic</SPAN>] packages. </P></BLOCKQUOTE>
+                  <P class=docText>Using a packaged installation targeted for 
+                  your particular Linux distribution will probably be the 
+                  simplest method. </P><A name=lpicertnut-CHP-18-SECT-2.1.3></A>
+                  <H5 class=docSection3Title>18.2.1.3 Installing XFree86 from 
+                  precompiled binaries</H5>
+                  <P class=docText>You may wish to try a version of XFree86 that 
+                  is more recent than available packaged versions. In this case, 
+                  you may wish to install a precompiled binary from the XFree86 
+                  project. To get the files needed to install the latest 
+                  version, consult the XFree86 web site or one of the many 
+                  mirror sites listed there. </P>
+                  <P class=docText>The first step in deploying a precompiled  
+                  XFree86 binary is to get the configuration program, <SPAN  
+                  class=docEmphBold>Xinstall.sh</SPAN><A 
+                  name=IXT-18-350890></A>.<SUP class=docFootnote>[3]</SUP> Using the  
+                  <SPAN class=docEmphBold>-check</SPAN> option, this utility can  
+                  determine which precompiled binary distribution is right for  
+                  your system: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> It's 
+                    important to use binary-mode FTP to get this program. 
+                    Browsers may not transfer the program 
+                  correctly.</P></BLOCKQUOTE><PRE># <B>./Xinstall.sh -check</B>
+Checking which OS you're running...
+uname reports 'Linux' version '2.2.5-15smp', 
+  architecture 'i686'.
+Object format is 'ELF'.  libc version is '6.1'.
+Binary distribution name is 'Linux-ix86-glibc21'</PRE>
+                  <P class=docText>The last line directs us to the appropriate  
+                  binary distribution, which in this case is  
+                  <I>Linux-ix86-glibc21</I> (your results will differ). Next we  
+                  need to get the files for that distribution. Some, such as  
+                  fonts and extra programs, are optional. Details on exactly  
+                  which files to get are available in the <I>Install</I>  
+                  document, which may be retrieved along with <SPAN  
+                  class=docEmphBold>Xinstall.sh</SPAN>. The files listed in <a class="docLink" href="#lpicertnut-CHP-18-TABLE-1">Table  
+                  18-1</a> are mandatory for use with v4.0.1. </P><A  
+                  name=lpicertnut-CHP-18-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 18-1. Files Necessary for Use 
+                    with XFree86 v4.0.1 </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Filename</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xinstall.sh</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The installer script</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>extract</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The utility for extracting 
+                      tarballs</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xbin.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>X clients/utilities and runtime 
+                        libraries</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xlib.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Some data files required at 
+                      runtime</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xman.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Manual pages</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xdoc.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>XFree86 documentation</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xfnts.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Base set of fonts</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xfenc.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Base set of font-encoding 
+data</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xetc.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Runtime configuration files</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xvar.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Runtime data</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xxserv.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>XFree86 X server</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>Xmod.tgz</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>XFree86 X server 
+                    modules</P></TD></TR></COLGROUP></TBODY></TABLE>
+                  <P class=docText>After you have retrieved these files, simply 
+                  run <SPAN class=docEmphBold>Xinstall.sh</SPAN> as <I>root 
+                  </I>to begin installation as described in the <I>Install</I> 
+                  document. </P><A name=lpicertnut-CHP-18-SECT-2.1.4></A>
+                  <H5 class=docSection3Title>18.2.1.4 Configuring an X server 
+                  and the XF86Config file</H5>
+                  <P class=docText>XFree86 configuration differs slightly among  
+                  versions and among Linux distributions, but essentially  
+                  involves the creation of the <I>XF86Config</I><A  
+                  name=IXT-18-350891></A> file customized for your system. The X  
+                  server uses this configuration file as it starts to set such  
+                  things as keyboard and mouse selections, installed fonts, and  
+                  screen resolutions. </P> 
+                  <P class=docText><I>XF86Config</I> contains technical details 
+                  concerning the capabilities of system hardware, which can be 
+                  intimidating for some users. For this reason, automated 
+                  configuration tools are available that will generate the file 
+                  for you: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>xf86config</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This program is distributed with XFree86. 
+                    It is a simple text-mode program that requests information 
+                    about the system from the user and then writes a 
+                    corresponding <I>XF86Config</I> file. This utility does not 
+                    use information stored in an existing configuration file, so 
+                    its utility is limited. (Remember that <SPAN 
+                    class=docEmphBold>xf86config</SPAN> is a binary program that 
+                    writes the <I>XF86Config</I> text file.) </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>XF86Setup</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This program is distributed with XFree86. 
+                    <SPAN class=docEmphBold>XF86Setup</SPAN> is a graphical 
+                    program that starts a VGA X server, which should run on most 
+                    PC hardware. It allows you to select the graphics chipset, 
+                    monitor, mouse, and keyboard device types and writes the 
+                    appropriate configuration file for you. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>xf86cfg</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This program is distributed with XFree86 
+                    v4.0. Like <SPAN class=docEmphBold>XF86Setup</SPAN>, it is a 
+                    graphical tool; however, <SPAN 
+                    class=docEmphBold>xf86cfg</SPAN>'s interface is slightly 
+                    different. Whereas other tools offer a menu-based approach, 
+                    <SPAN class=docEmphBold>xf86cfg</SPAN> offers a block 
+                    diagram of the system, including a monitor, video device, 
+                    keyboard, and mouse. The user configures each element by 
+                    manipulating its properties. When the user is happy with the 
+                    configuration, the tool writes the <I>XF86Config </I>file. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Distribution-specific 
+                    tools</SPAN></I> 
+                    <DD>
+                    <P class=docList>Various Linux distributors provide their 
+                    own configuration utilities. For example, <SPAN 
+                    class=docEmphBold>Xconfigurator</SPAN> is distributed by Red 
+                    Hat Software. It is menu-based, provides for automated 
+                    probing of graphics chipsets and capabilities, and uses a 
+                    list of known monitors to retrieve timing information. 
+                    </P></DD></DL>
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-18-EX-1">Example  
+                  18-1</a> contains an abbreviated <I>XF86Config</I> file  
+                  created using the Red Hat <SPAN  
+                  class=docEmphBold>Xconfigurator</SPAN> tool for <A  
+                  name=IXT-18-350892></A>XFree86 v3.3.3.<SUP  
+                  class=docFootnote>[4]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> The 
+                    <I>XF86Config </I>files shown here are examples and are not 
+                    intended for use on your system.</P></BLOCKQUOTE>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-18-EX-1></A>Example 18-1. A sample  
+                  XF86Config File for XFree86 v3.3.3 </H5><PRE># File generated by XConfigurator.
+
+Section &quot;Files&quot;
+    RgbPath    &quot;/usr/X11R6/lib/X11/rgb&quot;
+    FontPath   &quot;unix/:-1&quot;
+EndSection
+
+Section &quot;ServerFlags&quot;
+EndSection
+
+Section &quot;Keyboard&quot;
+    Protocol    &quot;Standard&quot;
+    AutoRepeat  500 5
+    LeftAlt     Meta
+    RightAlt    Meta
+    ScrollLock  Compose
+    RightCtl    Control
+    XkbDisable
+    XkbKeycodes     &quot;xfree86&quot;
+    XkbTypes        &quot;default&quot;
+    XkbCompat       &quot;default&quot;
+    XkbSymbols      &quot;us(pc101)&quot;
+    XkbGeometry     &quot;pc&quot;
+    XkbRules        &quot;xfree86&quot;
+    XkbModel        &quot;pc101&quot;
+    XkbLayout       &quot;us&quot;
+EndSection
+
+Section &quot;Pointer&quot;
+    Protocol    &quot;PS/2&quot;
+    Device      &quot;/dev/mouse&quot;
+    Emulate3Buttons
+    Emulate3Timeout    50
+EndSection
+
+Section &quot;Monitor&quot;
+    Identifier  &quot;My Monitor&quot;
+    VendorName  &quot;Unknown&quot;
+    ModelName   &quot;Unknown&quot;
+    HorizSync   31.5 - 64.3
+    VertRefresh 50-90
+    # 1280x1024 @ 61 Hz, 64.2 kHz hsync
+    Mode &quot;1280x1024&quot;
+        DotClock    110
+        Htimings    1280 1328 1512 1712
+        Vtimings    1024 1025 1028 1054
+    EndMode
+EndSection
+
+Section &quot;Device&quot;
+    Identifier  &quot;My Video Card&quot;
+    VendorName  &quot;Unknown&quot;
+    BoardName   &quot;Unknown&quot;
+    VideoRam    16256
+EndSection
+
+Section &quot;Screen&quot;
+    Driver      &quot;svga&quot;
+    Device      &quot;My Video Card&quot;
+    Monitor     &quot;My Monitor&quot;
+    Subsection &quot;Display&quot;
+        Depth       32
+        Modes       &quot;1280x1024&quot;
+        ViewPort    0 0
+    EndSubsection
+EndSection</PRE> 
+                  <P class=docText>Under v3.3.3, the default location for the 
+                  <I>XF86Config</I> file is in <I>/etc/X11</I>. The file 
+                  contains the following sections: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Files</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section is used to specify the default 
+                    font path and the path to the RGB database. Using the 
+                    <TT>FontPath</TT> <TT>"</TT><TT><I>path</I></TT><TT>"</TT> 
+                    directive multiple times creates a list of directories that 
+                    the X server will search for fonts. The RGB database is an 
+                    equivalence table of numeric red/green/blue color values 
+                    with names. Here's a short excerpt of the RGB database: 
+                    </P></DD></DL><PRE>255 228 196             bisque
+255 218 185             peach puff
+255 218 185             PeachPuff
+255 222 173             navajo white</PRE>
+                  <P class=docText>Hundreds of these names are defined and may 
+                  be used in the configuration of X applications where color 
+                  names are required. </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>ServerFlags</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section allows customization of X 
+                    server options such as the handling of hotkeys. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Keyboard</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section is used to specify the 
+                    keyboard input device, its parameters, and default 
+                    keyboard-mapping options. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Pointer</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section is used to define the pointing 
+                    device (mouse).</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Monitor</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Multiple <TT>Monitor</TT> sections are used 
+                    to define the specifications of monitors and a list of video 
+                    modes they can handle. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Device</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Multiple <TT>Device</TT> sections are used 
+                    to define video hardware (cards) installed. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Screen</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The <TT>Screen</TT> section ties together a 
+                    <TT>Device</TT> with a corresponding <TT>Monitor</TT> and 
+                    includes some configuration settings for them. </P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You don't need to memorize details 
+                        about <I>XF86Config</I>, but it is an important file, 
+                        and your familiarity with it will be tested. In 
+                        particular, be aware of what each of the sections does 
+                        for the X server, and remember that the <TT>Screen</TT> 
+                        section ties together a <TT>Device</TT> and a 
+                        <TT>Monitor</TT>. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>The <I>XF86Config</I><A  
+                  name=lpicertnut-IDXTERM-1284></A> file format was modified  
+                  slightly for XFree86 v4.0. In particular, a new  
+                  <TT>ServerLayout</TT> section has been added; it ties the  
+                  <TT>Screen</TT>, <TT>Pointer</TT>, and <TT>Keyboard</TT>  
+                  sections together. <a class="docLink" href="#lpicertnut-CHP-18-EX-2">Example  
+                  18-2</a> contains an abbreviated <I>XF86Config</I> file  
+                  created using the bundled <SPAN  
+                  class=docEmphBold>xf86cfg</SPAN> tool from the XFree86  
+                  project. </P>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-18-EX-2></A>Example 18-2. A Sample  
+                  XF86Config File for XFree86 v4.0.1 </H5><PRE>Section &quot;ServerLayout&quot;
+    Identifier     &quot;XFree86 Configured&quot;
+    Screen      0  &quot;Screen0&quot; 0 0
+    InputDevice    &quot;Mouse0&quot; &quot;CorePointer&quot;
+    InputDevice    &quot;Keyboard0&quot; &quot;CoreKeyboard&quot;
+EndSection
+
+Section &quot;Files&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    Identifier  &quot;Keyboard0&quot;
+    Driver      &quot;keyboard&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    Identifier  &quot;Mouse0&quot;
+    Driver      &quot;mouse&quot;
+    Option      &quot;Protocol&quot; &quot;PS/2&quot;
+    Option      &quot;Device&quot; &quot;/dev/mouse&quot;
+EndSection
+
+Section &quot;Monitor&quot;
+    Identifier   &quot;Monitor0&quot;
+    VendorName   &quot;Monitor Vendor&quot;
+    ModelName    &quot;Monitor Model&quot;
+    HorizSync    31.5 - 64.3
+    VertRefresh  50.0 - 90.0
+EndSection
+
+Section &quot;Device&quot;
+    Identifier  &quot;Card0&quot;
+    Driver      &quot;nv&quot;
+    VendorName  &quot;NVidia&quot;
+    BoardName   &quot;Riva TNT&quot;
+    ChipSet     &quot;RIVATNT&quot;
+    BusID       &quot;PCI:1:0:0&quot;
+EndSection
+
+Section &quot;Screen&quot;
+    Identifier    &quot;Screen0&quot;
+    Device        &quot;Card0&quot;
+    Monitor       &quot;Monitor0&quot;
+    DefaultDepth  24
+    SubSection &quot;Display&quot;
+        Depth     24
+    EndSubSection
+EndSection</PRE> 
+                  <P class=docText>Under v4.0, the default location for the 
+                  <I>XF86Config</I> file is in <I>/etc/X11</I>. The file 
+                  contains the following sections: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>ServerLayout</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section ties together <TT>Screen</TT> 
+                    with one or more <TT>InputDevice</TT>s. Multiple 
+                    <TT>ServerLayout</TT> sections may be used for multiheaded 
+                    configurations (i.e., systems with more than one monitor). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Files</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section is used to add paths to fonts 
+                    and color information, just as it is in XFree86 v3.3.3. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>InputDevice</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Multiple <TT>InputDevice</TT> sections 
+                    should be used to include at least a keyboard and mouse. 
+                    Subsections within <TT>InputDevice</TT> in v4.0 replace the 
+                    <TT>Pointer</TT> and <TT>Keyboard</TT> sections for XFree86 
+                    v3.3.3. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Monitor</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section is similar to the 
+                    <TT>Monitor</TT> section for XFree86 v3.3.3, except that 
+                    mode specifications are not usually necessary. The X server 
+                    is already aware of standard VESA video modes and chooses 
+                    the best mode based on the horizontal sync and vertical 
+                    refresh rates. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Device</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section specifies the modular driver 
+                    for the X server. Multiple <TT>Device</TT> sections can be 
+                    included to handle multiple graphics devices. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>Screen</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section ties together a 
+                    <TT>Monitor</TT> with a <TT>Device</TT> and is specified in 
+                    the <TT>ServerLayout</TT>. Multiple <TT>Screen</TT> sections 
+                    can be included to handle multiple monitor/device pairs. 
+                    </P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>As already mentioned, you don't need to  
+                        worry about details in <I>XF86Config</I>. However, you  
+                        should be aware of the major differences in the  
+                        configuration files for XFree86 Versions 3.3 and 4.0.<A  
+                        name=IXTR3-92></A><A name=IXTR3-93></A> 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-18-SECT-2.2></A>
+                  <H4 class=docSection2Title>18.2.2 X Fonts</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-1287></A>XFree86  
+                  is distributed with a collection of fonts for most basic  
+                  purposes, including text displays in terminal windows and  
+                  browsers. For many users, the default fonts are adequate, but  
+                  others may prefer to add additional fonts to their system. A  
+                  variety of fonts are available, both free and commercially,  
+                  from many sources, such as Adobe. Some very creative fonts are  
+                  created by individuals and distributed on the Internet (a  
+                  search engine should return some useful links to a query such  
+                  as "<SPAN class=docEmphasis>XFree86 fonts"</SPAN> ). </P> 
+                  <P class=docText>XFree86 makes fonts that it finds in the 
+                  <SPAN class=docEmphasis>font path</SPAN> available to client 
+                  programs. A basic font path is compiled into the X server, but 
+                  you can specify your own font path using the <TT>FontPath</TT> 
+                  directive in the <SPAN class=docEmphasis>Files</SPAN> section 
+                  of <I>XF86Config</I>. The simple syntax is: </P><PRE>FontPath &quot;path&quot;</PRE>
+                  <P class=docText>For example:</P><PRE>Section &quot;Files&quot;
+    RgbPath    &quot;/usr/X11R6/lib/X11/rgb&quot;
+    FontPath   &quot;/usr/X11R6/lib/X11/fonts/misc&quot;
+    FontPath   &quot;/usr/X11R6/lib/X11/fonts/Type1&quot;
+    FontPath   &quot;/usr/X11R6/lib/X11/fonts/Speedo&quot;
+    FontPath   &quot;/usr/X11R6/lib/X11/fonts/100dpi&quot;
+    FontPath   &quot;/usr/X11R6/lib/X11/fonts/75dpi&quot;
+    FontPath   &quot;/usr/X11R6/lib/X11/fonts/local&quot;
+EndSection</PRE>
+                  <P class=docText>This group of <TT>FontPath</TT> directives 
+                  creates a font path consisting of six directories, all under 
+                  <I>/usr/X11R6/lib/X11/fonts</I>. When XFree86 starts, it 
+                  parses these font directories and includes their contents in 
+                  the list of fonts available during the X session. </P><A 
+                  name=lpicertnut-CHP-18-SECT-2.2.1></A>
+                  <H5 class=docSection3Title>18.2.2.1 Installing fonts</H5>
+                  <P class=docText>Adding new fonts is straightforward.<SUP  
+                  class=docFootnote>[5]</SUP> First, a  
+                  suitable directory should be created for the new fonts, such  
+                  as <I>/usr/X11R6/lib/X11/local</I> or <I>/usr/local/fonts</I>.  
+                  You may wish to separate your own fonts from the default  
+                  XFree86 directories to protect them during upgrades. After the  
+                  fonts are installed in the new directory, the <SPAN  
+                  class=docEmphBold>mkfontdir</SPAN> utility is run to catalog  
+                  the new fonts in the new directory. New entries are added to  
+                  the <I>XF86Config</I> file to include the path for new fonts.  
+                  For example: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> For this 
+                    brief discussion, we assume that we're working with Type 1 
+                    fonts. Other types, such as TrueType fonts, may require 
+                    additional configuration depending on your version of 
+                    XFree86.</P></BLOCKQUOTE><PRE>FontPath   &quot;/usr/local/fonts&quot;</PRE>
+                  <P class=docText>At this point, the X server can be restarted 
+                  to recognize the new fonts, or the fonts can be dynamically 
+                  added using the <SPAN class=docEmphBold>xset</SPAN> command: 
+                  </P><PRE># <B>xset fp+ /usr/local/fonts</B></PRE>
+                  <P class=docText><SPAN class=docEmphBold>xset</SPAN> is beyond 
+                  the scope of the LPIC Level 1 exams. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure you understand how the X font 
+                        path is created and how to extend it to include 
+                        additional directories. Knowledge of the internal 
+                        details of font files is not necessary. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-18-SECT-2.2.2></A>
+                  <H5 class=docSection3Title>18.2.2.2 The X font server</H5>
+                  <P class=docText>On a network with multiple workstations, 
+                  managing fonts manually for each system can be time consuming. 
+                  To simplify this problem, the administrator can install all of 
+                  the desired fonts on a single system and then run <SPAN 
+                  class=docEmphBold>xfs</SPAN>, the X fonts server, on that 
+                  system. The X font server is a small daemon that sends fonts 
+                  to clients on both local and remote systems. Some Linux 
+                  distributions use <SPAN class=docEmphBold>xfs</SPAN> 
+                  exclusively, without a list of directories in the manually 
+                  created font path. To include <SPAN 
+                  class=docEmphBold>xfs</SPAN> in your system's font path, add a 
+                  <TT>FontPath</TT> directive like this: </P><PRE>Section &quot;Files&quot;
+    RgbPath     &quot;/usr/X11R6/lib/X11/rgb&quot;
+
+    FontPath   &quot;unix/:-1&quot;
+EndSection</PRE>
+                  <P class=docText>If you install <SPAN  
+                  class=docEmphBold>xfs</SPAN> from a package from your  
+                  distribution, it is probably automatically configured to start  
+                  at boot time and run continually, serving fonts to local and  
+                  remote client programs. To start <SPAN  
+                  class=docEmphBold>xfs</SPAN> manually, simply enter the <SPAN  
+                  class=docEmphBold>xfs</SPAN> command. For security purposes,  
+                  you may wish to run <SPAN class=docEmphBold>xfs</SPAN> as a  
+                  non-root user.<I> </I><SPAN class=docEmphBold>xfs</SPAN> is  
+                  configured using its configuration file,  
+                  <I>/etc/X11/fs/config</I>. <a class="docLink" href="#lpicertnut-CHP-18-EX-3">Example  
+                  18-3</a> contains an example <I>config</I> file for <SPAN  
+                  class=docEmphBold>xfs</SPAN>. </P>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-18-EX-3></A>Example 18-3. Sample  
+                  configuration File for xfs </H5><PRE># Allow a max of four clients to connect to this font server
+client-limit = 4
+
+# When a font server reaches its limit, start up a new one
+clone-self = on
+
+catalogue = /usr/X11R6/lib/X11/fonts/misc:unscaled,
+        /usr/X11R6/lib/X11/fonts/75dpi:unscaled,
+        /usr/X11R6/lib/X11/fonts/100dpi:unscaled,
+        /usr/X11R6/lib/X11/fonts/misc,
+        /usr/X11R6/lib/X11/fonts/Type1,
+        /usr/X11R6/lib/X11/fonts/Speedo,
+        /usr/X11R6/lib/X11/fonts/75dpi,
+        /usr/X11R6/lib/X11/fonts/100dpi,
+        /usr/share/fonts/ISO8859-2/100dpi,
+        /usr/share/fonts/ISO8859-9/100dpi
+        /usr/X11R6/lib/X11/fonts/local
+
+# In 12 points, decipoints
+default-point-size = 120
+
+# 100 x 100 and 75 x 75
+default-resolutions = 75,75,100,100
+
+# How to log errors
+use-syslog = on</PRE> 
+                  <P class=docText>As you can see, the <I>config </I>file 
+                  contains the following <SPAN class=docEmphasis>keyword</SPAN> 
+                  =<SPAN class=docEmphasis>value</SPAN> pairs: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>catalogue</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This keyword holds a comma-separated list 
+                    of directories containing fonts to be served by <SPAN 
+                    class=docEmphBold>xfs</SPAN>. This is where new font 
+                    directories are added. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>alternate-servers</SPAN></SPAN> <SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>(</SPAN></SPAN><I>strings</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>)</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This section contains a listing of 
+                    alternate font servers that can be found on the local 
+                    machine or on other machines. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>client-limit</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This shows the maximum number of client 
+                    requests to be served.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>clone-self</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>When <TT>on</TT>, the font server makes 
+                    copies of itself if it reaches the <TT>client-limit</TT>. 
+                    </P></DD></DL>
+                  <P class=docText>You don't need to remember details about the 
+                  contents of the <SPAN class=docEmphBold>xfs</SPAN> 
+                  configuration file (<I>config</I>), but be aware of the use 
+                  and general contents of the file. In particular, remember that 
+                  the <TT>catalogue</TT> keyword is used similarly to 
+                  <TT>FontPath</TT> in <I>XF86Config</I>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that <SPAN  
+                        class=docEmphBold>xfs</SPAN> can take the place of the  
+                        list of directories in a manually configured font path.  
+                        However, running <SPAN class=docEmphBold>xfs</SPAN>  
+                        doesn't replace the font path -- <SPAN  
+                        class=docEmphBold>xfs</SPAN> itself must be on that path  
+                        as noted earlier in <a class="docLink" href="#lpicertnut-CHP-18-EX-1">Example  
+                        18-1</a> with the <I>unix/:-1</I> entry.<A  
+                        name=IXTR3-94></A> </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-18-SECT-2.3></A>
+                  <H4 class=docSection2Title>18.2.3 Controlling X Applications 
+                  with .Xresources</H4>
+                  <P class=docText>The X Window System also has many built-in  
+                  customization features. Many X applications are programmed  
+                  with a variety of <I>resources</I><A name=IXT-18-350893></A>,  
+                  which are configuration settings that can be externally  
+                  manipulated. Rather than have a configuration utility built  
+                  into each application, applications can be written to examine  
+                  the contents of a file in the user's home directory. The  
+                  <I>.Xresources</I><A name=IXT-18-350894></A> file contains a  
+                  line for each configured resource in the following form: </P><PRE>program*resource: value</PRE> 
+                  <P class=docText>This line can be translated as follows:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList><TT><I>program</I></TT> is the name of a 
+                    configurable program, such as <TT>emacs</TT> or 
+                    <TT>xterm</TT> . </P>
+                    <LI>
+                    <P class=docList><TT><I>resource</I></TT> is one of the 
+                    configurable settings allowed by the program, such as 
+                    colors. </P>
+                    <LI>
+                    <P class=docList><TT><I>value</I></TT> is the setting to 
+                    apply to the resource. </P></LI></UL>
+                  <P class=docText>For example, the following is an excerpt from 
+                  <I>.Xresources</I> that configures colors for an 
+                  <TT>xterm</TT> : </P><PRE>xterm*background: Black
+xterm*foreground: Wheat
+xterm*cursorColor: Orchid
+xterm*reverseVideo: false</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be aware of X resources and  
+                        the function of the <I>.Xresources</I> file. In  
+                        particular, you should understand that X applications  
+                        will look in the <I>.Xresources</I> file for settings.  
+                        You should also be able to construct a resource setting  
+                        given a particular example, but you do not need to be  
+                        able to generate a configuration file from scratch.<A  
+                        name=IXTR3-95></A> </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-18-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-18-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)500ms
+(xml)328ms
+(xsl)203ms
+(ent)0ms
+(buf)0ms
+
+(tot)1344ms
+--></BODY></HTML>
