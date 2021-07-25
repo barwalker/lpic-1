@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-24-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="24-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="24-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 24.&nbsp; 
+            Exam 102 Highlighter's Index</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-24-SECT-3></A>
+                  <H3 class=docSection1Title>24.3 Kernel</H3><A 
+                  name=lpicertnut-CHP-24-SECT-3.1></A>
+                  <H4 class=docSection2Title>24.3.1 Objective 1: Manage Kernel 
+                  Modules at Runtime</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList>The Linux <A name=IXT-24-351178></A>kernel 
+                    is modular, and <A name=IXT-24-351179></A>device driver 
+                    software is inserted into the running kernel as needed. </P>
+                    <LI>
+                    <P class=docList><A name=IXT-24-351180></A>Module files are 
+                    <SPAN class=docEmphasis>objects</SPAN>, stored under 
+                    <I>/lib/modules</I>. </P>
+                    <LI>
+                    <P class=docList>Kernel modules can be managed using:</P><A 
+                    name=IXT-24-351181></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>lsmod</SPAN><A 
+                      name=IXT-24-351181></A></SPAN> 
+                      <DD>
+                      <P class=docList>List modules.</P></DD></DL><A 
+                    name=IXT-24-351182></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>insmod</SPAN><A 
+                      name=IXT-24-351182></A></SPAN> 
+                      <DD>
+                      <P class=docList>Insert a module into the 
+                    kernel.</P></DD></DL><A name=IXT-24-351183></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>rmmod</SPAN><A 
+                      name=IXT-24-351183></A></SPAN> 
+                      <DD>
+                      <P class=docList>Remove a module from the 
+                    kernel.</P></DD></DL><A name=IXT-24-351184></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>modinfo</SPAN><A 
+                      name=IXT-24-351184></A></SPAN> 
+                      <DD>
+                      <P class=docList>Get information about a 
+                    module.</P></DD></DL><A name=IXT-24-351185></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>modprobe</SPAN><A 
+                      name=IXT-24-351185></A></SPAN> 
+                      <DD>
+                      <P class=docList>Insert modules along with their 
+                      prerequisites.</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Modules are configured in 
+                    <I>/etc/conf.modules</I> or <I>/etc/modules.conf</I>. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>modprobe</SPAN> 
+                    determines <A name=IXT-24-351186></A>module dependencies 
+                    using a file called <I>modules.dep</I><A 
+                    name=IXT-24-351187></A>. This file is usually created at 
+                    boot time using <SPAN class=docEmphBold>depmod</SPAN>. 
+                    </P></LI></UL><A name=lpicertnut-CHP-24-SECT-3.2></A>
+                  <H4 class=docSection2Title>24.3.2 Objective 2: Reconfigure, 
+                  Build, and Install a Custom Kernel and Modules</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList>To build a <A name=IXT-24-351188></A><A 
+                    name=IXT-24-351189></A>kernel, you need the compiler, 
+                    assembler, linker, <SPAN class=docEmphBold>make</SPAN><A 
+                    name=IXT-24-351190></A>, kernel source, and kernel headers. 
+                    </P>
+                    <LI>
+                    <P class=docList>These are typical kernel compilation steps, 
+                    done in <I>/usr/src/linux</I>: </P><SPAN 
+                    style="FONT-WEIGHT: bold">
+                    <OL class=docList type=1>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Make a configuration using <SPAN 
+                      class=docEmphBold>make oldconfig</SPAN> (existing setup), 
+                      <SPAN class=docEmphBold>make config</SPAN> (basic 
+                      interactive text program), <SPAN class=docEmphBold>make 
+                      menuconfig</SPAN> (interactive text menu program), or 
+                      <SPAN class=docEmphBold>make xconfig</SPAN> (graphical 
+                      program). Each method creates the <I>.config</I> file 
+                      containing kernel options. </P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Modify <TT>EXTRAVERSION</TT> in 
+                      <I>Makefile</I>, if desired. </P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Build dependencies using <SPAN 
+                      class=docEmphBold>make dep</SPAN>.</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Clean old results with <SPAN 
+                      class=docEmphBold>make clean</SPAN>.</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Create the kernel with <SPAN 
+                      class=docEmphBold>make bzImage</SPAN>.</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Create modules with <SPAN 
+                      class=docEmphBold>make modules</SPAN>.</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Install the modules with <SPAN 
+                      class=docEmphBold>make modules_install</SPAN>. </P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Copy the new image to 
+                      <I>/boot</I>.</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Update <I>/etc/lilo.conf</I> for the new 
+                      image.</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Update the boot loader by running the 
+                      <SPAN class=docEmphBold>lilo</SPAN> command. 
+                      </P></SPAN></LI></OL></SPAN></LI></UL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-24-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-24-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-24-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)15ms
+(lib)500ms
+(xml)390ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)922ms
+--></BODY></HTML>

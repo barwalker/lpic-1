@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-24-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="24-6.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="24-6.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 24.&nbsp; 
+            Exam 102 Highlighter's Index</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-24-SECT-6></A>
+                  <H3 class=docSection1Title>24.6 X</H3>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-24-351229></A>X is a 
+                    client-server GUI system. <A name=IXT-24-351230></A>XFree86 
+                    is the X implementation used for Linux. </P>
+                    <LI>
+                    <P class=docList>An <A name=IXT-24-351231></A>X server is 
+                    software or hardware that renders graphical output on a 
+                    display device. </P>
+                    <LI>
+                    <P class=docList>An <A name=IXT-24-351232></A>X client is 
+                    software whose output is displayed by an X server and is 
+                    usually managed by a window manager. </P>
+                    <LI>
+                    <P class=docList>An <A name=IXT-24-351233></A>X window 
+                    manager is a client that applies frames and controls to 
+                    other client windows. </P></LI></UL><A 
+                  name=lpicertnut-CHP-24-SECT-6.1></A>
+                  <H4 class=docSection2Title>24.6.1 Objective 1: Install and 
+                  Configure XFree86</H4><A 
+name=lpicertnut-CHP-24-SECT-6.1.1></A>
+                  <H5 class=docSection3Title>24.6.1.1 Selecting and configuring 
+                  an X server</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-24-351234></A>XFree86 
+                    configuration depends on the software version, the video 
+                    chipset in use, and the monitor's capabilities. </P>
+                    <LI>
+                    <P class=docList>XFree86 can be installed from Linux 
+                    distribution packages (<I>.rpm</I>, <I>.deb</I>), 
+                    precompiled binaries, or compiled from source. </P>
+                    <LI>
+                    <P class=docList>Configuration of XFree86 is done in the 
+                    <I>XF86Config</I><A name=IXT-24-351235></A> file. </P>
+                    <LI>
+                    <P class=docList><I>XF86Config</I> contains sections that 
+                    define input devices, monitors, graphics modes, and so on. 
+                    </P>
+                    <LI>
+                    <P class=docList><I>XF86Config</I> files differ between 
+                    XFree86 Versions 3.x and 4.x. </P></LI></UL><A 
+                  name=lpicertnut-CHP-24-SECT-6.1.2></A>
+                  <H5 class=docSection3Title>24.6.1.2 X fonts</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The X server uses <A 
+                    name=IXT-24-351236></A>X fonts to satisfy font requests from 
+                    X clients. </P>
+                    <LI>
+                    <P class=docList>Fonts are enumerated either through a 
+                    static list presented in <I>/etc/X11/XF86Config</I> or 
+                    through a <SPAN class=docEmphasis>font server</SPAN> such as 
+                    <SPAN class=docEmphBold>xfs</SPAN>. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xfs</SPAN> is 
+                    configured using its configuration file, 
+                    <I>/etc/X11/fs/config</I>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-24-SECT-6.1.3></A>
+                  <H5 class=docSection3Title>24.6.1.3 .Xresources</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>X resource settings in the 
+                    <I>.Xresources</I><A name=IXT-24-351237></A> file control 
+                    client program parameters. For example, this line defines a 
+                    black background for an <SPAN 
+                    class=docEmphBold>xterm</SPAN>: </P></LI></UL><PRE>xterm*background: Black</PRE><A 
+                  name=lpicertnut-CHP-24-SECT-6.2></A>
+                  <H4 class=docSection2Title>24.6.2 Objective 2: Set Up xdm</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xdm</SPAN><A 
+                    name=IXT-24-351238></A>, the X Display Manager, handles X 
+                    sessions on physical displays both locally and across the 
+                    network. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xdm</SPAN> handles 
+                    authentication.</P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xdm</SPAN> is 
+                    configured by a series of files in <I>/etc/X11/xdm</I>. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xdm</SPAN> is 
+                    typically started automatically in runlevel 5 by making the 
+                    appropriate settings in <I>/etc/inittab</I>. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xdm</SPAN> may be 
+                    personalized by changing the resources in <I>/etc/X11/xdm/ 
+                    Xresources</I>. </P>
+                    <LI>
+                    <P class=docList>Command-line options for the X server can 
+                    be added to the <I>/etc/X11/xdm/Xservers</I> file. 
+                  </P></LI></UL><A name=lpicertnut-CHP-24-SECT-6.2.1></A>
+                  <H5 class=docSection3Title>24.6.2.1 X stations</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-24-351239></A>X stations, also 
+                    known as <A name=IXT-24-351240></A>X terminals, are low-cost 
+                    hardware systems that implement an X server and display. 
+</P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xdm</SPAN> can 
+                    listen for inbound connection requests from X terminals 
+                    using the <I>xdmcp</I> protocol. </P>
+                    <LI>
+                    <P class=docList>Specific access rules for X terminals to 
+                    the <SPAN class=docEmphBold>xdm</SPAN> daemon can be 
+                    configured in <I>/etc/X11/xdm/Xaccess</I>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-24-SECT-6.3></A>
+                  <H4 class=docSection2Title>24.6.3 Objective 3: Identify and 
+                  Terminate Runaway X Applications</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-24-351241></A>X applications 
+                    can occasionally become unresponsive or remain running after 
+                    the X server is terminated. </P>
+                    <LI>
+                    <P class=docList>Use the top utility to identify processes. 
+                    </P>
+                    <LI>
+                    <P class=docList>Use <SPAN class=docEmphBold>kill</SPAN> or 
+                    <SPAN class=docEmphBold>killall</SPAN> to terminate 
+                    processes. </P>
+                    <LI>
+                    <P class=docList>If the X server is unresponsive, use <SPAN 
+                    class=docEmphBold>Ctrl-Alt-F2</SPAN> to switch to another 
+                    console, and kill offending processes. </P></LI></UL><A 
+                  name=lpicertnut-CHP-24-SECT-6.4></A>
+                  <H4 class=docSection2Title>24.6.4 Objective 4: Install and 
+                  Customize a Window Manager</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-24-351242></A>An X server 
+                    doesn't supply a working user environment. </P>
+                    <LI>
+                    <P class=docList>Starting X usually involves launching not 
+                    only the X server but also a window manager and other 
+                    clients. </P>
+                    <LI>
+                    <P class=docList>A default window manager, such as the basic 
+                    <SPAN class=docEmphBold>twm</SPAN>, is started by a 
+                    combination of the <SPAN class=docEmphBold>startx</SPAN> 
+                    script and <SPAN class=docEmphBold>xinit</SPAN>. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xinit</SPAN> also 
+                    calls scripts that include a window manager and default 
+                    clients. </P>
+                    <LI>
+                    <P class=docList>Default system X configuration can be 
+                    overridden by files in the user's home directory. 
+                  </P></LI></UL><A name=lpicertnut-CHP-24-SECT-6.4.1></A>
+                  <H5 class=docSection3Title>24.6.4.1 Window managers</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>Each window manager and desktop environment 
+                    has its own style of configuration. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>twm</SPAN><A 
+                    name=IXT-24-351243></A> <A name=IXT-24-351244></A>uses 
+                    <I>.twmrc</I> in the user's home directory. If that file 
+                    doesn't exist, it uses the systemwide 
+                    <I>/etc/X11/twm/system.twmrc</I>. </P>
+                    <LI>
+                    <P class=docList>Window manager configuration files can 
+                    contain font and color selections, bindings between actions 
+                    (such as mouse clicks) and responses, and menu definitions. 
+                    </P></LI></UL><A name=lpicertnut-CHP-24-SECT-6.4.2></A>
+                  <H5 class=docSection3Title>24.6.4.2 xterm</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>A <SPAN class=docEmphasis>terminal 
+                    emulator</SPAN><A name=IXT-24-351245></A> is a program that 
+                    offers a command-line interface in a GUI window. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xterm</SPAN><A 
+                    name=IXT-24-351246></A> is the standard terminal emulator; 
+                    there are many others. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>xterm</SPAN> can be 
+                    configured in <I>/usr/lib/X11/app-defaults/XTerm</I>. 
+                    </P></LI></UL><A name=lpicertnut-CHP-24-SECT-6.4.3></A>
+                  <H5 class=docSection3Title>24.6.4.3 X libraries</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>X applications are dependent upon shared <A 
+                    name=IXT-24-351247></A>X libraries. </P>
+                    <LI>
+                    <P class=docList>Various graphical toolkits such as GTK or 
+                    Qt can be used to develop X client applications. </P>
+                    <LI>
+                    <P class=docList>Software that depends on a particular 
+                    library will not run unless that library is installed. </P>
+                    <LI>
+                    <P class=docList>You can determine which libraries an 
+                    executable requires<I> with </I><SPAN 
+                    class=docEmphBold>ldd</SPAN><A name=IXT-24-351248></A> <A 
+                    name=IXT-24-351249></A>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-24-SECT-6.4.4></A>
+                  <H5 class=docSection3Title>24.6.4.4 Remote X clients</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>X c<A name=IXT-24-351250></A>lients can be 
+                    displayed on remote X servers. </P>
+                    <LI>
+                    <P class=docList>The <TT>DISPLAY</TT><A 
+                    name=IXT-24-351251></A> environment variable is used to 
+                    indicate the destination for X client displays. </P>
+                    <LI>
+                    <P class=docList><TT>DISPLAY</TT> has the format 
+                    <TT>[</TT><I>host</I><TT>]:</TT><I>display</I><TT>[</TT><I>. 
+                    screen</I><TT>]</TT> where <I>host</I> is a remote hostname 
+                    or IP address, <TT>display</TT> is the display target 
+                    (starting with 0), and <I>screen</I> is the screen to use on 
+                    multiheaded displays. </P>
+                    <LI>
+                    <P class=docList><TT>DISPLAY</TT> must be 
+                  exported.</P></LI></UL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-24-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-24-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-24-SECT-6
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)563ms
+(xml)484ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)1063ms
+--></BODY></HTML>

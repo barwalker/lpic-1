@@ -1,0 +1,903 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-21-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="21-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="21-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 21.&nbsp;  
+            Security (Topic 1.14)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-21-SECT-1></A>
+                  <H3 class=docSection1Title>21.1 Objective 1: Perform Security 
+                  Administration Tasks</H3>
+                  <P class=docText>A good security policy includes such things 
+                  as securing inbound network requests, verifying the 
+                  authenticity of software packages to assure they are not 
+                  hostile, and managing local security resources. This Objective 
+                  details some of the most common of these activities that a 
+                  system administrator performs. </P><A 
+                  name=lpicertnut-CHP-21-SECT-1.1></A>
+                  <H4 class=docSection2Title>21.1.1 TCP Wrappers</H4>
+                  <P class=docText><A name=IXT-21-351078></A>As a Linux system  
+                  operates in a networked environment, it is constantly  
+                  "listening" for inbound requests from the network. Many  
+                  requests come into Linux on the same network interface, but  
+                  they are differentiated from one another by their <SPAN  
+                  class=docEmphasis>port address</SPAN><A 
+                  name=IXT-21-351079></A>, a unique numeric designator used by  
+                  network protocols. Each type of service listens on a different  
+                  <SPAN class=docEmphasis>port</SPAN>. Established port numbers  
+                  and their corresponding services are listed in  
+                  <I>/etc/services</I><A name=IXT-21-351080></A>. Here are some  
+                  lines from that file: </P><PRE># /etc/services:
+#
+ftp        21/tcp
+ssh        22/tcp
+ssh        22/udp
+telnet     23/tcp
+smtp       25/tcp
+www        80/tcp
+www        80/udp</PRE> 
+                  <P class=docText>The left column lists various services that  
+                  could be provided by the system.<SUP class=docFootnote>[1]</SUP> The right  
+                  column lists the port numbers assigned to the services and the  
+                  protocol (TCP or UDP) used by the service. For example, the  
+                  <SPAN class=docEmphBold>telnet</SPAN> service uses port 23,  
+                  and web servers use port 80. When a browser wishes to contact  
+                  the web server on a specific IP address, it attempts to attach  
+                  to port 80 at that address. Likewise, Telnet clients attach to  
+                  port 23. If the appropriate service is listening, it responds  
+                  and a new communications session is established. Linux  
+                  networking software consults this table to determine port  
+                  numbers. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> Just 
+                    being listed doesn't imply that a service is really 
+                    active.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-21-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>21.1.1.1 On the attack</H5>
+                  <P class=docText><A name=IXT-21-351081></A>As the Internet has  
+                  grown, the frequency of <A name=IXT-21-351082></A>computer  
+                  break-in attempts has kept pace. To gain entry to an  
+                  unsuspecting host system, some intruders configure their  
+                  systems to appear to target servers (that is, your servers) as  
+                  trusted hosts. This could include a forged IP address or  
+                  hostname, or the exploitation of aspects of the TCP protocol.  
+                  Such attacks are carried out against multiple ports, sometimes  
+                  in a <SPAN class=docEmphasis>port scan</SPAN> where multiple  
+                  ports at a single IP address are attacked in succession. </P> 
+                  <P class=docText>In response to these threats, the <SPAN  
+                  class=docEmphasis>TCP wrapper</SPAN><A name=IXT-21-351083></A> 
+                  concept was created. The "wrappers" name comes from the idea  
+                  that the services are "wrapped" in a protective layer. TCP  
+                  wrappers consist of a single program, <SPAN  
+                  class=docEmphBold>tcpd</SPAN><A 
+                  name=lpicertnut-IDXTERM-1541></A>, which is called in place of  
+                  actual services like <SPAN class=docEmphBold>ftpd</SPAN> or  
+                  <SPAN class=docEmphBold>telnetd</SPAN>, among others. <SPAN  
+                  class=docEmphBold>tcpd</SPAN> performs the following  
+                  functions: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>Responds to network requests and does 
+                    security tests on the information provided in the connection 
+                    message </P>
+                    <LI>
+                    <P class=docList>Consults local configuration files ( 
+                    <I>/etc/host.allow</I> and <I>/etc/host.deny</I>) to 
+                    restrict access </P>
+                    <LI>
+                    <P class=docList>Provides detailed logging via the 
+                    <TT>authpriv</TT> facility of <SPAN 
+                    class=docEmphBold>syslog</SPAN> for connection requests 
+                    </P></LI></UL>
+                  <P class=docText>If a connection is approved, <SPAN  
+                  class=docEmphBold>tcpd</SPAN> steps aside and allows the  
+                  connection to be received by the true service. You could  
+                  consider <SPAN class=docEmphBold>tcpd</SPAN> to be a  
+                  gatekeeper of sorts, asking for identification at the door,  
+                  and once satisfied, getting out of the way and allowing entry.  
+                  By doing so, <SPAN class=docEmphBold>tcpd</SPAN> does not  
+                  impact subsequent performance of the network connection.  
+                  However, this aspect of <A name=IXT-21-351084></A><SPAN  
+                  class=docEmphBold>tcpd</SPAN> prevents its use for services  
+                  that handle multiple clients at one time, such has NFS and  
+                  <SPAN class=docEmphBold>httpd</SPAN>. Instead, services  
+                  protected by <SPAN class=docEmphBold>tcpd</SPAN> include  
+                  single-client programs such as <SPAN  
+                  class=docEmphBold>telnet</SPAN> and <SPAN  
+                  class=docEmphBold>ftp</SPAN>. </P><A 
+                  name=lpicertnut-CHP-21-SECT-1.1.2></A>
+                  <H5 class=docSection3Title>21.1.1.2 Configuring inetd and 
+                  tcpd</H5>
+                  <P class=docText><a class="docLink" href="20-1.htm">Section  
+                  20.1</a> examines <SPAN class=docEmphBold>inetd</SPAN> <A  
+                  name=IXT-21-351085></A>and its configuration file,  
+                  <I>/etc/inetd.conf</I><A name=IXT-21-351086></A>. Without  
+                  <SPAN class=docEmphBold>tcpd</SPAN>, a typical service  
+                  configuration looks like this:</P><PRE>telnet  stream  tcp  nowait  root  \
+          /usr/sbin/in.telnetd   in.telnetd</PRE> 
+                  <P class=docText>In this example, <I>/usr/sbin/in.telnetd</I> 
+                  is the executable program that is called when a Telnet client 
+                  tries to attach to the system on the Telnet port (23). With 
+                  this configuration, <I>in.telnetd</I> responds directly and 
+                  immediately to inbound requests. To enable the use of TCP 
+                  wrappers for <I>in.telnetd</I>, it is specified that <SPAN 
+                  class=docEmphBold>tcpd</SPAN> be called instead. Making this 
+                  change yields this revised <I>inetd.conf</I> line: </P><PRE>telnet  stream  tcp  nowait  root  \
+          /usr/sbin/tcpd   in.telnetd</PRE>
+                  <P class=docText>Now, <I>/usr/sbin/tcpd</I> is called in 
+                  response to an inbound Telnet connection. </P>
+                  <P class=docText><SPAN class=docEmphBold>tcpd</SPAN> interacts 
+                  with only the initial network connection. It does not interact 
+                  with the client process (remote Telnet), the client user (the 
+                  remote person initiating the Telnet session), or the server 
+                  process (the local <I>in.telnetd</I>). Since it is autonomous, 
+                  <SPAN class=docEmphBold>tcpd</SPAN> has these properties: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Application 
+                    independence</SPAN></I> 
+                    <DD>
+                    <P class=docList>The same small <SPAN 
+                    class=docEmphBold>tcpd</SPAN> program can be used on many 
+                    different network services. This simplicity makes <SPAN 
+                    class=docEmphBold>tcpd</SPAN> easy to install, configure, 
+                    and upgrade. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Invisible from 
+                    outside</SPAN></I> 
+                    <DD>
+                    <P class=docList>Anyone trying to gain access has no direct  
+                    evidence that <SPAN class=docEmphBold>tcpd</SPAN> is in  
+                    use.<SUP class=docFootnote>[2]</SUP> </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[2]</A></SUP> 
+                      However, it is customary for <SPAN 
+                      class=docEmphBold>tcpd</SPAN> to be in use by default on 
+                      modern Linux installations.</P></BLOCKQUOTE></DD></DL><A 
+                  name=lpicertnut-CHP-21-SECT-1.1.3></A>
+                  <H5 class=docSection3Title>21.1.1.3 tcpd access control</H5>
+                  <P class=docText><SPAN class=docEmphBold>tcpd</SPAN> <A  
+                  name=IXT-21-351087></A>provides a method of limiting access  
+                  from external sources both by name and by address. After  
+                  receiving a network request, <SPAN  
+                  class=docEmphBold>tcpd</SPAN> first does its IP address and  
+                  hostname checks. If those pass, <SPAN  
+                  class=docEmphBold>tcpd</SPAN><I> </I>then consults two control  
+                  files, named <I>hosts.allow </I>and <I>hosts.deny</I>, for  
+                  access control information. These are text files that contain  
+                  rules (one per line) against which incoming network  
+                  connections are tested: </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hosts.allow</I></SPAN> 
+                    <DD>
+                    <P class=docList><SPAN class=docEmphBold>tcpd</SPAN> 
+                    consults this file first. When an incoming network request 
+                    matches one of these rules, <SPAN 
+                    class=docEmphBold>tcpd</SPAN> immediately grants access by 
+                    passing the network connection over to the server daemon. If 
+                    none of the rules are matched, the next file is consulted. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc/hosts.deny</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file is consulted second. If a network 
+                    request matches one of these rules, <SPAN 
+                    class=docEmphBold>tcpd</SPAN> denies access to the service. 
+                    </P></DD></DL>
+                  <P class=docText>If no matches are made in either of the 
+                  files, then the connection is allowed. This implies that 
+                  missing <I>hosts.allow</I> and <I>hosts.deny</I> files means 
+                  that no access control is implemented. </P>
+                  <P class=docText><A name=IXT-21-351088></A><A 
+                  name=IXT-21-351089></A><A name=IXT-21-351090></A><A 
+                  name=IXT-21-351091></A>The form of the rules in these two  
+                  files is simple: </P><PRE>service_list : foreign_host_list</PRE> 
+                  <P class=docText>The service list is made up of 
+                  space-separated program names, such as <I>in.telnetd</I> and 
+                  <I>in.ftpd</I>. The foreign host list can contain special 
+                  codes, which can be used on both sides of the colon: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>ALL</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This is the universal wildcard, which 
+                    always matches all requests. When used on the left side of a 
+                    rule, <TT>ALL</TT> indicates every service protected by 
+                    <SPAN class=docEmphBold>tcpd</SPAN>. On the right side, it 
+                    means all possible hosts. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>EXCEPT</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>In the context of: </P></DD></DL><PRE>list1 EXCEPT list2</PRE>
+                  <P class=docText>this operator matches anything that matches 
+                  <TT>list1</TT> unless it also matches <TT>list2</TT>. </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>LOCAL</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This wildcard matches machines on the local 
+                    network -- any host whose name does not contain a dot 
+                    character. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>KNOWN</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This matches with a successful DNS lookup. 
+                    Dependent on DNS servers.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>PARANOID</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This wildcard matches when a hostname 
+                    lookup returns a different address than the inbound network 
+                    connection is offering. <SPAN class=docEmphBold>tcpd</SPAN> 
+                    must be compiled with the -<SPAN 
+                    class=docEmphBold>DPARANOID</SPAN> option to enable this 
+                    capability. By default, connections in this category are 
+                    dropped prior to testing against the rules in the control 
+                    files. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>UNKNOWN</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Opposite of <TT>KNOWN</TT>. When a DNS 
+                    lookup for a host fails, this wildcard matches. This could 
+                    happen for valid reasons, such as a DNS server failure, so 
+                    use this one with caution. </P></DD></DL>
+                  <P class=docText>To create a system closed to all remote 
+                  systems except those on the local network, the following line 
+                  is placed in <I>/etc/hosts.allow </I>: </P><PRE>ALL: LOCAL </PRE>
+                  <P class=docText>This rule allows connections to <TT>ALL</TT> 
+                  services from <TT>LOCAL</TT> machines. If <TT>LOCAL</TT> does 
+                  not match, this single line in <I>/etc/hosts.deny</I> is 
+                  tested: </P><PRE>ALL : ALL</PRE>
+                  <P class=docText>This rule denies <TT>ALL</TT> services from 
+                  <TT>ALL</TT> machines anywhere. Remember that matches found in 
+                  <I>hosts.allow</I> cause the search to stop, so that 
+                  <TT>LOCAL</TT> machines are not tested against the rules in 
+                  <I>hosts.deny</I>. </P>
+                  <P class=docText>To enable access from systems in domain 
+                  <TT>otherdom.com</TT> except its web server, and to allow 
+                  access from systems in network <TT>192.168.100.0</TT>, you 
+                  could change the <I>/etc/hosts.allow</I> file from the 
+                  previous example to: </P><PRE>ALL: LOCAL
+ALL: .otherdom.com EXCEPT www.otherdom.com
+ALL: 192.168.100.</PRE>
+                  <P class=docText>Note that the leading and trailing dots are 
+                  significant. <TT>.otherdom.com</TT> matches any system in that 
+                  domain, such as <TT>ftp.otherdom.com</TT> and 
+                  <TT>lab1.otherdom.com</TT>. The address rule with 
+                  <TT>192.168.100.</TT> matches all of the addresses on that 
+                  network, including <TT>192.168.100.1</TT>, 
+                  <TT>192.168.100.2</TT>, <TT>192.168.100.100</TT>, and so on. 
+                  </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that hosts.allow is evaluated 
+                        prior to hosts.deny. This means that if a match occurs 
+                        in hosts.allow, the connection succeeds and any 
+                        potential matches from hosts.deny are ignored. Also 
+                        remember that, in the absence of control, file access is 
+                        permitted. </P>
+                        <P class=docText>Keep in mind that services that are not 
+                        in use may have control settings. A configuration in 
+                        /etc/hosts.allow or /etc/hosts.deny does not imply that 
+                        listed services are actually running on the system. 
+                        Evaluate the complete setup of inetd.conf, hosts.allow, 
+                        and hosts.deny when answering questions about <SPAN 
+                        class=docEmphBold>tcpd</SPAN>. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-21-SECT-1.1.4></A>
+                  <H5 class=docSection3Title>21.1.1.4 tcpd logging</H5>
+                  <P class=docText>When <SPAN class=docEmphBold>tcpd</SPAN> is  
+                  enabled, it logs to the authpriv facility in <SPAN  
+                  class=docEmphBold>syslog</SPAN> (<SPAN  
+                  class=docEmphBold>syslog</SPAN> and its configuration are  
+                  described in <a class="docLink" href="07-3.htm">Section  
+                  7.3</a>.) Check your /etc/syslog.conf file to confirm where  
+                  this facility will be logged on your system. For example, this  
+                  /etc/syslog.conf configuration line puts all authpriv messages  
+                  in /var/log/secure: </P><PRE>authpriv.*    /var/log/secure</PRE> 
+                  <P class=docText>Most system service daemons will do some 
+                  logging on their own. For example, <I>in.telnetd</I> writes 
+                  the following line to <TT>authpriv</TT> as the result of a 
+                  Telnet connection: </P><PRE>Feb  8 17:50:04 smp login: LOGIN ON 0 BY jdean 
+        FROM 192.168.1.50</PRE>
+                  <P class=docText>When <SPAN class=docEmphBold>tcpd</SPAN> is 
+                  listening to the Telnet port in place of <I>in.telnetd</I>, it 
+                  logs the request first, does its verifications, and then 
+                  passes the connection on to <I>in.telnetd</I>, which then 
+                  starts a <TT>login</TT> process as before. In this case, 
+                  <I>/var/log/secure</I> looks like this: </P><PRE>Feb  8 17:53:03 smp in.telnetd[1400]: connect 
+        from 192.168.1.50
+Feb  8 17:53:07 smp login: LOGIN ON 0 BY jdean 
+        FROM 192.168.1.50</PRE>
+                  <P class=docText>The first line was logged by <SPAN  
+                  class=docEmphBold>tcpd</SPAN>. It indicates that a connection  
+                  was received from <TT>192.168.1.50</TT> bound for the  
+                  <I>in.telnetd</I> daemon.<SUP class=docFootnote>[3]</SUP> As you can  
+                  see, the <SPAN class=docEmphBold>tcpd</SPAN> report precedes  
+                  the login report.<A name=IXTR3-125></A> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> The 
+                    <TT>smp</TT> on these example lines is the name of the host 
+                    making the log entries.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-21-SECT-1.2></A>
+                  <H4 class=docSection2Title>21.1.2 Finding Executable SUID 
+                  Files</H4>
+                  <P class=docText>The <A name=IXT-21-351092></A><A  
+                  name=IXT-21-351093></A>set user ID (SUID) capability of the  
+                  Linux <I>ext2</I> filesystem was covered in <a class="docLink" href="04-5.htm">Section  
+                  4.5</a>. In that section, the SUID property was described as  
+                  both a security enhancement and a security risk. It can be  
+                  considered an enhancement because it allows administrators to  
+                  grant superuser privileges to specific, trusted programs that  
+                  may be executed by anyone on the system. The example given is  
+                  <SPAN class=docEmphBold>lpr</SPAN>, which needs special access  
+                  to manipulate the print spools. Without using the SUID  
+                  property, everyone on the system would need administrative  
+                  rights to use <SPAN class=docEmphBold>lpr</SPAN><A  
+                  name=IXT-21-351094></A>, which is clearly undesirable. It is  
+                  also mentioned that an SUID capability that is granted  
+                  unwisely can be a security risk, and all applications of SUID  
+                  must be considered carefully. The reason for this concern is  
+                  that the potential exists for an attacker to exploit the  
+                  superuser privilege on an SUID file. For example, if the  
+                  attacker is able to somehow overwrite the contents of <SPAN  
+                  class=docEmphBold>lpr</SPAN>, he could effectively gain  
+                  superuser access to the system by running an <SPAN  
+                  class=docEmphBold>lpr</SPAN> of his own design that changes  
+                  passwords, adds new accounts, or something else shady and  
+                  unrelated to printing. </P> 
+                  <P class=docText>For systems on corporate networks and on the 
+                  Internet, it is common to minimize the number of SUID files on 
+                  the system and to regularly monitor the known list of programs 
+                  for changes. In the event that a new SUID program is found 
+                  that was not legitimately created or if an attribute of a 
+                  known file changes, it could be a warning that system security 
+                  has been compromised. </P>
+                  <P class=docText>The <SPAN class=docEmphBold>find</SPAN><A  
+                  name=IXT-21-351095></A> command can perform the searches for  
+                  attributes such as SUID (see <a class="docLink" href="03-1.htm">Section  
+                  3.1</a> for details on <SPAN class=docEmphBold>find</SPAN>).  
+                  In this example, a <SPAN class=docEmphBold>find</SPAN> command  
+                  is constructed that searches the entire filesystem for files  
+                  that have the SUID bit set; it avoids the <I>/proc</I>  
+                  filesystem (kernel information) to prevent permission  
+                  problems. The example generates verbose output using <SPAN  
+                  class=docEmphBold>ls</SPAN> to log detailed information about  
+                  the SUID files found: </P><PRE># <B>find /  \</B>
+<B>      -path '/proc' -prune  \</B>
+<B>      -or  \</B>
+<B>      -perm -u+s  \</B>
+<B>      -exec ls -l {} \;  \</B>
+<B>      &gt;  /usr/local/etc/suid_list &amp;</B></PRE> 
+                  <P class=docText>The first line calls the <SPAN  
+                  class=docEmphBold>find</SPAN> program and indicates that the  
+                  search should begin at the root directory <TT>/</TT>. The  
+                  second line specifies a -<TT>path</TT> directive to match  
+                  <TT>/proc</TT> utilizing the -<TT>prune</TT> modifier. This  
+                  eliminates (or <SPAN class=docEmphasis>prunes</SPAN>) the  
+                  <I>/proc</I> directory from the search. The next line joins  
+                  the -<TT>path</TT> directive to the -<TT>perm</TT>  
+                  (permissions) directive with a logical <TT>-or</TT>, skipping  
+                  execution of the -<TT>perm</TT> directive when -<TT>path</TT>  
+                  matches <TT>/proc</TT>. The -<TT>perm</TT> directive uses a  
+                  permission mode of -<TT>u+s</TT>, which indicates "match  
+                  SUID." The next line with the -<TT>exec</TT> directive  
+                  indicates what <SPAN class=docEmphBold>find</SPAN> is to do  
+                  for each SUID file found. Here, the <SPAN class=docEmphBold>ls  
+                  -l</SPAN> command is invoked and fed the response from <SPAN  
+                  class=docEmphBold>find</SPAN> to verbosely list the SUID  
+                  file's attributes. The <A name=IXT-21-351096></A><A  
+                  name=IXT-21-351097></A>curly braces (<TT>{}</TT>) are replaced  
+                  with the matched text once for each match.<SUP  
+                  class=docFootnote>[4]</SUP> The final  
+                  line redirects output from <SPAN class=docEmphBold>find</SPAN>  
+                  into a new file and puts the command in the background with  
+                  <TT>&amp;</TT>. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> Note that  
+                    a <A name=IXT-21-351098></A><A  
+                    name=IXT-21-351099></A>backslash in front of the semicolon  
+                    is required with -<SPAN  
+                  class=docEmphBold>exec</SPAN>.</P></BLOCKQUOTE>
+                  <P class=docText>Admittedly, <SPAN 
+                  class=docEmphBold>find</SPAN> can get a bit long in the tooth 
+                  but is nevertheless powerful. The result of this command is a 
+                  listing of files on your system with the SUID property; the 
+                  following is just a snippet of what that output would look 
+                  like: </P><PRE>-rwsr-xr-x 1 root root  33120 Mar 21  1999 /usr/bin/at
+-rwsr-xr-x 1 root root  30560 Apr 15  1999 /usr/bin/chage
+-rwsr-xr-x 1 root root  29492 Apr 15  1999 /usr/bin/gpasswd</PRE>
+                  <P class=docText>As you can see, the <I>s</I> bit is set on 
+                  the user of the file, indicating SUID. Keeping this complete 
+                  list in a file can be useful, because you'll want to check 
+                  your system periodically for changes. </P><A 
+                  name=lpicertnut-CHP-21-SECT-1.3></A>
+                  <H4 class=docSection2Title>21.1.3 Verifying Packages</H4>
+                  <P class=docText><A name=IXT-21-351100></A><A 
+                  name=IXT-21-351101></A><A name=IXT-21-351102></A>Package  
+                  management systems provide a convenient method of managing  
+                  software on Linux systems. The Red Hat Package Manager (RPM)  
+                  not only can install package files but also can provide for  
+                  the verification of package files and software installed on  
+                  your system. </P><A name=lpicertnut-CHP-21-SECT-1.3.1></A> 
+                  <H5 class=docSection3Title>21.1.3.1 Checking installed 
+                  packages</H5>
+                  <P class=docText><A name=IXT-21-351103></A><A 
+                  name=IXT-21-351104></A><A name=IXT-21-351105></A>If an  
+                  intruder were able to penetrate your system, it is likely that  
+                  she would attempt to modify or replace executable files in  
+                  order to grant herself special abilities. To check for such  
+                  files, the verification option of the package manager can be  
+                  used to check installed files. With RPM, it is possible to  
+                  verify the installed files contained in a specific package  
+                  like this: </P><PRE># <B>rpm -V apache</B>
+S.5....T c /etc/httpd/conf/httpd.conf
+.......T c /etc/httpd/conf/srm.conf
+missing    /home/httpd/html/index.html
+missing    /home/httpd/html/poweredby.gif</PRE> 
+                  <P class=docText>In this example, <SPAN 
+                  class=docEmphBold>rpm</SPAN> is reporting that four files do 
+                  not match the original installed configuration. None is an 
+                  executable file, and all are easy to explain, so no intruder 
+                  is suspected here. If an executable file does turn up in the 
+                  list, you may wish to investigate. For example: </P><PRE># <B>rpm -V XFree86-I128</B>
+S.5....T   /usr/X11R6/bin/XF86_I128</PRE>
+                  <P class=docText>This shows that the file <TT>XF86_I128</TT> 
+                  is not the same as the one originally installed. Unless you 
+                  know why the file has changed, corrective action may be 
+                  necessary to maintain security. In this case, the file in 
+                  question is an X Server binary that was intentionally upgraded 
+                  to a newer version than that supplied in the original package. 
+                  Again, this is an expected result. </P>
+                  <P class=docText>The output from <SPAN class=docEmphBold>rpm  
+                  -V</SPAN><A name=IXT-21-351106></A> consists of an  
+                  eight-character string, an optional <SPAN  
+                  class=docEmphBold>c</SPAN> (indicating that the file is a  
+                  configuration file), and the filename. Each column in the  
+                  result string contains a dot when an attribute has not  
+                  changed. The output codes listed in <a class="docLink" href="#lpicertnut-CHP-21-TABLE-1">Table  
+                  21-1</a> can replace dots to indicate discrepancies. </P><A  
+                  name=lpicertnut-CHP-21-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 21-1. RPM Verification Codes 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Dot Code</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>5</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The MD5 checksum, a sort of 
+                        "fingerprint" for the file, is different. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>S</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The file size has changed.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>L</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Symlink attributes have 
+                    changed.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>T</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The file's modification time (or 
+                        <I>mtime</I>) has changed. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>D</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Device file has changed.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>U</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The file's user/owner has 
+                      changed.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>G</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The file's group has changed.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>M</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The file's mode (permissions and file 
+                        type) has changed.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>?</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Unknown or unexpected 
+                    result.</P></TD></TR></TBODY></TABLE>
+                  <P class=docText>It can be helpful to monitor all of the 
+                  packages on your system and track changes to the resulting 
+                  list on a regular basis. To check all installed packages, use 
+                  the <SPAN class=docEmphBold>a</SPAN> verification option as 
+                  follows: </P><PRE># <B>rpm -Va</B>
+S.5....T c /etc/exports
+S.5....T c /etc/hosts.deny
+S.5....T c /etc/printcap
+S.5....T c /etc/services
+.M......   /root
+S.5....T c /usr/share/applnk/Multimedia/aktion.kdelnk
+S.5....T c /etc/info-dir
+..5....T c /etc/mime.types
+S.5....T c /etc/httpd/conf/httpd.conf
+.......T c /etc/httpd/conf/srm.conf
+missing    /home/httpd/html/index.html
+missing    /home/httpd/html/poweredby.gif
+S.5....T c /etc/named.conf
+S.5....T c /var/named/named.local
+.M......   /dev/hdc
+.M......   /dev/log
+.M?....T   /dev/printer
+.M......   /dev/pts
+......G.   /dev/tty0
+(... list continues ... )</PRE>
+                  <P class=docText>This list will be large. As your system is 
+                  configured, upgraded, and modified, you're likely to change 
+                  many of the files from their original configurations. The 
+                  important part is being able to explain changes that occur, 
+                  particularly on executable files. </P><A 
+                  name=lpicertnut-CHP-21-SECT-1.3.2></A>
+                  <H5 class=docSection3Title>21.1.3.2 Checking packages prior to 
+                  installation</H5>
+                  <P class=docText><A name=IXT-21-351107></A><A 
+                  name=IXT-21-351108></A>From time to time, you may obtain  
+                  precompiled software from various sources to add to your  
+                  system. This may include updated versions of software you  
+                  already have or new software you don't yet have. It's always  
+                  best to obtain package files from a trusted source, such as  
+                  the manufacturer or a well-known distributor. However, as an  
+                  added safeguard. you may wish to verify that the packages you  
+                  obtain have not been tampered with or otherwise corrupted. To  
+                  check an RPM file, use the <SPAN class=docEmphBold>--  
+                  checksig</SPAN> option: </P><PRE># <B>rpm --checksig --nopgp fileutils-4.0-1.i386.rpm</B>
+fileutils-4.0-1.i386.rpm: size md5 OK</PRE> 
+                  <P class=docText>The <TT>size md5 OK</TT> status indicates  
+                  that "size" and "md5" checksum tests passed for the  
+                  <I>.rpm</I> file. This means that the size of the file and its  
+                  checksum<SUP class=docFootnote>[5]</SUP> matched  
+                  expected values. A <TT>NOT OK</TT> status could indicate a  
+                  problem. In this example, the <SPAN class=docEmphBold>--  
+                  nopgp</SPAN> option is also used to ignore PGP signatures,  
+                  which may be necessary for you unless you have PGP installed  
+                  and configured on your system. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> A 
+                    checksum is a calculated value based on the contents of a 
+                    file (or other piece of information) used as a sort of 
+                    "fingerprint."</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-21-SECT-1.4></A>
+                  <H4 class=docSection2Title>21.1.4 SGID Workgroups</H4>
+                  <P class=docText>This Objective requires an understanding of  
+                  the <A name=IXT-21-351109></A>SGID (set group ID) mode bit and  
+                  its application to a directory. When SGID is set on a  
+                  directory, new files created within that directory are  
+                  assigned the same group ownership as the directory itself.  
+                  This is explored in detail in <a class="docLink" href="03-5.htm">Section  
+                  3.5</a>. If you're currently preparing for Exam 102, be sure  
+                  to refer back to <a class="docLink" href="01__Exam_101.htm">Part  
+                  I</a> for a refresher on SGID. </P><A  
+                  name=lpicertnut-CHP-21-SECT-1.5></A>
+                  <H4 class=docSection2Title>21.1.5 Password Management</H4>
+                  <P class=docText><A name=IXT-21-351110></A><A 
+                  name=IXT-21-351111></A>When a user calls saying he's forgotten  
+                  his password, you need to use the superuser account to create  
+                  a new one for him: </P><PRE># <B>passwd bsmith</B>
+Changing password for user bsmith
+New UNIX password:(new password)
+Retype new UNIX password:(new password again)
+passwd: all authentication tokens updated successfully</PRE> 
+                  <P class=docText>Resist the temptation to use an easily 
+                  guessed password, even if you expect the user to change it 
+                  immediately. </P>
+                  <P class=docText>Linux offers you the ability to set <A  
+                  name=IXT-21-351112></A><A name=IXT-21-351113></A>expiration  
+                  dates on passwords. This is done to limit their lifetime,  
+                  which presumably enhances security by forcing password  
+                  changes. If a password has been discovered or broken, the  
+                  password change will eventually correct the security lapse.  
+                  The <SPAN class=docEmphBold>chage</SPAN> command configures  
+                  password aging parameters on a per-user basis when using  
+                  password aging. The following parameters are defined: </P> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Minimum password 
+                    age</SPAN></I> 
+                    <DD>
+                    <P class=docList>The minimum number of days between password 
+                    changes.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Maximum password 
+                    age</SPAN></I> 
+                    <DD>
+                    <P class=docList>The maximum number of days between password 
+                    changes. The user is forced to change his password before 
+                    using the account after the number of days has elapsed 
+                    without a password change. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Last password 
+                    change</SPAN></I> 
+                    <DD>
+                    <P class=docList>The date on which the password was last 
+                    changed.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Password expiration 
+                    warning</SPAN></I> 
+                    <DD>
+                    <P class=docList>The number of days' warning that are issued 
+                    in advance of a password expiration. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Password inactive</SPAN></I> 
+                    <DD>
+                    <P class=docList>The number of days of inactivity the system 
+                    allows before locking a password. This is an automated way 
+                    of avoiding stale but valid user accounts. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Account expiration date 
+                    </SPAN></I>
+                    <DD>
+                    <P class=docList>The date on which an account 
+                    expires.</P></DD></DL><A name=p2_ch11-16-fm2xml></A><A 
+                  name=IXT-21-351114></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>chage </I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p2_ch11-18-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>chage user
+chage [options] user</PRE><A name=p2_ch11-19-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-21-351114></A>In the first form  
+                  without options, <SPAN class=docEmphBold>chage</SPAN> is  
+                  interactive. In the second form, <SPAN  
+                  class=docEmphBold>chage</SPAN> may be used with parameters  
+                  specified via options on the command-line. </P><A  
+                  name=p2_ch11-20-fm2xml></A>
+                  <H4 class=docRefsectTitle>Options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> <I>lastday</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>lastday</I> is the number of days 
+                    between the last password change and January 1, 1970. As an 
+                    administrator, you may need to modify this value. 
+                    <I>lastday</I> may also be specified as a date in 
+                    <I>/MM/DD/YY</I> format. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-E</SPAN> <I>expiredate</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>expiredate</I> is a date on which an 
+                    account will no longer be accessible. Like <I>lastday</I>, 
+                    it is stored as the number of days since January 1, 1970, 
+                    and may be specified as a date in <I>/MM/DD/YY</I> format. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-I</SPAN> <I>inactive</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>inactive</I> is the number of days of 
+                    inactivity allowed after a password expires before an 
+                    account is locked. A value of disables the <I>inactive</I> 
+                    feature. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-m</SPAN> <I>mindays</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>mindays</I> is the minimum number of 
+                    days between password changes. This prevents a user from 
+                    making multiple password changes at one time. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-M</SPAN> <I>maxdays</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>maxdays</I> is the maximum number of 
+                    days that a password remains valid. This forces users to 
+                    change their passwords periodically. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-W</SPAN> <I>warndays</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>warndays</I> is the number of days 
+                    before a password expires that the user is warned of the 
+                    upcoming expiration. </P></DD></DL><A 
+                  name=p2_ch11-21-fm2xml></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>User <I>bsmith</I> is to be provided with a 
+                  password that cannot be changed more than once every 2 days, 
+                  that must be changed at least every six months (180 days), 
+                  that retains its default 7-day warning interval, that is set 
+                  to lock after three weeks' of inactivity, and that expires 
+                  altogether at the end of 2002. The following interactive 
+                  session with <SPAN class=docEmphBold>chage</SPAN> makes these 
+                  settings: </P><PRE># <B>chage bsmith</B>
+Changing the aging information for bsmith
+Enter the new value, or press return for the default
+
+        Minimum Password Age [0]: <B>2</B>
+        Maximum Password Age [99999]: <B>180</B>
+        Last Password Change (MM/DD/YY) [02/10/00]:&lt;return&gt;
+        Password Expiration Warning [7]: &lt;return&gt;
+        Password Inactive [0]: <B>21</B>
+        Account Expiration Date (MM/DD/YY) 
+             [12/31/69]: <B>12/31/2002</B></PRE>
+                  <P class=docText>This creates the same settings using the 
+                  command line:</P><PRE># <B>chage -m 2 -M 180 -I 21 -E 12/31/2002 bsmith</B></PRE>
+                  <P class=docText>If you wish to set these parameters for 
+                  groups of users or everyone on the system, you could create a 
+                  simple shell script to loop over all users in 
+                  <I>/etc/passwd</I> and run the <SPAN 
+                  class=docEmphBold>chage</SPAN> command with options. </P>
+                  <P class=docText>The information on password aging is stored 
+                  in either the <I>/etc/passwd</I> file, or if shadow passwords 
+                  are enabled, in the <I>/etc/shadow</I> file. </P><A 
+                  name=lpicertnut-CHP-21-SECT-1.6></A>
+                  <H4 class=docSection2Title>21.1.6 The Secure Shell</H4>
+                  <P class=docText>Among the security issues surrounding 
+                  networked computer systems is the problem of plain text 
+                  communications. Much of the information traveling between 
+                  systems is simply sent as text, including passwords at login 
+                  time. If someone were able to capture the network packets of 
+                  your communications without your knowledge, your passwords and 
+                  other information could be compromised. While this may seem 
+                  like a remote possibility, such activity has become much 
+                  easier than it was just a few years ago, because low-cost 
+                  hardware can be used to make a network analyzer for just this 
+                  purpose. </P>
+                  <P class=docText>In 1995, a researcher developed an  
+                  application intended to replace some of the plain text  
+                  communications programs such as <SPAN  
+                  class=docEmphBold>telnet</SPAN>, <SPAN  
+                  class=docEmphBold>rlogin</SPAN>, and <SPAN  
+                  class=docEmphBold>rsh</SPAN>. The new application was titled  
+                  <A name=lpicertnut-IDXTERM-1574></A>Secure Shell, or SSH. This  
+                  application may also be used to secure other communications  
+                  such as the X Window System, though such use is beyond the  
+                  requirements for the LPIC Level 1 exams. The following  
+                  tutorial explains how to acquire, compile, install, and  
+                  configure <SPAN class=docEmphBold>ssh</SPAN> for Linux, so  
+                  that you can use it in place of Telnet.<SUP  
+                  class=docFootnote>[6]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> Licensing 
+                    restrictions apply to the commercial use of SSH. Verify your 
+                    intended use and license type.</P></BLOCKQUOTE>
+                  <P class=docText>While you may find a precompiled package, it 
+                  is a simple matter to compile and install <SPAN 
+                  class=docEmphBold>ssh</SPAN> if you have a C compiler. SSH is 
+                  available at <A class=docLink href="http://www.ssh.org/" 
+                  target=_blank>http://www.ssh.org/</A> and at many mirror 
+                  (copy) sites around the world. Using your browser or FTP 
+                  client, download the latest version to your system and extract 
+                  the tarball with the following command: </P><PRE># <B>tar zxvf ssh-2.0.13.tar.gz</B></PRE>
+                  <P class=docText><A name=IXT-21-351115></A>The <SPAN  
+                  class=docEmphBold>z</SPAN> option to <SPAN  
+                  class=docEmphBold>tar</SPAN> instructs it to invoke <SPAN  
+                  class=docEmphBold>gzip</SPAN> to decompress the archive before  
+                  reading it. You now have a directory hierarchy called  
+                  <I>ssh-2.0.13</I> (your version may be different). You should  
+                  <SPAN class=docEmphBold>cd</SPAN> into the new directory and  
+                  examine the documents you find there, then configure, compile,  
+                  and install the software: </P><PRE># <B>cd ssh-2.0.13</B>
+# <B>./configure</B>
+# <B>make</B>
+# <B>make install</B></PRE> 
+                  <P class=docText>If you have a recent compiler such as <SPAN 
+                  class=docEmphBold>gcc</SPAN><I>,</I> you shouldn't have any 
+                  difficulty with these steps. Configuration and compilation 
+                  present typical output, so you won't see any surprises there 
+                  if you've compiled software from source before. The 
+                  installation, however, generates <I>keys</I> for the software 
+                  to use in its encrypted communications. This process may take 
+                  a few extra minutes. </P>
+                  <P class=docText>Once SSH is installed, you may need to add 
+                  <I>/usr/local/bin</I> and <I>/usr/local/sbin</I> to your 
+                  <TT>PATH</TT> or use full pathnames. To enable login from 
+                  remote systems using SSH<I>,</I> you must start <SPAN 
+                  class=docEmphBold>sshd</SPAN>, which may be done simply by 
+                  issuing the following command: </P><PRE># <B>sshd</B></PRE>
+                  <P class=docText>Note that you do not need to put this command 
+                  in the background, as it handles this detail itself. Once the 
+                  <SPAN class=docEmphBold>sshd</SPAN> daemon is running, you may 
+                  connect from another SSH-equipped system: </P><PRE># <B>ssh mysecurehost</B></PRE>
+                  <P class=docText>The default configuration should be adequate 
+                  for basic use of SSH. One common problem you may encounter is 
+                  that a system may not be specifically listed by a DNS server. 
+                  In this case, comment out (that is, put <TT>#</TT> in front of 
+                  it using a text editor) the following line from 
+                  <I>/etc/ssh/sshd2_config</I>: </P><PRE>RequireReverseMapping           yes</PRE>
+                  <P class=docText>This eliminates the DNS lookup and allow your 
+                  configuration to function. If your systems are configured with 
+                  a proper DNS server, this step should not be necessary. If you 
+                  have difficulty with SSH, examine the log for <SPAN 
+                  class=docEmphBold>syslog</SPAN> facility <SPAN 
+                  class=docEmphBold>auth</SPAN>, which is most likely 
+                  <I>/var/log/messages</I>, for information. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>The Secure Shell (SSH) is an involved  
+                        and highly configurable piece of software, and detailed  
+                        knowledge of its setup is not required. However, SSH is  
+                        an important part of the security landscape. Be aware  
+                        that all communications using SSH are encrypted using  
+                        public/private key encryption, which means that plain  
+                        text passwords are unlikely to be compromised.<A  
+                        name=IXTR3-126></A> </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="21-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-21-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-21-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-21-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)500ms
+(xml)344ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)1188ms
+--></BODY></HTML>

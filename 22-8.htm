@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-22-SECT-8&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="22-8.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="22-8.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 22.&nbsp; 
+            Exam 102 Review Questions and Exercises</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-22-SECT-8></A>
+                  <H3 class=docSection1Title>22.8 Networking Services (Topic 
+                  1.13)</H3><A name=lpicertnut-CHP-22-SECT-8.1></A>
+                  <H4 class=docSection2Title>22.8.1 Review Questions</H4><SPAN 
+                  style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Describe the function of <SPAN 
+                    class=docEmphBold>inetd</SPAN> and how it is configured. 
+                    </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Describe the TCP Wrappers security tool and 
+                    how it can enhance security on a networked system. 
+                    </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Describe the use of mail aliases and how to 
+                    enable new aliases.</P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>What files are used to configure the Apache 
+                    web server?</P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>How does the administrator share a 
+                    directory using NFS?</P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>How does the administrator mount a 
+                    directory shared by a remote NFS server? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>What is the function of <SPAN 
+                    class=docEmphBold>nmbd</SPAN>?</P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Which file is used to configure <SPAN 
+                    class=docEmphBold>smbd</SPAN>?</P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Describe the function and location of the 
+                    <SPAN class=docEmphasis>resolver</SPAN>. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Name two programs that can be used to do 
+                    queries against an NFS server. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Describe in general terms the main 
+                    difference between BIND v4 and BIND v8 configuration files. 
+                    </P></SPAN></LI></OL></SPAN><A 
+                  name=lpicertnut-CHP-22-SECT-8.2></A>
+                  <H4 class=docSection2Title>22.8.2 Exercises</H4><SPAN 
+                  style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Examine your <I>inetd.conf</I>. Are <SPAN 
+                    class=docEmphBold>telnetd</SPAN> and <SPAN 
+                    class=docEmphBold>ftpd</SPAN> enabled? If so, are TCP 
+                    Wrappers (<SPAN class=docEmphBold>tcpd</SPAN>) configured 
+                    for them? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Enable TCP Wrappers and place 
+                    <TT>ALL:ALL</TT> in <I>/etc/hosts.deny</I>, then attempt a 
+                    Telnet session. Is the inbound request ignored as expected? 
+                    </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Familiarize yourself with 
+                    <I>/etc/sendmail.cf</I> and <I>/etc/aliases</I>. Run <SPAN 
+                    class=docEmphBold>newaliases</SPAN>. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Familiarize yourself with Apache 
+                    configuration files in <I>/etc/httpd/html/*.conf</I> (or 
+                    your directory location). </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Examine your <I>/etc/exports</I> file, if 
+                    it exists. Are you sharing NFS volumes? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Examine your <I>/etc/smb.conf</I> file. Are 
+                    you sharing Samba printers or volumes? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Examine your resolver configuration in 
+                    <I>/etc/resolv.conf</I>, <I>/etc/hosts.conf</I>, and 
+                    <I>/etc/nsswitch.conf</I>. Is the local <I>/etc/hosts</I> 
+                    file consulted prior to DNS servers? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>By examining <I>/etc/named.conf</I> and 
+                    noting format details, determine what general release of 
+                    BIND you are using. </P></SPAN></LI></OL></SPAN>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-22-SECT-8&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=&xmlid=1-56592-748-6/lpicertnut-CHP-22-SECT-8&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-22-SECT-8
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)578ms
+(xml)313ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)922ms
+--></BODY></HTML>
