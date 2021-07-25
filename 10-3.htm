@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0173)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="10-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="10-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 10.&nbsp; 
+            Exam 101 Highlighter's Index</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-10-SECT-3></A>
+                  <H3 class=docSection1Title>10.3 Boot, Initialization, 
+                  Shutdown, and Runlevels (Topic 2.6)</H3><A 
+                  name=lpicertnut-CHP-10-SECT-3.1></A>
+                  <H4 class=docSection2Title>10.3.1 Objective 1: Boot the 
+                  System</H4><A name=lpicertnut-CHP-10-SECT-3.1.1></A>
+                  <H5 class=docSection3Title>10.3.1.1 LILO, the Linux 
+loader</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350426></A>LILO is a utility 
+                    designed to load a Linux kernel (or another operating 
+                    system) into memory and launch it. It has two parts: </P><A 
+                    name=IXT-10-350427></A><A name=IXT-10-350428></A><A 
+                    name=IXT-10-350429></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>The boot loader.</SPAN></I> 
+
+                      <DD>
+                      <P class=docList><A name=IXT-10-350427></A>A two-stage 
+                      program intended to find and load a kernel. The first 
+                      stage resides in the disk boot sector and is started by 
+                      the system BIOS. It locates and launches a second, larger 
+                      stage residing elsewhere on disk. </P>
+                      <DT><I><SPAN class=docPubcolor>The lilo command</SPAN></I> 
+
+                      <DD>
+                      <P class=docList><A name=IXT-10-350428></A>The map 
+                      installer, used to install and configure the LILO boot 
+                      loader. It reads <SPAN 
+                      class=docEmphasis>/etc/lilo.conf</SPAN><A 
+                      name=IXT-10-350429></A> and writes a corresponding map 
+                      file. </P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <I>/etc/lilo.conf</I> file contains 
+                    options and kernel image information. Popular <A 
+                    name=IXT-10-350430></A>directives are: </P><A 
+                    name=IXT-10-350431></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>boot</SPAN></SPAN><A 
+                      name=IXT-10-350431></A></SPAN> 
+                      <DD>
+                      <P class=docList>The name of the hard disk partition that 
+                      contains the boot sector.</P></DD></DL><A 
+                    name=IXT-10-350432></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>image</SPAN></SPAN><A 
+                      name=IXT-10-350432></A></SPAN> 
+                      <DD>
+                      <P class=docList>Refers to a specific kernel 
+                    file.</P></DD></DL><A name=IXT-10-350433></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>install</SPAN></SPAN><A 
+                      name=IXT-10-350433></A></SPAN> 
+                      <DD>
+                      <P class=docList>The file installed as the new boot 
+                      sector.</P></DD></DL><A name=IXT-10-350434></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>label</SPAN></SPAN><A 
+                      name=IXT-10-350434></A></SPAN> 
+                      <DD>
+                      <P class=docList>Provides a label, or name, for each 
+                      <TT>image</TT>.</P></DD></DL><A name=IXT-10-350435></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>map</SPAN></SPAN><A 
+                      name=IXT-10-350435></A></SPAN> 
+                      <DD>
+                      <P class=docList>Directory where the <I>map</I> file is 
+                      located.</P></DD></DL><A name=IXT-10-350436></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>prompt</SPAN></SPAN><A 
+                      name=IXT-10-350436></A></SPAN> 
+                      <DD>
+                      <P class=docList>Prompts the user for input (such as 
+                      kernel parameters or runlevels) before booting and without 
+                      a keystroke from the user. </P></DD></DL><A 
+                    name=IXT-10-350437></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>read-only</SPAN></SPAN><A 
+                      name=IXT-10-350437></A></SPAN> 
+                      <DD>
+                      <P class=docList>The root filesystem should initially be 
+                      mounted read-only.</P></DD></DL><A name=IXT-10-350438></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>root</SPAN></SPAN><A 
+                      name=IXT-10-350438></A></SPAN> 
+                      <DD>
+                      <P class=docList>Used following each <TT>image</TT>, this 
+                      specifies the device that should be mounted as <SPAN 
+                      class=docEmphasis>root</SPAN>. </P></DD></DL><A 
+                    name=IXT-10-350439></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>timeout</SPAN></SPAN><A 
+                      name=IXT-10-350439></A></SPAN> 
+                      <DD>
+                      <P class=docList>The amount of time, in tenths of a 
+                      second, the system waits for user input. 
+                  </P></DD></DL></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-3.1.2></A>
+                  <H5 class=docSection3Title>10.3.1.2 Kernel parameters and 
+                  module configuration</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350440></A><A 
+                    name=IXT-10-350441></A>LILO can pass kernel parameters using 
+                    <I>name=value</I> pairs. </P>
+                    <LI>
+                    <P class=docList>Linux kernels are modular, with portions of 
+                    kernel functionality compiled as modules to be used as 
+                    needed. </P>
+                    <LI>
+                    <P class=docList>Parameters to <A 
+                    name=IXT-10-350442></A>modules can be specified in<A 
+                    name=IXT-10-350443></A> <I>/etc/conf.modules</I>. 
+                  </P></LI></UL><A name=lpicertnut-CHP-10-SECT-3.1.3></A>
+                  <H5 class=docSection3Title>10.3.1.3 Boot-time messages</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350444></A>The kernel gives 
+                    detailed status information as it boots. This information 
+                    can also be found in system logs such as 
+                    <I>/var/log/messages</I><A name=IXT-10-350445></A> and from 
+                    the <SPAN class=docEmphBold>dmesg</SPAN><A 
+                    name=IXT-10-350446></A> command. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-3.2></A>
+                  <H4 class=docSection2Title>10.3.2 Objective 2: Change 
+                  Runlevels and Shutdownor Reboot System</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350447></A>Runlevels specify 
+                    how a system is used by controlling which services are 
+                    running. </P>
+                    <LI>
+                    <P class=docList>Runlevels are numbered through 6, as well 
+                    as with a few single characters. </P>
+                    <LI>
+                    <P class=docList>Runlevel 0 implies system shutdown.</P>
+                    <LI>
+                    <P class=docList>Runlevel 6 implies system reboot.</P>
+                    <LI>
+                    <P class=docList>The intermediate runlevels differ in 
+                    meaning among distributions.</P>
+                    <LI>
+                    <P class=docList>Runlevel 1 (also s or S) is usually 
+                    single-user (maintenance) mode.</P>
+                    <LI>
+                    <P class=docList>Runlevels 2 through 5 usually define some 
+                    kind of multiuser state, including an X login screen. 
+                    </P></LI></UL><A name=lpicertnut-CHP-10-SECT-3.2.1></A>
+                  <H5 class=docSection3Title>10.3.2.1 Single-user mode</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350448></A><A 
+                    name=IXT-10-350449></A>Runlevel 1 is a bare-bones operating 
+                    environment intended for maintenance. Remote logins are 
+                    disabled, networking is disabled, and most daemons are shut 
+                    down. </P>
+                    <LI>
+                    <P class=docList>Single-user mode can be entered with the 
+                    <I>single</I>, or simply <I>1</I>, parameter at the LILO 
+                    prompt. </P>
+                    <LI>
+                    <P class=docList>Switching to single-user mode is done using 
+                    <I>init 1</I>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-3.2.2></A>
+                  <H5 class=docSection3Title>10.3.2.2 The /etc/rc.d 
+                  directory</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <I>/etc/rc.d</I><A 
+                    name=IXT-10-350450></A> file <A 
+                    name=IXT-10-350451></A>contains initialization scripts and 
+                    links controlling the boot process for many Linux 
+                    distributions: </P><A name=IXT-10-350452></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>rc.sysinit</I><A 
+                      name=IXT-10-350452></A></SPAN> 
+                      <DD>
+                      <P class=docList>The startup script launched by <SPAN 
+                      class=docEmphBold>init</SPAN> at boot time. </P></DD></DL><A 
+                    name=IXT-10-350453></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>rc.local</I><A 
+                      name=IXT-10-350453></A></SPAN> 
+                      <DD>
+                      <P class=docList>A script for local startup 
+                      customizations, started automatically after the system is 
+                      running. </P></DD></DL><A name=IXT-10-350454></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>rc</I><A 
+                      name=IXT-10-350454></A></SPAN> 
+                      <DD>
+                      <P class=docList>A script used to change 
+                      runlevels.</P></DD></DL><A name=IXT-10-350455></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>init.d</I><A 
+                      name=IXT-10-350455></A></SPAN> 
+                      <DD>
+                      <P class=docList>The directory containing scripts to start 
+                      and stop system services.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>rc0.d</I> through 
+                      <I>rc6.d</I></SPAN> 
+                      <DD>
+                      <P class=docList>Links to scripts in 
+                      <I>init.d</I>.</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Names of the links are 
+                    [<I>K</I>|<I>S</I>][<I>nn</I>][<I>init.d_name</I>]: </P>
+                    <UL>
+                      <LI>
+                      <P class=docList><I>K</I> and <I>S</I> prefixes mean 
+                      <I>kill</I> and <I>start</I>, respectively. </P>
+                      <LI>
+                      <P class=docList><I>nn</I> is a sequence number 
+                      controlling startup or shutdown order. </P>
+                      <LI>
+                      <P class=docList><I>init.d_name</I> is the name of the 
+                      script being linked. </P></LI></UL></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-3.2.3></A>
+                  <H5 class=docSection3Title>10.3.2.3 Default runlevel, 
+                  determining runlevel, changing runlevels</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <A name=IXT-10-350456></A><A 
+                    name=IXT-10-350457></A>default runlevel is located in 
+                    <I>/etc/inittab</I> on the line containing<I> 
+                    initdefault</I>: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                      class=docMonofont>id:</SPAN></SPAN><I>n</I><SPAN 
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>:initdefault:</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList><I>n</I> is a valid runlevel number such 
+                      as 3.</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Runlevel is determined by the <SPAN 
+                    class=docEmphBold>runlevel</SPAN><A name=IXT-10-350458></A> 
+                    command, which displays the previous and current runlevels. 
+                    An <I>N</I> for previous runlevel indicates that the 
+                    runlevel has not changed since startup. </P>
+                    <LI>
+                    <P class=docList>Runlevels can be changed using <SPAN 
+                    class=docEmphBold>init</SPAN><A name=IXT-10-350459></A>: 
+</P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>init</SPAN> <I>n</I></SPAN> 
+                      <DD>
+                      <P class=docList>Change to runlevel 
+                    <I>n</I>.</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>System shutdown can also be initiated using 
+                    <SPAN class=docEmphBold>shutdown</SPAN><A 
+                    name=IXT-10-350460></A>: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>shutdown</SPAN> <I>time</I></SPAN> 
+                      <DD>
+                      <P class=docList>Bring the system down in a secure, 
+                      organized fashion. <I>time</I> is mandatory, in the form 
+                      of <I>hh:mm</I>, <I>now</I>, or <I>+n</I> for <I>n</I> 
+                      minutes. </P></DD></DL></LI></UL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-10-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)1094ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)1500ms
+--></BODY></HTML>

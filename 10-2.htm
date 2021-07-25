@@ -1,0 +1,756 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0173)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="10-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="10-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 10.&nbsp;  
+            Exam 101 Highlighter's Index</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-10-SECT-2></A>
+                  <H3 class=docSection1Title>10.2 Devices, Linux Filesystems, 
+                  and the Filesystem Hierarchy Standard (Topic 2.4)</H3><A 
+                  name=lpicertnut-CHP-10-SECT-2.1></A>
+                  <H4 class=docSection2Title>10.2.1 Objective 1: Create 
+                  Partitions and Filesystems</H4><A 
+                  name=lpicertnut-CHP-10-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>10.2.1.1 Disk drives and 
+                  partitions</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350348></A>IDE disks are  
+                    known as <I>/dev/hda</I>, <I>/dev/hdb</I>, <I>/dev/hdc</I>,  
+                    and <I>/dev/hdd</I>. </P> 
+                    <LI>
+                    <P class=docList><A name=IXT-10-350349></A>SCSI disks are  
+                    known as <I>/dev/sda</I>, <I>/dev/sdb</I>, <I>/dev/sdc</I>,  
+                    and so on. </P> 
+                    <LI>
+                    <P class=docList>Three types of <A  
+                    name=IXT-10-350350></A>partitions: </P><A 
+                    name=IXT-10-350351></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Primary</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-10-350351></A>Filesystem  
+                      container. At least one must exist, and up to four can  
+                      exist on a single physical disk. They are identified with  
+                      numbers 1 to 4, such as<I> /dev/hda1</I>,  
+                      <I>/dev/hda2</I>, and so on. </P></DD></DL><A  
+                    name=IXT-10-350352></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Extended</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-10-350352></A>A variant of a  
+                      primary partition but it cannot contain a filesystem.  
+                      Instead, it contains one or more <SPAN  
+                      class=docEmphasis>logical partitions</SPAN>. Only one  
+                      extended partition may exist, and it takes one of the four  
+                      possible spots for primary partitions. </P></DD></DL><A  
+                    name=IXT-10-350353></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Logical</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-10-350353></A>Created <SPAN  
+                      class=docEmphasis>within</SPAN> the extended partition.  
+                      From 1 to 12 logical partitions may be created. They are  
+                      numbered from 5 to 16, such as <I>/dev/hda5</I>,  
+                      <I>/dev/hda10</I>, and so on. </P></DD></DL></LI></UL> 
+                  <UL>
+                    <LI>
+                    <P class=docList>Up to 15 partitions with filesystems may 
+                    exist on a single physical disk. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>10.2.1.2 The root filesystem and 
+                  mount points</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The top of the filesystem tree is occupied  
+                    by the <SPAN class=docEmphasis>root filesystem</SPAN><A  
+                    name=IXT-10-350354></A>. Other filesystems are mounted under  
+                    it, creating a unified filesystem. </P> 
+                    <LI>
+                    <P class=docList><I>/etc</I><A name=IXT-10-350355></A>,  
+                    <I>/lib</I><A name=IXT-10-350356></A>, <I>/bin</I><A  
+                    name=IXT-10-350357></A>,<A name=IXT-10-350358></A> 
+                    <I>/sbin</I>, and <I>/dev</I><A name=IXT-10-350359></A> must  
+                    be part of the root filesystem. </P></LI></UL><A  
+                  name=lpicertnut-CHP-10-SECT-2.1.3></A>
+                  <H5 class=docSection3Title>10.2.1.3 Partition and filesystem 
+                  management commands</H5>
+                  <P class=docText>The following commands are commonly used to  
+                  repair and manage <A name=IXT-10-350360></A><A  
+                  name=IXT-10-350361></A>filesystems: </P><A 
+                  name=IXT-10-350362></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>fdisk</SPAN><A name=IXT-10-350362></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[</SPAN></SPAN><I>device</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Manipulate or display the partition table 
+                    for <I>device</I> using a command-driven interactive text 
+                    interface. <I>device</I> is a physical disk such as 
+                    <I>/dev/hda</I>, not a partition such as <I>/dev/hda1</I>. 
+                    </P></DD></DL><A name=IXT-10-350363></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mkfs</SPAN><A name=IXT-10-350363></A> 
+                    <I>device</I></SPAN>  
+                    <DD>
+                    <P class=docList>Make a filesystem on 
+                  <I>device</I>.</P></DD></DL><A name=IXT-10-350364></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mkswap</SPAN><A name=IXT-10-350364></A> 
+                    <I>device</I></SPAN>  
+                    <DD>
+                    <P class=docList>Prepare a partition for use as swap 
+                    space.</P></DD></DL><A name=lpicertnut-CHP-10-SECT-2.2></A>
+                  <H4 class=docSection2Title>10.2.2 Objective 2: Maintain the 
+                  Integrity of Filesystems</H4>
+                  <P class=docText><A name=IXT-10-350365></A>These commands are  
+                  commonly used in day-to-day filesystem maintenance: </P><A  
+                  name=IXT-10-350366></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>df</SPAN><A name=IXT-10-350366></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>directories</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display overall disk utilization 
+                    information for mounted filesystems on <I>directories</I>. 
+                    </P></DD></DL><A name=IXT-10-350367></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>du</SPAN><A name=IXT-10-350367></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>directories</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display disk utilization information for 
+                    <I>directories</I>. </P></DD></DL><A name=IXT-10-350368></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>fsck</SPAN><A name=IXT-10-350368></A> 
+                    <I>filesystems</I></SPAN>  
+                    <DD>
+                    <P class=docList>Check <I>filesystems</I> for errors and 
+                    optionally correct them. </P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-2.3></A>
+                  <H4 class=docSection2Title>10.2.3 Objective 3: Control 
+                  Filesystem Mounting and Unmounting</H4><A 
+                  name=lpicertnut-CHP-10-SECT-2.3.1></A>
+                  <H5 class=docSection3Title>10.2.3.1 Managing the filesystem 
+                  table</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><I>/etc/fstab</I><A name=IXT-10-350369></A> 
+                    <A name=IXT-10-350370></A>contains mount information for  
+                    filesystems. Each line contains a single filesystem entry  
+                    made up of six fields, shown in <a class="docLink" href="#lpicertnut-CHP-10-TABLE-5">Table  
+                    10-5</a>. </P></LI></UL><A name=lpicertnut-CHP-10-TABLE-5></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 10-5. Fields Found in the 
+                    /etc/fstab File </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Entry</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Device</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The device file for the partition 
+                        holding the filesystem.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Mount point</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The directory upon which the filesystem 
+                        is to be mounted.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Filesystem type</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A filesystem type, such as 
+                        <I>ext2</I>.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Mount options</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A comma-separated list.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Dump frequency</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>For use with <I>dump</I>.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Pass number for <SPAN 
+                        class=docEmphBold>fsck</SPAN></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Used at boot 
+                    time.</P></TD></TR></COLGROUP></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-10-SECT-2.3.2></A>
+                  <H5 class=docSection3Title>10.2.3.2 Mounting and 
+                  unmounting</H5>
+                  <P class=docText>The following commands are used to mount and 
+                  unmount filesystems:</P><A name=IXT-10-350371></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mount</SPAN><A name=IXT-10-350371></A> 
+                    <I>device</I></SPAN>  
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mount</SPAN> <I>directory</I></SPAN> 
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mount</SPAN> <I>device</I> 
+                    <I>directory</I></SPAN> 
+                    <DD>
+                    <P class=docList>Mount filesystems onto the hierarchy. The 
+                    first and second forms consult <I>/etc/fstab</I> for 
+                    additional information. </P></DD></DL><A 
+                  name=IXT-10-350372></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>umount</SPAN> <A  
+                    name=IXT-10-350372></A><I>device</I></SPAN> 
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>umount</SPAN> <I>directory</I></SPAN> 
+                    <DD>
+                    <P class=docList>Unmount the filesystem on <I>device</I> or 
+                    mount it on <I>directory</I>. </P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-2.3.3></A>
+                  <H5 class=docSection3Title>10.2.3.3 Filesystem types</H5>
+                  <P class=docText>Common filesystem types compatible with Linux 
+                  include:</P><A name=IXT-10-350373></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>ext2</I><A 
+                    name=IXT-10-350373></A></SPAN> 
+                    <DD>
+                    <P class=docList>The standard Linux 
+                  filesystem.</P></DD></DL><A name=IXT-10-350374></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>iso9660</I><A 
+                    name=IXT-10-350374></A></SPAN> 
+                    <DD>
+                    <P class=docList>The standard CD-ROM format.</P></DD></DL><A 
+                  name=IXT-10-350375></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>msdos</I><A 
+                    name=IXT-10-350375></A></SPAN> 
+                    <DD>
+                    <P class=docList>The MS-DOS FAT filesystem.</P></DD></DL><A 
+                  name=IXT-10-350376></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>nfs</I><A 
+                    name=IXT-10-350376></A></SPAN> 
+                    <DD>
+                    <P class=docList>Remote servers.</P></DD></DL><A 
+                  name=IXT-10-350377></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>proc </I><A 
+                    name=IXT-10-350377></A></SPAN>
+                    <DD>
+                    <P class=docList>The <I>proc</I> filesystem, which is a 
+                    system abstraction for access to kernel parameters. 
+                  </P></DD></DL><A name=IXT-10-350378></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>swap</I><A 
+                    name=IXT-10-350378></A></SPAN> 
+                    <DD>
+                    <P class=docList>Swap partitions.</P></DD></DL><A 
+                  name=IXT-10-350379></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>vfat</I><A 
+                    name=IXT-10-350379></A></SPAN> 
+                    <DD>
+                    <P class=docList>Virtual FAT, used instead of 
+                    <I>msdos</I>.</P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-2.4></A>
+                  <H4 class=docSection2Title>10.2.4 Objective 4: Set and View 
+                  Disk Quota</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350380></A>Quotas are used  
+                    to enforce a disk space or an inode maximum on individuals,  
+                    groups, or both. </P> 
+                    <LI>
+                    <P class=docList>These types of <A  
+                    name=IXT-10-350381></A>quota limits can be set: </P> 
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Per-user hard</SPAN></I> 
+                      <DD>
+                      <P class=docList>The maximum size for an 
+                      individual.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Per-user soft</SPAN></I> 
+                      <DD>
+                      <P class=docList>A warning threshold.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Per-group hard</SPAN></I> 
+                      <DD>
+                      <P class=docList>The maximum size for a group.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Per-group soft</SPAN></I> 
+                      <DD>
+                      <P class=docList>A warning threshold.</P></DD></DL>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Grace period</SPAN></I> 
+                      <DD>
+                      <P class=docList>A time restriction on the soft 
+                      limit.</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>These <A name=IXT-10-350382></A>commands  
+                    manipulate quotas: </P></LI></UL><A name=IXT-10-350383></A><A  
+                  name=IXT-10-350384></A><A name=IXT-10-350385></A><A 
+                  name=IXT-10-350386></A><A name=IXT-10-350387></A><A 
+                  name=IXT-10-350388></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>quota</SPAN><A name=IXT-10-350383></A> 
+                    <I>user</I></SPAN>  
+                    <DD>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>quota 
+                      -g</SPAN> <I>group</I></SPAN> 
+                      <DD>
+                      <P class=docList>Display quota limits on <I>user</I> or 
+                      <I>group</I>. </P></DD></DL><A name=IXT-10-350384></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>quotaon</SPAN><A name=IXT-10-350384></A> 
+                      <SPAN class=docPubcolor><SPAN  
+                      class=docMonofont>[</SPAN></SPAN> <I>filesystems</I><SPAN  
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>]</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Enable previously configured disk quotas 
+                      on one or more <I>filesystems</I>. </P></DD></DL><A 
+                    name=IXT-10-350385></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>quotaoff</SPAN><A 
+                      name=IXT-10-350385></A> <SPAN class=docPubcolor><SPAN  
+                      class=docMonofont>[</SPAN></SPAN> <I>filesystems</I><SPAN  
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>]</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Disable disk quotas on one or more 
+                      <I>filesystems</I>.</P></DD></DL><A name=IXT-10-350386></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>quotacheck</SPAN><A 
+                      name=IXT-10-350386></A> <SPAN class=docPubcolor><SPAN  
+                      class=docMonofont>[</SPAN></SPAN> <I>filesystems</I><SPAN  
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>]</SPAN></SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Examine filesystems and compile quota 
+                      databases. Usually run via <SPAN 
+                      class=docEmphBold>cron</SPAN>. </P></DD></DL><A 
+                    name=IXT-10-350387></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>edquota</SPAN><A name=IXT-10-350387></A> 
+                      <I>names</I></SPAN>  
+                      <DD>
+                      <P class=docList>Modify user or group quotas by spawning a 
+                      text editor.</P></DD></DL><A name=IXT-10-350388></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>repquota</SPAN><A 
+                      name=IXT-10-350388></A> <I>filesystems</I></SPAN>  
+                      <DD>
+                      <P class=docList>Display a summary report of quota status 
+                      for <I>filesystems</I>, or use <SPAN 
+                      class=docEmphBold>-a</SPAN> for all filesystems: 
+                    </P></DD></DL><A name=p1_ch10-38-fm2xml></A>
+                    <P>
+                    <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                    bgColor=black border=0>
+                      <TBODY>
+                      <TR>
+                        <TD>
+                          <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                          bgColor=white border=0>
+                            <TBODY>
+                            <TR>
+                              <TD vAlign=top width=60><IMG height=54 
+                                src="10-2.files/tip_yellow.gif" width=50></TD>
+                              <TD vAlign=top>
+                                <P class=docText>Enabling quotas requires <SPAN 
+                                class=docEmphBold>usrquota</SPAN> and/or <SPAN 
+                                class=docEmphBold>grpquota</SPAN> options in 
+                                <I>/etc/fstab</I>, creation of <I>quota.user</I> 
+                                and <I>quota.group</I> files at the top of the 
+                                filesystem, a <SPAN 
+                                class=docEmphBold>quotacheck</SPAN>, and a <SPAN 
+                                class=docEmphBold>quotaon.</SPAN> 
+                            </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-2.5></A>
+                  <H4 class=docSection2Title>10.2.5 Objective 5: Use File 
+                  Permissions to Control Accessto Files</H4><A 
+                  name=lpicertnut-CHP-10-SECT-2.5.1></A>
+                  <H5 class=docSection3Title>10.2.5.1 Access control</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350389></A>Access control is  
+                    i<A name=IXT-10-350390></A>mplemented using a set of  
+                    properties called the <I>access mode</I><A  
+                    name=IXT-10-350391></A>, stored in the<A  
+                    name=IXT-10-350392></A> inode. Three classes of user are  
+                    defined: </P><A name=IXT-10-350393></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>User</SPAN></I> 
+                      <DD>
+                      <P class=docList>The <A name=IXT-10-350393></A>user that  
+                      owns the file. </P></DD></DL><A name=IXT-10-350394></A> 
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Group</SPAN></I> 
+                      <DD>
+                      <P class=docList>The <A name=IXT-10-350394></A>group that  
+                      owns the file. </P></DD></DL><A name=IXT-10-350395></A> 
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Other</SPAN></I> 
+                      <DD>
+                      <P class=docList>All <A name=IXT-10-350395></A>other users  
+                      on the system. </P></DD></DL> 
+                    <LI>
+                    <P class=docList>Three permissions are either granted or not 
+                    granted to each class of user: </P><A 
+name=IXT-10-350396></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor>Read (<SPAN 
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>r</SPAN></SPAN>)</SPAN> 
+                      <DD>
+                      <P class=docList><A name=IXT-10-350396></A>Allows access  
+                      to file contents and listing of directory contents.  
+                      </P></DD></DL><A name=IXT-10-350397></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor>Write (<SPAN 
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>w</SPAN></SPAN>)</SPAN> 
+                      <DD>
+                      <P class=docList><A name=IXT-10-350397></A>Allows writing  
+                      a file or creating files in a directory. </P></DD></DL><A  
+                    name=IXT-10-350398></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor>Execute (<SPAN 
+                      class=docPubcolor><SPAN 
+                      class=docMonofont>x</SPAN></SPAN>)</SPAN> 
+                      <DD>
+                      <P class=docList><A name=IXT-10-350398></A>Allows  
+                      execution of a file and read/write files in a directory.  
+                      </P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>These comprise nine bits in the mode User 
+                    <TT>rwx</TT>, Group <TT>rwx</TT>, and Other <TT>rwx</TT>. 
+                    </P>
+                    <LI>
+                    <P class=docList>Three additional mode bits are 
+                    defined:</P><A name=IXT-10-350399></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><A 
+                      name=IXT-10-350399></A>SUID</SPAN> 
+                      <DD>
+                      <P class=docList>To grant processes the rights of an 
+                      executable file's owner.</P></DD></DL><A 
+                    name=IXT-10-350400></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><A 
+                      name=IXT-10-350400></A>SGID</SPAN> 
+                      <DD>
+                      <P class=docList>To grant processes the rights of an 
+                      executable file's group.</P></DD></DL><A 
+                    name=IXT-10-350401></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><A 
+                      name=IXT-10-350401></A>Sticky bit</SPAN>  
+                      <DD>
+                      <P class=docList>Prohibits file deletion by 
+                      nonowners.</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>These 12-mode bits are often referred to in 
+                    octal notation as well as with mnemonic constructs. </P>
+                    <LI>
+                    <P class=docList>Mode bits are displayed using such commands 
+                    as <SPAN class=docEmphBold>ls</SPAN> and <SPAN 
+                    class=docEmphBold>stat</SPAN>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-2.5.2></A>
+                  <H5 class=docSection3Title>10.2.5.2 Setting access modes</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350402></A>New files receive  
+                    initial access mode as described by the <SPAN  
+                    class=docEmphBold>umask</SPAN><A name=IXT-10-350403></A>. 
+                    </P>
+                    <LI>
+                    <P class=docList>The <SPAN class=docEmphBold>umask</SPAN> 
+                    strips specified bits from the initial mode settings. 
+                    Typical <SPAN class=docEmphBold>umasks</SPAN> are 002 and 
+                    022. </P>
+                    <LI>
+                    <P class=docList>Existing file modes are changed using <SPAN  
+                    class=docEmphBold>chmod</SPAN><A name=IXT-10-350404></A> 
+                    with either symbolic or octal mode specifications: </P> 
+                    <UL>
+                      <LI>
+                      <P class=docList>Symbolic:</P><PRE>[ugoa][-+=][rwxXst]</PRE></LI></UL>
+                    <UL>
+                      <LI>
+                      <P class=docList>Octal bits:</P><PRE>user r, w, x, group r, w, x, other r, w, x
+rwxrwxrwx = 111111111 = 777
+rwxr-xr-- = 111101100 = 751 </PRE></LI></UL>
+                    <P class=docList><SPAN class=docEmphBold>chmod</SPAN> uses 
+                    the following syntax:</P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>chmod</SPAN> <I>mode</I> 
+                      <I>files</I></SPAN> 
+                      <DD>
+                      <P class=docList>Modify the access mode on <I>files</I> 
+                      using a symbolic or octal <I>mode</I>. 
+                  </P></DD></DL></LI></UL><A 
+name=lpicertnut-CHP-10-SECT-2.6></A>
+                  <H4 class=docSection2Title>10.2.6 Objective 6: Manage File 
+                  Ownership</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350405></A>Access modes are  
+                    tied to file ownership. </P> 
+                    <LI>
+                    <P class=docList>Files have both individual and group 
+                    ownership:</P><A name=IXT-10-350406></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>chown</SPAN><A name=IXT-10-350406></A> 
+                      <I>user-owner</I><SPAN class=docPubcolor><SPAN  
+                      class=docMonofont>.</SPAN></SPAN><I>group-owner</I> 
+                      <I>files</I> </SPAN> 
+                      <DD>
+                      <P class=docList>Change the owner and/or group of 
+                      <I>files</I> to <I>user-owner</I> and/or<I> 
+                      group-owner</I>. </P></DD></DL><A name=IXT-10-350407></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>chgrp</SPAN><A name=IXT-10-350407></A> 
+                      <I>group-owner</I> <I>files</I></SPAN>  
+                      <DD>
+                      <P class=docList>Change the group ownership of 
+                      <I>files</I> to <I>group-owner</I>. </P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>chgrp</SPAN> 
+                    functionality is included in <SPAN 
+                    class=docEmphBold>chown</SPAN>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-2.7></A>
+                  <H4 class=docSection2Title>10.2.7 Objective 7: Create and 
+                  Change Hardand Symbolic Links</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList>A <A name=IXT-10-350408></A>link is a  
+                    pseudonym for another file. </P> 
+                    <LI>
+                    <P class=docList>Links take very little space in the 
+                    filesystem.</P>
+                    <LI>
+                    <P class=docList>A <SPAN class=docEmphasis>symbolic  
+                    link</SPAN> <A name=IXT-10-350409></A>is a tiny file that  
+                    contains a pointer to another file. Symbolic links can span  
+                    filesystems. </P>
+                    <LI>
+                    <P class=docList>A <SPAN class=docEmphasis>hard link</SPAN>  
+                    <A name=IXT-10-350410></A>is a copy of a file's directory  
+                    entry. Both directory entries point to the same inode and  
+                    thus the same data, ownership, and permissions. </P></LI></UL> 
+                  <P class=docText><SPAN class=docEmphBold>ln</SPAN><A 
+                  name=IXT-10-350411></A> has the following syntax: </P> 
+                  <DL class=docList>
+                    <DD><SPAN class=docEmphBold>ln</SPAN> <I>file</I> 
+                    <I>link</I> 
+                    <DD><SPAN class=docEmphBold>ln</SPAN> <I>files</I> 
+                    <I>directory</I> </DD></DL>
+                  <P class=docText>Create <I>link</I> to <I>file</I> or in 
+                  <I>directory</I> for all <I>files</I>. Symbolic links are 
+                  created with the <SPAN class=docEmphBold>-s</SPAN> option. 
+                  </P><A name=lpicertnut-CHP-10-SECT-2.8></A>
+                  <H4 class=docSection2Title>10.2.8 Objective 8: Find System 
+                  Files and Place Filesin the Correct Location</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <A name=IXT-10-350412></A>FHS is used  
+                    by Linux distributions to standardize filesystem layout. It  
+                    defines two categories of data use, each with opposing  
+                    subtypes: </P>
+                    <UL>
+                      <LI>
+                      <P class=docList><A name=IXT-10-350413></A>Data sharing:  
+                      sharable data can be used by multiple host systems on a  
+                      network. Non-sharable data is unique to one particular  
+                      host system. </P> 
+                      <LI>
+                      <P class=docList>Data modification: variable data is 
+                      changed continually by naturally occurring (i.e., 
+                      frequent) processes. Static data is left alone, remaining 
+                      unchanged over extended periods of time. </P></LI></UL>
+                    <LI>
+                    <P class=docList>The FHS seeks to define the filesystem 
+                    contents in these terms and locate information accordingly. 
+                    </P></LI></UL><A name=lpicertnut-CHP-10-SECT-2.8.1></A>
+                  <H5 class=docSection3Title>10.2.8.1 The directory 
+                  hierarchy</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The root filesystem: <A  
+                    name=IXT-10-350414></A><A name=IXT-10-350415></A><A 
+                    name=IXT-10-350416></A><A name=IXT-10-350417></A></P>
+                    <UL>
+                      <LI>
+                      <P class=docList>Must contain utilities and files 
+                      sufficient to boot the operating system, including the 
+                      ability to mount other filesystems. </P>
+                      <LI>
+                      <P class=docList>Should contain the utilities needed by 
+                      the system administrator to repair or restore a damaged 
+                      system. </P>
+                      <LI>
+                      <P class=docList>Should be relatively small.</P></LI></UL>
+                    <LI>
+                    <P class=docList><I>/usr</I><A name=IXT-10-350418></A> 
+                    contains system utilities and programs that do not appear in  
+                    the <I>/root</I> partition. It includes directories such as  
+                    <I>/bin</I>, <I>/lib</I>, <I>/local</I>, and <I>/src</I>.  
+                    </P>
+                    <LI>
+                    <P class=docList><I>/var</I> contains varying data such as  
+                    printer spools and log files, including directories such as  
+                    <I>log</I>, <I>mail</I>, and <I>spool</I>.<A  
+                    name=IXT-10-350419></A></P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-2.8.2></A>
+                  <H5 class=docSection3Title>10.2.8.2 Locating files</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>Various methods can be used to locate files 
+                    in the filesystem:</P><A name=IXT-10-350420></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>which</SPAN><A name=IXT-10-350420></A> 
+                      <I>command</I></SPAN>  
+                      <DD>
+                      <P class=docList>Determine the location of <I>command</I> 
+                      and display the full pathname of the executable program 
+                      that the shell would launch to execute it. </P></DD></DL><A 
+                    name=IXT-10-350421></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>find</SPAN><A name=IXT-10-350421></A> 
+                      <I>paths</I> <I>expression</I></SPAN>  
+                      <DD>
+                      <P class=docList>Search for files that match 
+                      <I>expression</I> starting at <I>paths</I> and continuing 
+                      recursively. </P></DD></DL><A name=IXT-10-350422></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>locate</SPAN><A name=IXT-10-350422></A> 
+                      <I>patterns</I></SPAN>  
+                      <DD>
+                      <P class=docList>Locate files whose names match one or 
+                      more <I>patterns</I> by searching an index of files 
+                      previously created. </P></DD></DL><A name=IXT-10-350423></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>updatedb</SPAN><A 
+                      name=IXT-10-350423></A></SPAN> 
+                      <DD>
+                      <P class=docList>Refresh (or create) the <I>slocate</I> 
+                      database, usually via <SPAN class=docEmphBold>cron</SPAN>. 
+                      </P></DD></DL><A name=IXT-10-350424></A><A 
+                    name=IXT-10-350425></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>whatis</SPAN><A name=IXT-10-350424></A> 
+                      <I>keywords</I></SPAN>  
+                      <DD><A name=IXT-10-350425></A>
+                      <DL class=docList>
+                        <DT><SPAN class=docPubcolor><SPAN 
+                        class=docEmphBold>apropos</SPAN><A 
+                        name=IXT-10-350425></A> <I>keywords</I></SPAN>  
+                        <DD>
+                        <P class=docList>Search the <SPAN 
+                        class=docEmphBold>whatis</SPAN> database for 
+                        <I>keywords</I>. <SPAN class=docEmphBold>whatis</SPAN> 
+                        finds only exact matches, while <SPAN 
+                        class=docEmphBold>apropos</SPAN> finds partial word 
+                        matches. </P></DD></DL></DD></DL></LI></UL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-10-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)187ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)610ms
+--></BODY></HTML>

@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0173)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="10-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="10-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 10.&nbsp; 
+            Exam 101 Highlighter's Index</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-10-SECT-5></A>
+                  <H3 class=docSection1Title>10.5 Administrative Tasks (Topic 
+                  2.11)</H3><A name=lpicertnut-CHP-10-SECT-5.1></A>
+                  <H4 class=docSection2Title>10.5.1 Objective 1: Manage Users 
+                  and Group Accountsand Related System Files</H4><A 
+                  name=lpicertnut-CHP-10-SECT-5.1.1></A>
+                  <H5 class=docSection3Title>10.5.1.1 passwd and group</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350480></A>User <A 
+                    name=IXT-10-350481></A>account information is stored in 
+                    <I>/etc/passwd</I><A name=IXT-10-350482></A>. </P>
+                    <LI>
+                    <P class=docList>Each line in <I>/etc/passwd</I> contains a 
+                    username, password, UID, GID, user's name, home directory, 
+                    and default shell. </P>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350483></A>Group information 
+                    is stored in<A name=IXT-10-350484></A> <I>/etc/group</I>. 
+                    </P>
+                    <LI>
+                    <P class=docList>Each line in <I>/etc/group</I> contains a 
+                    group name, group password, GID, and group member list. </P>
+                    <LI>
+                    <P class=docList><I>passwd</I> and <I>group</I><A 
+                    name=IXT-10-350485></A> are world-readable. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.1.2></A>
+                  <H5 class=docSection3Title>10.5.1.2 Shadow files</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>To prevent users from obtaining encrypted 
+                    passwords from <I>passwd</I> and <I>group</I>, <A 
+                    name=IXT-10-350486></A>shadow files are implemented. </P>
+                    <LI>
+                    <P class=docList>Encrypted passwords are moved to a new 
+                    file, which is readable only by <SPAN 
+                    class=docEmphasis>root</SPAN>. </P>
+                    <LI>
+                    <P class=docList>The shadow file for <I>/etc/passwd</I> is 
+                    <I>/etc/shadow</I><A name=IXT-10-350487></A>. </P>
+                    <LI>
+                    <P class=docList>The shadow file for <I>/etc/group</I> is 
+                    <I>/etc/gshadow</I><A name=IXT-10-350488></A>. 
+                  </P></LI></UL><A name=lpicertnut-CHP-10-SECT-5.1.3></A>
+                  <H5 class=docSection3Title>10.5.1.3 User and group management 
+                  commands</H5>
+                  <P class=docText>The following commands are commonly used for 
+                  manual user and group management: </P><A 
+                  name=IXT-10-350489></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>useradd</SPAN><A name=IXT-10-350489></A> 
+                    <I>user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Create the account 
+                  <I>user</I>.</P></DD></DL><A name=IXT-10-350490></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>usermod</SPAN><A name=IXT-10-350490></A> 
+                    <I>user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Modify the <I>user 
+                  </I>account.</P></DD></DL><A name=IXT-10-350491></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>userdel</SPAN><A name=IXT-10-350491></A> 
+                    <I>user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Delete the <I>user 
+                  </I>account.</P></DD></DL><A name=IXT-10-350492></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>groupadd</SPAN><A name=IXT-10-350492></A> 
+                    <I>group</I></SPAN> 
+                    <DD>
+                    <P class=docList>Add <I>group</I>.</P></DD></DL><A 
+                  name=IXT-10-350493></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>groupmod</SPAN><A name=IXT-10-350493></A> 
+                    <I>group</I></SPAN> 
+                    <DD>
+                    <P class=docList>Modify the parameters of 
+                    <I>group</I>.</P></DD></DL><A name=IXT-10-350494></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>groupdel</SPAN><A name=IXT-10-350494></A> 
+                    <I>group</I></SPAN> 
+                    <DD>
+                    <P class=docList>Delete <I>group</I>.</P></DD></DL><A 
+                  name=IXT-10-350495></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>passwd</SPAN><A name=IXT-10-350495></A> 
+                    <I>username</I></SPAN> 
+                    <DD>
+                    <P class=docList>Interactively set the password for 
+                    <I>username</I>.</P></DD></DL><A name=IXT-10-350496></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>gpasswd</SPAN><A name=IXT-10-350496></A> 
+                    <I>groupname </I></SPAN>
+                    <DD>
+                    <P class=docList>Interactively set the password for 
+                    <I>groupname</I>.</P></DD></DL><A name=IXT-10-350497></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>pwconv</SPAN><A 
+                    name=IXT-10-350497></A></SPAN> 
+                    <DD>
+                    <P class=docList>Convert a standard password file to a 
+                    shadow configuration.</P></DD></DL><A name=IXT-10-350498></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>pwunconv</SPAN><A 
+                    name=IXT-10-350498></A></SPAN> 
+                    <DD>
+                    <P class=docList>Revert from a shadow password 
+                    configuration.</P></DD></DL><A name=IXT-10-350499></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>grpconv</SPAN><A 
+                    name=IXT-10-350499></A></SPAN> 
+                    <DD>
+                    <P class=docList>Convert a standard group file to a shadow 
+                    configuration.</P></DD></DL><A name=IXT-10-350500></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>grpunconv</SPAN><A 
+                    name=IXT-10-350500></A></SPAN> 
+                    <DD>
+                    <P class=docList>Revert from a shadow group 
+                    configuration.</P></DD></DL><A name=IXT-10-350501></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>chage</SPAN><A name=IXT-10-350501></A> 
+                    <I>user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Modify password aging and expiration 
+                    settings for <I>user</I>. </P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-5.2></A>
+                  <H4 class=docSection2Title>10.5.2 Objective 2: Tune the User 
+                  Environment and System Environment Variables</H4><A 
+                  name=lpicertnut-CHP-10-SECT-5.2.1></A>
+                  <H5 class=docSection3Title>10.5.2.1 Configuration scripts</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350502></A>The <SPAN 
+                    class=docEmphBold>bash</SPAN><A name=IXT-10-350503></A> 
+                    shell uses system-wide configuration scripts -- such as 
+                    <I>/etc/profile</I> and <I>/etc/bashrc -- </I>when it 
+                    starts. </P>
+                    <LI>
+                    <P class=docList>Commands in <I>/etc/profile</I> are 
+                    executed at login time. </P>
+                    <LI>
+                    <P class=docList>Commands in <I>/etc/bashrc</I> are executed 
+                    for each invocation of <SPAN class=docEmphBold>bash</SPAN>. 
+                    </P>
+                    <LI>
+                    <P class=docList>Changes to these system-wide files affect 
+                    all users on the system.</P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.2.2></A>
+                  <H5 class=docSection3Title>10.5.2.2 New account home 
+                  directories</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>New user <A 
+                    name=IXT-10-350504></A>directories are populated 
+                    automatically by copying <I>/etc/skel</I> and its contents. 
+                    </P>
+                    <LI>
+                    <P class=docList>The system administrator may add, modify, 
+                    and delete files in <I>/etc/skel</I> as needed for the local 
+                    environment. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.3></A>
+                  <H4 class=docSection2Title>10.5.3 Objective 3: Configure and 
+                  Use System Log Filesto Meet Administrative and Security 
+                  Needs</H4><A name=lpicertnut-CHP-10-SECT-5.3.1></A>
+                  <H5 class=docSection3Title>10.5.3.1 Syslog</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <SPAN class=docEmphBold>syslog</SPAN><A 
+                    name=IXT-10-350505></A> system <A 
+                    name=IXT-10-350506></A>displays and records messages 
+                    describing system events. </P>
+                    <LI>
+                    <P class=docList>Messages can be placed on the console, in 
+                    log files, and on the text screens of users. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>syslog</SPAN> is 
+                    configured by<A name=IXT-10-350507></A> 
+                    <I>/etc/syslog.conf</I> in the form 
+                    <I>facility</I>.<I>level</I> <I>action:</I> </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>facility </I></SPAN>
+                      <DD>
+                      <P class=docList>The creator of the message, selected from 
+                      among <I>auth</I>, <I>authpriv</I>, <I>cron</I>, 
+                      <I>daemon</I>, <I>kern</I>, <I>lpr</I>, <I>mail</I>, 
+                      <I>mark</I>, <I>news</I>, <I>syslog</I>, <I>user</I>, or 
+                      <I>local0</I> through <I>local7</I>. </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>level </I></SPAN>
+                      <DD>
+                      <P class=docList>Specifies a severity threshold beyond 
+                      which messages are logged and is one of (from lowest to 
+                      highest severity) <I>debug</I>, <I>info</I>, 
+                      <I>notice</I>, <I>warning</I>, <I>err</I>, <I>crit</I>, 
+                      <I>alert</I>, or <I>emerg</I>. The special level 
+                      <I>none</I> disables a facility. </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>action </I></SPAN>
+                      <DD>
+                      <P class=docList>The destination for messages that 
+                      correspond to a given selector. It can be a filename, 
+                      <I>@hostname</I>, a comma-separated list of users, or an 
+                      asterisk, meaning all logged-in users. 
+</P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Together, <I>facility</I>.<I>levels</I> 
+                    comprise the <I>message selector</I>. </P>
+                    <LI>
+                    <P class=docList>Most <I>syslog </I>messages go to 
+                    <I>/var/log/messages</I>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.3.2></A>
+                  <H5 class=docSection3Title>10.5.3.2 Log file rotation</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>Most system log files are <SPAN 
+                    class=docEmphasis>rotated</SPAN> to expire old information 
+                    and prevent disks from filling. </P>
+                    <LI>
+                    <P class=docList><I>logrotate</I> accomplishes log rotation 
+                    and is configured using <I>/etc/logrotate.conf</I>. 
+                  </P></LI></UL><A name=lpicertnut-CHP-10-SECT-5.3.3></A>
+                  <H5 class=docSection3Title>10.5.3.3 Examining log files</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>Files in <I>/var/log</I> (such as 
+                    <I>messages</I>)<I> </I>and elsewhere can be examined using 
+                    utilities such as <I>tail</I>, <I>less</I>, and <I>grep</I>. 
+                    </P>
+                    <LI>
+                    <P class=docList>Information in <I>syslog</I> log files 
+                    includes date, time, origin hostname, message sender, and 
+                    descriptive text. </P>
+                    <LI>
+                    <P class=docList>To debug problems using log file 
+                    information, first look at the hostname and sender, then at 
+                    the message text. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.4></A>
+                  <H4 class=docSection2Title>10.5.4 Objective 4: Automate System 
+                  Administration Tasksby Scheduling Jobs to Run in the 
+                  Future</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350508></A>Both <SPAN 
+                    class=docEmphBold>cron</SPAN><A name=IXT-10-350509></A> and 
+                    <SPAN class=docEmphBold>at</SPAN> can be used to schedule 
+                    jobs in the future. </P>
+                    <LI>
+                    <P class=docList>Scheduled jobs can be any executable 
+                    program or script.</P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.4.1></A>
+                  <H5 class=docSection3Title>10.5.4.1 Using cron</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <SPAN class=docEmphBold>cron</SPAN> 
+                    facility consists of <SPAN class=docEmphBold>crond</SPAN>, 
+                    the cron daemon, and <I>crontab</I> files containing 
+                    job-scheduling information. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>cron</SPAN> is 
+                    intended for the execution of commands on a periodic basis. 
+                    </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>crond</SPAN><A 
+                    name=IXT-10-350510></A> examines all <I>crontab</I><A 
+                    name=IXT-10-350511></A> files every minute. </P>
+                    <LI>
+                    <P class=docList>Each system user has access to <SPAN 
+                    class=docEmphBold>cron</SPAN> through a personal 
+                    <I>crontab</I> file. </P>
+                    <LI>
+                    <P class=docList>The <SPAN 
+                    class=docEmphBold>crontab</SPAN><A name=IXT-10-350512></A> 
+                    command, shown here, allows the <I>crontab</I> file to be 
+                    edited and viewed: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>crontab</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>View, or with <SPAN 
+                      class=docEmphBold>-e</SPAN>, edit <I>crontab</I> files. 
+                      </P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Entries in the <I>crontab</I> file are in 
+                    the form of:</P>
+                    <DL class=docList>
+                      <DD><I>minute hour day month dayofweek command</I> 
+                    </DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Asterisks in any of the time fields match 
+                    all possible values.</P>
+                    <LI>
+                    <P class=docList>In addition to personal <I>crontab</I> 
+                    files, the system has its own <I>crontab</I> files:<I> 
+                    /etc/crontab</I><A name=IXT-10-350513></A> as well as files 
+                    in <I>/etc/cron.d</I>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.4.2></A>
+                  <H5 class=docSection3Title>10.5.4.2 Using at</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The <SPAN class=docEmphBold>at</SPAN><A 
+                    name=IXT-10-350514></A> facility, shown here, is for setting 
+                    up one-time future command execution: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>at</SPAN> <I>time</I></SPAN> 
+                      <DD>
+                      <P class=docList>Enter an interactive session with <SPAN 
+                      class=docEmphBold>at</SPAN>, where commands may be 
+                      entered. <I>time</I> is of the form <I>hh:mm</I>, 
+                      <I>midnight</I>, <I>noon</I>, and so on. 
+                  </P></DD></DL></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.4.3></A>
+                  <H5 class=docSection3Title>10.5.4.3 User access</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350515></A>Access to <SPAN 
+                    class=docEmphBold>cron</SPAN> can be controlled using lists 
+                    of users in <I>cron.allow</I> and <I>cron.deny</I>. </P>
+                    <LI>
+                    <P class=docList>Access to <SPAN class=docEmphBold>at</SPAN> 
+                    can be controlled using lists of users in <I>at.allow</I> 
+                    and <I>at.deny</I>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-5.5></A>
+                  <H4 class=docSection2Title>10.5.5 Objective 5: Maintain an 
+                  Effective Data Backup Strategy</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350516></A>System backup 
+                    provides protection against disk failures, accidental file 
+                    deletion, accidental file corruption, and disasters. </P>
+                    <LI>
+                    <P class=docList>System backup provides access to historical 
+                    data.</P>
+                    <LI>
+                    <P class=docList>Full backups save all files.</P>
+                    <LI>
+                    <P class=docList>Differential backups save files modified or 
+                    created since the last full backup. </P>
+                    <LI>
+                    <P class=docList>Incremental backups save files modified or 
+                    created since the last full or incremental backup. </P>
+                    <LI>
+                    <P class=docList>A full backup will be coupled with either 
+                    differential or incremental backups, but not both. </P>
+                    <LI>
+                    <P class=docList>Backup media are rotated to assure 
+                    high-quality backups.</P>
+                    <LI>
+                    <P class=docList>Backup media must be verified to assure 
+                    data integrity.</P>
+                    <LI>
+                    <P class=docList>Backup is often performed using <SPAN 
+                    class=docEmphBold>tar</SPAN> and <SPAN 
+                    class=docEmphBold>mt</SPAN>, as follows: </P><A 
+                    name=IXT-10-350517></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>tar</SPAN><A name=IXT-10-350517></A> 
+                      <I>files</I></SPAN> 
+                      <DD>
+                      <P class=docList>Archive or restore files recursively, to 
+                      tape or to a tarfile.</P></DD></DL><A 
+name=IXT-10-350518></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphBold>mt</SPAN><A name=IXT-10-350518></A> 
+                      <I>operation</I></SPAN> 
+                      <DD>
+                      <P class=docList>Control a tape drive, including skipping 
+                      over multiple archives on tape, rewinding, and ejecting. 
+                      <I>operations</I> include <I>fsf</I>, <I>bsf</I>, 
+                      <I>rewinde</I>, and <I>offline</I> (see the manpage for a 
+                      complete list). </P></DD></DL></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Backup should include everything necessary 
+                    to restore a system to operation in the event of a disaster. 
+                    Examples include <I>/etc</I>, <I>/home</I>, <I>/var/log</I>, 
+                    and <I>/var/spool</I>, though individual requirements vary<A 
+                    name=IXTR3-53></A>. </P></LI></UL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-10-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)453ms
+(xml)172ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)656ms
+--></BODY></HTML>

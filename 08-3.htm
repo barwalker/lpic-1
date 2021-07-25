@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-8-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="08-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="08-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 8.&nbsp; Exam 
+            101 Review Questions and Exercises</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-8-SECT-3></A>
+                  <H3 class=docSection1Title>8.3 Boot, Initialization, Shutdown, 
+                  and Runlevels (Topic 2.6)</H3><A 
+                  name=lpicertnut-CHP-8-SECT-3.1></A>
+                  <H4 class=docSection2Title>8.3.1 Review questions</H4><SPAN 
+                  style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Name and briefly describe the two parts of 
+                    LILO. Which part has a configuration file and what is that 
+                    file called? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>What are the ramifications relating to new 
+                    hardware when running a monolithic kernel? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Which three runlevels are well defined 
+                    across Linux distributions, and what actions to they 
+                    perform? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Describe a situation that would imply the 
+                    need to switch to single-user mode. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>What are the two alphabetic prefixes used 
+                    in the <SPAN class=docEmphBold>rd</SPAN> directories, and 
+                    what do they stand for? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>How can you shutdown and halt a Linux 
+                    system immediately using <SPAN 
+                    class=docEmphBold>shutdown</SPAN>? 
+                  </P></SPAN></LI></OL></SPAN><A 
+                  name=lpicertnut-CHP-8-SECT-3.2></A>
+                  <H4 class=docSection2Title>8.3.2 Exercises</H4><A 
+                  name=lpicertnut-CHP-8-SECT-3.2.1></A>
+                  <H5 class=docSection3Title>8.3.2.1 Exercise 2.6-1. 
+                  Boot</H5><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Examine the contents of 
+                    <I>/etc/lilo.conf</I>. How many kernel images or operating 
+                    systems are configured for load by LILO? Explain the options 
+                    you find in the file. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Install the boot loader by executing <SPAN 
+                    class=docEmphBold>lilo</SPAN>. What happened? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Boot your system and manually specify the 
+                    root filesystem using the <TT>root=</TT> keyword at the LILO 
+                    prompt. What happens if you specify the wrong partition? 
+                    </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Use <SPAN class=docEmphBold>dmesg</SPAN> 
+                    and <SPAN class=docEmphBold>less</SPAN> to examine boot-time 
+                    messages. Compare what you find to the latest boot messages 
+                    found in <I>/var/log/messages</I>. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Boot your system and use the <SPAN 
+                    class=docEmphBold>single</SPAN> or <SPAN 
+                    class=docEmphBold>1</SPAN> option to boot directly into 
+                    single-user mode. </P></SPAN></LI></OL></SPAN><A 
+                  name=lpicertnut-CHP-8-SECT-3.2.2></A>
+                  <H5 class=docSection3Title>8.3.2.2 Exercise 2.6-2. 
+                  Runlevels</H5><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>After booting to single-user mode, switch 
+                    to your normal runlevel using <SPAN class=docEmphBold>init 
+                    n</SPAN>. </P><SPAN style="FONT-WEIGHT: bold">
+                    <OL class=docList type=a>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Does the system come up as 
+                      expected?</P></SPAN>
+                      <LI><SPAN style="FONT-WEIGHT: normal">
+                      <P class=docList>Enter <SPAN class=docEmphBold>init 
+                      1</SPAN> to go back to single-user mode. What daemons are 
+                      still running? </P></SPAN></LI></OL></SPAN></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Familiarize yourself with the contents of a 
+                    few of the scripts in <I>/etc/rc.d/init.d</I> (your system 
+                    directories may vary). </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Look in <I>rc0.d</I> through <I>rc6.d</I> 
+                    for links to the scripts you examined. How are the scripts 
+                    used? In which runlevels is the corresponding service 
+                    active? </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Shut down your system with <SPAN 
+                    class=docEmphBold>init 0</SPAN>.</P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Shut down your system with <SPAN 
+                    class=docEmphBold>shutdown -h now</SPAN>. 
+                  </P></SPAN></LI></OL></SPAN>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-8-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-8-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-8-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)171ms
+(xsl)0ms
+(ent)0ms
+(buf)0ms
+
+(tot)578ms
+--></BODY></HTML>

@@ -1,0 +1,937 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0173)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="10-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="10-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 10.&nbsp;  
+            Exam 101 Highlighter's Index</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-10-SECT-1></A>
+                  <H3 class=docSection1Title>10.1 GNU and Unix Commands (Topic 
+                  1.3)</H3><A name=lpicertnut-CHP-10-SECT-1.1></A>
+                  <H4 class=docSection2Title>10.1.1 Objective 1: Work 
+                  Effectively on the Unix Command Line</H4><A 
+                  name=lpicertnut-CHP-10-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>10.1.1.1 The interactive shell and 
+                  shell variables</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=lpicertnut-IDXTERM-554></A>A <SPAN  
+                    class=docEmphasis>shell</SPAN><A name=IXT-10-350250></A> 
+                    provides the command prompt and interprets commands. </P> 
+                    <LI>
+                    <P class=docList>A <SPAN class=docEmphasis>shell  
+                    variable</SPAN><A name=IXT-10-350251></A> holds a value that  
+                    is accessible to shell programs. </P> 
+                    <LI>
+                    <P class=docList><TT>PATH</TT><A name=IXT-10-350252></A> is  
+                    a shell variable that contains a listing of directories that  
+                    hold executable programs. </P> 
+                    <LI>
+                    <P class=docList>Commands must be <SPAN  
+                    class=docEmphBold>bash</SPAN><A name=IXT-10-350253></A> 
+                    built-ins, found in the <TT>PATH</TT>, or explicitly defined  
+                    in order to succeed. </P> 
+                    <LI>
+                    <P class=docList>When <A name=IXT-10-350254></A><A  
+                    name=IXT-10-350255></A>shell variables are <SPAN  
+                    class=docEmphasis>exported</SPAN>, they become part of the  
+                    <SPAN class=docEmphasis>environment</SPAN><A 
+                    name=IXT-10-350256></A>. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-1.1.2></A>
+                  <H5 class=docSection3Title>10.1.1.2 Entering commands</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350257></A>Commands are  
+                    comprised of a valid command, with or without one or more  
+                    options and arguments, followed by a carriage return. </P> 
+                    <LI>
+                    <P class=docList>Interactive commands can include looping 
+                    structures more often used in shell scripts. </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-1.1.3></A>
+                  <H5 class=docSection3Title>10.1.1.3 Command history, editing, 
+                  and substitution</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350258></A>Shell sessions  
+                    can be viewed as a conversation. <A  
+                    name=IXT-10-350259></A>History, expansion, and editing make  
+                    that dialogue more productive. </P> 
+                    <LI>
+                    <P class=docList>Commands can be reissued, modified, and  
+                    edited. Examples are shown in <a class="docLink" href="#lpicertnut-CHP-10-TABLE-1">Table  
+                    10-1</a>. </P>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350260></A>Command  
+                    substitution allows the <SPAN  
+                    class=docEmphasis>result</SPAN> of a command to be placed  
+                    into a shell variable. </P></LI></UL><A  
+                  name=lpicertnut-CHP-10-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 10-1. Shell Expansion, 
+                    Editing, and Substitution Examples </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>History Type</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Examples</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Expansion</P></TD>
+                      <TD class=docTableCell><PRE>!!
+!n
+^string1^string2</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Editing</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><SPAN class=docEmphBold>Ctrl-P</SPAN>, 
+                        previous line</P>
+                        <P class=docText><SPAN class=docEmphBold>Ctrl-K</SPAN>, 
+                        kill to end of line</P>
+                        <P class=docText><SPAN class=docEmphBold>Ctrl-Y</SPAN>, 
+                        paste (yank) text</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Substitution</P></TD>
+                      <TD class=docTableCell><PRE>VAR=$(command)</PRE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-10-SECT-1.1.4></A>
+                  <H5 class=docSection3Title>10.1.1.4 Recursive execution</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>Many <A name=IXT-10-350261></A><A  
+                    name=IXT-10-350262></A>commands contain either a <SPAN  
+                    class=docEmphBold>-r</SPAN> or <SPAN  
+                    class=docEmphBold>-R</SPAN> option for recursive execution  
+                    through a directory hierarchy. </P> 
+                    <LI>
+                    <P class=docList>The<A name=IXT-10-350263></A> <SPAN  
+                    class=docEmphBold>find</SPAN> command is inherently  
+                    recursive, and is intended to descend through directories  
+                    looking for files with certain attributes or executing  
+                    commands. </P></LI></UL><A 
+name=lpicertnut-CHP-10-SECT-1.2></A>
+                  <H4 class=docSection2Title>10.1.2 Objective 2: Process Text 
+                  Streams Using Text Processing Filters</H4>
+                  <P class=docText>The following programs modify or manipulate 
+                  text from files and standard input: </P><A 
+                  name=IXT-10-350264></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>cut</SPAN><A name=IXT-10-350264></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Cut out selected columns or fields from one 
+                    or more <I>files</I>. </P></DD></DL><A name=IXT-10-350265></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>expand</SPAN><A name=IXT-10-350265></A> 
+                    <I>files</I></SPAN>  
+                    <DD>
+                    <P class=docList>Convert tabs to spaces in 
+                    <I>files</I>.</P></DD></DL><A name=IXT-10-350266></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>fmt</SPAN><A name=IXT-10-350266></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Format text in <I>files</I> to a specified 
+                    width by filling lines and removing newline characters. 
+                    </P></DD></DL><A name=IXT-10-350267></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>head</SPAN><A name=IXT-10-350267></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the first few lines of 
+                    <I>files</I>.</P></DD></DL><A name=IXT-10-350268></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>join</SPAN><A name=IXT-10-350268></A> 
+                    <I>file1</I> <I>file2</I></SPAN>  
+                    <DD>
+                    <P class=docList>Print a line for each pair of input lines, 
+                    one each from <I>file1</I> and <I>file2</I>, that have 
+                    identical <I>join fields</I>. </P></DD></DL><A 
+                  name=IXT-10-350269></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>nl</SPAN><A name=IXT-10-350269></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Number the lines of <I>files</I>, which are 
+                    concatenated in the output. </P></DD></DL><A 
+                  name=IXT-10-350270></A><A name=IXT-10-350271></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>od</SPAN><A name=IXT-10-350270></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-10-350271></A>Dump <I>files</I>  
+                    in octal, hexadecimal, ASCII, and other formats.  
+                  </P></DD></DL><A name=IXT-10-350272></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>paste</SPAN><A name=IXT-10-350272></A> 
+                    <I>files</I></SPAN>  
+                    <DD>
+                    <P class=docList>Paste together corresponding lines of one 
+                    or more <I>files</I> into vertical columns. </P></DD></DL><A 
+                  name=IXT-10-350273></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>pr</SPAN><A name=IXT-10-350273></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>file</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Convert a text <I>file</I> into a 
+                    paginated, columnar version, with headers and page fills. 
+                    </P></DD></DL><A name=IXT-10-350274></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>split</SPAN><A name=IXT-10-350274></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[</SPAN></SPAN><I>infile</I><SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>] 
+                    [</SPAN></SPAN><I>outfile</I><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Split <I>infile</I> into a specified number 
+                    of line groups; the output will go into a succession of 
+                    files of <I>outfileaa</I>, <I>outfileab</I>, and so on. 
+                    </P></DD></DL><A name=IXT-10-350275></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>tac</SPAN><A name=IXT-10-350275></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>file</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print <I>file</I> to standard output in 
+                    reverse line order. </P></DD></DL><A name=IXT-10-350276></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>tail</SPAN><A name=IXT-10-350276></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the last few lines of one or more 
+                    <I>files</I>.</P></DD></DL><A name=IXT-10-350277></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>tr</SPAN><A name=IXT-10-350277></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>string1</I> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>string2</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Translate characters by mapping from 
+                    <I>string1</I> to the corresponding character in 
+                    <I>string2</I>. </P></DD></DL><A name=IXT-10-350278></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>wc</SPAN><A name=IXT-10-350278></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print counts of characters, words, and 
+                    lines for <I>files</I>. </P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-1.2.1></A>
+                  <H5 class=docSection3Title>10.1.2.1 The stream editor, 
+sed</H5>
+                  <P class=docText><SPAN class=docEmphBold>sed</SPAN> <A  
+                  name=IXT-10-350279></A>is a popular text-filtering program  
+                  found on nearly every Unix system; it has the following  
+                  syntax: </P><A name=IXT-10-350280></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>sed</SPAN><A name=IXT-10-350280></A> 
+                    <I>command</I> <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>sed 
+                    -e</SPAN> <I>command1</I> <SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[-e</SPAN></SPAN> <I>command2</I><SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>] 
+                    [</SPAN></SPAN><I>files</I><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>sed 
+                    -f</SPAN> <I>script</I> <SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>files</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Execute <SPAN 
+                    class=docEmphBold>sed</SPAN><I> commands</I>, or those found 
+                    in <I>script</I>, on standard input or <I>files</I>. 
+                    </P></DD></DL><A name=lpicertnut-CHP-10-SECT-1.3></A>
+                  <H4 class=docSection2Title>10.1.3 Objective 3: Perform Basic 
+                  File Management</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350281></A><A 
+                    name=IXT-10-350282></A>Filesystem creation is called  
+                    <I>formatting</I>, which prepares a disk partition for use.  
+                    Linux usually uses the native <I>ext2</I> (second extended)  
+                    filesystem. </P>
+                    <LI>
+                    <P class=docList>The Linux filesystem is arranged into a  
+                    hierarchical structure anchored at the <I>root  
+                    directory</I><A name=IXT-10-350283></A>, or <I>/</I>.  
+                    Beneath this is a tree of directories and files. </P> 
+                    <LI>
+                    <P class=docList>Identification information for a filesystem  
+                    object is stored in its <I>inode</I><A  
+                    name=IXT-10-350284></A>, which holds location, modification,  
+                    and security information. Filesystems are created with a  
+                    finite number of inodes. </P></LI></UL><A  
+                  name=lpicertnut-CHP-10-SECT-1.3.1></A>
+                  <H5 class=docSection3Title>10.1.3.1 File and directory 
+                  management commands</H5>
+                  <P class=docText>The following commands are essential for the 
+                  management of files and directories: </P><A 
+                  name=IXT-10-350285></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>cp</SPAN><A name=IXT-10-350285></A> 
+                    <I>file1</I> <I>file2</I></SPAN>  
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>cp</SPAN> <I>files</I> 
+                    <I>directory</I></SPAN> 
+                    <DD>
+                    <P class=docList>Copy <I>file1</I> to <I>file2</I>, or copy 
+                    <I>files</I> to <I>directory</I>. </P></DD></DL><A 
+                  name=IXT-10-350286></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mkdir</SPAN><A name=IXT-10-350286></A> 
+                    <I>directories</I></SPAN>  
+                    <DD>
+                    <P class=docList>Create one or more 
+                    <I>directories</I>.</P></DD></DL><A name=IXT-10-350287></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>mv</SPAN><A name=IXT-10-350287></A> 
+                    <I>source</I> <I>target</I></SPAN>  
+                    <DD>
+                    <P class=docList>Move or rename files and 
+                    directories.</P></DD></DL><A name=IXT-10-350288></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>rm</SPAN><A name=IXT-10-350288></A> 
+                    <I>files</I></SPAN>  
+                    <DD>
+                    <P class=docList>Delete one or more <I>files</I> from the 
+                    filesystem. When used recursively (with the <SPAN 
+                    class=docEmphBold>-r</SPAN> option), <SPAN 
+                    class=docEmphBold>rm</SPAN> also removes directories. 
+                    </P></DD></DL><A name=IXT-10-350289></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>rmdir</SPAN><A name=IXT-10-350289></A> 
+                    <I>directories</I></SPAN>  
+                    <DD>
+                    <P class=docList>Delete <I>directories</I>, which must be 
+                    empty.</P></DD></DL><A name=IXT-10-350290></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>touch</SPAN><A name=IXT-10-350290></A> 
+                    <I>files</I></SPAN>  
+                    <DD>
+                    <P class=docList>Change the access and/or modification times 
+                    of <I>files</I> by default to the present time. 
+                  </P></DD></DL><A name=lpicertnut-CHP-10-SECT-1.3.2></A>
+                  <H5 class=docSection3Title>10.1.3.2 File-naming wildcards</H5>
+                  <P class=docText><A name=IXT-10-350291></A><A 
+                  name=IXT-10-350292></A>Wildcards (also called <I>file  
+                  globs</I>) allow the specification of many files at once. A  
+                  list of commonly used wildcards can be found in <a class="docLink" href="#lpicertnut-CHP-10-TABLE-2">Table  
+                  10-2</a>. </P><A name=lpicertnut-CHP-10-TABLE-2></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 10-2. File-Naming Wildcards 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Wildcard</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Function</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>*</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match zero or more 
+characters.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>? </PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match exactly one character.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>[characters]</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character from among 
+                        <TT><I>characters</I></TT> listed between brackets 
+                      </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>[!characters] </PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character other than 
+                        <TT><I>characters</I></TT> listed between brackets. 
+                      </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>[a-z]</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character from among 
+                        the range of characters listed between brackets. 
+                    </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>[!a-z]</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character from among 
+                        the characters not in the range listed between brackets. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>{frag1, frag2, frag3, ...}</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Brace expansion: create strings 
+                        <TT>frag1</TT>, <TT>frag2</TT>, and <TT>frag3</TT>, 
+                        etc., such that <TT>{file_one,two,three}</TT> yields 
+                        <TT>file_one</TT>, <TT>file_two</TT>, and 
+                        <TT>file_three</TT>. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-10-SECT-1.4></A>
+                  <H4 class=docSection2Title>10.1.4 Objective 4: Use Unix 
+                  Streams, Pipes, and Redirects</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350293></A>A central concept  
+                    for Linux and Unix systems is that <SPAN  
+                    class=docEmphasis>everything is a file</SPAN>. </P>
+                    <LI>
+                    <P class=docList>Many system devices are represented in the  
+                    filesystem using a <I>device file</I><A  
+                    name=IXT-10-350294></A>, such as <I>/dev/ttyS0</I> for a  
+                    serial port. </P></LI></UL><A  
+                  name=lpicertnut-CHP-10-SECT-1.4.1></A>
+                  <H5 class=docSection3Title>10.1.4.1 Standard I/O</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>The shell provides the <I>standard  
+                    I/O</I><A name=IXT-10-350295></A> capability, offering three  
+                    default file descriptors to running programs. </P> 
+                    <LI>
+                    <P class=docList><I>Standard input</I><A 
+                    name=IXT-10-350296></A> <A  
+                    name=IXT-10-350297></A>(<I>stdin</I>) is a text input  
+                    stream, by default attached to the keyboard. </P> 
+                    <LI>
+                    <P class=docList><I>Standard output</I><A 
+                    name=IXT-10-350298></A> <A  
+                    name=IXT-10-350299></A>(<I>stdout</I>) is an output stream  
+                    for normal program output. </P> 
+                    <LI>
+                    <P class=docList><I>Standard error</I><A 
+                    name=IXT-10-350300></A> <A  
+                    name=IXT-10-350301></A>(<I>stderr</I>) is an additional  
+                    output stream meant for error messages. </P></LI></UL><A  
+                  name=lpicertnut-CHP-10-SECT-1.4.2></A>
+                  <H5 class=docSection3Title>10.1.4.2 Pipes and redirection</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>It is possible to tie the output of one  
+                    program to the input of another. This is known as a  
+                    <I>pipe</I><A name=IXT-10-350302></A> and is created by  
+                    joining commands using the pipe symbol (<SPAN  
+                    class=docEmphBold>|</SPAN>). </P>
+                    <LI>
+                    <P class=docList>Pipes are a special form of  
+                    <I>redirection</I><A name=IXT-10-350303></A>, which allows  
+                    you to manage the origin of input streams and the  
+                    destination of output streams. Redirection syntax for  
+                    various shells differs slightly. See <a class="docLink" href="#lpicertnut-CHP-10-TABLE-3">Table  
+                    10-3</a> for examples of common <A  
+                    name=IXT-10-350304></A>redirection operators. </P></LI></UL><A  
+                  name=lpicertnut-CHP-10-TABLE-3></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 10-3. Common Redirection 
+                    Operators </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Redirection Function</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Syntax for bash</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send <I>stdout</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ cmd &gt; file
+$ cmd 1&gt; file</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send <I>stderr</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ cmd 2&gt; file</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send both <I>stdout</I> and 
+                        <I>stderr</I> to <I>file.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ cmd &gt; file 2&gt;&amp;1</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Receive <I>stdin</I> from 
+                        <I>fil.e</I></P></TD>
+                      <TD class=docTableCell><PRE>$ cmd &lt; file</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Append <I>stdout</I> to 
+                      <I>fil.e</I></P></TD>
+                      <TD class=docTableCell><PRE>$ cmd &gt;&gt; file
+$ cmd 1&gt;&gt; file</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Append <I>stderr</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ cmd 2&gt;&gt; file</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Append both <I>stdout</I> and 
+                        <I>stderr</I> to <I>file.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ cmd &gt;&gt; file 2&gt;&amp;1</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Pipe <I>stdout</I> from <I>cmd1</I> to 
+                        <I>cmd2.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ cmd1 | cmd2</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Pipe <I>stdout</I> and <I>stderr</I> 
+                        from <I>cmd1</I> to <I>cmd2.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ cmd1 2&gt;&amp;1 | cmd2</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Pipe <I>stdout</I> from <I>cmd1</I> to 
+                        <I>cmd2</I> while simultaneously writing it to 
+                        <I>file1</I> using <I>tee</I>. </P></TD>
+                      <TD class=docTableCell><PRE>$ cmd1 tee file1 | cmd2</PRE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-10-SECT-1.5></A>
+                  <H4 class=docSection2Title>10.1.5 Objective 5: Create, 
+                  Monitor, and Kill Processes</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><A name=IXT-10-350305></A>Processes have:  
+                    </P>
+                    <UL>
+                      <LI>
+                      <P class=docList>A lifetime.</P>
+                      <LI>
+                      <P class=docList>A PID.</P>
+                      <LI>
+                      <P class=docList>A UID.</P>
+                      <LI>
+                      <P class=docList>A GID.</P>
+                      <LI>
+                      <P class=docList>A parent process.</P>
+                      <LI>
+                      <P class=docList>An environment.</P>
+                      <LI>
+                      <P class=docList>A current working 
+                    directory.</P></LI></UL></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-1.5.1></A>
+                  <H5 class=docSection3Title>10.1.5.1 Monitoring commands</H5><A 
+                  name=IXT-10-350306></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>ps</SPAN><A name=IXT-10-350306></A></SPAN> 
+
+                    <DD>
+                    <P class=docList>Generate a one-time snapshot of the current 
+                    processes on standard output. </P></DD></DL><A 
+                  name=IXT-10-350307></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>pstree</SPAN><A 
+                    name=IXT-10-350307></A></SPAN> 
+                    <DD>
+                    <P class=docList>Display a hierarchical list of processes in 
+                    a tree format.</P></DD></DL><A name=IXT-10-350308></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>top</SPAN><A 
+                    name=IXT-10-350308></A></SPAN> 
+                    <DD>
+                    <P class=docList>Generate a continuous, formatted, real-time 
+                    process activity display on a terminal or in a terminal 
+                    window. </P></DD></DL><A 
+name=lpicertnut-CHP-10-SECT-1.5.2></A>
+                  <H5 class=docSection3Title>10.1.5.2 Signaling processes</H5>
+                  <UL>
+                    <LI>
+                    <P class=docList>Processes listen for <I>signals</I><A  
+                    name=IXT-10-350309></A> sent by the kernel or users using  
+                    the <SPAN class=docEmphBold>kill</SPAN> command:  
+                  </P></LI></UL><A name=IXT-10-350310></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><PRE><B>kill</B></PRE><A name=IXT-10-350310></A><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>-</SPAN></SPAN><I>sigspec</I> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>pids</I><SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>]</SPAN></SPAN> 
+                    </SPAN>
+                    <DD>
+                    <P class=docList>Send <I>sigspec</I> to 
+                  <I>pids</I>.</P></DD></DL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Common <SPAN class=docEmphBold>kill</SPAN>  
+                    signals are listed in <a class="docLink" href="#lpicertnut-CHP-10-TABLE-4">Table  
+                    10-4</a>. </P></LI></UL><A name=lpicertnut-CHP-10-TABLE-4></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 10-4. Common Signals 
+                    </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Signal</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Number</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Meaning </P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><A name=IXT-10-350311></A><PRE>HUP</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Hangup, reread configuration.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><A name=IXT-10-350312></A><PRE>INT</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Interrupt, stop running.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>KILL</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>9</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Stop immediately.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><A name=IXT-10-350313></A><PRE>TERM</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>15</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Terminate nicely.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><A name=IXT-10-350314></A><PRE>TSTP</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>18</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Stop executing, ready to 
+                      continue.</P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-10-SECT-1.5.3></A>
+                  <H5 class=docSection3Title>10.1.5.3 Shell job control</H5>
+                  <P class=docText>Shells can run processes in the  
+                  <I>background,</I><A name=IXT-10-350315></A> where they  
+                  execute on their own, or in the <I>foreground,</I><A  
+                  name=IXT-10-350316></A> attached to a terminal. Each process  
+                  handled in this way is known as a<A name=IXT-10-350317></A>  
+                  <I>job</I>. Jobs are manipulated using <A  
+                  name=IXT-10-350318></A>job control commands: </P><A  
+                  name=IXT-10-350319></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>bg</SPAN><A name=IXT-10-350319></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>jobspec</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Place <I>jobspec</I> in the background as 
+                    if it had been started with <SPAN 
+                    class=docEmphBold>&amp;</SPAN>. </P></DD></DL><A 
+                  name=IXT-10-350320></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>fg</SPAN><A name=IXT-10-350320></A> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>jobspec</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Place <I>jobspec</I> in the foreground, 
+                    making it the current job. </P></DD></DL><A 
+                  name=IXT-10-350321></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>jobs</SPAN><A name=IXT-10-350321></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[</SPAN></SPAN><I>jobspecs</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List <I>jobspecs</I> on standard 
+                    output.</P></DD></DL><A name=lpicertnut-CHP-10-SECT-1.6></A>
+                  <H4 class=docSection2Title>10.1.6 Objective 6: Modify Process 
+                  Execution Priorities</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList>A process' <I>execution priority</I><A  
+                    name=IXT-10-350322></A> is managed by the kernel. </P> 
+                    <LI>
+                    <P class=docList>You can bias the execution priority by  
+                    specifying a <I>nice number</I><A name=IXT-10-350323></A> in  
+                    the range of -20 to +19 (default is 0). </P> 
+                    <LI>
+                    <P class=docList>Positive nice numbers reduce priority; 
+                    negative nice numbers increase priority and are reserved for 
+                    the superuser. </P></LI></UL><A name=IXT-10-350324></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>nice</SPAN><A name=IXT-10-350324></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>-</SPAN></SPAN><I>adjustment</I> <SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>[</SPAN></SPAN><I>command</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Apply nice number <I>adjustment</I> to the 
+                    process created to run <I>command.</I> </P></DD></DL><A 
+                  name=IXT-10-350325></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>renice</SPAN><A name=IXT-10-350325></A> 
+                    <SPAN class=docPubcolor><SPAN  
+                    class=docMonofont>[+|-]</SPAN></SPAN><I>nicenumber</I> 
+                    <I>targets</I></SPAN>  
+                    <DD>
+                    <P class=docList>Alter the <I>nicenumber</I>, and thus the 
+                    scheduling priority, of one or more running <I>target</I> 
+                    processes. </P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-1.7></A>
+                  <H4 class=docSection2Title>10.1.7 Objective 7: Perform 
+                  Searches of Text Files Making Use of Regular Expressions</H4>
+                  <UL>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphasis>Regular 
+                    expressions</SPAN> <A name=lpicertnut-IDXTERM-631></A>are  
+                    used to match text. The term is used to describe the loosely  
+                    defined text-matching language as well as the patterns  
+                    themselves. A regular expression is often called a  
+                    <I>regex</I> or a <I>regexp</I>. </P> 
+                    <LI>
+                    <P class=docList>Regular expressions are made up of  
+                    <I>metacharacters</I><A name=IXT-10-350326></A> (with  
+                    special meaning) and <I>literals</I><A  
+                    name=IXT-10-350327></A> (everything that is not a  
+                    metacharacter). </P></LI></UL><A 
+                  name=lpicertnut-CHP-10-SECT-1.7.1></A>
+                  <H5 class=docSection3Title>10.1.7.1 Position anchors</H5>
+                  <P class=docText>These <A name=IXT-10-350328></A>operators  
+                  match line position: </P><A name=IXT-10-350329></A><A  
+                  name=IXT-10-350330></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><PRE><B>^</B></PRE><A name=IXT-10-350329></A><A 
+                    name=IXT-10-350330></A></SPAN>
+                    <DD>
+                    <P class=docList>Match the beginning of a 
+                  line.</P></DD></DL><A name=IXT-10-350331></A><A 
+                  name=IXT-10-350332></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><PRE><B>$</B></PRE><A name=IXT-10-350331></A><A 
+                    name=IXT-10-350332></A></SPAN>
+                    <DD>
+                    <P class=docList>Match the end of a line.</P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-1.7.2></A>
+                  <H5 class=docSection3Title>10.1.7.2 Character sets</H5>
+                  <P class=docText>These <A name=IXT-10-350333></A>operators <A  
+                  name=IXT-10-350334></A><A name=IXT-10-350335></A>match text:  
+                  </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[abc]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[a-z]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Match any single character from among 
+                    listed characters or from among the characters comprising a 
+                    range. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[^abc]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList></P>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>[^a-z]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Match any single character not among listed 
+                    characters or ranges.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>\&lt;</SPAN></SPAN><I>word</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>\&gt;</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Match <I>word</I>s bounded by 
+                    whitespace.</P></DD></DL><A name=IXT-10-350336></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>.</SPAN></SPAN><A name=IXT-10-350336></A> 
+                    (A single period, or dot)</SPAN>  
+                    <DD>
+                    <P class=docList>Match any single character except a 
+                    <I>newline</I>.</P></DD></DL><A name=IXT-10-350337></A><A 
+                  name=IXT-10-350338></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>\</SPAN></SPAN><A name=IXT-10-350337></A> 
+                    <A name=IXT-10-350338></A></SPAN> 
+                    <DD>
+                    <P class=docList>Turn off (escape) the special meaning of a 
+                    metacharacter that follows.</P></DD></DL><A 
+                  name=lpicertnut-CHP-10-SECT-1.7.3></A>
+                  <H5 class=docSection3Title>10.1.7.3 Modifiers</H5>
+                  <P class=docText>These operators modify the way other 
+                  operators are interpreted:</P><A name=IXT-10-350339></A><A 
+                  name=IXT-10-350340></A><A name=IXT-10-350341></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>*</SPAN></SPAN><A name=IXT-10-350339></A> 
+                    <A name=IXT-10-350340></A><A name=IXT-10-350341></A></SPAN> 
+                    <DD>
+                    <P class=docList>Match zero or more of the character that 
+                    precedes it.</P></DD></DL><A name=IXT-10-350342></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>?</SPAN></SPAN><A 
+                    name=IXT-10-350342></A></SPAN> 
+                    <DD>
+                    <P class=docList>Match zero or one instance of the preceding 
+                    <I>regex</I>. </P></DD></DL><A name=IXT-10-350343></A><A 
+                  name=IXT-10-350344></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>+</SPAN></SPAN><A name=IXT-10-350343></A> 
+                    <A name=IXT-10-350344></A></SPAN> 
+                    <DD>
+                    <P class=docList>Match one or more instances of the 
+                    preceding <I>regex</I>. </P></DD></DL><A 
+                  name=IXT-10-350345></A><A name=IXT-10-350346></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>\{</SPAN></SPAN><A name=IXT-10-350345></A> 
+                    <A name=IXT-10-350346></A><I>n</I><SPAN  
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>,</SPAN></SPAN><I>m</I><SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>\}</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Match a range of occurrences of the single 
+                    character or <I>regex</I> that precedes this construct. 
+                    </P></DD></DL><A name=IXT-10-350347></A><A name=IXTR3-52></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>|</SPAN></SPAN><A 
+                    name=IXT-10-350347></A></SPAN> 
+                    <DD>
+                    <P class=docList>Match the character or expression to the  
+                    left or right of the vertical bar.<A name=IXTR3-52></A>  
+                    </P></DD></DL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-10-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-10-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)485ms
+(xml)187ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)985ms
+--></BODY></HTML>
