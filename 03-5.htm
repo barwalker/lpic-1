@@ -1,0 +1,1066 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux   
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU   
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR>  
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-5></A>
+                  <H3 class=docSection1Title>3.5 Objective 5: Create, Monitor, 
+                  and Kill Processes</H3>
+                  <P class=docText>This Objective looks at the management of   
+                  <SPAN class=docEmphasis>processes</SPAN><A 
+                  name=lpicertnut-IDXTERM-198></A>. Just as file management is a   
+                  fundamental system administrator's function, the management   
+                  and control of processes is also essential for smooth system   
+                  operation. In most cases, processes will live, execute, and   
+                  die without intervention from the user because they are   
+                  automatically managed by the kernel. However, there are times   
+                  that a process will die for some unknown reason and need to be   
+                  restarted. Or, some process may "run wild" and consume system   
+                  resources, requiring that it be terminated. You will also need   
+                  to instruct running processes to perform operations, such as   
+                  rereading a configuration file. </P><A   
+                  name=lpicertnut-CHP-3-SECT-5.1></A>
+                  <H4 class=docSection2Title>3.5.1 Processes</H4>
+                  <P class=docText><A name=IXT-3-349965></A>Each program running   
+                  on your system is considered to be a process by the kernel.   
+                  Your shell is a process, and each command you type into the   
+                  shell starts one or more processes during its execution.   
+                  Attributes and concepts associated with processes include:   
+                  </P><A name=IXT-3-349966></A><A name=IXT-3-349967></A><A 
+                  name=IXT-3-349968></A><A name=IXT-3-349969></A><A 
+                  name=IXT-3-349970></A><A name=IXT-3-349971></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lifetime</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each process "lives" as it executes<SPAN 
+                    class=docEmphasis>.</SPAN> Short commands such as <SPAN 
+                    class=docEmphBold>ls</SPAN> will execute for a very short 
+                    time, generate results, and terminate on their own. User 
+                    programs such as web browsers run for extended periods until 
+                    terminated by the user. Daemons such as web servers run 
+                    continuously from boot to shutdown or restart. When a 
+                    process terminates, it is said to <I>die</I> (which is why 
+                    the program used to manually signal a process to stop 
+                    execution is called <SPAN class=docEmphBold>kill</SPAN>; 
+                    succinct, though admittedly morbid). </P>
+                    <DT><I><SPAN class=docPubcolor>Process ID (PID)</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349966></A>Every process has   
+                    a number assigned to it when it starts. PIDs are integer   
+                    numbers unique among all running processes<SPAN   
+                    class=docEmphasis>.</SPAN> </P>
+                    <DT><I><SPAN class=docPubcolor>User ID (UID) and Group ID 
+                    (GID)</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349967></A><A 
+                    name=IXT-3-349968></A>Processes must have associated   
+                    privileges, and a process' UID and GID are associated with   
+                    the user who started the process<SPAN   
+                    class=docEmphasis>.</SPAN> This limits the process' access   
+                    to objects in the filesystem. </P>  
+                    <DT><I><SPAN class=docPubcolor>Parent process</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349969></A>The first process   
+                    started by the kernel at system start time is a program   
+                    called <SPAN class=docEmphBold>init</SPAN><SPAN   
+                    class=docEmphasis>.</SPAN> This process has PID 1 and is the   
+                    ultimate parent of all other processes on the system<SPAN   
+                    class=docEmphasis>.</SPAN> Your shell is a descendant of   
+                    <SPAN class=docEmphBold>init</SPAN> and the parent process   
+                    to commands started by the shell, which are its <SPAN   
+                    class=docEmphasis>child</SPAN> processes, or   
+                    <I>subprocesses</I>.<SUP class=docFootnote>[15]</SUP> </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[15]</A></SUP> Note 
+                      that shell's built-in commands, such as <SPAN 
+                      class=docEmphBold>alias</SPAN>, <SPAN 
+                      class=docEmphBold>bg</SPAN>, <SPAN 
+                      class=docEmphBold>cd</SPAN>, <SPAN 
+                      class=docEmphBold>echo</SPAN>, <SPAN 
+                      class=docEmphBold>jobs</SPAN>, and <SPAN 
+                      class=docEmphBold>test</SPAN>, do not start a child 
+                      process but are executed in the shell process itself. See 
+                      the <SPAN class=docEmphBold>bash</SPAN> manpage for a full 
+                      list of built-in commands.</P></BLOCKQUOTE>
+                    <DT><I><SPAN class=docPubcolor>Parent process ID (parent 
+                    PID)</SPAN></I> 
+                    <DD>
+                    <P class=docList><SPAN class=docEmphasis>This is the PID of 
+                    the process that created the process in question.</SPAN> If 
+                    that parent process has vanished, the parent PID will be 1, 
+                    which is the PID of <SPAN class=docEmphBold>init</SPAN><SPAN 
+                    class=docEmphasis>.</SPAN> </P>
+                    <DT><I><SPAN class=docPubcolor>Environment</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349970></A>Each process holds   
+                    a list of variables and their associated values<SPAN   
+                    class=docEmphasis>.</SPAN> Collectively, this list is known   
+                    as the process' <SPAN class=docEmphasis>environment</SPAN>   
+                    and the variables are <SPAN class=docEmphasis>environment   
+                    variables.</SPAN> The environment is inherited from the   
+                    parent process unless it is replaced through the execution   
+                    of startup scripts<SPAN class=docEmphasis>.</SPAN> </P>  
+                    <DT><I><SPAN class=docPubcolor>Current working 
+                    directory</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349971></A>A default   
+                    directory is associated with each process, which is where   
+                    the process will seek and write files unless they are   
+                    explicitly specified to be elsewhere in the filesystem.   
+                    </P></DD></DL><A name=p1_ch03-43-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="03-5.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText><A 
+                              name=IXT-3-349972></A>Processes are often referred   
+                              to as <SPAN class=docEmphasis>tasks</SPAN><A   
+                              name=IXT-3-349973></A>. Linux is a multitasking   
+                              operating system, in that it runs many processes   
+                              simultaneously. However, even though the terms   
+                              <SPAN class=docEmphasis>process</SPAN> and <SPAN   
+                              class=docEmphasis>task</SPAN> may be synonymous in   
+                              this context, don't confuse multiprocessing with   
+                              multitasking. Multiprocessing generally refers to   
+                              systems with multiple central processing units, a   
+                              definition that has little to do with system   
+                              processes. Given the correct hardware and a   
+                              multiprocessing kernel, Linux has multiprocessing   
+                              capability. 
+                  </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-3-SECT-5.2></A>
+                  <H4 class=docSection2Title>3.5.2 Process Monitoring</H4>
+                  <P class=docText>At any time, there could be tens or even   
+                  hundreds of <A name=IXT-3-349974></A>processes running   
+                  together on your Linux system. Monitoring these processes is   
+                  done using three convenient utilities: <SPAN   
+                  class=docEmphBold>ps</SPAN>, <SPAN   
+                  class=docEmphBold>pstree</SPAN>, and <SPAN   
+                  class=docEmphBold>top</SPAN>. </P><A 
+                  name=p1_ch03-_Toc381838463></A><A name=IXT-3-349975></A><A 
+                  name=IXT-3-349976></A><A name=lpicertnut-IDXTERM-211></A><A 
+                  name=IXT-3-349977></A><A name=IXT-3-349978></A><A 
+                  name=IXT-3-349979></A><A name=IXTR3-16></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ps</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838464></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ps [options]</PRE><A name=p1_ch03-_Toc381838465></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349975></A><A 
+                  name=IXT-3-349976></A>This command generates a one-time   
+                  snapshot of the current processes on standard output. </P><A   
+                  name=p1_ch03-_Toc381838466></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4><A 
+                  name=lpicertnut-IDXTERM-211></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><A name=lpicertnut-IDXTERM-211></A>Show   
+                    processes that are owned by other users and attached to a   
+                    terminal<SPAN class=docEmphasis>.</SPAN> Normally, only the   
+                    current user's processes are shown. </P></DD></DL>  
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>"Forest" mode, which is used to display   
+                    process family trees. For example, using this option will   
+                    display all running child web servers (<SPAN   
+                    class=docEmphBold>httpd</SPAN>) in a hierarchical diagram   
+                    under the parent web server.<SUP class=docFootnote>[16]</SUP> </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[16]</A></SUP> There 
+                      is also a separate command called <SPAN 
+                      class=docEmphBold>pstree</SPAN> that does this 
+                    nicely.</P></BLOCKQUOTE></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Long format, which includes priority, 
+                    parent PID, and other information. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>User format, which includes usernames and 
+                    the start time of processes.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Wide output format, used to eliminate the 
+                    default output line truncation<SPAN 
+                    class=docEmphasis>.</SPAN> Useful for the <SPAN 
+                    class=docEmphBold>-f</SPAN> option. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-x</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Include processes without controlling 
+                    terminals<SPAN class=docEmphasis>.</SPAN> Often needed to 
+                    see daemon processes and others not started from a terminal 
+                    session. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-C</SPAN> <I>cmd</I></SPAN> 
+                    <DD>
+                    <P class=docList>Display instances of command name 
+                    <I>cmd</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-U</SPAN> <I>usr</I></SPAN> 
+                    <DD>
+                    <P class=docList>Display processes owned by username 
+                    <I>usr</I>. </P></DD></DL><A name=p1_ch03-_Toc381838467></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Simply entering the <SPAN 
+                  class=docEmphBold>ps</SPAN> command with no options will yield 
+                  a brief list of processes owned by you and attached to your 
+                  terminal: </P><PRE>$ <B>ps</B></PRE>
+                  <P class=docText>Use the <SPAN class=docEmphBold>-a</SPAN>, 
+                  <SPAN class=docEmphBold>-u</SPAN>, and <SPAN 
+                  class=docEmphBold>-x</SPAN> options to include processes owned 
+                  by others and not attached to terminals as well as to display 
+                  them in the "user" mode<SPAN class=docEmphasis>.</SPAN> The 
+                  command is valid with or without the dash: </P><PRE>$ <B>ps -aux</B>
+$ <B>ps aux</B></PRE>
+                  <P class=docText>In this case, the dash is optional<SPAN 
+                  class=docEmphasis>.</SPAN> However, certain <SPAN 
+                  class=docEmphBold>ps</SPAN> options require the dash. (See the 
+                  manpage for details.) </P>
+                  <P class=docText>If you are interested in finding process 
+                  information on a particular command, use the <SPAN 
+                  class=docEmphBold>-C</SPAN> option<SPAN 
+                  class=docEmphasis>.</SPAN> This command displays all web 
+                  server processes: </P><PRE>$ <B>ps u -C httpd </B></PRE>
+                  <P class=docText>You'll note that the <SPAN 
+                  class=docEmphBold>-C</SPAN> option <SPAN 
+                  class=docEmphasis>requires</SPAN> the dash, but the <SPAN 
+                  class=docEmphBold>u</SPAN> option won't work with it if a dash 
+                  is included<SPAN class=docEmphasis>.</SPAN> This confusion 
+                  exists because the <SPAN class=docEmphBold>ps</SPAN> command 
+                  as implemented on Linux understands options in three differing 
+                  forms: </P><A name=IXT-3-349977></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Unix98 options</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349977></A>These may be   
+                    grouped and must be preceded by a dash. </P></DD></DL><A   
+                  name=IXT-3-349978></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>BSD options</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349978></A>These may be   
+                    grouped and must <SPAN class=docEmphasis>not</SPAN> be used   
+                    with a dash. </P></DD></DL><A name=IXT-3-349979></A>  
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>GNU long options</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349979></A>These options are   
+                    preceded by two dashes. </P></DD></DL>  
+                  <P class=docText>All of these option types may be freely 
+                  intermixed<SPAN class=docEmphasis>.</SPAN> Instead of the 
+                  <SPAN class=docEmphBold>-C</SPAN> option, you may wish to use 
+                  <SPAN class=docEmphBold>ps</SPAN> with other options that you 
+                  usually use and pipe the output to <SPAN 
+                  class=docEmphBold>grep</SPAN>, searching for process names, 
+                  PIDs, or anything else you know about the process: </P><PRE>$ <B>ps -aux | grep httpd</B> </PRE>
+                  <P class=docText>In this case, the result would be the same   
+                  list of <SPAN class=docEmphBold>httpd</SPAN> servers, as well   
+                  as the <SPAN class=docEmphBold>grep</SPAN> command itself<A   
+                  name=IXTR3-16></A>. </P><A name=p1_ch03-_Toc381838468></A><A 
+                  name=IXT-3-349980></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>pstree</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838469></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>pstree [options] [pid|user]</PRE><A 
+                  name=p1_ch03-_Toc381838470></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349980></A>The <SPAN   
+                  class=docEmphBold>pstree</SPAN> command is similar to the   
+                  "forest" mode of <SPAN class=docEmphBold>ps -f</SPAN>. This   
+                  command displays a hierarchical list of processes in a tree   
+                  format. <SPAN class=docEmphBold>pstree</SPAN> is very handy   
+                  for understanding how parent/child process relationships are   
+                  set up. </P>  
+                  <P class=docText>If <I>pid</I> is specified, the displayed 
+                  tree is rooted at that process. Otherwise, it is rooted at the 
+                  <I>init</I> process, which has PID 1. If <I>user</I> (a valid 
+                  username) is specified, trees for all processes owned by 
+                  <I>user</I> are shown. The tree is represented using 
+                  characters that appear as lines, such as <SPAN 
+                  class=docEmphBold>|</SPAN> for vertical lines and <SPAN 
+                  class=docEmphBold>+</SPAN> for intersections (VT100 
+                  line-drawing characters, displayed as solid lines by most 
+                  terminals, are optional). The output looks similar to this: 
+                  </P><PRE>httpd-+-httpd
+      |-httpd
+      |-httpd
+      |-httpd
+      `-httpd</PRE>
+                  <P class=docText>By default, visually identical branches of 
+                  the tree are merged to reduce output. Merged lines are 
+                  preceded by a count indicating the actual number of similar 
+                  processes. The preceding example is normally displayed on a 
+                  single line: </P><PRE>httpd---5*[httpd]</PRE>
+                  <P class=docText>This behavior can be turned off with the 
+                  <SPAN class=docEmphBold>-c</SPAN> option. </P><A 
+                  name=p1_ch03-_Toc381838471></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display command-line arguments used to 
+                    launch processes.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Disable the compaction of identical 
+                    subtrees.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-G</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use the VT100 line-drawing characters 
+                    instead of plain characters to display the tree. This yields 
+                    a much more pleasing display but may not be appropriate for 
+                    printing or paging programs. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Highlight the ancestry of the current 
+                    process (usually the shell). The terminal must support 
+                    highlighting for this option to be meaningful. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>The default sort order for processes with 
+                    the same parent is alphanumerically by name. This option 
+                    changes this behavior to a numeric sort by PID. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Include PIDs in the output.</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838472></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Display a process tree including PIDs:</P><PRE># <B>pstree -p</B>
+init(1)-+-atd(356)
+        |-crond(370)
+        |-gpm(526)
+        |-httpd(540)-+-httpd(544)
+        |            |-httpd(545)
+        |            |-httpd(546)
+        |            |-httpd(547)
+        |            |-httpd(548)
+        |-inetd(384)
+        |-login(691)-bash(699)-startx(711)-xinit(718)
+           -+-X(719)
+        |-lpd(412)
+        |-mdrecoveryd(5)
+        |-mingetty(692)
+        |-mingetty(693)
+        |-named(398)
+        |-nfsd(467)---lockd(475)---rpciod(476)
+        |-nfsd(468)
+        |-portmap(284)</PRE><A 
+                  name=p1_ch03-_Toc381838473></A><A 
+                  name=lpicertnut-IDXTERM-217></A><A name=IXTR3-17></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>top</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838474></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>top [command-line options]</PRE><A 
+                  name=p1_ch03-_Toc381838475></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-217></A>The <SPAN   
+                  class=docEmphBold>top</SPAN> command also offers output   
+                  similar to <SPAN class=docEmphBold>ps</SPAN>, but in a   
+                  continuously updated display. This is useful in situations in   
+                  which you need to watch the status of one or more processes or   
+                  to see how they are using your system. </P>  
+                  <P class=docText>In addition, a header of useful uptime, load, 
+                  CPU status, and memory information is displayed. By default, 
+                  the process status output is generated with the most 
+                  CPU-intensive processes at the top of the listing (and is 
+                  named for the "top" processes). In order to format the screen, 
+                  <SPAN class=docEmphBold>top</SPAN> must understand how to 
+                  control the terminal display. The type of terminal (or 
+                  terminal window) in use is stored in the environment variable 
+                  TERM. If this variable is not set or contains an unknown 
+                  terminal type, <SPAN class=docEmphBold>top</SPAN> may not 
+                  execute. </P><A name=p1_ch03-_Toc381838476></A>
+                  <H4 class=docRefsectTitle>Popular command-line options</H4>
+                  <P class=docText>Dashes are not required for <SPAN 
+                  class=docEmphBold>top</SPAN> options: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-b</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Run in batch mode<SPAN 
+                    class=docEmphasis>.</SPAN> This is useful for sending output 
+                    from <SPAN class=docEmphBold>top</SPAN> to other programs or 
+                    to a file<SPAN class=docEmphasis>.</SPAN> It executes the 
+                    number of iterations specified with the <SPAN 
+                    class=docEmphBold>-n</SPAN> option and terminate<SPAN 
+                    class=docEmphasis>.</SPAN> This option is also useful if 
+                    <SPAN class=docEmphBold>top</SPAN> cannot display on the 
+                    terminal type you are using. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> <I>delay</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specify the <I>delay</I> in seconds between 
+                    screen updates<SPAN class=docEmphasis>.</SPAN> The default 
+                    is five seconds. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Ignore idle processes, listing only the 
+                    "interesting" ones taking system resources. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN> <I>num</I></SPAN> 
+                    <DD>
+                    <P class=docList>Display <I>num</I> iterations and then 
+                    exit, instead of running indefinitely. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Run with no delay<SPAN 
+                    class=docEmphasis>.</SPAN> If the user is the superuser, run 
+                    with highest possible priority<SPAN 
+                    class=docEmphasis>.</SPAN> This option causes <SPAN 
+                    class=docEmphBold>top</SPAN> to update continuously and will 
+                    probably consume any idle time your CPU had<SPAN 
+                    class=docEmphasis>.</SPAN> Running <SPAN 
+                    class=docEmphBold>top -q</SPAN> as superuser will seriously 
+                    affect system performance and is not recommended. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Run in secure mode<SPAN 
+                    class=docEmphasis>.</SPAN> Some of <SPAN 
+                    class=docEmphBold>top</SPAN>'s interactive commands can be 
+                    dangerous if running as the superuser<SPAN 
+                    class=docEmphasis>.</SPAN> This option disables them. 
+                    </P></DD></DL><A name=p1_ch03-_Toc381838477></A>
+                  <H4 class=docRefsectTitle>Frequently used interactive 
+                  options</H4>
+                  <P class=docText>Once <SPAN class=docEmphBold>top</SPAN> is 
+                  running interactively, it can be given a number of commands 
+                  via the keyboard to change its behavior. These commands are 
+                  single-key commands, some of which cause <SPAN 
+                  class=docEmphBold>top</SPAN> to prompt for input: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>Ctrl-L</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Repaint the screen.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Generate a help screen.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>k</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Kill a process<SPAN   
+                    class=docEmphasis>.</SPAN> You will be prompted for the PID   
+                    of the process and the signal to send it (the default signal   
+                    is 15, <I>SIGTERM </I>)<SPAN class=docEmphasis>.</SPAN> See <a class="docLink" href="#lpicertnut-CHP-3-SECT-5.4">Section   
+                    3.5.4</a>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Change the number of processes to show<SPAN 
+                    class=docEmphasis>.</SPAN> You will be prompted to enter an 
+                    integer number<SPAN class=docEmphasis>.</SPAN> The default 
+                    is 0, which indicates that the screen should be filled. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Quit the program.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>r</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><SPAN class=docEmphBold>Renice</SPAN> a 
+                    process (change its priority)<SPAN 
+                    class=docEmphasis>.</SPAN> You will be prompted for the PID 
+                    of the process and the value to nice it to (see <SPAN 
+                    class=docEmphBold>nice</SPAN> and <SPAN 
+                    class=docEmphBold>renice</SPAN> in Objective 6)<SPAN 
+                    class=docEmphasis>.</SPAN> Entering a positive value causes 
+                    a process to lose priority<SPAN class=docEmphasis>.</SPAN> 
+                    If the superuser is running top, a negative value may be 
+                    entered, causing a process to get a higher than normal 
+                    priority<SPAN class=docEmphasis>.</SPAN> This command is not 
+                    available in secure mode. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Change the delay in seconds between 
+                    updates<SPAN class=docEmphasis>.</SPAN> You will be prompted 
+                    for the delay value, which may include fractions of seconds 
+                    (i.e., 0.5)<SPAN class=docEmphasis>.</SPAN> </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838478></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Simply executing <SPAN 
+                  class=docEmphBold>top</SPAN> without options gives a full 
+                  status display updated every five seconds: </P><PRE>$ <B>top</B></PRE>
+                  <P class=docText>Use the <SPAN class=docEmphBold>q</SPAN> 
+                  command to quit.</P><A name=p1_ch03-_Toc381838479></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>To run <SPAN class=docEmphBold>top</SPAN> 
+                  with a faster refresh rate, use the interval option, specified 
+                  here with a one-second refresh: </P><PRE>$ <B>top -d 1</B></PRE><A name=p1_ch03-_Toc381838480></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>To have <SPAN class=docEmphBold>top</SPAN> 
+                  update constantly, you could specify <SPAN 
+                  class=docEmphBold>-d 0</SPAN>, or use the <SPAN 
+                  class=docEmphBold>-q</SPAN> option. Here, this feature is used 
+                  to watch only nonidle processes, which will include <SPAN 
+                  class=docEmphBold>top</SPAN> itself: </P><PRE>$ <B>top -qi</B></PRE><A name=p1_ch03-_Toc381838481></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>You may wish to use <SPAN 
+                  class=docEmphBold>top</SPAN> to log its output to a file<SPAN 
+                  class=docEmphasis>.</SPAN> Use the <SPAN 
+                  class=docEmphBold>-b</SPAN> (batch) option for this purpose. 
+                  In this batch example, the <SPAN class=docEmphBold>-i</SPAN> 
+                  option eliminates idle processes, the <SPAN 
+                  class=docEmphBold>-n</SPAN> option, with its argument, 
+                  indicates five iterations, and the <SPAN 
+                  class=docEmphBold>-d</SPAN> option indicates a one-second 
+                  interval. Results will be redirected to <I>file1</I>. This 
+                  command will take five seconds to execute and does not use the 
+                  optional dashes: </P><PRE>$ <B>top bin 5 d 1 &gt; file1</B></PRE>
+                  <P class=docText>The single-key interactive commands can be 
+                  used when <SPAN class=docEmphBold>top</SPAN> is running 
+                  interactively. For example, if you type the <SPAN 
+                  class=docEmphBold>h</SPAN> command, <SPAN 
+                  class=docEmphBold>top</SPAN> yields a help screen. By entering 
+                  the <SPAN class=docEmphBold>n</SPAN> command, <SPAN 
+                  class=docEmphBold>top</SPAN> prompts you for the number of 
+                  lines you wish to display. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>The parent/child relationship of the 
+                        processes on a Linux system is important. Be sure to 
+                        understand how these relationships work and how to view 
+                        them. Note that the <I>init</I> process always has PID 1 
+                        and is the ultimate ancestor of all system processes. 
+                        </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>Using <SPAN class=docEmphBold>top</SPAN> to   
+                  change the "nice" (priority modifier) value for a process is   
+                  discussed in Objective 6.<A name=IXTR3-17></A> </P><A   
+                  name=lpicertnut-CHP-3-SECT-5.3></A>
+                  <H4 class=docSection2Title>3.5.3 Signaling Active 
+                  Processes</H4>
+                  <P class=docText>Each process running on your system listens   
+                  for <SPAN class=docEmphasis>signals</SPAN><A   
+                  name=IXT-3-349981></A>, simple messages sent to the process   
+                  either by the kernel or by a user. The messages are sent   
+                  through interprocess communication. They are single-valued, in   
+                  that they don't contain strings or command-like constructs.   
+                  Instead, signals are numeric integer messages, predefined and   
+                  known by processes. Most have an implied action for the   
+                  process to take. When a process receives a signal, it can (or   
+                  may be forced) to take action. For example, if you are   
+                  executing a program from the command line that appears to   
+                  hang, you may elect to type <SPAN   
+                  class=docEmphBold>Ctrl-C</SPAN><I> </I>to abort the   
+                  program<SPAN class=docEmphasis>.</SPAN> This action actually   
+                  sends an <TT>INTERRUPT</TT> signal to the process, telling it   
+                  to stop running. </P>  
+                  <P class=docText>There are about 30 signals defined in Linux.   
+                  Each signal has a name and a number (the number is sent to the   
+                  process, the name is only for our convenience). Many signals   
+                  are used by the kernel, and some are useful for users. <a class="docLink" href="#lpicertnut-CHP-3-TABLE-5">Table   
+                  3-5</a> lists popular signals for interactive use.<A   
+                  name=IXT-3-349982></A> </P><A 
+                  name=lpicertnut-CHP-3-TABLE-5></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-5. Frequently Used 
+                    Interactive Signals </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Signal Name<SUP class=docFootnote>[17]</SUP>  
+                      </P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Number</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Meaning and Use</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>HUP</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Hang up. This signal is sent 
+                        automatically when you log out or disconnect a 
+                        modem<SPAN class=docEmphasis>.</SPAN> It is also used by 
+                        many daemons to cause the configuration file to be 
+                        reread. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>INT</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Interrupt; stop running. This signal is 
+                        sent when you type <SPAN 
+                        class=docEmphBold>Ctrl-C</SPAN>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>KILL</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>9</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Kill; stop unconditionally and 
+                        immediately. Sending this signal is a drastic measure, 
+                        as it cannot be ignored by the process. This is the 
+                        "emergency kill" signal. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>TERM</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>15</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Terminate, nicely if possible. This 
+                        signal is used to ask a process to exit gracefully. 
+                      </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>TSTP</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>18</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Stop executing, ready to continue. This  
+                        signal is sent when you type <SPAN  
+                        class=docEmphBold>Ctrl-Z</SPAN>. (See <a class="docLink" href="#lpicertnut-CHP-3-SECT-5.5">Section  
+                        3.5.5</a> for more information.)  
+                    </P></TD></TR></TBODY></TABLE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[17]</A></SUP> Signal 
+                    names will often be specified with a "<SPAN 
+                    class=docEmphBold>SIG</SPAN>" prefix. That is, signal <SPAN 
+                    class=docEmphBold>HUP</SPAN> is the same as signal <SPAN 
+                    class=docEmphBold>SIGHUP</SPAN>.</P></BLOCKQUOTE>
+                  <P class=docText>As you can see from <a class="docLink" href="#lpicertnut-CHP-3-TABLE-5">Table  
+                  3-5</a> some signals are invoked by pressing well-known key  
+                  combinations such as <SPAN class=docEmphBold>Ctrl-C</SPAN> and  
+                  <SPAN class=docEmphBold>Ctrl-Z</SPAN>. You can also use the  
+                  <SPAN class=docEmphBold>kill</SPAN><I> </I>command to send any  
+                  message. The <SPAN class=docEmphBold>kill</SPAN> command is  
+                  implemented both as a shell built-in command and as a  
+                  standalone binary command. </P><A  
+                  name=p1_ch03-_Toc381838483></A><A 
+                  name=lpicertnut-IDXTERM-221></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>kill</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838484></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>kill [-s sigspec | -sigspec] [pids]
+kill -l [signum]</PRE><A name=p1_ch03-_Toc381838485></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-221></A>In the   
+                  first form, <SPAN class=docEmphBold>kill</SPAN> is used with   
+                  an optional <I>sigspec</I><SPAN class=docEmphasis>.</SPAN>   
+                  This is a signal value, specified as either an integer or the   
+                  signal name (such as <SPAN class=docEmphBold>SIGHUP,</SPAN> or   
+                  simply <SPAN class=docEmphBold>HUP</SPAN>)<SPAN   
+                  class=docEmphasis>.</SPAN> The <I>sigspec</I> is   
+                  case-insensitive but usually specified with uppercase   
+                  letters<SPAN class=docEmphasis>.</SPAN> You may use <SPAN   
+                  class=docEmphBold>-s</SPAN> <I>sigspec</I> or simply   
+                  <I>-sigspec</I> to make up the signal value or name<SPAN   
+                  class=docEmphasis>.</SPAN> If a <I>sigspec</I> is not given,   
+                  then SIGTERM (signal 15, "exit gracefully") is assumed<SPAN   
+                  class=docEmphasis>.</SPAN> The <I>sigspec</I> is followed by   
+                  one or more <I>pids</I> to which the signal is to be sent. In   
+                  the second form with the <SPAN class=docEmphBold>-l</SPAN><I>   
+                  </I>option, <SPAN class=docEmphBold>kill</SPAN> lists the   
+                  valid signal names<SPAN class=docEmphasis>.</SPAN> If   
+                  <I>signum</I> (an integer) is present, only the signal name   
+                  for that number will be displayed. </P><A   
+                  name=p1_ch03-_Toc381838486></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>This command displays the signal name <SPAN 
+                  class=docEmphBold>SIGTERM</SPAN>, the name of signal 15, and 
+                  the default when <SPAN class=docEmphBold>kill</SPAN> is used 
+                  to signal processes: </P><PRE>$ <B>kill -l 15</B></PRE>
+                  <P class=docText>All of these commands will send a <SPAN 
+                  class=docEmphBold>SIGTERM</SPAN> signal to the processes with 
+                  PIDs 1000 and 1001: </P><PRE>$ <B>kill 1000 1001</B>
+$ <B>kill -15 1000 1001</B>
+$ <B>kill -SIGTERM 1000 1001</B>
+$ <B>kill -sigterm 1000 1001</B>
+$ <B>kill -TERM 1000 1001</B>
+$ <B>kill -s 15 1000 1001</B>
+$ <B>kill -s SIGTERM 1000 1001</B></PRE>
+                  <P class=docText>If those two processes are playing nicely on 
+                  your system, they'll comply with the <SPAN 
+                  class=docEmphBold>SIGTERM</SPAN> signal and terminate when 
+                  they're ready (after they clean up whatever they're doing). 
+                  Not all processes will comply, however. A process may be hung 
+                  in such a way that it cannot respond, or it may have <SPAN 
+                  class=docEmphasis>signal handling</SPAN> code written to trap 
+                  the signal you're trying to send. To force a process to die, 
+                  use the strongest <SPAN class=docEmphBold>kill</SPAN>: </P><PRE>$ <B>kill -9 1000 1001</B>
+$ <B>kill -KILL 1000 1001</B></PRE>
+                  <P class=docText>These equivalent commands send the <SPAN  
+                  class=docEmphBold>KILL</SPAN> signal to the process, which the  
+                  process cannot ignore. The process will terminate immediately  
+                  without regard to closing files or other cleanup procedures.  
+                  Because of this, using the <SPAN  
+                  class=docEmphBold>KILL</SPAN><I> </I>signal is a last  
+                  resort.<SUP class=docFootnote>[18]</SUP> See <a class="docLink" href="#lpicertnut-CHP-3-SECT-5.4">Section  
+                  3.5.4</a>.</P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[18]</A></SUP> There 
+                    are situations in which the <SPAN 
+                    class=docEmphBold>KILL</SPAN> signal won't stop a process. 
+                    Most of them are hardware-related, such as a process trying 
+                    to write to an unavailable NFS server or waiting for a tape 
+                    device to complete rewinding.</P></BLOCKQUOTE>
+                  <P class=docText>The <SPAN class=docEmphBold>inetd</SPAN> 
+                  superdaemon will respond to the <SPAN 
+                  class=docEmphBold>HUP</SPAN> signal by rereading its 
+                  configuration file. If you've made changes to that file and 
+                  want <SPAN class=docEmphBold>inetd</SPAN> to reconfigure 
+                  itself, send it the <SPAN class=docEmphBold>HUP</SPAN> signal: 
+                  </P><PRE>$ <B>kill -HUP `cat /var/run/inetd.pid`</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Note that <SPAN 
+                        class=docEmphBold>kill</SPAN> is used for sending all 
+                        kinds of signals, not just termination signals. Also, be 
+                        aware of the difference between the PID you intend to 
+                        kill and the signal you wish to send it. Since they're 
+                        both integers, they can sometimes be confused. 
+                    </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>The backward quotes are replaced by the shell 
+                  with the contents of the file <I>inetd.pid</I>, which <SPAN 
+                  class=docEmphBold>inetd</SPAN><I> </I>creates when it 
+                  starts<SPAN class=docEmphasis>.</SPAN> </P><A 
+                  name=lpicertnut-CHP-3-SECT-5.4></A>
+                  <H4 class=docSection2Title>3.5.4 Terminating Processes</H4>
+                  <P class=docText>Based on the type of service that has failed, 
+                  you can use <SPAN class=docEmphBold>ps</SPAN> or <SPAN 
+                  class=docEmphBold>top</SPAN> to identify one or more processes 
+                  that may have a problem. Once you know the PID for the process 
+                  that's causing the problem, you can use the <SPAN 
+                  class=docEmphBold>kill</SPAN> command to stop the process 
+                  nicely with <SPAN class=docEmphBold>SIGTERM</SPAN> (<SPAN 
+                  class=docEmphBold>kill -15 [</SPAN><TT><I>PID</I></TT><TT><I> 
+                  </I></TT><SPAN class=docEmphBold>]</SPAN>), escalating the 
+                  signal to higher strengths if necessary until the process 
+                  terminates. </P><A name=p1_ch03-50-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="03-5.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>Occasionally you may see a 
+                              process displayed by <SPAN 
+                              class=docEmphBold>ps</SPAN> or <SPAN 
+                              class=docEmphBold>top</SPAN> that is listed as a 
+                              <I>zombie</I>. These are processes that are stuck 
+                              while trying to terminate and are appropriately 
+                              said to be in the <I>zombie state</I>. Just as in 
+                              the cult classic film Night of the Living Dead, 
+                              you can't kill zombies, because they're already 
+                              dead! 
+                  </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P class=docText>If you have a recurring problem with zombies, 
+                  there may be a bug in your system software or in an 
+                  application </P>
+                  <P class=docText>Killing a process may also kill all of its   
+                  child processes. For example, killing a shell may kill all the   
+                  processes initiated from that shell, including other shells.<A   
+                  name=IXTR3-18></A> </P><A name=lpicertnut-CHP-3-SECT-5.5></A>
+                  <H4 class=docSection2Title>3.5.5 Shell Job Control</H4>
+                  <P class=docText>Linux and most modern Unix systems offer   
+                  <SPAN class=docEmphasis>job control</SPAN><A 
+                  name=lpicertnut-IDXTERM-223></A> <A   
+                  name=lpicertnut-IDXTERM-224></A>, which is the ability of your   
+                  shell (with support of the kernel) to place executing commands   
+                  in the <SPAN class=docEmphasis>background</SPAN> <A   
+                  name=IXT-3-349983></A>where they can be executed<SPAN   
+                  class=docEmphasis>.</SPAN> A program is said to be in the   
+                  <SPAN class=docEmphasis>foreground</SPAN> <A   
+                  name=IXT-3-349984></A>when it is attached to your   
+                  terminal<SPAN class=docEmphasis>.</SPAN> When executing in the   
+                  background, you have no input to the process other than   
+                  sending it signals. When a process is started in the   
+                  background, you create a <SPAN class=docEmphasis>job</SPAN><A   
+                  name=IXT-3-349985></A>. Each job is assigned a job number,   
+                  starting at 1 and numbering sequentially. </P>  
+                  <P class=docText>The basic reason to create a background   
+                  process is to keep your terminal or terminal window session   
+                  free. There are many instances when a long-running program   
+                  will never produce a result from standard output or standard   
+                  error, and your shell will simply sit idle waiting for the   
+                  program to finish. Noninteractive programs can be placed in   
+                  the background by adding the <SPAN   
+                  class=docEmphBold>&amp;</SPAN><A name=IXT-3-349986></A> 
+                  character to the command. For example, if you start <SPAN   
+                  class=docEmphBold>netscape</SPAN> from the command line, you   
+                  don't want the shell to sit and wait for it to terminate. The   
+                  shell will respond by starting the browser in the background   
+                  and will give you a new command prompt. It will also issue the   
+                  job number, denoted in square brackets, along with the PID.   
+                  For example: </P><PRE>$ <B>netscape &amp;</B>
+[1]  1748</PRE>  
+                  <P class=docText>Here, Netscape is started as a background   
+                  process. Netscape is assigned to job 1 (as denoted by   
+                  <TT>[1]</TT>), and is assigned PID <I>1748</I>. If you start a   
+                  program and forget the <SPAN class=docEmphBold>&amp;</SPAN>   
+                  character, you can still put it in the background by first   
+                  stopping it by typing <SPAN class=docEmphBold>Ctrl-Z</SPAN><A   
+                  name=IXT-3-349987></A>: </P><PRE><B>^Z</B>
+[1]+  Stopped      netscape</PRE>
+                  <P class=docText>Then issue the <SPAN 
+                  class=docEmphBold>bg</SPAN> command to restart the job in the 
+                  background: </P><PRE>$ <B>bg</B>
+[1]+ netscape &amp;</PRE>
+                  <P class=docText>Putting interactive programs in the  
+                  background can be quite useful. Suppose you're logged into a  
+                  remote Linux system, running Emacs in text mode. Realizing  
+                  that you need to drop back to the command line, you elect not  
+                  to terminate the editor but instead simply press <SPAN  
+                  class=docEmphBold>Ctrl-Z</SPAN>. This stops Emacs and puts it  
+                  in the background and returns you a command prompt.<SUP  
+                  class=docFootnote>[19]</SUP> When you're  
+                  finished, you can go back into Emacs by issuing the <SPAN  
+                  class=docEmphBold>fg</SPAN> command, which puts your stopped  
+                  job back into the foreground. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[19]</A></SUP> This 
+                    example ignores the fact that Emacs is capable of hosting a 
+                    shell itself, which would probably eliminate your need to 
+                    use job control to get to the command line.</P></BLOCKQUOTE>
+                  <P class=docText>Background jobs and their status can be 
+                  listed by issuing the <SPAN class=docEmphBold>jobs</SPAN> 
+                  command. Stopped jobs can be brought to the foreground with 
+                  the <SPAN class=docEmphBold>fg</SPAN> command and optionally 
+                  placed into the background with the <SPAN 
+                  class=docEmphBold>Ctrl-Z</SPAN><I> </I>and <SPAN 
+                  class=docEmphBold>bg</SPAN> sequence. </P><A 
+                  name=p1_ch03-_Toc381838489></A><A name=IXT-3-349988></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>bg</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838490></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349988></A><PRE>bg [jobspec]</PRE><A name=p1_ch03-_Toc381838491></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Place <I>jobspec</I> in the background, as if 
+                  it had been started with <SPAN class=docEmphBold>&amp;</SPAN>. 
+                  If <I>jobspec</I> is not present, then the shell's notion of 
+                  the <SPAN class=docEmphasis>current job</SPAN> is used, as 
+                  indicated by the plus sign (<SPAN class=docEmphBold>+</SPAN>) 
+                  in output from the <I>jobs</I> command. Using this command on 
+                  a job that is stopped will allow it to run in the background. 
+                  </P><A name=p1_ch03-_Toc381838492></A><A 
+name=IXT-3-349989></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>fg</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-51-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349989></A><PRE>fg [jobspec]</PRE><A name=p1_ch03-_Toc381838494></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>This command places the specified job in the 
+                  foreground, making it the current job. If <I>jobspec</I> is 
+                  not present, then the shell's notion of the current job is 
+                  used. </P><A name=p1_ch03-_Toc381838495></A><A 
+                  name=IXT-3-349990></A><A name=IXTR3-19></A><A 
+                  name=IXTR3-20></A><A name=IXTR3-21></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>jobs</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838496></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349990></A><PRE>jobs [options] [jobspecs]</PRE><A 
+                  name=p1_ch03-_Toc381838497></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>List the active jobs<SPAN 
+                  class=docEmphasis>.</SPAN> If <I>jobspecs</I> are included, 
+                  output is restricted to information about those jobs. </P><A 
+                  name=p1_ch03-_Toc381838498></A>
+                  <H4 class=docRefsectTitle>Frequently used option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Also list PIDs.</P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure to know how to display   
+                        background jobs and how to switch among them.<A   
+                        name=IXTR3-19></A> <A name=IXTR3-20></A><A   
+                        name=IXTR3-21></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="03-5.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)187ms
+(xsl)78ms
+(ent)0ms
+(buf)0ms
+
+(tot)969ms
+--></BODY></HTML>

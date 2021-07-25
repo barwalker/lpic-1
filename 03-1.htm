@@ -1,0 +1,813 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=K&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux    
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU    
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR>   
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-1></A>
+                  <H3 class=docSection1Title>3.1 Objective 1: Work Effectively 
+                  on the Unix Command Line</H3>
+                  <P class=docText>Every computer system requires a human    
+                  interface component. For Linux system administration, a text    
+                  interface is typically used. The system presents the    
+                  administrator with a <SPAN class=docEmphasis>prompt</SPAN><A    
+                  name=IXT-3-349856></A>, which at its simplest is a single    
+                  character such as <TT>$</TT> or <TT>#</TT>. The prompt    
+                  signifies that the system is ready to accept typed commands,    
+                  which usually occupy one or more lines of text. This interface    
+                  is generically called the <SPAN class=docEmphasis>command    
+                  line</SPAN><A name=IXT-3-349857></A>. </P>
+                  <P class=docText>It is the job of a program called a <SPAN    
+                  class=docEmphasis>shell</SPAN><A name=IXT-3-349858></A> to    
+                  provide the command prompt and to interpret commands. The    
+                  shell provides an interface layer between the Linux kernel and    
+                  the human user, which is how it gets its name. The original    
+                  shell for Unix systems was written by Steve Bourne and was    
+                  called simply <SPAN class=docEmphBold>sh</SPAN>. The <A    
+                  name=IXT-3-349859></A>default Linux shell is <SPAN    
+                  class=docEmphBold>bash</SPAN><A name=IXT-3-349860></A>, the    
+                  <SPAN class=docEmphasis>Bourne-Again Shell</SPAN>, which is a    
+                  GNU variant of <SPAN class=docEmphBold>sh</SPAN>. The popular    
+                  <SPAN class=docEmphBold>tcsh</SPAN><A name=IXT-3-349861></A> 
+                  shell, a variant of the original <SPAN    
+                  class=docEmphBold>csh</SPAN> (or C shell), is also provided.    
+                  The <SPAN class=docEmphBold>bash</SPAN> shell is the subject    
+                  of an entire LPI Topic, covered in <a class="docLink" href="17-0.htm">Chapter    
+                  17</a>. At this point, we are primarily concerned with our    
+                  interaction with <SPAN class=docEmphBold>bash</SPAN> and the    
+                  effective use of commands. </P><A    
+                  name=lpicertnut-CHP-3-SECT-1.1></A>
+                  <H4 class=docSection2Title>3.1.1 The Interactive Shell</H4>
+                  <P class=docText>The shell is a powerful programming    
+                  environment, capable of automating nearly anything you can    
+                  imagine on your Linux system. The shell is also your    
+                  interactive interface to your system. When you first start a    
+                  shell, it does some automated housekeeping to get ready for    
+                  your use, and then presents a command prompt. The command    
+                  prompt tells you that the shell is ready to accept commands    
+                  from its <SPAN class=docEmphasis>standard input</SPAN><A    
+                  name=IXT-3-349862></A> device, which is usually the keyboard.    
+                  Shells can run standalone, as on a physical terminal, or    
+                  within a window in a GUI environment. Whichever the case,    
+                  their use is the same. </P><A    
+                  name=lpicertnut-CHP-3-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>3.1.1.1 Shell variable basics</H5>
+                  <P class=docText>During execution, <SPAN    
+                  class=docEmphBold>bash</SPAN> maintains a set of <SPAN    
+                  class=docEmphasis>shell variables</SPAN><A 
+                  name=IXT-3-349863></A> that contain information important to    
+                  the execution of <SPAN class=docEmphBold>bash</SPAN>. Most of    
+                  these variables are set when <SPAN    
+                  class=docEmphBold>bash</SPAN> starts, but they can be set    
+                  manually at any time. </P>   
+                  <P class=docText>The first shell variable of interest in this    
+                  Topic is called <A name=IXT-3-349864></A><A    
+                  name=IXT-3-349865></A>PS1 (which simply stands for <SPAN    
+                  class=docEmphasis>Prompt String 1</SPAN>). This special    
+                  variable holds the contents of the command prompt that are    
+                  displayed when <SPAN class=docEmphBold>bash</SPAN> is ready to    
+                  accept commands (there is also a PS2 variable, used when <SPAN    
+                  class=docEmphBold>bash</SPAN> needs multiple-line input to    
+                  complete a command). You can easily display the contents of    
+                  PS1, or any other shell variable, by using the <SPAN    
+                  class=docEmphBold>echo</SPAN><A name=IXT-3-349866></A> command    
+                  with the variable name preceded by the <SPAN    
+                  class=docEmphBold>$</SPAN> symbol: </P><PRE>$ <B>echo $PS1</B>
+\$</PRE>   
+                  <P class=docText>The <SPAN class=docEmphBold>\$</SPAN> output 
+                  tells us that PS1 contains the two characters <SPAN 
+                  class=docEmphBold>\</SPAN> and <SPAN 
+                  class=docEmphBold>$</SPAN>. The backslash character tells the 
+                  shell not to interpret the dollar symbol in any special way 
+                  (that is, as a <SPAN class=docEmphasis>metacharacter</SPAN>, 
+                  described later in this section). A simple dollar sign such as 
+                  this was the default prompt for <SPAN 
+                  class=docEmphBold>sh</SPAN>, but <SPAN 
+                  class=docEmphBold>bash</SPAN> offers options to make the 
+                  prompt much more informative. On your system, the default 
+                  prompt stored in PS1 is probably something like: </P><PRE>[\u@\h \W]\$ </PRE>
+                  <P class=docText>Each of the characters preceded by   
+                  backslashes have a special meaning to <SPAN   
+                  class=docEmphBold>bash</SPAN>, while those without backslashes   
+                  are interpreted literally. In this example, <SPAN   
+                  class=docEmphBold>\u</SPAN> is replaced by the username, <SPAN   
+                  class=docEmphBold>\h</SPAN> is replaced by the system's   
+                  hostname, <SPAN class=docEmphBold>\W</SPAN> is replaced by the   
+                  "bottom" portion of the current working directory, and <SPAN   
+                  class=docEmphBold>\$</SPAN> is replaced by a <SPAN   
+                  class=docEmphBold>$</SPAN> character.<SUP class=docFootnote>[1]</SUP> This yields   
+                  a prompt of the form: </P>  
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> Unless 
+                    you are <SPAN class=docEmphBold>root</SPAN>, in which case 
+                    <SPAN class=docEmphBold>\$</SPAN> is replaced by <SPAN 
+                    class=docEmphBold>#</SPAN>.</P></BLOCKQUOTE><PRE>[jdean@linuxpc jdean]$ </PRE>
+                  <P class=docText>How your prompt is formulated is really just 
+                  a convenience and does not affect how the shell interprets 
+                  your commands. However, adding information to the prompt, 
+                  particularly regarding system, user, and directory location, 
+                  can make life easier when hopping from system to system and 
+                  logging in as multiple users (as yourself and <SPAN 
+                  class=docEmphBold>root</SPAN>, for example). See the 
+                  documentation on <SPAN class=docEmphBold>bash</SPAN> for more 
+                  information on customizing prompts. </P>
+                  <P class=docText>Another shell variable that is extremely    
+                  important during interactive use is <TT>PATH</TT><A    
+                  name=IXT-3-349867></A> <A name=IXT-3-349868></A>, which    
+                  contains a list of all the directories that hold commands or    
+                  other programs you are likely to execute. A default path is    
+                  set up for you when <SPAN class=docEmphBold>bash</SPAN>    
+                  starts. You may wish to modify the default to add other    
+                  directories that hold programs you need to run. </P><A    
+                  name=p1_ch03-3-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="03-1.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>Every file in the Linux 
+                              filesystem can be specified in terms of its 
+                              location. The <SPAN class=docEmphBold>less</SPAN> 
+                              program, for example, is located in the directory 
+                              <I>/usr/bin</I>. Placing <I>/usr/bin</I> in your 
+                              <TT>PATH</TT> enables you to execute <SPAN 
+                              class=docEmphBold>less</SPAN> by simply typing 
+                              <TT>less</TT> rather than the explicit 
+                              <I>/usr/bin/less.</I> 
+                    </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P class=docText>In order for <SPAN    
+                  class=docEmphBold>bash</SPAN><A name=IXT-3-349869></A> to find    
+                  and execute the command you enter at the prompt, the command    
+                  must be either: </P>   
+                  <UL>
+                    <LI>
+                    <P class=docList>A <I>bash</I><A name=IXT-3-349870></A>    
+                    <I>built-in</I> command that is part of <SPAN    
+                    class=docEmphBold>bash</SPAN> itself </P>   
+                    <LI>
+                    <P class=docList>An executable program located in a 
+                    directory listed in the <TT>PATH</TT> variable </P>
+                    <LI>
+                    <P class=docList>Explicitly defined</P></LI></UL>
+                  <P class=docText>The <A name=IXT-3-349871></A><A    
+                  name=IXT-3-349872></A>shell holds <TT>PATH</TT> and other    
+                  variables for its own use. However, many of the shell's    
+                  variables are needed during the execution of programs launched    
+                  from the shell (including other shells). For these variables    
+                  to be available, they must be <SPAN    
+                  class=docEmphasis>exported</SPAN>, at which time they become    
+                  <SPAN class=docEmphasis>environment variables</SPAN>.    
+                  Environment variables are passed on to programs and other    
+                  shells, and together they are said to form the <SPAN    
+                  class=docEmphasis>environment</SPAN> in which the programs    
+                  execute. <TT>PATH</TT> is always made into an environment    
+                  variable.<SUP class=docFootnote>[2]</SUP>  Exporting a    
+                  shell variable to turn it into an environment variable is done    
+                  using the <SPAN class=docEmphBold>export</SPAN><A    
+                  name=IXT-3-349873></A> command: </P>   
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> In the 
+                    case of <SPAN class=docEmphBold>csh</SPAN> and <SPAN 
+                    class=docEmphBold>tcsh</SPAN>, there are <SPAN 
+                    class=docEmphasis>both</SPAN> shell and environment 
+                    variables for <TT>PATH</TT>; the shell takes care of keeping 
+                    them synchronized.</P></BLOCKQUOTE><PRE>$ <B>export MYVAR</B></PRE>
+                  <P class=docText>When a variable is exported to the 
+                  environment, it is passed into the environment of all child 
+                  processes. That is, it will be available to all programs run 
+                  by your shell. </P><A name=lpicertnut-CHP-3-SECT-1.1.2></A>
+                  <H5 class=docSection3Title>3.1.1.2 Entering commands at the 
+                  command prompt</H5>
+                  <P class=docText><A name=IXT-3-349874></A>Commands issued to    
+                  the shell on a Linux system generally consist of four    
+                  components: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>A valid command (a shell built-in, a 
+                    program or script found among directories listed in the 
+                    <TT>PATH</TT>, or an explicitly defined program) </P>
+                    <LI>
+                    <P class=docList>Command options, usually preceded by a 
+                    dash</P>
+                    <LI>
+                    <P class=docList>Arguments</P>
+                    <LI>
+                    <P class=docList>Line acceptance (i.e., pressing the Enter 
+                    key), which we assume in the examples </P></LI></UL>
+                  <P class=docText>Each command has its own unique syntax, 
+                  though most follow a fairly standard form. At minimum, a <SPAN 
+                  class=docEmphasis>command</SPAN> is necessary: </P><PRE>$ <B>ls</B></PRE>
+                  <P class=docText>This simple command lists files in the    
+                  current working directory. It requires neither options nor    
+                  arguments. Generally, <SPAN class=docEmphasis>options</SPAN><A    
+                  name=IXT-3-349875></A> <A name=IXT-3-349876></A>are letters or    
+                  words preceded by a single or double dash and are added after    
+                  the command and separated from it by a space: </P><PRE>$ <B>ls -l</B></PRE>   
+                  <P class=docText>The <SPAN class=docEmphBold>-l</SPAN> option 
+                  modifies the behavior of the <SPAN class=docEmphBold>ls</SPAN> 
+                  program by listing files in a longer, more detailed format. In 
+                  most cases, single-dash options can be either combined or 
+                  specified separately. To illustrate this, consider these two 
+                  equivalent commands: </P><PRE>$ <B>ls -l -a</B>
+$ <B>ls -la</B></PRE>
+                  <P class=docText>By adding the <SPAN 
+                  class=docEmphBold>-a</SPAN> option, <SPAN 
+                  class=docEmphBold>ls</SPAN> does not hide files beginning with 
+                  a dot (which it does by default). Adding that option by 
+                  specifying <SPAN class=docEmphBold>-la</SPAN> yields the same 
+                  result. Some commands offer alternative forms for the same 
+                  option. In the preceding example, the <SPAN 
+                  class=docEmphBold>-a</SPAN> option can be replaced with <SPAN 
+                  class=docEmphBold>-- all</SPAN>: </P><PRE>$ <B>ls -l --all</B></PRE>
+                  <P class=docText>These double-dash full-word options are 
+                  frequently found in programs from the GNU project. They cannot 
+                  be combined as the single-dash options can. Both types of 
+                  options can be freely intermixed. Although the longer 
+                  GNU-style options require more typing, they are easier to 
+                  remember and easier to read in scripts than the single-letter 
+                  options. </P>
+                  <P class=docText>Adding an <SPAN    
+                  class=docEmphasis>argument</SPAN><A name=IXT-3-349877></A> <A    
+                  name=IXT-3-349878></A>further refines the command's behavior:    
+                  </P><PRE>$ <B>ls -l *.c</B></PRE>
+                  <P class=docText>Now the command will give a detailed listing  
+                  only of C program source files (those with the <TT>.c</TT>  
+                  extension), if they exist, in the current working directory.  
+                  In this example, if no <TT>.c</TT> files exist, no output will  
+                  be given.<SUP class=docFootnote>[3]</SUP> Sometimes,  
+                  options and arguments can be mixed in order: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> If a Unix 
+                    or GNU command has nothing of significance to tell you, it 
+                    most likely will remain silent. This brevity may take some 
+                    users by surprise, particularly if they are used to systems 
+                    that yield messages indicating something like "successful 
+                    completion, but sorry, no results."</P></BLOCKQUOTE><PRE>$ <B>ls --all *.c -l</B></PRE>
+                  <P class=docText>In this case, <SPAN 
+                  class=docEmphBold>ls</SPAN> was able to determine that <SPAN 
+                  class=docEmphBold>-l</SPAN> is an option and not another file 
+                  descriptor. </P>
+                  <P class=docText>Some commands, such as <SPAN 
+                  class=docEmphBold>tar</SPAN> and <SPAN 
+                  class=docEmphBold>ps</SPAN>, don't require the dash preceding 
+                  an option because at least one option is expected or required. 
+                  Also, an option often instructs the command that the 
+                  subsequent item on the command line is a specific argument. 
+                  For example: </P><PRE>$ <B>tar cf mytarfile file1 file2 file3</B>
+$ <B>tar -cf mytarfile file1 file2 file3</B></PRE>
+                  <P class=docText>These equivalent commands use <I>tar</I> to 
+                  create an archive file named <I>mytarfile</I> and put three 
+                  files ( <I>file1</I>, <I>file2</I>, and <I>file3</I>) into it. 
+                  In this case, the <SPAN class=docEmphBold>f</SPAN> option 
+                  tells <SPAN class=docEmphBold>tar</SPAN> that archive filename 
+                  <I>mytarfile</I> follows immediately after the option. </P>
+                  <P class=docText><A name=IXT-3-349879></A>Just as any natural    
+                  language contains exceptions and variations, so does the    
+                  syntax used for GNU and Unix commands. You should have no    
+                  trouble learning the essential syntax for the commands you    
+                  need to use often. The capabilities of the command set offered    
+                  on Linux are extensive, making it highly unlikely that you'll    
+                  memorize all of the command syntax you need. Most systems    
+                  administrators are constantly learning about features they've    
+                  never used in commands they use regularly. It is standard    
+                  practice to regularly refer to man or info pages and other    
+                  documentation on commands you're using, so feel free to    
+                  explore and learn as you go. </P><A    
+                  name=lpicertnut-CHP-3-SECT-1.1.3></A>
+                  <H5 class=docSection3Title>3.1.1.3 Entering commands not in 
+                  the PATH</H5>
+                  <P class=docText><A name=IXT-3-349880></A>Occasionally, you    
+                  will need to execute a command that is not in your path and    
+                  not built into your shell. If this need arises often, it may    
+                  be best to simply add the directory that contains the command    
+                  to your path. However, there's nothing wrong with explicitly    
+                  specifying a command's location and name completely. For    
+                  example, the <SPAN class=docEmphBold>ls</SPAN> command is    
+                  located in <I>/bin</I>. This directory is most certainly in    
+                  your <TT>PATH</TT> variable (if not, it should be!), which    
+                  allows you to enter the <SPAN class=docEmphBold>ls</SPAN>    
+                  command by itself on the command line: </P><PRE>$ <B>ls</B></PRE>   
+                  <P class=docText>The shell will look for an executable file    
+                  named <SPAN class=docEmphBold>ls</SPAN> in each successive    
+                  directory listed in your <TT>PATH</TT> variable and will    
+                  execute the first one it finds. Specifying the <SPAN    
+                  class=docEmphasis>fully qualified filename</SPAN><A 
+                  name=IXT-3-349881></A> <A name=IXT-3-349882></A>for the    
+                  command eliminates the directory search and yields identical    
+                  results: </P><PRE>$ <B>/bin/ls</B></PRE>
+                  <P class=docText>Any executable file on your system may be 
+                  started in this way. However, it is important to remember that 
+                  some programs may have requirements during execution about 
+                  what is listed in your <TT>PATH</TT>. A program can be 
+                  launched normally but may fail if it is unable to find a 
+                  required resource if the <TT>PATH</TT> is incomplete. </P><A 
+                  name=lpicertnut-CHP-3-SECT-1.1.4></A>
+                  <H5 class=docSection3Title>3.1.1.4 Entering multiple-line 
+                  commands interactively</H5>
+                  <P class=docText>In addition to its interactive capabilities,    
+                  the shell also has a complete programming language of its own.    
+                  Many programming features can be very handy at the interactive    
+                  command line as well. <A name=IXT-3-349883></A><A    
+                  name=IXT-3-349884></A>Looping constructs, including <SPAN    
+                  class=docEmphBold>for</SPAN>, <SPAN    
+                  class=docEmphBold>until</SPAN>, and <SPAN    
+                  class=docEmphBold>while</SPAN> are often used this way. When    
+                  you begin a command such as these, which normally spans    
+                  multiple lines, <SPAN class=docEmphBold>bash</SPAN> prompts    
+                  you for the subsequent lines until a valid command has been    
+                  completed. The prompt you receive in this case is stored in    
+                  shell variable <A name=IXT-3-349885></A>PS2, which by default    
+                  is <SPAN class=docEmphBold>&gt;</SPAN><A    
+                  name=IXT-3-349886></A>. For example, if you wanted to    
+                  repetitively execute a series of commands each time with a    
+                  different argument from a known series, you could enter the    
+                  following: </P><PRE><B>$ ...series of commands on arg1...</B>
+command output
+<B>$ ...series of commands on arg2...</B>
+command output
+<B>$ ...series of commands on arg2...</B>
+command output</PRE>
+                  <P class=docText>Rather than entering each command manually, 
+                  you can interactively use <SPAN 
+                  class=docEmphBold>bash</SPAN>'s <SPAN 
+                  class=docEmphBold>for</SPAN> loop construct to do the work for 
+                  you. Note that indented style, such as what you might use in 
+                  traditional programming, isn't necessary when working 
+                  interactively with the shell: </P><PRE>$ <B>for var in arg1 arg2 arg3</B>
+&gt; <B>do</B>
+&gt; <B>echo $var</B>
+&gt; ...series of commands...
+&gt; <B>done</B>
+arg1
+command output
+arg2
+command output
+arg3
+command output</PRE>
+                  <P class=docText>Mixing the command-line world with the 
+                  shell-scripting world in this way can make certain tasks 
+                  surprisingly efficient. </P><A 
+                  name=lpicertnut-CHP-3-SECT-1.1.5></A>
+                  <H5 class=docSection3Title>3.1.1.5 Entering command 
+                  sequences</H5>
+                  <P class=docText>There may be times when it is convenient to    
+                  place multiple commands on a single line. Normally, <SPAN    
+                  class=docEmphBold>bash</SPAN> assumes you have reached the end    
+                  of a command (or the end of the first line of a multiple-line    
+                  command) when you press Return. To add more than one command    
+                  to a single line, the commands can be separated and entered    
+                  sequentially with the <SPAN class=docEmphasis>command    
+                  separator</SPAN> <A name=IXT-3-349887></A><A    
+                  name=IXT-3-349888></A>, a semicolon. Using this syntax, the    
+                  following commands: </P><PRE>$ <B>ls</B>
+$ <B>ps</B></PRE>   
+                  <P class=docText>are, in essence, identical to and will yield 
+                  the same result as the following single-line command that 
+                  employs the command separator: </P><PRE>$ <B>ls; ps  </B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText><A name=IXT-3-349889></A>Command syntax    
+                        and the use of the command line is very important. Pay    
+                        special attention to the use of options and arguments    
+                        and how they are differentiated. Also be aware that some    
+                        commands expect options to be preceded by a dash while    
+                        other commands do not. </P></TD></TR></TBODY></TABLE><A    
+                  name=lpicertnut-CHP-3-SECT-1.2></A>
+                  <H4 class=docSection2Title>3.1.2 Command History and Editing 
+                  </H4>
+                  <P class=docText>If you consider interaction with the shell as 
+                  a kind of conversation, it's a natural extension to refer back 
+                  to things "mentioned" previously. You may type a long and 
+                  complex command that you want to repeat, or perhaps you need 
+                  to execute a command multiple times with slight variation. 
+</P>
+                  <P class=docText>If you work interactively with the original 
+                  Bourne shell, maintaining such a "conversation" can be a bit 
+                  difficult. Each repetitive command must be entered explicitly, 
+                  each mistake must be retyped, and if your commands scroll off 
+                  the top of your screen, you have to recall them from memory. 
+                  Modern shells such as <SPAN class=docEmphBold>bash</SPAN> and 
+                  <SPAN class=docEmphBold>tcsh</SPAN> include a significant 
+                  feature set called <SPAN class=docEmphasis>command 
+                  history</SPAN>, <SPAN class=docEmphasis>expansion</SPAN>, and 
+                  <SPAN class=docEmphasis>editing</SPAN>. Using these 
+                  capabilities, referring back to previous commands is painless, 
+                  and your interactive shell session becomes much simpler and 
+                  more effective. </P>
+                  <P class=docText>The first part of this feature set is command    
+                  history. When <SPAN class=docEmphBold>bash</SPAN> is run    
+                  interactively, it provides access to a list of commands    
+                  previously typed. The commands are stored in the history list    
+                  <SPAN class=docEmphasis>prior</SPAN> to any interpretation by    
+                  the shell. That is, they are stored before wildcards are    
+                  expanded or command substitutions are made. The history list    
+                  is controlled by the <A name=IXT-3-349890></A>HISTSIZE shell    
+                  variable. By default, HISTSIZE is set to 500 lines, but you    
+                  can control that number by simply adjusting HISTSIZE's value.    
+                  In addition to commands entered in your current <SPAN    
+                  class=docEmphBold>bash</SPAN> session, commands from previous    
+                  <SPAN class=docEmphBold>bash</SPAN> sessions are stored by    
+                  default in a file called<I> ~/.bash_history</I><A    
+                  name=IXT-3-349891></A> (or the file named in shell variable  
+                  HISTFILE).<SUP class=docFootnote>[4]</SUP> To view your    
+                  command history, use the <SPAN class=docEmphBold>bash</SPAN>    
+                  built-in <SPAN class=docEmphBold>history</SPAN><A    
+                  name=IXT-3-349892></A> command. A line number will precede    
+                  each command. This line number may be used in subsequent <SPAN    
+                  class=docEmphasis>history expansion</SPAN><A 
+                  name=IXT-3-349893></A>. History expansion uses either a line    
+                  number from the history or a portion of a previous command to    
+                  reexecute that command.<SUP class=docFootnote>[5]</SUP>   <a href="#lpicertnut-CHP-3-TABLE-1">  Table   
+                  3-1</a> lists the basic history expansion designators. In each    
+                  case, using the designator as a command causes a command from    
+                  the history to be executed again.<A name=IXT-3-349894></A>    
+</P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> If you 
+                    use multiple shells in a windowed environment (as just about 
+                    everyone does), the last shell to exit will write its 
+                    history to <I>~/.bash_history</I>. For this reason you may 
+                    wish to use one shell invocation for most of your 
+                  work.</P></BLOCKQUOTE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> History 
+                    expansion also allows a fair degree of command editing using 
+                    syntax you'll find in the <SPAN 
+                    class=docEmphBold>bash</SPAN> 
+                  documentation.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-3-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-1. Command History Expansion 
+                    Designators </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Designator</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><A name=IXT-3-349895></A><PRE>!!</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Often called <SPAN  
+                        class=docEmphasis>bang-bang,<SUP class=docFootnote>[6]</SUP></SPAN> 
+                        this command refers to the most recent command.  
+                    </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>!n</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Refer to command <SPAN 
+                        class=docEmphasis>n</SPAN> from the history. You'll use 
+                        the <SPAN class=docEmphBold>history</SPAN> command to 
+                        display these numbers. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>!-n</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Refer to the current command minus 
+                        <SPAN class=docEmphasis>n</SPAN> from the history. 
+                      </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>! string</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Refer to the most recent command 
+                        starting with <I>string</I>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>!? string</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Refer to the most recent command 
+                        containing <SPAN class=docEmphasis>string.</SPAN> 
+                    </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><A name=IXT-3-349896></A><PRE>^ string1^string2</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Quick substitution. Repeat the last 
+                        command, replacing the first occurrence of 
+                        <I>string1</I> with <I>string2</I>. 
+                    </P></TD></TR></TBODY></TABLE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> The 
+                    exclamation point is often called <SPAN 
+                    class=docEmphasis>bang</SPAN> on Linux and Unix 
+                  systems.</P></BLOCKQUOTE>
+                  <P class=docText>While using history substitution can be    
+                  useful for executing repetitive commands, <A    
+                  name=IXT-3-349897></A>command history editing is much more    
+                  interactive. To envision the concept of command history    
+                  editing, think of your entire <SPAN    
+                  class=docEmphBold>bash</SPAN> history (including that obtained    
+                  from your <I>~/.bash_history</I> file) as the contents of an    
+                  editor's buffer. In this scenario, the current command prompt    
+                  is the last line in an editing buffer, and all of the previous    
+                  commands in your history lie above it. All of the typical    
+                  editing features are available with command history editing,    
+                  including movement within the "buffer," searching, cutting,    
+                  pasting, and so on. Once you're used to using the command    
+                  history in an editing style, everything you've done on the    
+                  command line becomes available as retrievable, reusable text    
+                  for subsequent commands. The more familiar you become with    
+                  this concept, the more useful it can be. </P>   
+                  <P class=docText>By default, <SPAN    
+                  class=docEmphBold>bash</SPAN> uses <SPAN class=docEmphasis>key    
+                  bindings</SPAN><A name=IXT-3-349898></A> like those found in    
+                  the Emacs editor for command history editing.<SUP    
+                  class=docFootnote>[7]</SUP> If you're    
+                  familiar with Emacs, moving around in the command history will    
+                  be familiar and very similar to working in an Emacs buffer.    
+                  For example, the key command <SPAN    
+                  class=docEmphBold>Ctrl-p</SPAN> (depicted as <SPAN    
+                  class=docEmphBold>C-p</SPAN>) will move up one line in your    
+                  command history, displaying your previous command and placing    
+                  the cursor at the end of it. This same function is also bound    
+                  to the up arrow key. The opposite function is bound to <SPAN    
+                  class=docEmphBold>C-n</SPAN> (and the down arrow). Together,    
+                  these two key bindings allow you to examine your history line    
+                  by line. You may reexecute any of the commands shown simply by    
+                  pressing Return when it is displayed. For the purposes of Exam    
+                  101, you'll need to be familiar with this editing capability,    
+                  but detailed knowledge is not required. <a href="#lpicertnut-CHP-3-TABLE-2"> Table   
+                  3-2</a> lists some of the common Emacs key bindings you may    
+                  find useful in <I>bash</I>. Note that <SPAN    
+                  class=docEmphBold>C-</SPAN> indicates the <SPAN    
+                  class=docEmphBold>Ctrl</SPAN><A name=IXT-3-349899></A> key,    
+                  while <SPAN class=docEmphBold>M-</SPAN> indicates the <A    
+                  name=IXT-3-349900></A>Meta key, which is usually <SPAN    
+                  class=docEmphBold>Alt</SPAN> on PC keyboards.<SUP    
+                  class=docFootnote>[8]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[7]</A></SUP> An 
+                    editing style similar to the <SPAN 
+                    class=docEmphBold>vi</SPAN> editor is also 
+                  available.</P></BLOCKQUOTE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[8]</A></SUP> In 
+                    unusual circumstances, such as on a terminal, using the 
+                    <I>meta </I>key means pressing the Escape (<SPAN 
+                    class=docEmphBold>Esc</SPAN>) key, releasing it, and <SPAN 
+                    class=docEmphasis>then</SPAN> pressing the defined key. The 
+                    <SPAN class=docEmphBold>Esc</SPAN> key is not a modifier, 
+                    but serves to modify meta keys when an <SPAN 
+                    class=docEmphBold>Alt</SPAN>-style key is 
+                  unavailable.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-3-TABLE-2></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-2. Basic Command History 
+                    Editing Emacs Key Bindings </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Key</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-p</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Previous line (also up arrow)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-n</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Next line (also down arrow)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-b</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Back one character (also left 
+                      arrow)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-f</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Forward one character (also right 
+                        arrow)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-a</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Beginning of line</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-e</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>End of line</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-l</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Clear the screen, leaving the current 
+                        line at the top of the screen</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>M-&lt;</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Top of history</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>M-&gt;</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Bottom of history</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-d</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Delete character from right</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-k</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Delete (kill) text from cursor to end 
+                        of line</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-y</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Paste (yank) text previously cut 
+                        (killed)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>M-d</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Delete (kill) word</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-r<SPAN 
+                        class=docEmphasis>text</SPAN></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Reverse search for <SPAN 
+                        class=docEmphasis>text</SPAN></P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>C-s<SPAN 
+                        class=docEmphasis>text</SPAN></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Forward search for <SPAN 
+                        class=docEmphasis>text</SPAN></P></TD></TR></COLGROUP></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-3-SECT-1.2.1></A>
+                  <H5 class=docSection3Title>3.1.2.1 Command substitution</H5>
+                  <P class=docText><SPAN class=docEmphBold>bash</SPAN> offers a    
+                  handy ability to do <SPAN class=docEmphasis>command    
+                  substitution</SPAN><A name=IXT-3-349901></A>. This feature    
+                  allows you to replace the result of a command with a script.    
+                  For example, wherever <TT>$(</TT><A name=IXT-3-349902></A> <A    
+                  name=IXT-3-349903></A><TT><I>command</I></TT><TT>)</TT> is    
+                  found, its output will be substituted. This output could be    
+                  assigned to a variable, as in the number of lines in the    
+                  <I>.bashrc</I> file: </P><PRE>$ <B>RCSIZE=$(wc -l ~/.bashrc)</B></PRE>   
+                  <P class=docText>Another form of command substitution is 
+                  <TT>`</TT><TT><I>command</I></TT><TT>`</TT>. The result is the 
+                  same, except that the <SPAN class=docEmphasis>backquote</SPAN> 
+                  syntax has some special rules regarding metacharacters that 
+                  the <TT>$(</TT><TT><I>command</I></TT><TT>)</TT> syntax 
+                  avoids. </P><A name=lpicertnut-CHP-3-SECT-1.2.2></A>
+                  <H5 class=docSection3Title>3.1.2.2 Applying commands 
+                  recursively through a directory tree</H5>
+                  <P class=docText><A name=IXT-3-349904></A>There are many times    
+                  when it is necessary to execute commands <SPAN    
+                  class=docEmphasis>recursively</SPAN>. That is, you may need to    
+                  repeat a command throughout all the branches of a directory    
+                  tree. Recursive execution is very useful but also can be    
+                  dangerous. It gives a single interactive command the power to    
+                  operate over a much broader range of your system than your    
+                  current directory, and the appropriate caution is necessary.    
+                  Think twice before using these capabilities, particularly when    
+                  operating as the superuser. </P>   
+                  <P class=docText>Some of the GNU commands on Linux systems 
+                  have built-in recursive capabilities as an option. For 
+                  example, <SPAN class=docEmphBold>chmod</SPAN> modifies 
+                  permissions on files in the current directory: </P><PRE>$ <B>chmod g+w *.c</B></PRE>
+                  <P class=docText>In this example, all files with the <I>.c</I>    
+                  extension in the current directory are modified with the    
+                  group-write permission. However, there may be a number of    
+                  directories and files in hierarchies that require this change.    
+                  <SPAN class=docEmphBold>chmod</SPAN><A name=IXT-3-349905></A> 
+                  contains the <SPAN class=docEmphBold>-R</SPAN> option (note    
+                  the uppercase option letter; you may also use <SPAN    
+                  class=docEmphBold>-- recursive</SPAN>), which instructs the    
+                  command to operate not only on files and directories specified    
+                  on the command line, but also on all files and directories    
+                  contained <SPAN class=docEmphasis>under</SPAN> the specified    
+                  directories. For example, this command gives the group-write    
+                  permission to all files in a source-code tree named <SPAN    
+                  class=docEmphBold>src</SPAN>: </P><PRE>$ <B>chmod -R g+w src</B></PRE>
+                  <P class=docText>Provided you have the correct privileges, 
+                  this command will descend into each subdirectory in the <SPAN 
+                  class=docEmphBold>src</SPAN><I> </I>directory and add the 
+                  requested permission to each file and directory it finds. 
+                  Other example commands with this ability include <SPAN 
+                  class=docEmphBold>cp</SPAN> (copy), <SPAN 
+                  class=docEmphBold>ls</SPAN> (list files), and <SPAN 
+                  class=docEmphBold>rm</SPAN> (remove files). </P>
+                  <P class=docText>A more general approach to recursive    
+                  execution through a directory is available by using the <SPAN    
+                  class=docEmphBold>find</SPAN><A name=IXT-3-349906></A> 
+                  command. This is an extremely powerful command because it can    
+                  tell you a lot about your system's file structure. <SPAN    
+                  class=docEmphBold>find</SPAN> is inherently recursive and is    
+                  intended to descend through directories looking for files with    
+                  certain attributes or executing commands. At its simplest,    
+                  <SPAN class=docEmphBold>find</SPAN> displays an entire    
+                  directory hierarchy when you simply enter the command with a    
+                  target directory: </P><PRE>$ <B>find src</B>
+...files and directories are listed recursively...</PRE>   
+                  <P class=docText>To get more specific, add the <SPAN 
+                  class=docEmphBold>-name</SPAN> option to search the same 
+                  directories for C files: </P><PRE>$ <B>find src -name &quot;*.c&quot;</B>
+....c files are listed recursively<SUP class=docFootnote>[9]</SUP>...</PRE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[9]</A></SUP> This can 
+                    be done recursively with the <SPAN 
+                    class=docEmphBold>ls</SPAN> command as well.</P></BLOCKQUOTE>
+                  <P class=docText><SPAN class=docEmphBold>find</SPAN> can also 
+                  execute commands against its results with the <SPAN 
+                  class=docEmphBold>-exec</SPAN> option, which can execute any 
+                  command against each successive element listed by <SPAN 
+                  class=docEmphBold>find</SPAN>. During execution, a special 
+                  variable <SPAN class=docEmphBold>{}</SPAN> is replaced by 
+                  these <SPAN class=docEmphBold>find</SPAN> results. The command 
+                  entered after the <SPAN class=docEmphBold>-exec</SPAN> option 
+                  must be terminated by a semicolon; any metacharacters used -- 
+                  including the semicolon -- must be either quoted or escaped. 
+                  To take the previous example a little further, rather than 
+                  execute the <SPAN class=docEmphBold>chmod</SPAN> recursively 
+                  against all files in the <SPAN class=docEmphBold>src</SPAN> 
+                  directory, <SPAN class=docEmphBold>find</SPAN><I> </I>can 
+                  execute it against the C files only, like this: </P><PRE>$ <B>find src -name &quot;*.c&quot; -exec chmod g+w {} \;</B></PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>find</SPAN> 
+                  command is capable of much more than this simple example and 
+                  can locate files with particular attributes such as dates, 
+                  protections, file types, access times, and others. While the 
+                  syntax can be confusing, the results are worth some study of 
+                  <SPAN class=docEmphBold>find</SPAN>. </P><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/4071532"><IMG 
+                  height=1 src="03-1.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(guidout)584DDD8E-DC91-4753-A8-94-0A-5B-CA-9F-5C-96
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=K&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=K&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)469ms
+(xml)343ms
+(xsl)32ms
+(ent)0ms
+(buf)0ms
+
+(tot)1156ms
+--></BODY></HTML>

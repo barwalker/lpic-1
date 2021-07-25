@@ -1,0 +1,869 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-7&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-7.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-7.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU  
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-7></A>
+                  <H3 class=docSection1Title>3.7 Objective 7: Making Use of 
+                  Regular Expressions</H3>
+                  <P class=docText>In <SPAN class=docEmphasis>Objective 
+                  3</SPAN>, filename globbing with wildcards is described, which 
+                  enables us to list or find files with common elements (i.e., 
+                  filenames or file extensions) at once. File globs make use of 
+                  special characters such as <TT>*</TT>, which have special 
+                  meanings in the context of the command line. There are a 
+                  handful of shell wildcard characters understood by <SPAN 
+                  class=docEmphBold>bash</SPAN>, enough to handle the relatively 
+                  simple problem of <I>globbing</I> filenames. Other problems 
+                  aren't so simple, and extending the glob concept into any 
+                  generic text form (files, text streams, program string 
+                  variables, etc.) can open up a wide new range of capability. 
+                  This is done using <SPAN class=docEmphasis>regular 
+                  expressions</SPAN>. </P>
+                  <P class=docText>Two tools that are important for the LPIC 
+                  Level 1 exams and that make use of regular expressions are 
+                  <SPAN class=docEmphBold>grep</SPAN> and <SPAN 
+                  class=docEmphBold>sed</SPAN>. These tools are useful for text 
+                  searches. There are many other tools that make use of regular 
+                  expressions, including the <I>awk</I>, Perl, and Python 
+                  languages and other utilities, but you don't need to be 
+                  concerned with them for the purpose of the LPIC Level 1 exams. 
+                  </P><A name=lpicertnut-CHP-3-SECT-7.1></A>
+                  <H4 class=docSection2Title>3.7.1 Using grep</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-253></A><A 
+                  name=lpicertnut-IDXTERM-254></A>A long time ago, as the idea  
+                  of regular expressions was catching on, the line editor <SPAN  
+                  class=docEmphBold>ed</SPAN> contained a command to display  
+                  lines of a file being edited that matched a given regular  
+                  expression. The command is: </P><PRE>g/regular expression/p</PRE> 
+                  <P class=docText>That is, "on a global basis, print the 
+                  current line when a match for <SPAN class=docEmphasis>regular 
+                  expression</SPAN> is found," or more simply, "global regular 
+                  expression print." This function was so useful that it was 
+                  made into a standalone utility named, appropriately, <SPAN 
+                  class=docEmphBold>grep</SPAN>. Later, the regular expression 
+                  grammar of <SPAN class=docEmphBold>grep</SPAN> was expanded in 
+                  a new command called <SPAN class=docEmphBold>egrep</SPAN> (for 
+                  "<SPAN class=docEmphBold>e</SPAN>xtended <SPAN 
+                  class=docEmphasis>grep</SPAN>"). You'll find both commands on 
+                  your Linux system today, and they differ slightly in the way 
+                  they handle regular expressions. For the purposes of Exam 101, 
+                  we'll stick with <SPAN class=docEmphBold>grep</SPAN>, which 
+                  can also make use of the "extended" regular expressions when 
+                  used with the -<SPAN class=docEmphBold>E</SPAN> option. You 
+                  will find some form of <SPAN class=docEmphBold>grep</SPAN> on 
+                  just about every Unix or Unix-like system available. </P><A 
+                  name=p1_ch03-_Toc381838514></A><A name=IXT-3-350000></A><A 
+                  name=IXTR3-26></A><A name=IXTR3-27></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>grep</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838515></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>grep [options] regex [files]</PRE><A 
+                  name=p1_ch03-_Toc381838516></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Search <I>files</I> or standard input for 
+                  lines containing a match to regular expression 
+                  <I>regex</I><SPAN class=docEmphasis>.</SPAN> By default, 
+                  matching lines will be displayed and nonmatching lines will 
+                  not be displayed. When multiple files are specified, <SPAN 
+                  class=docEmphBold>grep</SPAN> displays the filename as a 
+                  prefix to the output lines (use the <SPAN 
+                  class=docEmphBold>-h</SPAN><I> </I>option to suppress filename 
+                  prefixes). </P><A name=p1_ch03-_Toc381838517></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4><A 
+                  name=IXT-3-350000></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-350000></A>Display only a  
+                    count of matched lines, but not the lines themselves.  
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display matched lines, but do not include 
+                    filenames for multiple file input. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Ignore uppercase and lowercase 
+                    distinctions, allowing <SPAN class=docEmphasis>abc</SPAN> to 
+                    match both <SPAN class=docEmphasis>abc</SPAN> and <SPAN 
+                    class=docEmphasis>ABC</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display matched lines prefixed with their 
+                    line numbers. When used with multiple files, <SPAN 
+                    class=docEmphasis>both</SPAN> the filename and line number 
+                    are prefixed. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print all lines that <SPAN 
+                    class=docEmphasis>do not</SPAN> match <SPAN 
+                    class=docEmphasis>regex</SPAN>. This is an important and 
+                    useful option. You'll want to use regular expressions, not 
+                    only to <SPAN class=docEmphasis>select</SPAN> information 
+                    but also to <SPAN class=docEmphasis>eliminate</SPAN> 
+                    information. Using <SPAN class=docEmphBold>-v</SPAN><I> 
+                    </I>inverts the output this way. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838518></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Since regular expressions can contain both 
+                  metacharacters and literals, <SPAN 
+                  class=docEmphBold>grep</SPAN> can be used with an entirely 
+                  literal <I>regex</I>. For example, to find all lines in 
+                  <I>file1</I> that contain either <SPAN 
+                  class=docEmphasis>Linux</SPAN> or <SPAN 
+                  class=docEmphasis>linux</SPAN>, you could use <SPAN 
+                  class=docEmphBold>grep</SPAN> like this: </P><PRE>$ <B>grep -i linux file1</B></PRE>
+                  <P class=docText>In this example, the <I>regex</I> is simply 
+                  "linux." The uppercase <SPAN class=docEmphasis>L</SPAN> in 
+                  "Linux" is matched by the command-line option <SPAN 
+                  class=docEmphBold>-i</SPAN>. This is fine for literal 
+                  expressions that are common. However, in situations in which 
+                  <I>regex</I> includes regular expression metacharacters that 
+                  are also shell special characters (such as <SPAN 
+                  class=docEmphBold>$</SPAN> or <SPAN 
+                  class=docEmphBold>*</SPAN>), the <I>regex</I> must be quoted 
+                  to prevent shell expansion and pass the metacharacters on to 
+                  <SPAN class=docEmphBold>grep</SPAN>. </P>
+                  <P class=docText>As a simplistic example of this, suppose you 
+                  have files in your local directory named <I>abc</I>, 
+                  <I>abc1</I>, and <I>abc2</I>. When combined with <SPAN 
+                  class=docEmphBold>bash</SPAN>'s <SPAN 
+                  class=docEmphBold>echo</SPAN> expression, the <I>abc*</I> 
+                  wildcard expression lists all files that begin with 
+                  <I>abc</I>, as follows: </P><PRE>$ <B>echo abc*</B>
+abc abc1 abc2</PRE>
+                  <P class=docText>Now suppose that these files contain lines 
+                  with the strings <SPAN class=docEmphasis>abc</SPAN>, <SPAN 
+                  class=docEmphasis>abcc</SPAN>, <SPAN 
+                  class=docEmphasis>abccc</SPAN>, and so on, and you wish to use 
+                  <SPAN class=docEmphBold>grep</SPAN> to find them. You can use 
+                  the shell wildcard expression <I>abc* </I>to expand to all the 
+                  <I>abc</I> files as displayed with <SPAN 
+                  class=docEmphBold>echo</SPAN> above, and you'd use an 
+                  identical regular expression <TT>abc*</TT> to find all 
+                  occurrences of lines containing <I>abc</I>, <I>abcc</I>, 
+                  <I>abccc</I>, etc. Without using quotes to prevent shell 
+                  expansion, the command would be: </P><PRE>$ <B>grep abc* abc*</B> </PRE>
+                  <P class=docText>After shell expansion, this yields:</P><PRE>$ <B>grep abc abc1 abc2 abc abc1 abc2  # no!</B></PRE>
+                  <P class=docText>This is <SPAN class=docEmphasis>not</SPAN> 
+                  what you intended! <SPAN class=docEmphBold>grep</SPAN> would 
+                  search for the literal expression <I>abc,</I> because it 
+                  appears as the first command argument. Instead, quote the 
+                  regular expression with single or double quotes to protect 
+                  it:<SUP class=docFootnote><A class=docLink 
+                  href="http://safari.informit.com/#">[22]</A></SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[22]</A></SUP> The 
+                    difference between single quotes and double quotes on the 
+                    command line is subtle and is explained later in this 
+                    section.</P></BLOCKQUOTE><PRE>$ <B>grep 'abc*' abc*</B></PRE>
+                  <P class=docText>or:</P><PRE>$ <B>grep &quot;abc*&quot; abc*</B></PRE>
+                  <P class=docText>After expansion, both examples yield the same 
+                  results:</P><PRE>$ <B>grep abc* abc abc1 abc2</B></PRE>
+                  <P class=docText>Now this is what you're after. The three 
+                  files <SPAN class=docEmphasis>abc</SPAN>, <SPAN 
+                  class=docEmphasis>abc1</SPAN>, and <SPAN 
+                  class=docEmphasis>abc2</SPAN> will be searched for the regular 
+                  expression <I>abc*</I>. It is good to stay in the habit of 
+                  quoting regular expressions on the command line to avoid these 
+                  problems -- they won't be at all obvious because the shell 
+                  expansion is invisible to you unless you use the <SPAN 
+                  class=docEmphBold>echo</SPAN><I> </I>command. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>The use of<SPAN class=docEmphBold>  
+                        grep</SPAN> and its options is common. You should be  
+                        familiar with what each option does, as well as the  
+                        concept of piping the results of other commands into  
+                        <SPAN class=docEmphBold>grep</SPAN> for matching.<A  
+                        name=IXTR3-26></A> <A  
+                    name=IXTR3-27></A></P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-3-SECT-7.2></A>
+                  <H4 class=docSection2Title>3.7.2 Using sed </H4>
+                  <P class=docText>In Objective 2, we introduce <SPAN 
+                  class=docEmphBold>sed</SPAN>, the <SPAN 
+                  class=docEmphasis>stream editor</SPAN>. In that section, we 
+                  talk about how <SPAN class=docEmphBold>sed</SPAN> uses <SPAN 
+                  class=docEmphasis>addresses</SPAN> to locate text upon which 
+                  it will operate. Among the addressing mechanisms mentioned is 
+                  the use of regular expressions delimited between slash 
+                  characters. Let's recap how <SPAN class=docEmphBold>sed</SPAN> 
+                  can be invoked. </P><A name=p1_ch03-_Toc381838520></A><A 
+                  name=IXT-3-350001></A><A name=IXT-3-350002></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>sed</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838521></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A 
+                  name=IXT-3-350001></A><A name=IXT-3-350002></A><PRE>sed [options] 'command1' [files]
+sed [options] -e 'command1' [-e 'command2'] [files]
+sed [options] -f script [files]</PRE><A 
+                  name=p1_ch03-_Toc381838522></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Note that <SPAN 
+                  class=docEmphasis>command1</SPAN> is contained within single 
+                  quotes. This is necessary for the same reasons as with <SPAN 
+                  class=docEmphBold>grep</SPAN>. The text in <SPAN 
+                  class=docEmphasis>command1</SPAN> must be protected from 
+                  evaluation and expansion by the shell. </P>
+                  <P class=docText>The address part of a <SPAN 
+                  class=docEmphBold>sed</SPAN> command may contain regular 
+                  expressions, which are enclosed in slashes. For example, to 
+                  show the contents of <I>file1</I> except for blank lines, the 
+                  <SPAN class=docEmphBold>sed</SPAN> delete (<SPAN 
+                  class=docEmphBold>d</SPAN>) command could be invoked like 
+                  this: </P><PRE>$ <B>sed '/^$/ d' file1</B></PRE>
+                  <P class=docText>In this case, the regular expression <SPAN 
+                  class=docEmphBold>^$</SPAN> matches blank lines and the <SPAN 
+                  class=docEmphBold>d</SPAN> command removes those matching 
+                  lines from <SPAN class=docEmphBold>sed</SPAN>'s output. </P><A 
+                  name=lpicertnut-CHP-3-SECT-7.2.1></A>
+                  <H5 class=docSection3Title>3.7.2.1 Quoting</H5>
+                  <P class=docText><A name=IXT-3-350003></A><A 
+                  name=IXT-3-350004></A>As shown in the examples for <SPAN  
+                  class=docEmphBold>grep</SPAN> and <SPAN  
+                  class=docEmphBold>sed</SPAN>, it is necessary to <SPAN  
+                  class=docEmphasis>quote</SPAN> regular expression  
+                  metacharacters if you wish to preserve their special meaning.  
+                  Failing to do this can lead to unexpected results when the  
+                  shell interprets the metacharacters as file globbing  
+                  characters. There are three forms of <A  
+                  name=IXT-3-350005></A>quoting you may use to preserve <A  
+                  name=IXT-3-350006></A>special characters: </P><A  
+                  name=IXT-3-350007></A><A name=IXT-3-350008></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>\</SPAN><A name=IXT-3-350007></A> <A  
+                    name=IXT-3-350008></A>(an unquoted backslash  
+                    character)</SPAN> 
+                    <DD>
+                    <P class=docList>By applying a backslash before a special 
+                    character, it will not be interpreted by the shell but will 
+                    be passed through unaltered to the command you're entering. 
+                    For example, the <SPAN class=docEmphBold>*</SPAN> 
+                    metacharacter may be used in a regular expression like this: 
+                    </P><PRE>$ <B>grep abc\* abc abc1 abc2</B></PRE>
+                    <P class=docList>Here, files <I>abc</I>, <I>abc1</I>, and 
+                    <I>abc2</I> are searched for the regular expression 
+                    <I>abc*</I>. </P></DD></DL><A name=IXT-3-350009></A><A 
+                  name=IXT-3-350010></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Single quotes</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-350009></A><A 
+                    name=IXT-3-350010></A>Surrounding metacharacters with the  
+                    single-quote character also protects them from  
+                    interpretation by the shell. All characters inside a pair of  
+                    single quotes are assumed to have their literal value.  
+                    </P></DD></DL><A name=IXT-3-350011></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Double quotes</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-350011></A>Surrounding  
+                    metacharacters with the double-quote character has the same  
+                    effect as single quotes, with the exception of the <SPAN  
+                    class=docEmphBold>$</SPAN>, <TT>'</TT> (single quote),  
+                    and<SPAN class=docEmphBold> \</SPAN> (backslash) characters.  
+                    Both <SPAN class=docEmphBold>$</SPAN> and <TT>'</TT> retain  
+                    their special meaning within double quotes. The backslash  
+                    retains its special meaning when followed by <SPAN  
+                    class=docEmphBold>$</SPAN>, <TT>'</TT>, another backslash,  
+                    or a newline. </P></DD></DL> 
+                  <P class=docText>In general, single quotes are safest for 
+                  preserving regular expressions. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Pay special attention to quoting 
+                        methods used to preserve special characters, because the 
+                        various forms don't necessarily yield the same result. 
+                        </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-3-SECT-7.3></A>
+                  <H4 class=docSection2Title>3.7.3 Regular Expressions</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-269></A>Linux  
+                  offers many tools for system administrators to use for  
+                  processing text. Many, such as <SPAN  
+                  class=docEmphBold>sed</SPAN> and the <SPAN  
+                  class=docEmphasis>awk</SPAN> and Perl languages, are capable  
+                  of automatically editing multiple files, providing you with a  
+                  wide range of text-processing capability. To harness that  
+                  capability, you need to be able to define and delineate  
+                  specific text segments from within files, text streams, and  
+                  string variables. Once the text you're after is identified,  
+                  you can use one of these tools or languages to do useful  
+                  things to it. </P> 
+                  <P class=docText>These tools and others understand a loosely 
+                  defined pattern language. The language and the patterns 
+                  themselves are collectively called regular expressions (often 
+                  abbreviated just <I>regexp</I> or <I>regex</I>). While regular 
+                  expressions are similar in concept to file globs, many more 
+                  special characters exist for regular expressions, extending 
+                  the utility and capability of tools that understand them. </P>
+                  <P class=docText>Regular expressions are the topic of entire 
+                  books (such as Jeffrey E. F. Friedl's excellent and very 
+                  readable <SPAN class=docEmphasis>Mastering Regular 
+                  Expressions</SPAN>, published by O'Reilly &amp; Associates). 
+                  Exam 101 requires the use of simple regular expressions and 
+                  related tools, specifically to perform searches from text 
+                  sources. This section covers only the basics of regular 
+                  expressions, but it goes without saying that their power 
+                  warrants a full understanding. Digging deeper into the regular 
+                  expression world is highly recommended when you have the 
+                  chance. </P><A name=lpicertnut-CHP-3-SECT-7.3.1></A>
+                  <H5 class=docSection3Title>3.7.3.1 Regular expression 
+                  syntax</H5>
+                  <P class=docText>It would not be unreasonable to assume that 
+                  some specification defines how regular expressions are 
+                  constructed. Unfortunately, there isn't one. Regular 
+                  expressions have been incorporated as a feature in a number of 
+                  tools over the years, with varying degrees of consistency and 
+                  completeness. The result is a cart-before-the-horse scenario, 
+                  in which utilities and languages have defined their own flavor 
+                  of regular expression syntax, each with its own extensions and 
+                  idiosyncrasies. Formally defining the regular expression 
+                  syntax came later, as did efforts to make it more consistent. 
+                  Regular expressions are defined by arranging strings of text, 
+                  or <SPAN class=docEmphasis>patterns</SPAN>. Those patterns are 
+                  composed of two types of characters: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Metacharacters</SPAN></I> 
+                    <DD>
+                    <P class=docList>Like the special file <SPAN  
+                    class=docEmphasis>globbing</SPAN> characters, regular  
+                    expression <SPAN class=docEmphasis>metacharacters</SPAN>  
+                    take on a special meaning in the context of the tool in  
+                    which they're used. There are a few metacharacters that are  
+                    generally thought of to be among the "extended set" of  
+                    metacharacters, specifically those introduced into <SPAN  
+                    class=docEmphBold>egrep</SPAN> after <SPAN  
+                    class=docEmphBold>grep</SPAN> was created. Now, most of  
+                    those can also be handled by <SPAN  
+                    class=docEmphBold>grep</SPAN> using the <SPAN  
+                    class=docEmphBold>-E</SPAN> option. Examples of  
+                    metacharacters include the <SPAN class=docEmphBold>^</SPAN>  
+                    symbol, which means "the beginning of a line," and the <SPAN  
+                    class=docEmphBold>$</SPAN> symbol, which means "the end of a  
+                    line." A complete listing of metacharacters follows in <a class="docLink" href="#lpicertnut-CHP-3-TABLE-6">Table  
+                    3-6</a>, <a class="docLink" href="#lpicertnut-CHP-3-TABLE-7">Table  
+                    3-7</a>, and <a class="docLink" href="#lpicertnut-CHP-3-TABLE-8">Table  
+                    3-8</a>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Literals</SPAN></I> 
+                    <DD>
+                    <P class=docList>Everything that is not a metacharacter is 
+                    just plain text, or literal text. </P></DD></DL>
+                  <P class=docText>It is often helpful to consider regular 
+                  expressions as their own language, where literal text acts as 
+                  words and phrases. The "grammar" of the language is defined by 
+                  the use of metacharacters. The two are combined according to 
+                  specific rules (which, as mentioned earlier, may differ 
+                  slightly among various tools) to communicate ideas and get 
+                  real work done. When you construct regular expressions, you 
+                  use metacharacters and literals to specify three basic ideas 
+                  about your input text: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Position anchors</SPAN></I> 
+                    <DD>
+                    <P class=docList>A position anchor is used to specify the 
+                    position of one or more character sets in relation to the 
+                    entire line of text (such as the beginning of a line). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Character sets</SPAN></I> 
+                    <DD>
+                    <P class=docList>A character set matches text. It could be a 
+                    series of literals, metacharacters that match individual or 
+                    multiple characters, or combinations of these. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Quantity modifiers</SPAN></I> 
+
+                    <DD>
+                    <P class=docList>Quantity modifiers follow a character set 
+                    and indicate the number of times the set should be repeated. 
+                    These characters "give elasticity" to a regular expression 
+                    by allowing the matches to have variable length. 
+</P></DD></DL>
+                  <P class=docText>The next section lists commonly used 
+                  metacharacters. The examples given with the metacharacters are 
+                  very basic, intended just to demonstrate the use of the 
+                  metacharacter in question. More involved regular expressions 
+                  are covered later. </P><A name=lpicertnut-CHP-3-SECT-7.4></A>
+                  <H4 class=docSection2Title>3.7.4 Regular Expression 
+                  Examples</H4>
+                  <P class=docText>Now that the gory details are out of the way, 
+                  here are some examples of simple regular expression usage that 
+                  you may find useful. </P><A 
+                  name=lpicertnut-CHP-3-SECT-7.4.1></A>
+                  <H5 class=docSection3Title>3.7.4.1 Anchors</H5>
+                  <P class=docText>Anchors are used to describe position  
+                  information. <a class="docLink" href="#lpicertnut-CHP-3-TABLE-6">Table  
+                  3-6</a> lists anchor characters. </P><A  
+                  name=lpicertnut-CHP-3-TABLE-6></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-6. Regular Expression 
+                    Position Anchors </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Regular Expression</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>^</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match at the beginning of a line. This 
+                        interpretation makes sense only when the <TT>^</TT> 
+                        character is at the lefthand side of the <I>regex</I>. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>$</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match at the end of a line. This 
+                        interpretation makes sense only when the <TT>$</TT> 
+                        character is at the righthand side of the <I>regex</I>. 
+                        </P></TD></TR></TBODY></TABLE>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-61-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display all lines from <I>file1</I> where the 
+                  string "Linux" appears at the start of the line: </P><PRE>$ <B>grep '^Linux' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838529></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Display lines in <I>file1</I> where the last 
+                  character is an "x": </P><PRE>$ <B>grep 'x$' file1</B></PRE>
+                  <P class=docText>Display the number of empty lines in 
+                  <I>file1</I> by finding lines with nothing between the 
+                  beginning and the end: </P><PRE>$ <B>grep -c '^$' file1</B></PRE>
+                  <P class=docText>Display all lines from <I>file1</I> 
+                  containing only the word "null" by itself: </P><PRE>$ <B>grep '^null$' file1 </B></PRE><A 
+                  name=lpicertnut-CHP-3-SECT-7.4.2></A>
+                  <H5 class=docSection3Title>3.7.4.2 Groups and ranges</H5>
+                  <P class=docText>Characters can be placed into groups and  
+                  ranges to make regular expressions more efficient, as shown in 
+                  <a class="docLink" href="#lpicertnut-CHP-3-TABLE-7">Table  
+                  3-7</a>. </P><A name=lpicertnut-CHP-3-TABLE-7></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-7. Regular Expression 
+                    Character Sets </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Regular Expression</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>[abc]
+[a-z]</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Single-character groups and ranges. In 
+                        the first form, match any single character from among 
+                        the enclosed characters <TT>a</TT>, <TT>b</TT>, or 
+                        <TT>c</TT>. In the second form, match any single 
+                        character from among the range of characters bounded by 
+                        <TT>a</TT> and <TT>z</TT>. The brackets are for grouping 
+                        only and are not matched themselves. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>[^<SPAN 
+                        class=docEmphasis>abc</SPAN>]</P>
+                        <P class=docText>[^<SPAN 
+                        class=docEmphasis>a-z</SPAN>]</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Inverse match. Match any single 
+                        character not among the enclosed characters <TT>a</TT>, 
+                        <TT>b</TT>, and <TT>c</TT> or in the range <TT>a-z</TT>. 
+                        Be careful not to confuse this inversion with the anchor 
+                        character <TT>^</TT>, described earlier. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>\&lt;<SPAN 
+                        class=docEmphasis>word</SPAN>\&gt;</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match words. Words are essentially 
+                        defined as being character sets surrounded by whitespace 
+                        and adjacent to the start of line, the end of line, or 
+                        punctuation marks. The backslashes are required and 
+                        enable this interpretation of <TT>&lt;</TT> and 
+                        <TT>&gt;</TT>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>. (the single dot)</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character except a 
+                        <I>newline</I>.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>\</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>As mentioned in the section on quoting 
+                        earlier, turn off (escape) the special meaning of the 
+                        character that follows, turning metacharacters in to 
+                        literals. </P></TD></TR></TBODY></TABLE>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-62-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display all lines from <I>file1</I> 
+                  containing either "Linux," "linux," "TurboLinux," and so on: 
+                  </P><PRE>$ <B>grep '[Ll]inux' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838532></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Display all lines from <I>file1</I> which 
+                  contain three adjacent digits: </P><PRE>$ <B>grep '[0-9][0-9][0-9]' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838533></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Display all lines from <I>file1</I> beginning 
+                  with any single character other than a digit: </P><PRE>$ <B>grep '^[^0-9]' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838534></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain the whole word "Linux" or "linux," but not "LinuxOS" 
+                  or "TurboLinux": </P><PRE>$ <B>grep '\&lt;[Ll]inux\&gt;' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838535></A>
+                  <H4 class=docRefsectTitle><SPAN class=docEmphasis>Example 
+                  5</SPAN></H4>
+                  <P class=docText>Display all lines from <I>file1</I> with five 
+                  or more characters on a line (excluding the newline 
+                  character): </P><PRE>$ <B>grep '.....' file1</B> </PRE><A 
+                  name=p1_ch03-_Toc381838536></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>Display all nonblank lines from <I>file1</I> 
+                  (i.e., that have at least one character): </P><PRE>$ <B>grep '.' file1</B> </PRE><A 
+                  name=p1_ch03-_Toc381838537></A>
+                  <H4 class=docRefsectTitle>Example 7</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain a period (normally a metacharacter) using escape: </P><PRE>$ <B>grep '\.' file1</B> </PRE><A 
+                  name=lpicertnut-CHP-3-SECT-7.4.3></A>
+                  <H5 class=docSection3Title>3.7.4.3 Modifiers</H5>
+                  <P class=docText>Modifiers change the meaning of other  
+                  characters in a regular expression. <a class="docLink" href="#lpicertnut-CHP-3-TABLE-8">Table  
+                  3-8</a> lists these modifiers. </P><A  
+                  name=lpicertnut-CHP-3-TABLE-8></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-8. Regular Expression 
+                    Modifiers </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Regular Expression</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>*</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match an unknown number (zero or more) 
+                        of the single character (or single-character 
+                        <I>regex</I>) that precedes it. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>?</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match zero or one instance of the 
+                        preceding regex. This modifier is an "extended" feature 
+                        and available in <SPAN class=docEmphBold>grep</SPAN> 
+                        only when the <SPAN class=docEmphBold>-E</SPAN> 
+                        command-line option is used. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>+</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match one or more instances of the 
+                        preceding <I>regex</I>. This modifier is an "extended" 
+                        feature and available in <SPAN 
+                        class=docEmphBold>grep</SPAN> only when the <SPAN 
+                        class=docEmphBold>-E</SPAN> command-line option is used. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>\{</TT><SPAN 
+                        class=docEmphasis>n</SPAN>,<SPAN 
+                        class=docEmphasis>m</SPAN><TT>\}</TT> </P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match a range of occurrences of the 
+                        single character or regex that precedes this construct. 
+                        <TT>\{</TT><SPAN class=docEmphasis>n</SPAN><TT>\}</TT> 
+                        matches <SPAN class=docEmphasis>n</SPAN> 
+                        occurrences,<TT>\{</TT><SPAN 
+                        class=docEmphasis>n</SPAN><TT>,\}</TT> matches at least 
+                        <SPAN class=docEmphasis>n</SPAN> occurrences, and 
+                        <TT>\{</TT><SPAN class=docEmphasis>n</SPAN>,<SPAN 
+                        class=docEmphasis>m</SPAN><TT>\}</TT> matches any number 
+                        of occurrences between <SPAN class=docEmphasis>n</SPAN> 
+                        and <SPAN class=docEmphasis>m</SPAN>, inclusively. The 
+                        backslashes are required and enable this interpretation 
+                        of<TT>{</TT> and <TT>}</TT>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>|</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Alternation. Match either the 
+                        <I>regex</I> specified before <SPAN 
+                        class=docEmphasis>or</SPAN> after the vertical bar. This 
+                        modifier is an "extended" feature and available in <SPAN 
+                        class=docEmphBold>grep</SPAN> only when the <SPAN 
+                        class=docEmphBold>-E</SPAN> command-line option is used. 
+                        </P></TD></TR></TBODY></TABLE>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-63-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain "ab," "abc," "abcc," "abccc," and so on: </P><PRE>$ <B>grep 'abc*' file1</B> </PRE><A 
+                  name=p1_ch03-_Toc381838540></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain "abc," "abcc," "abccc," and so on, but not "ab": </P><PRE>$ <B>grep 'abcc*' file1</B> </PRE><A 
+                  name=p1_ch03-_Toc381838541></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain two or more adjacent digits: </P><PRE>$ <B>grep '[0-9][0-9][0-9]*' file1</B> </PRE><A 
+                  name=p1_ch03-_Toc381838542></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Display lines from <I>file1</I> that contain 
+                  "file" (because <SPAN class=docEmphBold>?</SPAN> can match 
+                  zero occurrences), <SPAN class=docEmphasis>file1</SPAN>, or 
+                  <SPAN class=docEmphasis>file2</SPAN>: </P><PRE>$ <B>grep -E 'file[12]?' file1</B> </PRE><A 
+                  name=p1_ch03-_Toc381838543></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>Display all lines from <I>file1</I> 
+                  containing at least one digit: </P><PRE>$ <B>grep -E '[0-9]+' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838544></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain "111," "1111," or "11111" on a line by itself: </P><PRE>$ <B>grep '^1\{3,5\}$' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838545></A>
+                  <H4 class=docRefsectTitle>Example 7</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain any three-, four-, or five-digit number: </P><PRE>$ <B>grep '\&lt;[0-9]\{3,5\}\&gt;' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838546></A>
+                  <H4 class=docRefsectTitle>Example 8</H4>
+                  <P class=docText>Display all lines from <I>file1</I> that 
+                  contain "Happy," "happy," "Sad," "sad," "Angry," or "angry": 
+                  </P><PRE>$ <B>grep -E '[Hh]appy|[Ss]ad|[Aa]ngry' file1</B> </PRE><A 
+                  name=lpicertnut-CHP-3-SECT-7.4.4></A>
+                  <H5 class=docSection3Title>3.7.4.4 Basic regular expression 
+                  patterns</H5>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838548></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Match any letter:</P><PRE>[A-Za-z]</PRE><A name=p1_ch03-_Toc381838549></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Match any symbol (not a letter or digit): 
+</P><PRE>[^0-9A-Za-z]</PRE><A name=p1_ch03-_Toc381838550></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Match an uppercase letter, followed by zero 
+                  or more lowercase letters:</P><PRE>[A-Z][a-z]*</PRE><A name=p1_ch03-_Toc381838551></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Match a U.S. Social Security Number 
+                  (123-45-6789) by specifying groups of three, two, and four 
+                  digits separated by dashes: </P><PRE> [0-9]\{3\}-[0-9]\{2\}-[0-9]\{4\}</PRE><A 
+                  name=p1_ch03-_Toc381838552></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>Match a dollar amount, using an escaped 
+                  dollar sign, zero or more spaces or digits, an escaped period, 
+                  and two more digits: </P><PRE>\$[ 0-9]*\.[0-9]\{2\}</PRE><A 
+                  name=p1_ch03-_Toc381838553></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>Match the month of June and its abbreviation, 
+                  "Jun." The question mark matches zero or one instance of the 
+                  <I>e</I> : </P><PRE>June?</PRE><A name=lpicertnut-CHP-3-SECT-7.4.5></A>
+                  <H5 class=docSection3Title>3.7.4.5 Using regular expressions 
+                  as addresses in sed</H5>
+                  <P class=docText>These examples are commands you would issue 
+                  to <SPAN class=docEmphBold>sed</SPAN>. For example, the 
+                  commands could take the place of <SPAN 
+                  class=docEmphasis>command1</SPAN> in this usage: </P><PRE>$ <B>sed </B>[options]<B> '</B>command1<B>' </B>[files]</PRE>
+                  <P class=docText>These commands could also appear in a 
+                  standalone <SPAN class=docEmphBold>sed</SPAN> script. </P><A 
+                  name=IXTR3-28></A><A name=IXTR3-29></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838555></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Delete blank lines:</P><PRE>/^$/d</PRE><A name=p1_ch03-_Toc381838556></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Delete any line that doesn't contain 
+                  <TT>#keepme</TT>:: </P><PRE>/#keepme/!d</PRE><A name=p1_ch03-_Toc381838557></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Delete lines containing only whitespace 
+                  (spaces or tabs). In this example, <SPAN 
+                  class=docEmphasis>tab</SPAN> means the single tab character 
+                  and is preceded by a single space: </P><PRE>/^[ tab]*$/d</PRE><A name=p1_ch03-_Toc381838558></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Delete lines beginning with periods or pound 
+                  signs:</P><PRE>/^[.#]/d</PRE><A name=p1_ch03-_Toc381838559></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>Substitute a single space for any number of 
+                  spaces wherever they occur on the line: </P><PRE>s/  */ /g</PRE><A name=p1_ch03-_Toc381838560></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>Substitute <SPAN class=docEmphasis>def</SPAN> 
+                  for <SPAN class=docEmphasis>abc</SPAN> from line 11 to 20, 
+                  wherever it occurs on the line: </P><PRE>11,20s/abc/@@@/g</PRE><A name=p1_ch03-_Toc381838561></A>
+                  <H4 class=docRefsectTitle>Example 7</H4>
+                  <P class=docText>Translate the characters <SPAN 
+                  class=docEmphasis>a</SPAN>, <SPAN class=docEmphasis>b</SPAN>, 
+                  and <SPAN class=docEmphasis>c</SPAN> to the <SPAN 
+                  class=docEmphasis>@</SPAN> character from line 11 to 20, 
+                  wherever they occur on the line: </P><PRE>11,20y/abc/@@@/</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Make certain you are clear about the  
+                        difference between <SPAN class=docEmphasis>file  
+                        globbing</SPAN> and the use of regular expressions.<A  
+                        name=IXTR3-28></A> <A  
+                    name=IXTR3-29></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="03-7.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-7&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-7&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-7
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)469ms
+(xml)281ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)1078ms
+--></BODY></HTML>

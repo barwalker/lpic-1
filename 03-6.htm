@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-6.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-6.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU  
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-6></A>
+                  <H3 class=docSection1Title>3.6 Objective 6: Modify Process 
+                  Execution Priorities</H3>
+                  <P class=docText>Certain tasks on the system require more  
+                  execution time than others, and thus deserve to be allocated  
+                  more frequent execution and longer time slices by the kernel.  
+                  For this reason, each process is given an <SPAN  
+                  class=docEmphasis>execution priority.</SPAN> <A  
+                  name=lpicertnut-IDXTERM-236></A><A 
+                  name=lpicertnut-IDXTERM-237></A><A 
+                  name=lpicertnut-IDXTERM-238></A>Usually, you don't need to  
+                  worry about execution priority because the kernel handles it  
+                  automatically. Each process' priority level is constantly and  
+                  dynamically raised and lowered by the kernel according to a  
+                  number of parameters, such as how much system time it has  
+                  already consumed and its status (perhaps waiting for I/O --  
+                  such processes are favored by the kernel). Linux gives you the  
+                  ability to bias the kernel's priority algorithm, favoring  
+                  certain processes over others. </P> 
+                  <P class=docText>The <A name=IXT-3-349991></A>priority of a  
+                  process can be determined by examining the <A  
+                  name=IXT-3-349992></A>PRI<I> </I>column in the results  
+                  produced from issuing either the <SPAN  
+                  class=docEmphBold>top</SPAN><A name=IXT-3-349993></A> or <SPAN  
+                  class=docEmphBold>ps -l</SPAN> <A  
+                  name=IXT-3-349994></A>commands. The values displayed are  
+                  relative; the higher the priority number, the more CPU time  
+                  the kernel offers to the process. The kernel does this by  
+                  managing a queue of processes. Those with high priority are  
+                  given more time, and those with low priority are given less  
+                  time. On a heavily loaded system, a process with a very low  
+                  priority may appear stalled. </P><A  
+                  name=lpicertnut-CHP-3-SECT-6.1></A>
+                  <H4 class=docSection2Title>3.6.1 nice</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-243></A>One of the  
+                  parameters used by the kernel to assign process priority is  
+                  supplied by the user and is called a <A  
+                  name=IXT-3-349995></A><SPAN class=docEmphasis>nice 
+                  number</SPAN>. The <SPAN class=docEmphBold>nice</SPAN>  
+                  command<SUP class=docFootnote>[20]</SUP> is used to  
+                  assign a priority number to the process. It is so named  
+                  because it normally causes programs to execute with lower  
+                  priority levels than with their default. Thus, the process is  
+                  being "nice" to other processes on the system by yielding CPU  
+                  time. With this scheme, more "niceness" implies a lower  
+                  priority, and less niceness implies a higher priority. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[20]</A></SUP> Some 
+                    shells, not including <SPAN class=docEmphBold>bash</SPAN>, 
+                    have a built-in <SPAN class=docEmphBold>nice</SPAN> 
+                    command.</P></BLOCKQUOTE>
+                  <P class=docText>By default, user processes are created with a 
+                  <I>nice number</I> of zero. With this setting, <SPAN 
+                  class=docEmphBold>nice</SPAN> doesn't sway the kernel's 
+                  prioritization scheme one way or another. Positive numbers 
+                  lower the priority, and negative numbers raise the priority. 
+                  Nice numbers range from -20 to +19. Any user can start a 
+                  process with a positive nice number, but only the superuser 
+                  (<SPAN class=docEmphasis>root</SPAN> ) can lower a process' 
+                  nice number to raise its priority. For example, if you have a 
+                  long-running utility program but don't want to impact 
+                  interactive performance, a positive nice number will lower the 
+                  job's priority and improve interactive performance. </P><A 
+                  name=p1_ch03-_Toc381838501></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>nice</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838502></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>nice [-n adjustment] [command ]
+nice [-adjustment] [command ]</PRE><A 
+                  name=p1_ch03-_Toc381838503></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>nice</SPAN> 
+                  command is used to alter another command's nice number at 
+                  start time. For normal users, <I>adjustment</I> is an integer 
+                  from 1 to 19. If you're the superuser, the <I>adjustment</I> 
+                  range is from -20 to 19. If an <I>adjustment</I> number is not 
+                  specified, the process' <SPAN class=docEmphBold>nice</SPAN><I> 
+                  </I>number defaults to 10. The <I>command</I> consists of any 
+                  command that you might enter on the command line, including 
+                  all options, arguments, redirections, and the background 
+                  character <SPAN class=docEmphBold>&amp;</SPAN>. </P>
+                  <P class=docText>If both <I>adjustment</I> and <I>command 
+                  </I>are omitted, nice displays the current scheduling 
+                  priority, which is inherited. </P><A 
+                  name=p1_ch03-_Toc381838504></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>The following command starts a program in the 
+                  background with reduced priority, using the default nice 
+                  number of 10: </P><PRE>$ <B>nice somecmd -opt1 -opt2 arg1 arg2 &amp;</B></PRE><A 
+                  name=p1_ch03-_Toc381838505></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>As superuser, you can start programs with 
+                  elevated priority. These equivalent commands start the <SPAN 
+                  class=docEmphBold>vi</SPAN> editor with a higher priority, 
+                  which may be necessary for administrative purposes if the 
+                  system is exceptionally slow: </P><PRE># <B>nice --10 vi /etc/hosts.deny</B>
+# <B>nice -n -10 vi /etc/hosts.deny</B></PRE>
+                  <P class=docText>Note the double dash (<SPAN 
+                  class=docEmphBold> -- 10</SPAN>) in the first form. The first 
+                  dash indicates that an option follows, while the second dash 
+                  indicates a negative number. </P>
+                  <P class=docText>Be careful when using <SPAN  
+                  class=docEmphBold>nice</SPAN> on interactive programs such as  
+                  editors, word processors, or browsers. Assigning a program a  
+                  positive nice number will most likely result in sluggish  
+                  performance. Remember, the higher the positive number, the  
+                  lower the resulting priority level.<SUP class=docFootnote>[21]</SUP> For that  
+                  reason, you should try not to assign positive nice numbers to  
+                  foreground jobs on your terminal. If the system gets busy,  
+                  your terminal could hang awaiting CPU time, which has been  
+                  sacrificed by <SPAN class=docEmphBold>nice</SPAN>. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[21]</A></SUP> The 
+                    actual scheduling priority used by the kernel is dynamic and 
+                    takes into account many more factors than the nice 
+                  value.</P></BLOCKQUOTE><A 
+name=lpicertnut-CHP-3-SECT-6.1.1></A>
+                  <H5 class=docSection3Title>3.6.1.1 Changing nice numbers on 
+                  running processes</H5>
+                  <P class=docText>The <SPAN class=docEmphBold>nice</SPAN> 
+                  command only works to change the nice number for new processes 
+                  at the time that they're started<SPAN 
+                  class=docEmphasis>.</SPAN> To modify a running program, use 
+                  the <SPAN class=docEmphBold>renice</SPAN> command. </P><A 
+                  name=p1_ch03-_Toc381838507></A><A name=IXT-3-349996></A><A 
+                  name=IXT-3-349997></A><A name=IXT-3-349998></A><A 
+                  name=IXT-3-349999></A><A name=IXTR3-22></A><A 
+                  name=IXTR3-23></A><A name=IXTR3-24></A><A name=IXTR3-25></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>renice</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838508></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A 
+                  name=IXT-3-349996></A><A name=IXT-3-349997></A><PRE>renice [+|-]nicenumber [option] targets</PRE><A 
+                  name=p1_ch03-_Toc381838509></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Alter the <I>nicenumber</I> to set the 
+                  scheduling priority of one or more running <I>target</I> 
+                  processes. By default, <SPAN class=docEmphBold>renice</SPAN> 
+                  assumes that the <I>targets</I> are numeric PIDs. One or more 
+                  <I>option</I>s may also be used to interpret <I>targets</I> as 
+                  processes owned by specific users. </P><A 
+                  name=p1_ch03-_Toc381838510></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Interpret <I>targets</I> as usernames, 
+                    affecting all processes owned by those users. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Interpret <I>targets</I> as PIDs (the 
+                    default).</P></DD></DL><A name=p1_ch03-_Toc381838511></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>This command will lower the priority of the 
+                  process with PID 501 by increasing its <SPAN 
+                  class=docEmphBold>nice</SPAN><I> </I>number to the maximum: 
+                  </P><PRE>$ <B>renice 20 501</B></PRE>
+                  <P class=docText>The following command can be used to increase 
+                  the priority of all of user <I>jdean</I>'s processes as well 
+                  as the process with PID 501: </P><PRE># <B>renice -10 -u jdean -p 501</B></PRE>
+                  <P class=docText>In this command, <SPAN 
+                  class=docEmphBold>-10</SPAN> indicates a <SPAN 
+                  class=docEmphBold>nice</SPAN> value of negative 10, thus 
+                  giving PID 501 a higher priority on the system. A dash isn't 
+                  used for the <SPAN class=docEmphBold>nice</SPAN> value because 
+                  the dash could be confused for an option, such as <SPAN 
+                  class=docEmphBold>-u</SPAN>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure to know the range and meaning  
+                        of <SPAN class=docEmphBold>nice</SPAN> numbers and how  
+                        to change them for new and existing processes. Also note  
+                        that <SPAN class=docEmphBold>nice</SPAN> and <SPAN  
+                        class=docEmphBold>renice</SPAN> specify their numbers  
+                        differently. With <SPAN class=docEmphBold>nice</SPAN>, a  
+                        <A name=IXT-3-349998></A>leading dash can indicate a  
+                        nice number (e.g., <SPAN class=docEmphBold>-10</SPAN>),  
+                        including a negative one with a second dash (e.g., <SPAN  
+                        class=docEmphBold>-- 10</SPAN>). On the other hand,  
+                        <SPAN class=docEmphBold>renice</SPAN> does not need the  
+                        hyphen. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>The <SPAN class=docEmphBold>renice</SPAN>  
+                  command is handy for managing groups of processes,  
+                  particularly to affect user processes by username. In  
+                  addition, if you're observing processes in <SPAN  
+                  class=docEmphBold>top</SPAN><I>,</I> you may change nice  
+                  numbers for them interactively from within the <SPAN  
+                  class=docEmphBold>top</SPAN><A name=IXT-3-349999></A> program  
+                  (discussed in Objective 5) by using the single-keystroke <SPAN  
+                  class=docEmphBold>r</SPAN> command<SPAN  
+                  class=docEmphasis>.</SPAN> You will be prompted for the PID of  
+                  the process whose nice number you wish to change and for the  
+                  new nice number (if you are the superuser, you may enter  
+                  negative values). The new nice number will be displayed by  
+                  <SPAN class=docEmphBold>top</SPAN> in the column labeled  
+                  <I>NI</I> for the process you specify.<A name=IXTR3-22></A> <A  
+                  name=IXTR3-23></A><A name=IXTR3-24></A><A 
+                  name=IXTR3-25></A></P><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="03-6.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-6
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)437ms
+(xml)422ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)891ms
+--></BODY></HTML>

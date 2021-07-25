@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0165)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-0.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-0.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Part I:&nbsp; General 
+            Linux Exam 101</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4></A>
+                  <H2 class=docChapterTitle>Chapter 4. Devices, Linux 
+                  Filesystems, and the Filesystem Hierarchy Standard (Topic 
+                  2.4)</H2>
+                  <P class=docText><A name=lpicertnut-IDXTERM-272></A>Filesystem 
+                  management is among the most critical activities that you must 
+                  perform to maintain a stable Linux system. In simple 
+                  situations, after a successful installation, you may never 
+                  have a problem or need to manage filesystem specifics. 
+                  However, understanding how to configure and maintain Linux 
+                  filesystems is essential to safely manage your system and to 
+                  pass Exam 101. This section contains these Objectives: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 1: Create 
+                    Partitions and Filesystems</SPAN></I> 
+                    <DD>
+                    <P class=docList>Most Linux distributions will automate 
+                    initial filesystem creation on your system for you. However, 
+                    subsequent management of partitions, particularly on large 
+                    systems and multiboot configurations, requires specific 
+                    knowledge. This Objective involves the creation of disk 
+                    partitions using <SPAN class=docEmphBold>fdisk,</SPAN><I> 
+                    </I>and filesystem creation using <SPAN 
+                    class=docEmphBold>mkfs</SPAN>. Weight: 3. </P>
+                    <DT><I><SPAN class=docPubcolor>Objective 2: Maintain the 
+                    Integrity of Filesystems</SPAN></I> 
+                    <DD>
+                    <P class=docList>At one time or another, you will probably 
+                    find yourself stuck with an ailing filesystem. It could be a 
+                    small problem resulting from a system crash, or it could be 
+                    a total disk failure. Whatever the cause, you must be 
+                    prepared to work with <SPAN class=docEmphBold>fsck</SPAN> to 
+                    repair problems. This Objective also covers the handy <SPAN 
+                    class=docEmphBold>du</SPAN> and <SPAN 
+                    class=docEmphBold>df</SPAN> commands, which will help you 
+                    with monitoring filesystem properties. Weight: 5. </P>
+                    <DT><I><SPAN class=docPubcolor>Objective 3: Control 
+                    Filesystem Mounting and Unmounting</SPAN></I> 
+                    <DD>
+                    <P class=docList>Under Linux, a filesystem is not available 
+                    for use unless it is <SPAN class=docEmphasis>mounted</SPAN>. 
+                    When the system boots, it mounts its filesystems according 
+                    to instructions in the important <I>/etc/fstab</I> file. 
+                    This Objective covers the management of this file, manual 
+                    mounting of filesystems, and configuration of user-mountable 
+                    removable filesystems. Weight: 3. </P>
+                    <DT><I><SPAN class=docPubcolor>Objective 4: Set and View 
+                    Disk Quotas</SPAN></I> 
+                    <DD>
+                    <P class=docList>When running a system with multiple users, 
+                    you may find some of them competing for disk space. Managing 
+                    that problem gets much easier when you enforce <SPAN 
+                    class=docEmphasis>disk quotas</SPAN>, which allocate finite 
+                    amounts of space to individual user accounts. Setup and 
+                    management of quotas is covered by this Objective. Weight: 
+                    1. </P>
+                    <DT><I><SPAN class=docPubcolor>Objective 5: Use File 
+                    Permissions to Control Access to Files</SPAN></I> 
+                    <DD>
+                    <P class=docList>Linux file permissions are a critical part 
+                    of any system's security policy. This Objective covers 
+                    permissions on files and directories, including special 
+                    modes. Weight: 3. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 6: Manage File 
+                    Ownership</SPAN></I> 
+                    <DD>
+                    <P class=docList>File ownership is a fundamental part of the 
+                    access control described in Objective 5. This Objective 
+                    covers the management of user and group ownership. Weight: 
+                    2. </P>
+                    <DT><I><SPAN class=docPubcolor>Objective 7: Create and 
+                    Change Hard and Symbolic Links</SPAN></I> 
+                    <DD>
+                    <P class=docList>The Linux filesystem allows the creation of 
+                    filesystem links. Links allow multiple filenames to point to 
+                    the same file, a handy way of having the same file appear in 
+                    more than one place or under different names. This Objective 
+                    covers both hard and soft (symbolic) links. Weight: 2. </P>
+                    <DT><I><SPAN class=docPubcolor>Objective 8: Find System 
+                    Files and Place Files in the Correct Location</SPAN></I> 
+                    <DD>
+                    <P class=docList>Linux distributions share a common <SPAN 
+                    class=docEmphasis>Filesystem Hierarchy Standard</SPAN> 
+                    (FHS), which describes where files are located in the 
+                    filesystem and how they are named. This Objective covers 
+                    that standard, as well as methods of locating files. Weight: 
+                    2. </P></DD></DL>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)172ms
+(xsl)0ms
+(ent)0ms
+(buf)0ms
+
+(tot)593ms
+--></BODY></HTML>

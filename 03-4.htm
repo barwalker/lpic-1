@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-4.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-4.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux   
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU   
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR>  
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-4></A>
+                  <H3 class=docSection1Title>3.4 Objective 4: Use Unix Streams, 
+                  Pipes,and Redirects</H3>
+                  <P class=docText>Among the many beauties of the Linux and Unix   
+                  systems is the notion that <SPAN class=docEmphasis>everything   
+                  is a file</SPAN>. Things such as disk drives and their   
+                  partitions, tape drives, terminals, serial ports, the mouse,   
+                  and even audio are mapped into the filesystem. This mapping   
+                  allows programs to interact with many different devices and   
+                  files in the same way, simplifying their interfaces. Each   
+                  device that uses the file metaphor is given a <I>device   
+                  file</I><A name=IXT-3-349942></A>, which is a special object   
+                  in the filesystem that provides an interface to the device.   
+                  The kernel associates device drivers with various device   
+                  files, which is how the system manages the illusion that   
+                  devices can be accessed as if they were files. Using a   
+                  terminal as an example, a program reading from the terminal's   
+                  device file will receive characters typed at the keyboard.   
+                  Writing to the terminal causes characters to appear on the   
+                  screen. While it may seem odd to think of your terminal as a   
+                  file, the concept provides a unifying simplicity to Linux and   
+                  Linux programming. </P><A name=lpicertnut-CHP-3-SECT-4.1></A>  
+                  <H4 class=docSection2Title>3.4.1 Standard I/O and Default File 
+                  Descriptors</H4>
+                  <P class=docText><SPAN class=docEmphasis>Standard I/O</SPAN><A 
+                  name=IXT-3-349943></A> is a capability of the shell, used with   
+                  all text-based Linux utilities to control and direct program   
+                  input, output, and error information. When a program is   
+                  launched, it is automatically provided with three <SPAN   
+                  class=docEmphasis>file descriptors</SPAN><A 
+                  name=IXT-3-349944></A>. File descriptors are regularly used in   
+                  programming and serve as a "handle" of sorts to another file.   
+                  Standard I/O creates the following file descriptors: </P><A   
+                  name=IXT-3-349945></A><A name=IXT-3-349946></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor>Standard input (abbreviated 
+                    <I>stdin</I>)</SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349945></A><A 
+                    name=IXT-3-349946></A>This file descriptor is a text input   
+                    stream<SPAN class=docEmphasis>.</SPAN> By default it is   
+                    attached to your keyboard<SPAN class=docEmphasis>.</SPAN>   
+                    When you type characters into an interactive text program,   
+                    you are feeding them to standard input<SPAN   
+                    class=docEmphasis>.</SPAN> As you've seen, some programs   
+                    take one or more filenames as command-line arguments and   
+                    ignore standard input<SPAN class=docEmphasis>.</SPAN>   
+                    Standard input is also known as <SPAN class=docEmphasis>file   
+                    descriptor 0</SPAN>. </P></DD></DL><A name=IXT-3-349947></A><A 
+                  name=IXT-3-349948></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor>Standard output (abbreviated 
+                    <I>stdout</I>)</SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349947></A><A 
+                    name=IXT-3-349948></A>This file descriptor is a text output   
+                    stream for normal program output<SPAN   
+                    class=docEmphasis>.</SPAN> By default it is attached to your   
+                    terminal (or terminal window)<SPAN   
+                    class=docEmphasis>.</SPAN> Output generated by commands is   
+                    written to standard output for display<SPAN   
+                    class=docEmphasis>.</SPAN> Standard output is also known as   
+                    <SPAN class=docEmphasis>file descriptor 1</SPAN>. 
+                  </P></DD></DL><A name=IXT-3-349949></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor>Standard error (abbreviated 
+                    <I>stderr</I>)</SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-3-349949></A>This file   
+                    descriptor is also a text output stream, but it is used   
+                    exclusively for errors or other information unrelated to the   
+                    successful results of your command<SPAN   
+                    class=docEmphasis>.</SPAN> By default standard error is   
+                    attached to your terminal just like standard output<SPAN   
+                    class=docEmphasis>.</SPAN> This means that standard output   
+                    and standard error are commingled in your display, which can   
+                    be confusing<SPAN class=docEmphasis>.</SPAN> You'll see ways   
+                    to handle this later<SPAN class=docEmphasis>.</SPAN>   
+                    Standard error is also known as <SPAN class=docEmphasis>file   
+                    descriptor 2</SPAN>. </P></DD></DL>
+                  <P class=docText>Standard output and standard error are 
+                  separated because it is often useful to process normal program 
+                  output differently than errors. </P>
+                  <P class=docText>The standard I/O file descriptors are used in 
+                  the same way as those created during program execution to read 
+                  and write disk files. They enable you to tie commands together 
+                  with files and devices, managing command input and output in 
+                  exactly the way you desire. The difference is they are 
+                  provided to the program by the shell by default and do not 
+                  need to be explicitly created. </P><A 
+                  name=lpicertnut-CHP-3-SECT-4.2></A>
+                  <H4 class=docSection2Title>3.4.2 Pipes</H4>
+                  <P class=docText><A name=IXT-3-349950></A>From a program's   
+                  point of view there is no difference between reading text data   
+                  from a file and reading it from your keyboard. Similarly,   
+                  writing text to a file and writing text to a display are   
+                  equivalent operations. As an extension of this idea, it is   
+                  also possible to tie the output of one program to the input of   
+                  another. This is accomplished using a <I>pipe</I> (<SPAN   
+                  class=docEmphBold>|</SPAN><A name=IXT-3-349951></A>) to join   
+                  two or more commands together. For example: </P><PRE>$ <B>grep &quot;01523&quot; order* | less</B></PRE>  
+                  <P class=docText>This command searches through all files whose   
+                  names begin with <SPAN class=docEmphBold>order</SPAN> to find   
+                  lines containing the word <I>01523</I>. By creating this pipe,   
+                  the standard output of <SPAN class=docEmphBold>grep</SPAN> is   
+                  sent to the standard input of <SPAN   
+                  class=docEmphBold>less</SPAN><SPAN class=docEmphasis>.</SPAN> 
+                  The mechanics of this operation are handled by the shell and   
+                  are invisible to the user. Pipes can be used in a series of   
+                  many commands. When more than two commands are put together,   
+                  the resulting operation is known as a <SPAN   
+                  class=docEmphasis>pipeline</SPAN><A name=IXT-3-349952></A> or   
+                  <SPAN class=docEmphasis>text stream</SPAN><A 
+                  name=IXT-3-349953></A>, implying the flow of text from one   
+                  command to the next. </P>  
+                  <P class=docText>As you get used to the idea, you'll find  
+                  yourself building pipelines naturally to extract specific  
+                  information from text data sources. For example, suppose you  
+                  wish to view a sorted list of inode numbers from among the  
+                  files in your current directory. There are many ways you could  
+                  achieve this. One way would be to use <SPAN  
+                  class=docEmphBold>awk</SPAN> in a pipeline to extract the  
+                  inode number from the output of <SPAN  
+                  class=docEmphBold>ls</SPAN>, then send it on to the <SPAN  
+                  class=docEmphBold>sort</SPAN> command and finally to a pager  
+                  for viewing:<SUP class=docFootnote>[14]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[14]</A></SUP> Don't 
+                    worry about the syntax or function of these commands at this 
+                    point.</P></BLOCKQUOTE><PRE>$ <B>ls -i * | awk '{print $1}' | sort -nu | less</B></PRE>
+                  <P class=docText>The pipeline concept in particular is a 
+                  feature of Linux and Unix that draws on the fact that your 
+                  system contains a diverse set of tools for operating on 
+                  text<SPAN class=docEmphasis>.</SPAN> Combining their 
+                  capabilities can yield quick and easy ways to extract 
+                  otherwise hard to handle information. </P><A 
+                  name=lpicertnut-CHP-3-SECT-4.3></A>
+                  <H4 class=docSection2Title>3.4.3 Redirection</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-185></A>Each pipe   
+                  symbol in the previous pipelines example instructs the shell   
+                  to feed output from one command into the input of another<SPAN   
+                  class=docEmphasis>.</SPAN> This action is a special form of   
+                  <SPAN class=docEmphasis>redirection</SPAN>, which allows you   
+                  to manage the origin of input streams and the destination of   
+                  output streams. In the previous example, individual programs   
+                  are unaware that their output is being handed off to or from   
+                  another program because the shell takes care of the   
+                  redirection on their behalf. </P>  
+                  <P class=docText>Redirection can also occur to and from files.   
+                  For example, rather than sending the output of an inode list   
+                  to the pager <SPAN class=docEmphBold>less</SPAN>, it could   
+                  easily be sent directly to a file with the <SPAN   
+                  class=docEmphBold>&gt;</SPAN><A name=IXT-3-349954></A> <A   
+                  name=IXT-3-349955></A>redirection operator: </P><PRE>$ <B>ls -i * | awk '{print $1}' | sort -nu &gt; in.txt</B></PRE>  
+                  <P class=docText>By changing the last redirection operator, 
+                  the shell creates an empty file (<I>in.txt</I>), opens it for 
+                  writing, and the standard output of <SPAN 
+                  class=docEmphBold>sort</SPAN> places the results in the file 
+                  instead of on the screen. Note that, in this example, anything 
+                  sent to standard error is still displayed on the screen. </P>
+                  <P class=docText>Since the <SPAN   
+                  class=docEmphBold>&gt;</SPAN><A name=IXT-3-349956></A> <A   
+                  name=IXT-3-349957></A>redirection operator <SPAN   
+                  class=docEmphasis>creates</SPAN> files, the <SPAN   
+                  class=docEmphBold>&gt;&gt;</SPAN> <A name=IXT-3-349958></A><A   
+                  name=IXT-3-349959></A>redirection operator can be used to   
+                  append to existing files.For example, you could use the   
+                  following command to append a one-line footnote to   
+                  <I>in.txt</I>: </P><PRE>$ <B>echo &quot;end of list&quot; &gt;&gt; in.txt</B></PRE>
+                  <P class=docText>Since <I>in.txt</I> already exists, the quote 
+                  will be appended to the bottom of the existing file. If the 
+                  file didn't exist, the <SPAN class=docEmphBold>&gt;&gt;</SPAN> 
+                  operator would create the file and insert the text "end of 
+                  list" as its contents. </P>
+                  <P class=docText><A name=IXT-3-349960></A>It is important to   
+                  note that when creating files, the output redirection   
+                  operators are interpreted by the shell <SPAN   
+                  class=docEmphasis>before</SPAN> the commands are executed<SPAN   
+                  class=docEmphasis>.</SPAN> This means that any output files   
+                  created through redirection are opened first<SPAN   
+                  class=docEmphasis>.</SPAN> For this reason, you cannot modify   
+                  a file in place, like this: </P><PRE>$ <B>grep &quot;stuff&quot; file1 &gt; file1  # don't do it!</B></PRE>  
+                  <P class=docText>If <I>file1</I> contains something of 
+                  importance, this command would be a disaster because an empty 
+                  <I>file1</I> would overwrite the original. The <SPAN 
+                  class=docEmphBold>grep</SPAN> command would be last to 
+                  execute, resulting in a complete data loss from the original 
+                  <I>file1 </I>file because the file that replaced it was empty. 
+                  To avoid this problem, simply use an intermediate file and 
+                  <SPAN class=docEmphasis>then</SPAN> rename it: </P><PRE>$ <B>grep &quot;stuff&quot; file1 &gt; file2</B>
+$ <B>mv file2 file1</B></PRE>
+                  <P class=docText>Standard input can also be redirected. The <A   
+                  name=IXT-3-349961></A><A name=IXT-3-349962></A>input   
+                  redirection operator is <TT>&lt;</TT>. Using a source other   
+                  than the keyboard for a program's input may seem odd at first,   
+                  but since text programs don't care about where their standard   
+                  input streams originate, you can easily redirect input. For   
+                  example, the following command will send a mail message with   
+                  the contents of the file <I>in.txt</I> to user <I>jdean</I>:   
+                  </P><PRE>$ <B>Mail -s &quot;inode list&quot; jdean &lt; in.txt</B></PRE>
+                  <P class=docText>Normally, the <SPAN   
+                  class=docEmphBold>Mail</SPAN> program prompts the user for   
+                  input at the terminal<SPAN class=docEmphasis>.</SPAN> However   
+                  with standard input redirected <SPAN   
+                  class=docEmphasis>from</SPAN> the file <I>in.txt, </I>no user   
+                  input is needed and the command executes silently. <a href="#lpicertnut-CHP-3-TABLE-4"> Table   
+                  3-4</a> lists the common standard I/O redirections for the   
+                  <SPAN class=docEmphBold>bash</SPAN> shell, specified in the   
+                  LPI Objectives. </P><A name=p1_ch03-39-fm2xml></A>  
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="03-4.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>The <A   
+                              name=IXT-3-349963></A>redirection syntax may be   
+                              significantly different if you use another shell.   
+                              </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-3-TABLE-4></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-4. Standard I/O Redirections 
+                    for the bash shell </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Redirection Function</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Syntax for <SPAN 
+                        class=docEmphBold>bash</SPAN></P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send <I>stdout</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd &gt; file</B>
+$ <B>cmd 1&gt; file</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send <I>stderr</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd 2&gt; file</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send both <I>stdout</I> and 
+                        <I>stderr</I> to <I>file.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd &gt; file 2&gt;&amp;1</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Send <I>stdout</I> to <I>file1</I> and 
+                        <I>stderr</I> to <I>file2.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd &gt; file1 2&gt; file2</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Receive <I>stdin</I> from 
+                        <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd &lt; file</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Append <I>stdout</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd &gt;&gt; file</B>
+$ <B>cmd 1&gt;&gt; file</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Append <I>stderr</I> to 
+                      <I>file.</I></P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd 2&gt;&gt; file</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Append both <I>stdout</I> and 
+                        <I>stderr</I> to <I>file.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd &gt;&gt; file 2&gt;&amp;1</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Pipe <I>stdout</I> from <I>cmd1</I> to 
+                        <I>cmd2.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd1 | cmd2</B></PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Pipe <I>stdout</I> and 
+                        <I>stderr</I>from <I>cmd1</I> to <I>cmd2.</I> </P></TD>
+                      <TD class=docTableCell><PRE>$ <B>cmd1 2&gt;&amp;1 | cmd2</B></PRE></TD></TR></TBODY></TABLE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be prepared to demonstrate the 
+                        difference between filenames and command names in 
+                        commands using redirection operators. Also, check the 
+                        syntax on commands in redirection questions to be sure 
+                        about which command or file is a data source and which 
+                        is a destination. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-3-SECT-4.4></A>
+                  <H4 class=docSection2Title>3.4.4 Using the tee Command</H4>
+                  <P class=docText>Sometimes, you'll want to run a program and 
+                  send its output to a file while at the same time viewing the 
+                  output on the screen. The <SPAN class=docEmphBold>tee</SPAN> 
+                  utility is helpful in this situation. </P><A 
+                  name=p1_ch03-_Toc381838455></A><A name=IXT-3-349964></A><A 
+                  name=IXTR3-15></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>tee</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838456></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349964></A><PRE>tee [options] files</PRE><A 
+                  name=p1_ch03-_Toc381838457></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Read from standard input and write both to 
+                  one or more <I>files</I> and to standard output (analogous to 
+                  a tee junction in a pipe). </P><A 
+                  name=p1_ch03-_Toc381838458></A>
+                  <H4 class=docRefsectTitle>Option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Append to <I>files</I> rather than 
+                    overwriting them.</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838459></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Suppose you're running a pipeline of commands 
+                  <SPAN class=docEmphBold>cmd1</SPAN>, <SPAN 
+                  class=docEmphBold>cmd2</SPAN>, and <SPAN 
+                  class=docEmphBold>cmd3</SPAN>: </P><PRE>$ <B>cmd1 | cmd2 | cmd3 &gt; file1</B></PRE>
+                  <P class=docText>This sequence puts the ultimate output of the 
+                  pipeline into <I>file1</I>. However, you may also be 
+                  interested in the intermediate result of <SPAN 
+                  class=docEmphBold>cmd1</SPAN>. To create a new 
+                  <I>file_cmd1</I> containing those results, use <SPAN 
+                  class=docEmphBold>tee</SPAN>: </P><PRE>$ <B>cmd1 | tee file_cmd1 | cmd2 | cmd3 &gt; file1</B></PRE>
+                  <P class=docText>The results in <I>file1</I> will be the same   
+                  as in the original example, and the intermediate results of   
+                  <SPAN class=docEmphBold>cmd1</SPAN> will be placed in   
+                  <I>file_cmd1.</I><A name=IXTR3-15></A> </P><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="03-4.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-4
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)407ms
+(xml)171ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)594ms
+--></BODY></HTML>

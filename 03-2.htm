@@ -1,0 +1,1153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU 
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-2></A>
+                  <H3 class=docSection1Title>3.2 Objective 2: Process Text 
+                  Streams Using Text-Processing Filters</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-124></A>Many of 
+                  the commands on Linux systems are intended to be used as <SPAN 
+                  class=docEmphasis>filters</SPAN><A name=IXT-3-349907></A>, 
+                  which modify text in helpful ways. Text fed into the command's 
+                  standard input or read from files is modified in some useful 
+                  way and sent to standard output or to a new file. Multiple 
+                  commands can be combined to produce <SPAN 
+                  class=docEmphasis>text streams,</SPAN><A 
+                  name=IXT-3-349908></A> which are modified at each step in a 
+                  pipeline formation. This section describes basic use and 
+                  syntax for the filtering commands important for Exam 101. 
+                  Refer to a Linux command reference for full details on each 
+                  command and the many other available commands. </P><A 
+                  name=p1_ch03-_Toc381838336></A><A name=IXT-3-349909></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>cut</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-7-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349909></A><PRE>cut options [files]</PRE><A 
+                  name=p1_ch03-_Toc381838338></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Cut out (that is, print) selected columns or 
+                  fields from one or more <I>files</I>. The source file is not 
+                  changed. This is useful if you need quick access to a vertical 
+                  slice of a file. By default, the slices are delimited by a 
+                  <SPAN class=docEmphBold>tab</SPAN>. </P><A 
+                  name=p1_ch03-_Toc381838339></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-b</SPAN> <I>list</I></SPAN> 
+                    <DD>
+                    <P class=docList>Print bytes in <I>list</I> 
+                    positions.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN> <I>list</I></SPAN> 
+                    <DD>
+                    <P class=docList>Print characters in <I>list</I> 
+                    columns.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> <I>delim</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set field delimiter for <SPAN 
+                    class=docEmphBold>-f</SPAN>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>list</I></SPAN> 
+                    <DD>
+                    <P class=docList>Print <I>list</I> fields.</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838340></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Show usernames (in the first colon-delimited 
+                  field) from <I>/etc/passwd</I>: </P><PRE>$ <B>cut -d: -f1 /etc/passwd</B></PRE>
+                  <P class=docText>Show first column of <I>/etc/passwd</I>:</P><PRE>$ <B>cut -c 1 /etc/passwd</B></PRE><A 
+                  name=p1_ch03-_Toc381838341></A><A name=IXT-3-349910></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>expand</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838342></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349910></A><PRE>expand [options] files</PRE><A 
+                  name=p1_ch03-_Toc381838343></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Convert tabs to spaces. Sometimes the use of 
+                  tab characters can make output that is attractive on one 
+                  output device look bad on another. This command eliminates 
+                  tabs and replaces them with the equivalent number of spaces. 
+                  By default, tabs are assumed to be eight spaces apart. </P><A 
+                  name=p1_ch03-_Toc381838344></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>tabs</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specify tab stops, in place of default 
+                    8.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Initial; convert only at start of 
+                    lines.</P></DD></DL><A name=p1_ch03-_Toc381838345></A><A 
+                  name=IXT-3-349911></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>fmt</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-8-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax </H4><A 
+name=IXT-3-349911></A><PRE>fmt [options] [files]</PRE><A 
+                  name=p1_ch03-_Toc381838347></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Format text to a specified width by filling 
+                  lines and removing newline characters. Multiple <I>files</I> 
+                  from the command line are concatenated. </P><A 
+                  name=p1_ch03-_Toc381838348></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use uniform spacing: one space between 
+                    words and two spaces between sentences. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN> <I>width</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set line width to <I>width</I>. The default 
+                    is 75 characters. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838349></A><A name=IXT-3-349912></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>head</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838350></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349912></A><PRE>head [options] [files]</PRE><A 
+                  name=p1_ch03-_Toc381838351></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Print the first few lines of one or more 
+                  files (the "head" of the file or files). When more than one 
+                  file is specified, a header is printed at the beginning of 
+                  each file, and each is listed in succession. </P><A 
+                  name=p1_ch03-_Toc381838352></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN> <I>n</I></SPAN> 
+                    <DD>
+                    <P class=docList>Print the first <I>n</I> bytes, or if 
+                    <I>n</I> is followed by <I>k</I> or <I>m</I>, print the 
+                    first <I>n </I>kilobytes or megabytes, respectively. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN> <I>n</I></SPAN> 
+                    <DD>
+                    <P class=docList>Print the first <I>n </I>lines. The default 
+                    is 10.</P></DD></DL><A name=p1_ch03-_Toc381838353></A><A 
+                  name=IXT-3-349913></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>join</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838354></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349913></A><PRE>join [options] file1 file2</PRE><A 
+                  name=p1_ch03-_Toc381838355></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Print a line for each pair of input lines, 
+                  one each from <I>file1</I> and <I>file2</I>, that have 
+                  identical <SPAN class=docEmphasis>join fields</SPAN>. This 
+                  function could be thought of as a very simple database table 
+                  join, where the two files share a common index just as two 
+                  tables in a database would. </P><A 
+                  name=p1_ch03-_Toc381838356></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-j1</SPAN> <I>field</I></SPAN> 
+                    <DD>
+                    <P class=docList>Join on <I>field </I>of file1.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-j2</SPAN> <I>field</I></SPAN> 
+                    <DD>
+                    <P class=docList>Join on <I>field </I>of file2.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-j</SPAN> <I>field</I></SPAN> 
+                    <DD>
+                    <P class=docList>Join on <I>field</I> of both <I>file1</I> 
+                    and <I>file2</I>. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838357></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Suppose <I>file1 </I>contains the 
+                  following:</P><PRE>1 one
+2 two
+3 three</PRE>
+                  <P class=docText>and <SPAN class=docEmphasis>file2</SPAN> 
+                  contains:</P><PRE>1 11
+2 22
+3 33</PRE>
+                  <P class=docText>Issuing the command:</P><PRE>$ <B>join -j 1 file1 file2</B></PRE>
+                  <P class=docText>yields the following output:</P><PRE>1 one 11
+2 two 22
+3 three 33</PRE><A name=p1_ch03-_Toc381838358></A><A 
+                  name=IXT-3-349914></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>nl</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838359></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349914></A><PRE>nl [options] [files]</PRE><A 
+                  name=p1_ch03-_Toc381838360></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Number the lines of <I>files</I>, which are 
+                  concatenated in the output. This command is used for numbering 
+                  lines in the body of text, including special header and footer 
+                  options normally excluded from the line numbering. The 
+                  numbering is done for each <SPAN class=docEmphasis>logical 
+                  page</SPAN>, which is defined as having a header, a body, and 
+                  a footer. These are delimited by the special strings 
+                  <TT>\:\:\:</TT>, <TT>\:\:</TT>, and <TT>\:</TT>, respectively. 
+                  </P><A name=p1_ch03-_Toc381838361></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-b</SPAN> <I>style</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set body numbering style to <I>style</I>, 
+                    <SPAN class=docEmphBold>t</SPAN> by default. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>style</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set footer number style to <I>style</I>, 
+                    <SPAN class=docEmphBold>n</SPAN> by default. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN> <I>style</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set header numbering style to <I>style</I>, 
+                    <SPAN class=docEmphBold>n</SPAN> by default. </P></DD></DL>
+                  <P class=docText>Styles can be in these forms:</P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>A</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Number all lines.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>t</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Only number non-empty lines.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Do not number lines.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>p</SPAN><TT><I>REGEXP</I></TT></SPAN> 
+                    <DD>
+                    <P class=docList>Only number lines that contain a match for 
+                    regular expression <TT><I>REGEXP</I></TT>. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838362></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Suppose file <SPAN 
+                  class=docEmphasis>file1</SPAN> contains the following 
+text:</P><PRE>\:\:\:
+header
+\:\:
+line1
+line2
+line3
+\:
+footer
+\:\:\:
+header
+\:\:
+line1
+line2
+line3
+\:
+footer</PRE>
+                  <P class=docText>If the following command is given:</P><PRE>$ <B>nl -h a file1</B></PRE>
+                  <P class=docText>the output would yield numbered headers and 
+                  body lines but no numbering on footer lines. Each new header 
+                  represents the beginning of a new logical page and thus a 
+                  restart of the numbering sequence: </P><PRE>1 header
+
+2 line1
+3 line2
+4 line3
+
+footer
+
+1 header
+
+2 line1
+3 line2
+4 line3
+
+footer</PRE><A name=p1_ch03-_Toc381838363></A><A 
+                  name=IXT-3-349915></A><A name=IXT-3-349916></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>od</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-12-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349915></A><PRE>od [options] [files]</PRE><A 
+                  name=p1_ch03-_Toc381838365></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Dump files in <A name=IXT-3-349916></A>octal 
+                  and other formats. This program prints a listing of a file's 
+                  contents in a variety of formats. It is often used to examine 
+                  the byte codes of binary files but can be used on any file or 
+                  input stream. Each line of output consists of an octal byte 
+                  offset from the start of the file followed by a series of 
+                  tokens indicating the contents of the file. Depending on the 
+                  options specified, these tokens can be ASCII, decimal, 
+                  hexadecimal, or octal representations of the contents. </P><A 
+                  name=p1_ch03-_Toc381838366></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>type</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specify the <I>type</I> of output. Typical 
+                    types include: </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>A</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Named character</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>ASCII character or backslash 
+                  escape</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>O</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Octal (the default)</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>x</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Hexadecimal</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838367></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>If <I>file1</I> contains:</P><PRE>a1\n
+A1\n</PRE>
+                  <P class=docText>where <SPAN class=docEmphBold>\n</SPAN> 
+                  stands for the newline character. The <SPAN 
+                  class=docEmphBold>od</SPAN> command specifying named 
+                  characters yields the following output: </P><PRE>$ <B>od -t a file1</B>
+00000000   a   1  nl   A   1  nl
+00000006</PRE>
+                  <P class=docText>A slight nuance is the ASCII character mode. 
+                  This <SPAN class=docEmphBold>od</SPAN> command specifying 
+                  named characters yields the following output with 
+                  backslash-escaped characters rather than named characters: 
+</P><PRE>$ <B>od -t c file1</B>
+00000000   a   1  \n   A   1  \n
+00000006</PRE>
+                  <P class=docText>With numeric output formats, you can instruct 
+                  <SPAN class=docEmphBold>od</SPAN> on how many bytes to use in 
+                  interpreting each number in the data. To do this, follow the 
+                  type specification by a decimal integer. This <SPAN 
+                  class=docEmphBold>od</SPAN> command specifying single-byte hex 
+                  results yields the following output: </P><PRE>$ <B>od -t x1 file1</B>
+00000000  61 31 0a 41 31 0a
+00000006</PRE>
+                  <P class=docText>Doing the same thing in octal notation 
+                  yields:</P><PRE>$ <B>od -t o1 file1</B>
+00000000  141 061 012 101 061 012
+00000006</PRE>
+                  <P class=docText>If you examine an ASCII chart with hex and 
+                  octal representations, you'll see that these results match 
+                  those tables. </P><A name=p1_ch03-_Toc381838368></A><A 
+                  name=IXT-3-349917></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>paste</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-13-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349917></A><PRE>paste [options] files</PRE><A 
+                  name=p1_ch03-_Toc381838370></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Paste together corresponding lines of one or 
+                  more <SPAN class=docEmphasis>files</SPAN> into vertical 
+                  columns. </P><A name=p1_ch03-_Toc381838371></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN><I>'n'</I></SPAN> 
+                    <DD>
+                    <P class=docList>Separate columns with character <I>n</I> in 
+                    place of the default <SPAN class=docEmphBold>tab</SPAN>. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Merge lines from one file into a single 
+                    line. When multiple files are specified, their contents are 
+                    placed on individual lines of output, one per file. 
+                  </P></DD></DL>
+                  <P class=docText>For the following three examples, 
+                  <I>file1</I> contains:</P><PRE>1
+2
+3</PRE>
+                  <P class=docText>and <SPAN class=docEmphasis>file2</SPAN> 
+                  contains:</P><PRE>A
+B
+C</PRE><A name=p1_ch03-_Toc381838372></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>A simple paste creates columns from each file 
+                  in standard output:</P><PRE>$ <B>paste file1 file2</B>
+1    A
+2    B
+3    C</PRE><A name=p1_ch03-_Toc381838373></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>The column separator option yields columns 
+                  separated by the specified character: </P><PRE>$ <B>paste -d'@' file1 file2</B>
+1@A
+2@B
+3@C</PRE><A name=p1_ch03-_Toc381838374></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>The single-line option (<SPAN 
+                  class=docEmphBold>-s</SPAN>) yields a line for each file: </P><PRE>$ <B>paste -s file1 file2</B>
+1    2    3
+A    B    C</PRE><A name=p1_ch03-_Toc381838375></A><A 
+                  name=IXT-3-349918></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>pr</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-14-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349918></A><PRE>pr [options] [file]</PRE><A 
+                  name=p1_ch03-_Toc381838377></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Convert a text <I>file</I> into a paginated, 
+                  columnar version, with headers and page fills. This command is 
+                  convenient for yielding nice output, such as for a line 
+                  printer from raw uninteresting text files. The header will 
+                  consist of the date and time, the filename, and a page number. 
+                  </P><A name=p1_ch03-_Toc381838378></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Double space.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN> <I>header</I></SPAN> 
+                    <DD>
+                    <P class=docList>Use <I>header</I> in place of the filename 
+                    in the header. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN> <I>lines</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set page length to <I>lines</I>. The 
+                    default is 66.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-o</SPAN> <I>width</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the left margin to 
+                    <I>width</I>.</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838379></A><A name=IXT-3-349919></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>split</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-15-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349919></A><PRE>split [option] [infile] [outfile]</PRE><A 
+                  name=p1_ch03-_Toc381838381></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Split <I>infile</I> into a specified number 
+                  of line groups, with output going into a succession of files, 
+                  <I>outfileaa</I>, <I>outfileab</I>, and so on (the default is 
+                  <I>xaa</I>, <I>xab</I>, etc.). The <I>infile </I>remains 
+                  unchanged. This command is handy if you have a very long text 
+                  file that needs to be reduced to a succession of smaller 
+                  files. This was often done to email large files in smaller 
+                  chunks, because it was at one time considered bad practice to 
+                  send single large email messages. </P><A 
+                  name=p1_ch03-_Toc381838382></A>
+                  <H4 class=docRefsectTitle>Frequently used option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Split the <I>infile</I> into <I>n</I>-line 
+                    segments. The default is 1000. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838383></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Suppose <I>file1</I> contains:</P><PRE>1  one
+2  two
+3  three
+4  four
+5  five
+6  six</PRE>
+                  <P class=docText>Then the command:</P><PRE>$ <B>split -2 file1 splitout_</B></PRE>
+                  <P class=docText>yields as output three new files, 
+                  <I>splitout_aa, splitout_ab, </I>and <I>splitout_ac</I>. The 
+                  file <I>splitout_aa</I> contains: </P><PRE>1  one
+2  two</PRE>
+                  <P class=docText><I>splitout_ab</I> contains:</P><PRE>3  three
+4  four</PRE>
+                  <P class=docText>and <I>splitout_ac</I> contains:</P><PRE>5  five
+6  six</PRE><A name=p1_ch03-_Toc381838384></A><A 
+                  name=IXT-3-349920></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>tac</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838385></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349920></A><PRE>tac [file]</PRE><A name=p1_ch03-_Toc381838386></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>This command is named as an opposite for the 
+                  <SPAN class=docEmphBold>cat</SPAN> command, which simply 
+                  prints text files to standard output. In this case, <SPAN 
+                  class=docEmphBold>tac</SPAN><I> </I>prints the text files to 
+                  standard output with lines in reverse order. </P><A 
+                  name=p1_ch03-_Toc381838387></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Suppose <I>file1</I> contains:</P><PRE>1  one
+2  two
+3  three</PRE>
+                  <P class=docText>Then the command:</P><PRE>$ <B>tac file1</B></PRE>
+                  <P class=docText>yields as output:</P><PRE>3  three
+2  two
+1  one</PRE><A name=p1_ch03-_Toc381838388></A><A 
+                  name=IXT-3-349921></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>tail</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838389></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349921></A><PRE>tail [options] [files]</PRE><A 
+                  name=p1_ch03-_Toc381838390></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Print the last few lines of one or more 
+                  <I>files</I> (the "tail" of the file or files). When more than 
+                  one file is specified, a header is printed at the beginning of 
+                  each file, and each is listed in succession. </P><A 
+                  name=p1_ch03-_Toc381838391></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN> <I>n</I></SPAN> 
+                    <DD>
+                    <P class=docList>This option prints the last <I>n</I> bytes, 
+                    or if <I>n </I>is followed by <I>k </I>or <I>m</I>, the last 
+                    <I>n </I>kilobytes or megabytes, respectively. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Follow the output dynamically as new lines 
+                    are added to the bottom of a file. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN> <I>m</I></SPAN> 
+                    <DD>
+                    <P class=docList>Prints the last <I>m</I> lines. The default 
+                    is 10.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Continuously display a file as it is 
+                    actively written by another process. This is useful for 
+                    watching log files as the system runs. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838392></A><A name=IXT-3-349922></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>tr</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-16-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349922></A><PRE>tr [options] [[string1 [string2]]</PRE><A 
+                  name=p1_ch03-_Toc381838394></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Translate characters from <I>string1</I> to 
+                  the corresponding characters in <I>string2</I>. <SPAN 
+                  class=docEmphBold>tr</SPAN> does <SPAN 
+                  class=docEmphasis>not</SPAN> have file arguments and therefore 
+                  must use standard input and output. If <I>string1</I> and 
+                  <I>string2</I> specify ranges (<TT>a-z</TT> or <TT>A-Z</TT>), 
+                  they should represent the same number of characters. </P><A 
+                  name=p1_ch03-_Toc381838395></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Delete characters in <I>string1</I> from 
+                    the output.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Squeeze out repeated output characters in 
+                    <I>string1</I>. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838396></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>To change all lowercase characters in <SPAN 
+                  class=docEmphasis>file1</SPAN> to uppercase, use either of 
+                  these commands: </P><PRE>$ <B>cat file1 | tr a-z A-Z</B></PRE>
+                  <P class=docText>or:</P><PRE>$ <B>tr a-z A-Z &lt; file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838397></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>To suppress repeated "a" characters from 
+                  <I>file1</I>: </P><PRE>$ <B>cat file1 | tr -s a</B></PRE><A 
+                  name=p1_ch03-_Toc381838398></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>To remove all "a," "b," and "c" characters 
+                  from <I>file1</I>: </P><PRE>$ <B>cat file1 | tr -d abc</B></PRE><A 
+                  name=p1_ch03-_Toc381838399></A><A name=IXT-3-349923></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>wc</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-17-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349923></A><PRE>wc [options] [files] </PRE><A 
+                  name=p1_ch03-_Toc381838401></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Print counts of characters, words, and lines 
+                  for <I>files</I>. When multiple files are listed, statistics 
+                  for each file output on a separate line with a cumulative 
+                  total output last. </P><A name=p1_ch03-_Toc381838402></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the character count only.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the line count only.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the word count only.</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838403></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Show all counts and totals for <I>file1</I>, 
+                  <I>file2</I>, and <I>file3</I>: </P><PRE>$ <B>wc file[123]</B></PRE><A 
+                  name=p1_ch03-_Toc381838404></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Count the number of lines in 
+                  <I>file1</I><SPAN class=docEmphasis>:</SPAN> </P><PRE>$ <B>wc -l file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838405></A><A name=IXT-3-349924></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>xargs</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-19-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A name=IXT-3-349924></A><PRE>xargs [options] [command] [initial-arguments]</PRE><A 
+                  name=p1_ch03-20-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Execute <I>command</I> followed by its 
+                  optional <I>initial-arguments</I> and append additional 
+                  arguments found on standard input. Typically, the additional 
+                  arguments are filenames in quantities too large for a single 
+                  command line. <SPAN class=docEmphBold>xargs</SPAN> runs 
+                  <I>command</I> multiple times to exhaust all arguments on 
+                  standard input. </P><A name=p1_ch03-21-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN> <I>maxargs</I></SPAN> 
+                    <DD>
+                    <P class=docList>Limit the number of additional arguments to 
+                    <I>maxargs</I> for each invocation of <I>command</I>. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Interactive mode. Prompt the user for each 
+                    execution of <I>command</I>. </P></DD></DL><A 
+                  name=p1_ch03-22-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Use <SPAN class=docEmphBold>grep</SPAN> to 
+                  search a long list of files, one by one, for the word "linux": 
+                  </P><PRE>$ <B>find / -type f | xargs -n 1 grep linux</B></PRE>
+                  <P class=docText><SPAN class=docEmphBold>find</SPAN> searches 
+                  for normal files (<SPAN class=docEmphBold>-type f</SPAN> ) 
+                  starting at the root directory. <SPAN 
+                  class=docEmphBold>xargs</SPAN> executes <SPAN 
+                  class=docEmphBold>grep</SPAN> once for each of them due to the 
+                  <SPAN class=docEmphBold>-n 1</SPAN> option. </P><A 
+                  name=lpicertnut-CHP-3-SECT-2.1></A>
+                  <H4 class=docSection2Title>3.2.1 The Stream Editor, sed</H4>
+                  <P class=docText>Another filtering program found on nearly 
+                  every Unix system is <SPAN class=docEmphBold>sed</SPAN>, the 
+                  <SPAN class=docEmphasis>stream editor</SPAN>. It is called a 
+                  stream editor because it is intended as a filter, with text 
+                  usually flowing from standard input, through the utility, to 
+                  standard output. Unlike the previously listed commands, <SPAN 
+                  class=docEmphBold>sed</SPAN> is a programmable utility with a 
+                  range of capabilities. During processing, <SPAN 
+                  class=docEmphBold>sed</SPAN> interprets instructions from a 
+                  <SPAN class=docEmphasis>sed script</SPAN>, processing the text 
+                  according to those instructions. The script may be a single 
+                  command or a longer list of commands. It is important to 
+                  understand <SPAN class=docEmphBold>sed</SPAN> and its use for 
+                  Exam 101, although detailed knowledge is not required or 
+                  offered in this brief introduction. </P>
+                  <P class=docText>The <SPAN class=docEmphBold>sed</SPAN> 
+                  utility is usually used either to automate repetitive editing 
+                  tasks or to process text in pipes of Unix commands (see 
+                  Objective 4). The scripts that <SPAN 
+                  class=docEmphBold>sed</SPAN> executes can be single commands 
+                  or more complex lists of editing instructions. It is invoked 
+                  using one of the following methods. </P><A 
+                  name=p1_ch03-_Toc381838406></A><A 
+                  name=lpicertnut-IDXTERM-143></A><A 
+                  name=lpicertnut-IDXTERM-144></A><A name=IXTR3-8></A><A 
+                  name=IXTR3-9></A><A name=IXTR3-10></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>sed</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838407></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><A 
+                  name=lpicertnut-IDXTERM-143></A><A 
+                  name=lpicertnut-IDXTERM-144></A><PRE>sed [options] 'command1' [files]
+sed [options] -e 'command1' [-e 'command2'...] [files]
+sed [options] -f script [files]</PRE><A 
+                  name=p1_ch03-_Toc381838408></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>The first form invokes <SPAN 
+                  class=docEmphBold>sed</SPAN> with a one-line 
+                  <I>command1</I><SPAN class=docEmphasis>.</SPAN> The second 
+                  form invokes <SPAN class=docEmphBold>sed</SPAN> with two (or 
+                  more) commands. Note that in this case the <SPAN 
+                  class=docEmphBold>-e</SPAN> parameter is required for all 
+                  commands specified<SPAN class=docEmphasis>.</SPAN> The 
+                  commands are specified in quotes to prevent the shell from 
+                  interpreting and expanding them<SPAN 
+                  class=docEmphasis>.</SPAN> The last form instructs <SPAN 
+                  class=docEmphBold>sed</SPAN> to take editing commands from 
+                  file <I>script</I> (which does not need to be executable)<SPAN 
+                  class=docEmphasis>.</SPAN> In all cases, if <I>files</I> are 
+                  not specified, input is taken from standard input<SPAN 
+                  class=docEmphasis>.</SPAN> If multiple <I>files</I> are 
+                  specified, the edited output of each successive file is 
+                  concatenated<SPAN class=docEmphasis>.</SPAN> </P><A 
+                  name=p1_ch03-_Toc381838409></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-e</SPAN> <I>cmd</I></SPAN> 
+                    <DD>
+                    <P class=docList>The next argument is a command<SPAN 
+                    class=docEmphasis>.</SPAN> This is not needed for single 
+                    commands but is required for all commands when multiple 
+                    commands are specified. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>The next argument is a script.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-g</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Treat all substitutions as 
+                  global.</P></DD></DL>
+                  <P class=docText>The <SPAN class=docEmphBold>sed</SPAN> 
+                  utility operates on text through the use of <SPAN 
+                  class=docEmphasis>addresses</SPAN> and <SPAN 
+                  class=docEmphasis>editing commands.</SPAN> The address is used 
+                  to locate lines of text to be operated upon, and editing 
+                  commands modify text<SPAN class=docEmphasis>.</SPAN> During 
+                  operation, each line (that is, text separated by 
+                  newlinecharacters) of input to <SPAN 
+                  class=docEmphBold>sed</SPAN> is processed individually and 
+                  without regard to adjacent lines<SPAN 
+                  class=docEmphasis>.</SPAN> If multiple editing commands are to 
+                  be used (through the use of a script file or multiple <SPAN 
+                  class=docEmphBold>-e</SPAN> options), they are all applied in 
+                  order to each line before moving on to the next line. </P>
+                  <P class=docText>Input to <SPAN 
+                  class=docEmphBold>sed</SPAN><I> </I>can come from standard 
+                  input or from <I>files</I><SPAN class=docEmphasis>.</SPAN> 
+                  When input is received from standard input, the original 
+                  versions of the input text are lost. However, when input comes 
+                  from files, the files themselves are <SPAN 
+                  class=docEmphasis>not changed</SPAN> by <SPAN 
+                  class=docEmphBold>sed</SPAN><SPAN class=docEmphasis>.</SPAN> 
+                  The output of <SPAN class=docEmphBold>sed</SPAN> represents a 
+                  modified version of the contents of the files but does not 
+                  affect them. </P><A name=p1_ch03-_Toc381838410></A>
+                  <H4 class=docRefsectTitle>Addressing</H4>
+                  <P class=docText>Addresses in <SPAN 
+                  class=docEmphBold>sed</SPAN> locate lines of text to which 
+                  commands will be applied<SPAN class=docEmphasis>.</SPAN> The 
+                  addresses can be: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>A line number (note that <SPAN 
+                    class=docEmphBold>sed</SPAN> counts lines continuously 
+                    across multiple input files). </P>
+                    <LI>
+                    <P class=docList>A line number with an interval<SPAN 
+                    class=docEmphasis>.</SPAN> The form is <I>n~s</I>, where 
+                    <I>n</I> is the starting line number and <I>s</I> is the 
+                    step, or interval, to apply<SPAN class=docEmphasis>.</SPAN> 
+                    For example, to match every odd line in the input, the 
+                    address specification would be <I>1~2</I> (start at line 1 
+                    and match every two lines thereafter)<SPAN 
+                    class=docEmphasis>.</SPAN> This feature is a GNU extension 
+                    to <SPAN class=docEmphBold>sed</SPAN>. </P>
+                    <LI>
+                    <P class=docList>The symbol <SPAN 
+                    class=docEmphBold>$</SPAN>, indicating the last line of the 
+                    last input file. </P>
+                    <LI>
+                    <P class=docList>A regular expression delimited by forward 
+                    slashes (<TT><I>/regex/</I></TT> )<SPAN 
+                    class=docEmphasis>.</SPAN> See Objective 7 for more 
+                    information on using regular expressions. </P></LI></UL>
+                  <P class=docText>Zero, one, or two such addresses can be used 
+                  with a <SPAN class=docEmphBold>sed</SPAN> command<SPAN 
+                  class=docEmphasis>.</SPAN> If no addresses are given, commands 
+                  are applied to all input lines by default<SPAN 
+                  class=docEmphasis>.</SPAN> If a single address is given, 
+                  commands are applied only to a line or lines matching the 
+                  address<SPAN class=docEmphasis>.</SPAN> If two comma-separated 
+                  addresses are given, an inclusive range is implied<SPAN 
+                  class=docEmphasis>.</SPAN> Finally, any address may be 
+                  followed by the <SPAN class=docEmphBold>!</SPAN> character, 
+                  and commands are applied to lines that <SPAN 
+                  class=docEmphasis>do not match</SPAN> the address. </P><A 
+                  name=p1_ch03-_Toc381838411></A>
+                  <H4 class=docRefsectTitle>Commands</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>sed</SPAN> 
+                  command immediately follows the address specification if 
+                  present<SPAN class=docEmphasis>.</SPAN> Commands generally 
+                  consist of a single letter or symbol, unless they have 
+                  arguments<SPAN class=docEmphasis>.</SPAN> Following are some 
+                  basic <SPAN class=docEmphBold>sed</SPAN><I> </I>editing 
+                  commands to get you started. </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Delete lines.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Make substitutions.This is a very popular 
+                    <SPAN class=docEmphBold>sed</SPAN> command. The syntax is: 
+                    </P><PRE>s/pattern/replacement/[flags]</PRE></DD></DL>
+                  <P class=docText>The following <I>flags</I> can be specified 
+                  for the <TT>s</TT> command: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>g</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Replace all instances of <I>pattern</I>, 
+                    not just the first. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Replace <SPAN class=docEmphasis>n</SPAN> th 
+                    instance of <I>pattern</I>; the default is 1. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the line if a successful substitution 
+                    is done<SPAN class=docEmphasis>.</SPAN> Generally used with 
+                    the <SPAN class=docEmphBold>-n</SPAN> command-line option. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>w</SPAN> 
+                    <I>file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Print the line to <SPAN 
+                    class=docEmphasis>file</SPAN> if a successful substitution 
+                    is done. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>y</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Translate characters. This command works in 
+                    a fashion similar to the <SPAN class=docEmphBold>tr</SPAN> 
+                    command, described earlier<SPAN class=docEmphasis>.</SPAN> 
+                    </P></DD></DL><A name=p1_ch03-_Toc381838412></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Delete lines 3 through 5 of <I>file1</I>:</P><PRE>$ <B>sed '3,5d' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838413></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Delete lines of <I>file1</I> that contain a 
+                  <I>#</I> at the beginning of the line: </P><PRE>$ <B>sed '/^#/d' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838414></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Translate characters:</P><PRE>y/abc/xyz/</PRE>
+                  <P class=docText>Every instance of <I>a</I> is translated to 
+                  <I>x</I>, <I>b </I>to <I>y</I>, and <I>c </I>to <I>z</I>. 
+                  </P><A name=p1_ch03-_Toc381838415></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Write the <TT>@</TT> symbol for all empty 
+                  lines in <I>file1</I> (that is, lines with only a newline 
+                  character but nothing more): </P><PRE>$ <B>sed 's/^$/@/' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838416></A>
+                  <H4 class=docRefsectTitle><SPAN class=docEmphasis>Example 
+                  5</SPAN></H4>
+                  <P class=docText>Remove all double quotation marks from all 
+                  lines in <SPAN class=docEmphasis>file1</SPAN>: </P><PRE>$ <B>sed 's/"//g' file1</B></PRE><A 
+                  name=p1_ch03-_Toc381838417></A>
+                  <H4 class=docRefsectTitle>Example 6</H4>
+                  <P class=docText>Using <SPAN class=docEmphBold>sed</SPAN> 
+                  commands from external file <I>sedcmds</I>, replace the third 
+                  and fourth double quotation marks with <SPAN 
+                  class=docEmphBold>(</SPAN> and <SPAN 
+                  class=docEmphBold>)</SPAN> on lines 1 through 10 in 
+                  <I>file1</I><SPAN class=docEmphasis>.</SPAN> Make no changes 
+                  from line 11 to the end of the file<SPAN 
+                  class=docEmphasis>.</SPAN> Script file <I>sedcmds 
+                  </I>contains: </P><PRE>1,10{
+s/"/(/3
+s/"/)/4
+}</PRE>
+                  <P class=docText>The command is executed using the <SPAN 
+                  class=docEmphBold>-f</SPAN> option: </P><PRE>$ <B>sed -f sedcmds file1</B></PRE>
+                  <P class=docText>This example employs the positional flag for 
+                  the <SPAN class=docEmphBold>s</SPAN> (substitute) command<SPAN 
+                  class=docEmphasis>.</SPAN> The first of the two commands 
+                  substitutes <SPAN class=docEmphBold>(</SPAN> for the third 
+                  double-quote character<SPAN class=docEmphasis>.</SPAN> The 
+                  next command substitutes <SPAN class=docEmphBold>)</SPAN> for 
+                  the fourth double-quote character<SPAN 
+                  class=docEmphasis>.</SPAN> Note, however, that the position 
+                  count is interpreted <SPAN 
+                  class=docEmphasis>independently</SPAN> for each subsequent 
+                  command in the script. This is important because each command 
+                  operates on the results of the commands preceding it<SPAN 
+                  class=docEmphasis>.</SPAN> In this example, since the third 
+                  double quote has been replaced with <SPAN 
+                  class=docEmphBold>(</SPAN> , it is no longer counted as a 
+                  double quote by the second command<SPAN 
+                  class=docEmphasis>.</SPAN> Thus, the second command will 
+                  operate on the <SPAN class=docEmphasis>fifth</SPAN> double 
+                  quote character in the original <SPAN 
+                  class=docEmphasis>file1.</SPAN> If the input line starts out 
+                  with: </P><PRE>""""""</PRE>
+                  <P class=docText>after the first command, which operates on 
+                  the third double quote, the result is: </P><PRE>""("""</PRE>
+                  <P class=docText>At this point, the numbering of the 
+                  double-quote characters has changed, and the fourth double 
+                  quote in the line is now the fifth character<SPAN 
+                  class=docEmphasis>.</SPAN> Thus, after the second command 
+                  executes, the output is: </P><PRE>""(")"</PRE>
+                  <P class=docText>As you can see, creating scripts with <SPAN 
+                  class=docEmphBold>sed</SPAN> requires that the sequential 
+                  nature of the command execution be kept in mind. </P>
+                  <P class=docText>If you find yourself making repetitive 
+                  changes to many files on a regular basis, a <SPAN 
+                  class=docEmphBold>sed</SPAN> script is probably warranted<SPAN 
+                  class=docEmphasis>.</SPAN> Many more commands are available in 
+                  <SPAN class=docEmphBold>sed</SPAN> than are listed here.<A 
+                  name=IXTR3-8></A> <A name=IXTR3-9></A><A 
+name=IXTR3-10></A></P>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)437ms
+(xml)188ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)984ms
+--></BODY></HTML>

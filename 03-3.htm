@@ -1,0 +1,698 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux   
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 3.&nbsp; GNU   
+            and Unix Commands (Topic 1.3)</SPAN><BR><BR><BR>  
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3-SECT-3></A>
+                  <H3 class=docSection1Title>3.3 Objective 3: Perform Basic File 
+                  Management</H3>
+                  <P class=docText><A name=lpicertnut-IDXTERM-148></A>This   
+                  section covers basic file and directory management, including   
+                  filesystems, files and directories, standard file management   
+                  commands, their recursive capabilities where applicable, and   
+                  wildcard patterns. </P><A name=lpicertnut-CHP-3-SECT-3.1></A>  
+                  <H4 class=docSection2Title>3.3.1 Filesystem Objects</H4>
+                  <P class=docText>Nearly every operating system that has ever   
+                  been devised structures its collection of stored objects in a   
+                  <SPAN class=docEmphasis>hierarchy</SPAN><A 
+                  name=IXT-3-349925></A>,<SUP class=docFootnote>[10]</SUP> which is a   
+                  tree of objects containing other objects. This hierarchy   
+                  allows a sane organization of objects and allows identically   
+                  named objects to appear in multiple locations -- this is   
+                  essential for multiuser systems like Linux. Information about   
+                  each object in the filesystem is stored in a table (which   
+                  itself is part of the filesystem), and each object is numbered   
+                  uniquely within that table. Although there are a few special   
+                  object types on Linux systems, the two most common are <SPAN   
+                  class=docEmphasis>directories</SPAN> <A   
+                  name=IXT-3-349926></A>and <I>files</I><A   
+                  name=IXT-3-349927></A>. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[10]</A></SUP> However, 
+                    it wasn't so long ago that MS-DOS was "flat" and had no 
+                    hierarchy.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-3-SECT-3.1.1></A>
+                  <H5 class=docSection3Title>3.3.1.1 Directories and files</H5>
+                  <P class=docText>A directory is an object intended to contain   
+                  other objects, while a file is an object intended to contain   
+                  information. At the top of all Linux filesystem hierarchies is   
+                  a directory depicted simply by <I>/</I><A   
+                  name=IXT-3-349928></A>; this is known as the <I>root</I>   
+                  directory.<SUP class=docFootnote>[11]</SUP> Beneath   
+                  <I>/ </I>are named directories and files in an organized and   
+                  well-defined tree. To describe these objects, you simply refer   
+                  to them by name separated by the <I>/ </I>character<SPAN   
+                  class=docEmphasis>.</SPAN> For example, the object <SPAN   
+                  class=docEmphBold>ls</SPAN> is an executable program stored in   
+                  a directory called <I>/bin </I>under the <I>root   
+                  </I>directory; it is depicted simply as <I>/bin/ls.</I> </P>  
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[11]</A></SUP> Not to 
+                    be confused with the username <SPAN 
+                    class=docEmphBold>root</SPAN>, which is separate and 
+                    distinct. There's also often a directory named <I>/root 
+                    </I>for the root user. Keeping <I>/</I>, <I>/root </I>andthe 
+                    <SPAN class=docEmphasis>root user</SPAN> straight in a 
+                    conversation can be a challenge.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-3-SECT-3.1.2></A>
+                  <H5 class=docSection3Title>3.3.1.2 Inodes</H5>
+                  <P class=docText>The identification information for a   
+                  filesystem object is known as its <I>inode</I><A   
+                  name=IXT-3-349929></A><SPAN class=docEmphasis>.</SPAN> Inodes   
+                  carry information about objects, such as where they are   
+                  located on disk, their modification time, security settings,   
+                  and so forth. Each Linux <I>ext2</I> filesystem is created   
+                  with a finite number of inodes, which is a number calculated   
+                  based on the number of objects contained by the filesystem.   
+                  Multiple objects in the filesystem can share the same inode;   
+                  this concept is called <SPAN   
+                  class=docEmphasis>linking</SPAN><A name=IXT-3-349930></A>. 
+                  </P><A name=lpicertnut-CHP-3-SECT-3.1.3></A>
+                  <H5 class=docSection3Title>3.3.1.3 File and directory 
+                  management commands</H5>
+                  <P class=docText><A name=lpicertnut-IDXTERM-155></A>Once a   
+                  hierarchy is defined, there is a constant need to manage the   
+                  objects in the filesystem. Objects are constantly created,   
+                  read, modified, copied, moved, and deleted, and wisely   
+                  managing the filesystem is one of the most important tasks of   
+                  a system administrator. In this section, we discuss the basic   
+                  command-line utilities used for file and directory management.   
+                  While the GUI has tools for this task, the spirit of the Linux   
+                  system and the requirements of Exam 101 require your   
+                  understanding of these commands. </P><A   
+                  name=p1_ch03-_Toc381838423></A><A name=IXT-3-349931></A><A 
+                  name=IXT-3-349932></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>cp</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838424></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>cp [options] file1 file2
+cp [options] files directory</PRE><A 
+                  name=p1_ch03-_Toc381838425></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349931></A><A 
+                  name=IXT-3-349932></A>In the first command form, copy   
+                  <I>file1</I> to <I>file2</I><SPAN class=docEmphasis>.</SPAN>   
+                  If <I>file2</I> exists and you have appropriate privileges, it   
+                  will be overwritten without warning (unless you use the <SPAN   
+                  class=docEmphBold>-i</SPAN> option). Both <I>file1</I> and   
+                  <I>file2</I> can be any valid filename, either fully qualified   
+                  or in the local directory. In the second command form, copy   
+                  one or more <I>files</I> to <I>directory</I><SPAN   
+                  class=docEmphasis>.</SPAN> Note that the presence of multiple   
+                  files <I>implies</I> that you wish to copy files to a   
+                  directory. If <I>directory</I> doesn't exist, an error message   
+                  will be printed. This command form can get you in trouble if   
+                  you attempt to copy a single file into a directory that   
+                  doesn't exist, as the command will be interpreted as the first   
+                  form and you'll end up with <I>file2</I> instead of   
+                  <I>directory</I>. </P><A name=p1_ch03-_Toc381838426></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Force an overwrite of existing files in the 
+                    destination.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Prompt <SPAN 
+                    class=docEmphasis>interactively</SPAN> before overwriting 
+                    destination files<SPAN class=docEmphasis>.</SPAN> It is 
+                    common practice (and advised) to alias the <SPAN 
+                    class=docEmphBold>cp</SPAN> command to <SPAN 
+                    class=docEmphBold>cp -i</SPAN> to prevent accidental 
+                    overwrites<SPAN class=docEmphasis>.</SPAN> You may find that 
+                    this is already done for you for user root on your Linux 
+                    system. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Preserve all information, including owner, 
+                    group, permissions, and timestamps. Without this option, the 
+                    copied file or files will have the present date and time, 
+                    default permissions, owner, and group. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN>, <SPAN 
+                    class=docEmphBold>-R</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Recursively copy directories<SPAN 
+                    class=docEmphasis>.</SPAN> You may use either upper- or 
+                    lowercase for this option<SPAN class=docEmphasis>.</SPAN> If 
+                    <I>file1</I> is actually a directory instead of a file and 
+                    the recursive option is specified, <I>file2</I> will be a 
+                    copy of the entire hierarchy under directory 
+                    <I>file1</I><SPAN class=docEmphasis>.</SPAN> </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the name of each file verbosely 
+                    before copying.</P></DD></DL><A 
+name=p1_ch03-_Toc381838427></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Copy the messages file to the local directory 
+                  (specified by <TT>.</TT>): </P><PRE>$ <B>cp /var/log/messages .</B></PRE><A 
+                  name=p1_ch03-26-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Make an identical copy, including 
+                  preservation of file attributes, of directory <I>src</I> in 
+                  new directory <I>src2</I>: </P><PRE>$ <B>cp -Rp src src2</B></PRE>
+                  <P class=docText>Copy <I>file1</I>, <I>file2</I>, 
+                  <I>file5</I>, <I>file6</I>, and <I>file7</I> from the local 
+                  directory into your home directory (under <I>bash</I>): </P><PRE>$ <B>cp file1 file2 file[567] ~</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure to know the difference between 
+                        a file destination and a directory destination and how 
+                        to force an overwrite of existing objects. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838428></A><A name=IXT-3-349933></A><A 
+                  name=IXT-3-349934></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I><SPAN 
+                        class=docEmphasis>mkdir</SPAN></I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838429></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>mkdir [options] directories</PRE><A 
+                  name=p1_ch03-_Toc381838430></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349933></A><A 
+                  name=IXT-3-349934></A>Create one or more   
+                  <I>directories</I><SPAN class=docEmphasis>.</SPAN> You must   
+                  have write permission in the directory where   
+                  <I>directories</I> are to be created. </P><A   
+                  name=p1_ch03-_Toc381838431></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-m</SPAN> <I>mode</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the access <I>mode</I> for 
+                    <I>directories</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Create intervening parent directories if 
+                    they don't exist.</P></DD></DL><A 
+                  name=p1_ch03-_Toc381838432></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Create a read-only directory named 
+                  <I>personal</I>:</P><PRE>$ <B>mkdir -m 444 personal</B></PRE>
+                  <P class=docText>Create a directory tree in your home 
+                  directory, as indicated with a leading tilde (<I>~</I>), using 
+                  a single command: </P><PRE>$ <B>mkdir -p ~/dir1/dir2/dir3</B></PRE>
+                  <P class=docText>In this case, all three directories are 
+                  created<SPAN class=docEmphasis>.</SPAN> This is faster than 
+                  creating each directory individually. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Verify your understanding of the tilde 
+                        (<I>~</I>) shortcut for the home directory. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838433></A><A name=IXT-3-349935></A><A 
+                  name=IXT-3-349936></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I><SPAN 
+                        class=docEmphasis>mv</SPAN></I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838434></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>mv [options] source target</PRE><A 
+                  name=p1_ch03-_Toc381838435></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349935></A><A 
+                  name=IXT-3-349936></A>Move or rename files and directories.   
+                  For <I>targets</I> on the same filesystem (partition), moving   
+                  a file doesn't relocate the contents of the file itself.   
+                  Rather, the directory entry for the target is updated with the   
+                  new location. For <I>targets</I> on different filesystems,   
+                  such a change can't be made, so files are copied to the target   
+                  location and the original sources are deleted. </P><A   
+                  name=p1_ch03-32-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="03-3.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>Note that <SPAN 
+                              class=docEmphBold>mv</SPAN> is used to rename 
+                              files and directories, because a rename operation 
+                              requires the same directory entry update as a 
+                              move. 
+                  </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P class=docText>If a <I>target</I> file or directory does not 
+                  exist, <I>source</I> is renamed to <I>target</I><SPAN 
+                  class=docEmphasis>.</SPAN> If a <I>target</I> file already 
+                  exists, it is overwritten with <I>source</I><SPAN 
+                  class=docEmphasis>.</SPAN> If <I>target</I> is an existing 
+                  directory, <I>source</I> is moved into that directory<SPAN 
+                  class=docEmphasis>.</SPAN> If <I>source</I> is one or more 
+                  files and <I>target</I> is a directory, the files are moved 
+                  into the directory. </P><A name=p1_ch03-_Toc381838436></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Force the move even if <I>target</I> 
+                    exists, suppressing warning messages. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Query interactively before moving 
+                    files.</P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that, from the filesystem's 
+                        point of view on a single partition, renaming a file and 
+                        moving it to a different location are nearly identical 
+                        operations. This eliminates the need for a <I>rename</I> 
+                        command. </P></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838437></A><A name=IXT-3-349937></A><A 
+                  name=IXT-3-349938></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I><SPAN 
+                        class=docEmphasis>rm</SPAN></I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-35-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>rm [options] files</PRE><A 
+name=p1_ch03-_Toc381838439></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349937></A><A 
+                  name=IXT-3-349938></A>Delete one or more <I>files</I> from the   
+                  filesystem<SPAN class=docEmphasis>.</SPAN> To remove a file,   
+                  you must have write permission in the directory that contains   
+                  the file, but you do not need write permission on the file   
+                  itself. The <SPAN class=docEmphBold>rm</SPAN> command also   
+                  removes directories when the <SPAN   
+                  class=docEmphBold>-d</SPAN>, <SPAN   
+                  class=docEmphBold>-r</SPAN>, or <SPAN   
+                  class=docEmphBold>-R</SPAN> option is used. </P><A   
+                  name=p1_ch03-_Toc381838440></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Remove directories even if they are not 
+                    empty<SPAN class=docEmphasis>.</SPAN> This option is 
+                    reserved for privileged users. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Force removal of write-protected files 
+                    without prompting.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Query interactively before removing 
+                    files.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN>, <SPAN 
+                    class=docEmphBold>-R</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>If the <I>file</I> is a directory, 
+                    recursively remove the entire directory and all of its 
+                    contents, including subdirectories. </P></DD></DL><A 
+                  name=p1_ch03-_Toc381838441></A><A name=IXT-3-349939></A><A 
+                  name=IXT-3-349940></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>rmdir</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838442></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>rmdir [option] directories</PRE><A 
+                  name=p1_ch03-_Toc381838443></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349939></A><A 
+                  name=IXT-3-349940></A>Delete <I>directories</I>, which must be   
+                  empty. </P><A name=p1_ch03-_Toc381838444></A>
+                  <H4 class=docRefsectTitle>Frequently used option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Remove <I>directories</I> and any 
+                    intervening parent directories that become empty as a 
+                    result<SPAN class=docEmphasis>.</SPAN> This is useful for 
+                    removing subdirectory trees. </P></DD></DL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that recursive remove using 
+                        <SPAN class=docEmphBold>rm -R</SPAN> removes directories 
+                        too, even if they're not empty. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838445></A><A name=IXT-3-349941></A><A 
+                  name=IXTR3-11></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I><SPAN 
+                        class=docEmphasis>touch</SPAN></I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch03-_Toc381838446></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>touch [options] files</PRE><A 
+                  name=p1_ch03-_Toc381838447></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-3-349941></A>Change the access   
+                  and/or modification times of <I>files</I>. This command is   
+                  used to refresh timestamps on files. Doing so may be   
+                  necessary, for example, to cause a program to be recompiled   
+                  using the date-dependant <SPAN class=docEmphBold>make</SPAN>   
+                  utility. </P><A name=p1_ch03-_Toc381838448></A>  
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Change only the access time.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-m</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Change only the modification 
+                  time.</P></DD></DL><A name=IXTR3-11></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>timestamp</I></SPAN> 
+                    <DD>
+                    <P class=docList>Instead of the current time, use   
+                    <I>timestamp</I> in the form of   
+                    <TT>[[CC]YY]MMDDhhmm[.ss]</TT>. For example, the   
+                    <I>timestamp</I> for January 12, 2001, at 6:45 p.m. is   
+                    200101121845.<A name=IXTR3-11></A> </P></DD></DL><A 
+                  name=lpicertnut-CHP-3-SECT-3.2></A>
+                  <H4 class=docSection2Title>3.3.2 File-Naming Wildcards</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-168></A><A 
+                  name=lpicertnut-IDXTERM-169></A>When working with files on the   
+                  command line, you'll often run into situations in which you   
+                  need to perform operations on many files at once<SPAN   
+                  class=docEmphasis>.</SPAN> For example, if you are developing   
+                  a C program, you may want to <SPAN   
+                  class=docEmphBold>touch</SPAN> all of your <I>.c</I> files in   
+                  order to be sure to recompile them the next time you issue the   
+                  <SPAN class=docEmphBold>make</SPAN> utility to build your   
+                  program. There will also be times when you need to move or   
+                  delete all the files in a directory or at least a selected   
+                  group of files. At other times, filenames may be long or   
+                  difficult to type, and you'll want to find an abbreviated   
+                  alternative to typing the filenames for each command you   
+                  issue. </P>
+                  <P class=docText>In order to make these operations simpler,   
+                  all shells<SUP class=docFootnote>[12]</SUP> on Linux   
+                  offer <SPAN class=docEmphasis>file-naming wildcards</SPAN>  (<a href="#lpicertnut-CHP-3-TABLE-3">Table 
+                  3-3</a>). Rather than explicitly specifying every file or   
+                  typing long filenames, specifying <SPAN   
+                  class=docEmphasis>wildcard characters</SPAN> in place of   
+                  portions of the filenames can usually do the work for you. For   
+                  example, the shell expands things like <I>*.txt</I> to a list   
+                  of all the files that end in <I>.txt</I>. File wildcard   
+                  constructs like this are called <SPAN class=docEmphasis>file   
+                  globs</SPAN>, and their use is awkwardly called   
+                  <I>globbing</I>. Using file globs to specify multiple files is   
+                  certainly a convenience, and in many cases is required to get   
+                  anything useful accomplished. </P>  
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[12]</A></SUP> 
+                    Wildcards are expandedby the shell, not by commands. When a 
+                    command is entered with wildcards included, the shell first 
+                    expands all the wildcards (and other types of expansion) and 
+                    passes the full result on to the command. This process is 
+                    invisible to you.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-3-TABLE-3></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 3-3. Common File-Naming 
+                    Wildcards </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Wildcard</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>*</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Commonly thought to "match anything." 
+                        It actually will match zero or more characters (which 
+                        includes "nothing"!). For example, <TT>x*</TT> matches 
+                        files or directories <I>x</I>, <I>xy</I>, <I>xyz</I>, 
+                        <I>x.txt</I>, <I>xy</I><TT>.</TT><I>txt</I>, 
+                        <I>xyz</I><TT>.</TT><I>c</I>, and so on. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>?</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match exactly one character. For 
+                        example, <TT>x?</TT> matches files or directories 
+                        <I>xx</I>, <I>xy</I>, <I>xz</I>, but not <I>x</I> and 
+                        not <I>xyz</I><SPAN class=docEmphasis>.</SPAN> The 
+                        specification <TT>x??</TT> matches <I>xyz</I>, but not 
+                        <I>x</I> and <I>xy</I>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>[<TT><I>characters</I></TT>]</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character from among 
+                        <I>characters</I> listed between the brackets<SPAN 
+                        class=docEmphasis>.</SPAN> For example, <TT>x[yz]</TT> 
+                        matches <I>xy</I> and <I>xz</I><TT>.</TT> </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>[<TT><I>!characters</I></TT>]</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character other than 
+                        <I>characters</I> listed between the brackets. For 
+                        example, <TT>x[!yz]</TT> matches <I>xa</I> and <I>x1</I> 
+                        but does not match <I>xy</I> and does not match 
+                        <I>xz</I>. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>[a-z]</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character from among  
+                        the range of characters listed between the brackets and  
+                        indicated by the dash (the dash character is not  
+                        matched)<SPAN class=docEmphasis>.</SPAN> For example,  
+                        <TT>x[0-9]</TT> matches <I>x0</I> and <I>x1</I>, but  
+                        does not match <I>xx</I><SPAN class=docEmphasis>.</SPAN>  
+                        Note that to match both upper- and lowercase  
+                        letters,<SUP class=docFootnote>[13]</SUP> you  
+                        specify <TT>[a-zA-Z]</TT>. Using <TT>x[a-zA-Z]</TT>  
+                        matches <I>xa</I> and <I>xA</I>. </P></TD></TR> 
+                    <TR>
+                      <TD class=docTableCell><PRE>[!a-z]</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Match any single character from among 
+                        the characters not in the range listed between the 
+                        brackets. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>{</TT> <I>frag1</I>, <I>frag2</I>, 
+                        <I>frag3</I><SPAN class=docEmphasis>...</SPAN><TT>}</TT> 
+                        </P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Create strings <I>frag1</I>, 
+                        <I>frag2</I>, <I>frag3</I>, etc. For example, 
+                        <TT>file_{one,two,three}</TT> yields the strings 
+                        <TT>file_one</TT>, <TT>file_two</TT>, and 
+                        <TT>file_three</TT>. This is a special operator named 
+                        <SPAN class=docEmphasis>brace expansion</SPAN> that can 
+                        be used to match filenames but isn't specifically a file 
+                        wildcard operator and does not examine directories for 
+                        existing files to match. Instead, it will expand <SPAN 
+                        class=docEmphasis>any string</SPAN>. </P>
+                        <P class=docText>For example, it can be used with <SPAN 
+                        class=docEmphBold>echo</SPAN> to yield strings totally 
+                        unrelated to existing filenames: </P>
+                        <P class=docText><TT>$</TT> <TT><B>echo 
+                        string_{a,b,c}</B></TT></P><PRE>string_a string_b string_c</PRE></TD></TR></TBODY></TABLE>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[13]</A></SUP> Linux 
+                    filenames are case-sensitive.</P></BLOCKQUOTE>
+                  <P class=docText>Here are a few common applications for 
+                  wildcards:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>If you remember part of a filename but not 
+                    the whole thing, use wildcards with the portion you remember 
+                    to help find the file. For example, if you're working in a 
+                    directory with a large number of files and you know you're 
+                    looking for a file named for Linux, you may enter a command 
+                    like this: </P><PRE>$ <B>ls -l *inux*</B> </PRE></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>When working with groups of related files, 
+                    wildcards can be used to help separate the groups. For 
+                    example, suppose you have a directory full of scripts you've 
+                    written. Some are Perl scripts, for which you've used an 
+                    extension of <I>.pl</I>, and some are Python, with a 
+                    <I>.py</I> extension. You may wish to separate them into new 
+                    separate directories for the two languages like this: </P><PRE>$ <B>mkdir perl python</B>
+$ <B>mv *.pl perl</B>
+$ <B>mv *.py python</B></PRE></LI></UL>
+                  <UL>
+                    <LI>
+                    <P class=docList>Wildcards match directory names as well. 
+                    Suppose you have a tree of directories starting with 
+                    <I>contracting</I>, where you've created a directory for 
+                    each month (that is, <I>contracting/january</I>, 
+                    <I>contracting/february</I>, through 
+                    <I>contracting/december</I>). In each of these directories 
+                    are stored invoices, named simply 
+                    <I>invoice_custa_01.txt</I>, <I>invoice_custa_02.txt</I>, 
+                    <I>invoice_custb_01.txt</I>, and so on, where <I>custa 
+                    </I>and <I>custb </I>are customer names of some form. To 
+                    display all of the invoices, wildcards can be used: </P><PRE>$ <B>ls con*/*/inv*.txt</B></PRE>
+                    <P class=docList>The first <SPAN class=docEmphBold>*</SPAN> 
+                    matches <I>tracting</I><SPAN class=docEmphasis>.</SPAN> The 
+                    second matches all directories under the <I>contracting</I> 
+                    directory ( <I>january</I> through <I>december</I>). The 
+                    last matches all the customers and each invoice number for 
+                    each customer. </P></LI></UL>
+                  <P class=docText>See the <SPAN class=docEmphBold>bash</SPAN>   
+                  man or info pages for additional information on how <SPAN   
+                  class=docEmphBold>bash</SPAN> handles expansions and on other   
+                  expansion forms.<A name=IXTR3-12></A> <A name=IXTR3-13></A><A   
+                  name=IXTR3-14></A></P><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="03-3.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)438ms
+(xml)234ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)704ms
+--></BODY></HTML>

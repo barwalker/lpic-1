@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0165)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="03-0.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="03-0.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="MSHTML 6.00.2713.1100" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux 
+            Certification in a Nutshell<BR><B>Section: </B>Part I:&nbsp; General 
+            Linux Exam 101</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-3></A>
+                  <H2 class=docChapterTitle>Chapter 3. GNU and Unix Commands 
+                  (Topic 1.3)</H2>
+                  <P class=docText>This Topic covers the ever-important aspect 
+                  of working interactively with Linux command-line utilities. 
+                  While it's true that GUI tools are already available to manage 
+                  just about everything on a Linux system, a firm understanding 
+                  of basic use of command-line utilities is essential. </P>
+                  <P class=docText>The family of <A 
+                  name=lpicertnut-IDXTERM-72></A>commands that are part of Linux 
+                  and Unix systems has a long history. Individuals or groups 
+                  that needed specific tools contributed many of the commands in 
+                  the early days of Unix development. Those that were popular 
+                  became part of the system and were accepted as default tools 
+                  under the Unix umbrella. Today, Linux systems carry new, often 
+                  more powerful <SPAN class=docEmphasis>GNU</SPAN> versions of 
+                  these historical commands. </P>
+                  <P class=docText>This section covers LPI Topic 1.3, <SPAN 
+                  class=docEmphasis>GNU and Unix Commands</SPAN>. Even the Topic 
+                  name implies the confusion that may exist regarding the origin 
+                  of the commands we're using on GNU/Linux systems. Remember 
+                  that for software to be freely distributed as part of your 
+                  Linux distribution, it cannot be proprietary and must come 
+                  with some form of redistribution ability in its licensing 
+                  terms. </P>
+                  <P class=docText>This LPI Topic has seven Objectives:</P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 1: Work Effectively 
+                    on the Unix Command Line</SPAN></I> 
+                    <DD>
+                    <P class=docList>This Objective covers the essentials of 
+                    working at the command line in a shell, including 
+                    environment variables, using the command history and editing 
+                    facilities, invoking commands, command substitution, and 
+                    recursively executing commands. Weight: 4. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 2: Process Text 
+                    Streams Using Text-Processing Filters</SPAN></I> 
+                    <DD>
+                    <P class=docList>There exists a diverse "toolbox" of 
+                    interesting and powerful utilities from the GNU <SPAN 
+                    class=docEmphBold>textutils</SPAN> package, which can be 
+                    used to manipulate text in various ways. This Objective 
+                    covers those utilities and how to use them. Weight: 7. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 3: Perform Basic 
+                    File Management</SPAN></I> 
+                    <DD>
+                    <P class=docList>If you're used to an entirely GUI computing 
+                    environment, performing basic file management manually from 
+                    the command line may be awkward at first. You'll find, 
+                    however, that after mastering a few simple commands you will 
+                    achieve much finer control over file management chores. This 
+                    Objective covers simple and recursive file management, 
+                    including the use of wildcards (regular expressions). 
+                    Weight: 2. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 4: Use Unix 
+                    Streams, Pipes, and Redirects</SPAN></I> 
+                    <DD>
+                    <P class=docList>Among the most powerful concepts in the 
+                    Linux and Unix worlds is the idea of creating text streams. 
+                    This powerful tool offers you the ability to succinctly 
+                    string various commands (such as those described in 
+                    Objective 2) together into customized editing chains, which 
+                    modify text in a serial fashion. Objective 4 includes 
+                    redirection and the use of the <SPAN 
+                    class=docEmphBold>tee</SPAN> command. Weight: 3. 
+</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 5: Create, Monitor, 
+                    and Kill Processes</SPAN></I> 
+                    <DD>
+                    <P class=docList>Every running program on a Linux system is 
+                    a <SPAN class=docEmphasis>process</SPAN>. Some processes are 
+                    short-lived, like utility programs such as <SPAN 
+                    class=docEmphBold>ls</SPAN>. Other processes, usually called 
+                    <I>daemons</I>, are intended to run for extended periods or 
+                    even constantly; these include processes such as web or 
+                    database server software. Managing these processes is an 
+                    important activity for a system administrator. This 
+                    Objective covers foreground and background processing, 
+                    process monitoring, signaling, and how to "kill" a process. 
+                    Also covered are some of the commands used to manipulate 
+                    running processes. Weight: 5. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 6: Modify Process 
+                    Execution Priorities</SPAN></I> 
+                    <DD>
+                    <P class=docList>When you launch a process, you may wish to 
+                    instruct the system to lower or raise its <SPAN 
+                    class=docEmphasis>scheduling priority</SPAN> relative to the 
+                    default. This action has the effect of giving more or less 
+                    CPU time to your process. This is accomplished with the 
+                    <SPAN class=docEmphBold>nice</SPAN> command, which modifies 
+                    the default scheduling priority prior to running your 
+                    command. This Objective covers these modifications. Weight: 
+                    2. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Objective 7: Perform Searches 
+                    of Text Files Making Use of Regular Expressions</SPAN></I> 
+                    <DD>
+                    <P class=docList>Many tools on your Linux system are capable 
+                    of using <SPAN class=docEmphasis>regular expressions</SPAN>. 
+                    At the most basic level, regular expressions are simply 
+                    wildcard-matching mechanisms, such as you've probably used 
+                    at the command line many times. While detailed use is beyond 
+                    the scope of this book and the LPI exams, regular 
+                    expressions are a powerful solution to a range of problems. 
+                    This Objective covers basic regular expression usage with 
+                    command-line tools such as <SPAN 
+                    class=docEmphBold>sed</SPAN> and <SPAN 
+                    class=docEmphBold>grep</SPAN>. Weight: 3. </P></DD></DL>
+                  <P class=docText>The tools and concepts discussed here 
+                  represent important and fundamental aspects of working with 
+                  Linux, and are essential for your success on Exam 101. </P>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+            </P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)469ms
+(xml)172ms
+(xsl)0ms
+(ent)0ms
+(buf)0ms
+
+(tot)641ms
+--></BODY></HTML>
