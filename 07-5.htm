@@ -1,0 +1,965 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="07-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="07-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 7.&nbsp;  
+            Administrative Tasks (Topic 2.11)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-7-SECT-5></A>
+                  <H3 class=docSection1Title>7.5 Objective 5: Maintain an 
+                  Effective Data Backup Strategy</H3>
+                  <P class=docText>Regardless of how careful we are or how 
+                  robust our hardware might be, it is highly likely that 
+                  sometimes data will be lost. Though fatal system problems are 
+                  rare, accidentally deleted files or mistakes using <SPAN 
+                  class=docEmphBold>mv</SPAN> or <SPAN 
+                  class=docEmphBold>cp</SPAN> are common. Routine system backup 
+                  is essential to avoid losing precious data. </P>
+                  <P class=docText>There are many reasons to routinely back up 
+                  your systems:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>Protection against disk failures</P>
+                    <LI>
+                    <P class=docList>Protection against accidental file deletion 
+                    and corruption</P>
+                    <LI>
+                    <P class=docList>Protection against disasters, such as fire, 
+                    water, or vandalism</P>
+                    <LI>
+                    <P class=docList>Retention of historical data</P>
+                    <LI>
+                    <P class=docList>Creation of multiple copies of data, with 
+                    one or more copies stored at off-site locations for 
+                    redundancy </P></LI></UL>
+                  <P class=docText>All of these reasons for creating a backup 
+                  strategy could be summarized as insurance. Far too much time 
+                  and effort goes into a computer system to allow random 
+                  incidents to force repeated work. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.1></A>
+                  <H4 class=docSection2Title>7.5.1 Backup Concepts and 
+                  Strategies</H4>
+                  <P class=docText>Most backup strategies involve copying data 
+                  between at least two locations. At a prescribed time, data is 
+                  transferred from a source media (such as a hard disk) to some 
+                  form of backup media. Backup media are usually removable, and 
+                  include tapes, floppy disks, Zip disks, and so on. These media 
+                  are relatively inexpensive, compact, and easy to store 
+                  off-site. On the other hand, they are slow relative to hard 
+                  disk drives. </P><A name=lpicertnut-CHP-7-SECT-5.1.1></A>
+                  <H5 class=docSection3Title>7.5.1.1 Backup types</H5>
+                  <P class=docText>Backups are usually run in one of three 
+                  general forms:</P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Full backup</SPAN></I> 
+                    <DD>
+                    <P class=docList>A full, or complete, backup saves all of 
+                    the files on your system. Depending on circumstances, "all 
+                    files" may mean all files on the system, all files on a 
+                    physical disk, all files on a single partition, or all files 
+                    that cannot be recovered from original installation media. 
+                    Depending on the size of the drive being backed up, a full 
+                    backup can take hours to complete. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Differential 
+                    backup</SPAN></I> 
+                    <DD>
+                    <P class=docList>Save only files that have been modified or 
+                    created since the last full backup. Compared to full 
+                    backups, differentials are relatively fast because of the 
+                    reduced number of files written to the backup media. A 
+                    typical differential scheme would include full backup media 
+                    plus the latest differential media. Intermediate 
+                    differential media are superseded by the latest and can be 
+                    recycled. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Incremental backup</SPAN></I> 
+
+                    <DD>
+                    <P class=docList>Save only files that have been modified or 
+                    created since the last backup, including the last 
+                    incremental backup. These backups are also relatively fast. 
+                    A typical incremental backup would include full backup media 
+                    plus the entire series of subsequent incremental media. All 
+                    incremental media are required to reconstruct changes to the 
+                    filesystem since the last full backup. </P></DD></DL>
+                  <P class=docText>Typically, a full backup is coupled with a 
+                  series of <SPAN class=docEmphasis>either</SPAN> differential 
+                  backups <SPAN class=docEmphasis>or</SPAN> incremental backups, 
+                  but not both. For example, a full backup could be run once per 
+                  week with six daily differential backups on the remaining 
+                  days. Using this scheme, a restoration is possible from the 
+                  full backup media and the most recent differential backup 
+                  media. Using incremental backups in the same scenario, the 
+                  full backup media and <SPAN class=docEmphasis>all</SPAN> 
+                  incremental backup media would be required to restore the 
+                  system. The choice between the two is related mainly to the 
+                  tradeoff between media consumption (incremental backup 
+                  requires more media) versus backup time (differential backup 
+                  takes longer, particularly on heavily used systems). </P>
+                  <P class=docText>For large organizations that require 
+                  retention of historical data, a backup scheme longer than a 
+                  week is created. Incremental or differential backup media are 
+                  retained for a few weeks, after which the tapes are 
+                  reformatted and reused. Full backup media are retained for an 
+                  extended period, perhaps permanently. At the very least, one 
+                  full backup from each month should be retained for a year or 
+                  more. </P>
+                  <P class=docText>A backup scheme such as this is called a 
+                  <SPAN class=docEmphasis>media rotation scheme</SPAN>, because 
+                  media are continually written, retained for a defined period, 
+                  and then reused. The media themselves are said to belong to a 
+                  <SPAN class=docEmphasis>media pool</SPAN>, which defines the 
+                  monthly full, the weekly full, and differential or incremental 
+                  media assignments, as well as when media can be reused. When 
+                  media with full backups are removed from the pool for 
+                  long-term storage, new media join the pool, keeping the size 
+                  of the pool constant. Media may also be removed from the pool 
+                  if your organization chooses to limit the number of uses media 
+                  are allowed, assuming that reliability goes down as the number 
+                  of passes through a tape mechanism increases. </P>
+                  <P class=docText>Your organization's data storage requirements 
+                  dictate the complexity of your backup scheme. On systems in 
+                  which many people frequently update mission-critical data, a 
+                  conservative and detailed backup scheme is essential. For 
+                  casual-use systems, such as desktop PCs, only a basic backup 
+                  scheme is needed, if at all. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.1.2></A>
+                  <H5 class=docSection3Title>7.5.1.2 Backup verification</H5>
+                  <P class=docText>To be effective, backup media must be capable 
+                  of yielding a successful restoration of files. To ensure this, 
+                  a backup scheme must also include some kind of backup 
+                  verification in which recently written backup media are tested 
+                  for successful restore operations. This could take the form of 
+                  a comparison of files after the backup, an automated 
+                  restoration of a select group of files on a periodic basis, or 
+                  even a random audit of media on a recurring basis. However the 
+                  verification is performed, it must prove that the media, tape 
+                  drives, and programming will deliver a restored system. Proof 
+                  that your backups are solid and reliable ensures that they 
+                  will be useful in case of data loss. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.2></A>
+                  <H4 class=docSection2Title>7.5.2 Device Files</H4>
+                  <P class=docText>Before discussing actual backup procedures, a 
+                  word on so-called <SPAN class=docEmphasis>device files</SPAN> 
+                  is necessary. When performing backup operations to tape and 
+                  other removable media, you must specify the device using its 
+                  device file. These files are stored in <I>/dev</I> and are 
+                  understood by the kernel to stimulate the use of device 
+                  drivers that control the device. Archiving programs that use 
+                  the device files need no knowledge of how to make the device 
+                  work. Here are some typical device files you may find on Linux 
+                  systems: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/st0</I></SPAN> 
+                    <DD>
+                    <P class=docList>First SCSI tape drive</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/ft0</I></SPAN> 
+                    <DD>
+                    <P class=docList>First floppy-controller tape drive, such as 
+                    Travan drives </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/fd0</I></SPAN> 
+                    <DD>
+                    <P class=docList>First floppy disk drive </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/hdd</I></SPAN> 
+                    <DD>
+                    <P class=docList>An ATAPI Zip or other removable disk 
+                    </P></DD></DL>
+                  <P class=docText>These names are just examples. The names on 
+                  your system will be hardware- and distribution-specific. </P>
+                  <P><A name=lpicertnut-CHP-7-SIDEBAR-1></A>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>Did I Rewind That Tape?</H2>
+                        <P class=docText>When using tape drives, the kernel 
+                        driver for devices such as <I>/dev/st0</I> and 
+                        <I>/dev/ft0</I> automatically sends a rewind command 
+                        after any operation. However, there may be times when 
+                        rewinding the tape is not desirable. Since the archive 
+                        program has no knowledge of how to send special 
+                        instructions to the device, a <SPAN 
+                        class=docEmphasis>nonrewinding device file</SPAN> exists 
+                        that instructs the driver to omit the rewind 
+                        instruction. These files have a leading <I>n</I> added 
+                        to the filename. For example, the nonrewinding device 
+                        file for <I>/dev/st0</I> is <I>/dev/nst0</I>. When using 
+                        nonrewinding devices, the tape is left at the location 
+                        just after the last operation by the archive program. 
+                        This allows the addition of more archives to the same 
+                        tape. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-7-SECT-5.3></A>
+                  <H4 class=docSection2Title>7.5.3 Using tar and mt</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>tar</SPAN> 
+                  (<I>t</I> ape <I>ar</I> chive) program is used to recursively 
+                  read files and directories, and then write them onto a tape or 
+                  into a file. Along with the data goes detailed information on 
+                  the files and directories copied, including modification 
+                  times, owners, modes, and so on. This makes <SPAN 
+                  class=docEmphBold>tar</SPAN> much better for archiving than 
+                  simply making a copy does, because the restored data has all 
+                  of the properties of the original. </P>
+                  <P class=docText>The <SPAN class=docEmphBold>tar</SPAN><I> 
+                  </I>utility stores and extracts files from an archive file 
+                  known as a <I>tarfile</I>, which has the <I>.tar </I>file 
+                  extension. Since tape drives and other storage devices in 
+                  Linux are viewed by the system as files, one type of tarfile 
+                  is a device file, such as <I>/dev/st0</I> (SCSI tape drive 0). 
+                  However, nothing prevents using regular files with <SPAN 
+                  class=docEmphBold>tar</SPAN> -- this is common practice and a 
+                  convenient way to distribute complete directory hierarchies as 
+                  a single file. </P>
+                  <P class=docText>During restoration of files from a tape with 
+                  multiple archives, the need arises to position the tape to the 
+                  archive that holds the necessary files. To accomplish this 
+                  control, use the <SPAN class=docEmphBold>mt</SPAN> command. 
+                  (The name comes from "<SPAN class=docEmphasis>m</SPAN> agnetic 
+                  <SPAN class=docEmphasis>t</SPAN> ape.") The <SPAN 
+                  class=docEmphBold>mt</SPAN><I> </I>command uses a set of 
+                  simple instructions that directs the tape drive to perform a 
+                  particular action. </P><A name=p1_ch07-28-fm2xml></A><A 
+                  name=IXT-7-350247></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>tar</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100260></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>tar [options] files</PRE><A 
+                  name=p1_ch07-_Toc382100261></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350247></A>Archive or restore  
+                  files. <SPAN class=docEmphBold>tar</SPAN> recursively creates  
+                  archives of files and directories, including file properties.  
+                  It <SPAN class=docEmphasis>requires at least one basic mode  
+                  option</SPAN> to specify the operational mode. </P><A  
+                  name=p1_ch07-_Toc382100262></A>
+                  <H4 class=docRefsectTitle>Basic mode options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Create a new tarfile.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List the contents of a tarfile.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-x</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Extract files from a tarfile.</P></DD></DL><A 
+                  name=p1_ch07-_Toc382100263></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <SPAN 
+                    class=docEmphasis>tarfile</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Unless <SPAN class=docEmphBold>tar</SPAN> 
+                    is using standard I/O, use the <SPAN 
+                    class=docEmphBold>-f</SPAN> option with <SPAN 
+                    class=docEmphBold>tar</SPAN> to specify the tarfile. This 
+                    might be simply a regular file or it may be a device such as 
+                    <I>/dev/st0</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Verbose mode. By default, <SPAN 
+                    class=docEmphBold>tar</SPAN> runs silently. When <SPAN 
+                    class=docEmphBold>-v</SPAN> is specified, <SPAN 
+                    class=docEmphBold>tar</SPAN> reports each file as it is 
+                    transferred. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN> </SPAN>
+                    <DD>
+                    <P class=docList>Interactive mode. In this mode, <SPAN 
+                    class=docEmphBold>tar</SPAN> asks for confirmation before 
+                    archiving or restoring files. This option is useful only for 
+                    small archives. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-z</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enable compression. When using <SPAN 
+                    class=docEmphBold>-z</SPAN>, data is filtered through the 
+                    <SPAN class=docEmphBold>gzip</SPAN> compression program 
+                    prior to being written to the tarfile, saving additional 
+                    space. The savings can be substantial, at times better than 
+                    an order of magnitude depending on the data being 
+                    compressed. An archive created using the <SPAN 
+                    class=docEmphBold>-z</SPAN> option <SPAN 
+                    class=docEmphasis>must</SPAN> also be listed and extracted 
+                    with <SPAN class=docEmphBold>-z</SPAN>; <SPAN 
+                    class=docEmphBold>tar</SPAN> will not recognize a compressed 
+                    file as a valid archive without the <SPAN 
+                    class=docEmphBold>-z</SPAN> option. Tarfiles created with 
+                    this option will have the <I>.tar.gz </I>file extension. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-N</SPAN> <I>date</I></SPAN> 
+                    <DD>
+                    <P class=docList>Store only files newer than the <I>date</I> 
+                    specified. This option can be used to construct an 
+                    incremental or differential backup scheme. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-V</SPAN> "<I>label</I>"</SPAN> 
+                    <DD>
+                    <P class=docList>Adds a <I>label</I> to the <I>.tar 
+                    </I>archive. Quotes are required to prevent the label from 
+                    being interpreted as a filename. A label is handy if you 
+                    find an unmarked tape or poorly named tarfile. 
+                  </P></DD></DL><A name=p1_ch07-_Toc382100264></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Create an archive on SCSI tape of the 
+                  <I>/etc</I> directory, reporting progress: </P><PRE># <B>tar cvf /dev/st0 /etc</B>
+tar: Removing leading `/' from absolute path names 
+in the archive
+etc/
+etc/hosts
+etc/csh.cshrc
+etc/exports
+etc/group
+etc/host.conf
+etc/hosts.allow
+etc/hosts.deny
+etc/motd
+...</PRE>
+                  <P class=docText>Note the message indicating that <SPAN 
+                  class=docEmphBold>tar</SPAN><I> </I>will strip the leading 
+                  slash from <I>/etc</I> for the filenames in the archive. This 
+                  is done to protect the filesystem from accidental restores to 
+                  <I>/etc</I> from this archive, which could be disastrous. 
+                  </P><A name=p1_ch07-_Toc382100265></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>List the contents of the <SPAN 
+                  class=docEmphBold>tar</SPAN><I> </I>archive on SCSI tape 0: 
+                  </P><PRE># <B>tar tf /dev/st0</B>
+...</PRE><A name=p1_ch07-_Toc382100266></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Extract the entire contents of the <SPAN 
+                  class=docEmphBold>tar</SPAN><I> </I>archive on SCSI tape 0, 
+                  reporting progress: </P><PRE># <B>tar xvf /dev/st0</B>
+... </PRE><A name=p1_ch07-_Toc382100267></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Extract only the <I>/etc/hosts</I> file:</P><PRE># <B>tar xvf /dev/st0 etc/hosts</B>
+etc/hosts</PRE>
+                  <P class=docText>Note that the leading slash is omitted in the 
+                  file specification (<I>etc/hosts</I>), in order to match the 
+                  archive with the stripped slash as noted earlier. </P><A 
+                  name=p1_ch07-_Toc382100268></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>Create a compressed archive of <SPAN 
+                  class=docEmphasis>root</SPAN>'s home directory on a floppy: 
+                  </P><PRE># <B>tar cvzf /dev/fd0 -V &quot;root home dir&quot; /root</B>
+tar: Removing leading `/' from absolute path names 
+in the archive
+root/
+root/lost+found/
+root/.Xdefaults
+root/.bash_logout
+root/.bash_profile
+root/.bashrc
+root/.cshrc
+root/.tcshrc
+...
+tar (grandchild): Cannot write to /dev/fd0: No space 
+left on device
+tar (grandchild): Error is not recoverable: exiting now</PRE>
+                  <P class=docText>As you can see from reading the error 
+                  messages, there isn't enough room on the floppy, despite 
+                  compression. In this case, try storing the archive to an ATAPI 
+                  Zip drive: </P><PRE># <B>tar cvzf /dev/hdd -V &quot;root home dir&quot; /root</B>
+...</PRE>
+                  <P class=docText>As mentioned earlier, tape drives have more 
+                  than one device file. A tape drive's nonrewinding device file 
+                  allows you to write to the tape without sending a rewind 
+                  instruction. This allows you to use <SPAN 
+                  class=docEmphBold>tar</SPAN> again on the same tape, writing 
+                  another archive to the media. The number of archives written 
+                  is limited only by the available space on the tape. </P>
+                  <P class=docText>Often multiple archives are written on a 
+                  single tape to accomplish a backup strategy for multiple 
+                  computers, multiple disks, or some other situation in which 
+                  segmenting the backup makes sense. One thing to keep in mind 
+                  when constructing backups to large media such as tape is the 
+                  reliability of the media itself. If an error occurs while 
+                  <SPAN class=docEmphBold>tar</SPAN> is reading the tape during 
+                  a restore operation, it may become confused and give up. This 
+                  may prevent a restore of anything located beyond the bad 
+                  section of tape. Segmenting the backup into pieces may enable 
+                  you to position the tape beyond the bad section to the next 
+                  archive, where <SPAN class=docEmphBold>tar</SPAN> would work 
+                  again. In this way, a segmented backup could help shield you 
+                  from possible media errors. </P>
+                  <P class=docText>See the <SPAN class=docEmphBold>tar</SPAN>  
+                  info page for full details; <SPAN  
+                  class=docEmphBold>info</SPAN> is described in <a class="docLink" href="06-1.htm">Section  
+                  6.1</a>. </P><A name=p1_ch07-_Toc382100269></A><A 
+                  name=IXT-7-350248></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>mt</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100270></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>mt [-h] [-f device_ file] operation [count]</PRE><A 
+                  name=p1_ch07-_Toc382100271></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350248></A>Control a tape  
+                  drive. The tape drive is instructed to perform the specified  
+                  <SPAN class=docEmphasis>operation</SPAN> once, unless <SPAN  
+                  class=docEmphasis>count</SPAN> is specified. </P><A  
+                  name=p1_ch07-_Toc382100272></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print usage information, including 
+                    operation names, and exit.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN> <I>device_ file</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specify the device file; if omitted, the 
+                    default is used, as defined in the header file 
+                    <I>/usr/include/sys/mtio.h</I>. The typical default is 
+                    <I>/dev/tape</I>. </P></DD></DL><A 
+                  name=p1_ch07-_Toc382100273></A>
+                  <H4 class=docRefsectTitle>Popular tape operations</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>fsf</SPAN> [<I>count</I>]</SPAN> 
+                    <DD>
+                    <P class=docList>Forward space files. Move forward the 
+                    number of files specified by <SPAN 
+                    class=docEmphasis>count</SPAN> (archives, in the case of 
+                    <SPAN class=docEmphBold>tar</SPAN>), leaving the tape 
+                    positioned at the first block of the next file. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>rewind</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Rewind to the beginning of the 
+                    tape.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>offline</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Eject the tape. This is appropriate for 8 
+                    mm or similar drives, where the tape is handled 
+                    automatically by the mechanism. Ejecting the tape at the end 
+                    of a backup may prevent an accidental subsequent backup to 
+                    the same media. This operation is meaningless on devices 
+                    that cannot eject the tape. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>status</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Displays status information about the tape 
+                    drive being used.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>tell</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>For some SCSI tape drives, report the 
+                    position of the tape in blocks.</P></DD></DL>
+                  <P class=docText>Many more operations exist; consult the <SPAN 
+                  class=docEmphBold>mt</SPAN><I> </I>manpage for a complete list 
+                  of options. </P><A name=p1_ch07-_Toc382100274></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Move the tape in <I>/dev/st0</I> to the third 
+                  archive on the tape by skipping forward over two archives: 
+</P><PRE># <B>mt -f /dev/nst0 fsf 2</B></PRE>
+                  <P class=docText>Note that the nonrewinding device file is 
+                  specified (<SPAN class=docEmphasis>/nst0</SPAN>). If the 
+                  standard device is specified, the tape drive dutifully skips 
+                  forward to the appropriate location on the tape, then promptly 
+                  rewinds. </P><A name=p1_ch07-_Toc382100275></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Rewind the tape in <I>/dev/st0</I> :</P><PRE># <B>mt -f /dev/st0 rewind</B></PRE><A 
+                  name=p1_ch07-_Toc382100276></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Eject the tape cartridge:</P><PRE># <B>mt -f /dev/st0 offline</B> </PRE><A 
+                  name=p1_ch07-_Toc382100277></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Determine what device is represented by the 
+                  default <I>/dev/tape</I> : </P><PRE># <B>ls -l /dev/tape</B>
+lrwxrwxrwx 1 root root 8 Dec 9 15:32 /dev/tape -&gt; /dev/st0</PRE>
+                  <P class=docText>If you wish to use the default tape device 
+                  <I>/dev/tape</I> and it is not set on your system, you may 
+                  need to set it manually: </P><PRE># <B>ln -s /dev/tape /dev/st0</B></PRE><A 
+                  name=lpicertnut-CHP-7-SECT-5.4></A>
+                  <H4 class=docSection2Title>7.5.4 Backup Operations</H4>
+                  <P class=docText>Using <SPAN class=docEmphBold>tar</SPAN> or 
+                  <SPAN class=docEmphBold>mt</SPAN> interactively for routine 
+                  system backups can become tedious. It is common practice to 
+                  create backup scripts called by <SPAN 
+                  class=docEmphBold>cron</SPAN> to execute the backups for you. 
+                  This leaves the administrator or operator with the duty of 
+                  providing correct media and examining logs. This section 
+                  describes a basic backup configuration using <SPAN 
+                  class=docEmphBold>tar</SPAN>, <SPAN 
+                  class=docEmphBold>mt</SPAN>, and <SPAN 
+                  class=docEmphBold>cron</SPAN>. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.4.1></A>
+                  <H5 class=docSection3Title>7.5.4.1 What should I back up?</H5>
+                  <P class=docText>It's impossible to describe exactly what to 
+                  back up on your system. If you have enough time and media, 
+                  complete backups of everything are safest. However, much of 
+                  the data on a Linux system, such as commands, libraries, and 
+                  manpages, don't change routinely and probably won't need to be 
+                  saved often. Making a full backup of the entire system makes 
+                  sense after you have installed and configured your system. 
+                  Once you've created a backup of your system, there are some 
+                  directories that you should routinely back up: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc</I></SPAN> 
+                    <DD>
+                    <P class=docList>Most of the system configuration files for 
+                    a Linux system are stored in <I>/etc</I>, which should be 
+                    backed up regularly. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/home</I></SPAN> 
+                    <DD>
+                    <P class=docList>User files are stored in <I>/home</I>. 
+                    Depending on your configuration, you may also store web 
+                    server files in <I>/home/httpd</I>. On multiuser systems or 
+                    large web servers, <I>/home</I> can be quite large. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/src</I></SPAN> 
+                    <DD>
+                    <P class=docList>If you've done any kernel compilation, back 
+                    up <I>/usr/src</I> to save your work. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/log</I></SPAN> 
+                    <DD>
+                    <P class=docList>If you have security or operational 
+                    concerns, it may be wise to save log files stored in 
+                    <I>/var/log</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/spool/mail</I></SPAN> 
+                    <DD>
+                    <P class=docList>If you use email hosted locally, the mail 
+                    files are stored in <I>/var/spool/mail</I> and should be 
+                    retained. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/spool/at </I><SPAN 
+                    class=docEmphasis>and</SPAN> <I>/var/spool/cron</I></SPAN> 
+                    <DD>
+                    <P class=docList>Users' <SPAN class=docEmphBold>at</SPAN> 
+                    and <SPAN class=docEmphBold>crontab</SPAN> files are stored 
+                    in <I>/var/spool/at</I> and <I>/var/spool/cron</I>, 
+                    respectively. These directories should be retained if these 
+                    services are available to your users. </P></DD></DL>
+                  <P class=docText>Of course, this list is just a start, as each 
+                  system will have different backup requirements. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.4.2></A>
+                  <H5 class=docSection3Title>7.5.4.2 A scripted backup with tar, 
+                  mt, and cron</H5>
+                  <P class=docText>This section presents a simple yet effective 
+                  backup methodology. The backups are scheduled to run via <SPAN 
+                  class=docEmphBold>cron</SPAN> using a shell script. This 
+                  example is not intended as a production solution, but rather 
+                  as an illustration of the general concepts involved in 
+                  automating a backup scheme. </P>
+                  <P class=docText>In <a class="docLink" href="#lpicertnut-CHP-7-EX-5">Example  
+                  7-5</a>, we back up <I>/etc</I> and <I>/home</I> using <SPAN  
+                  class=docEmphBold>tar</SPAN>, executing both full and  
+                  differential backups to two independent segments on a tape. We  
+                  use a <SPAN class=docEmphBold>bash</SPAN> script scheduled in  
+                  <SPAN class=docEmphBold>cron</SPAN><I> </I>using root's <SPAN  
+                  class=docEmphBold>crontab</SPAN> file. The script will perform  
+                  full backups once per week early on Monday morning and  
+                  differential backups on the remaining six mornings of the  
+                  week. Differential backups will be done using <SPAN  
+                  class=docEmphBold>tar</SPAN>'s <SPAN  
+                  class=docEmphBold>-N</SPAN> option. The line numbers are for  
+                  reference only and not part of the code. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-7-EX-5></A>Example 7-5. A Simple Backup  
+                  Script </H5><PRE>1  #!/bin/bash
+2
+3  # This script performs a weekly-full/daily-differential tar backup 
+4  # to tape. Each item in &quot;targets&quot; is placed in a separate tape 
+5  # tarfile. Gzip compression is enabled in tar.
+6
+7  # what to back up 
+8  targets=&quot;/etc /home&quot;
+9 
+10 # the day we want a full backup (others are differential)
+11 fullday=Mon
+12
+13 # the target tape drive and its non-rewinding twin
+14 device=&quot;/dev/st0&quot;
+15 device_n=&quot;/dev/n`/bin/basename $device`&quot;
+16
+17 # get the last full backup date and the present date
+18 datefile=&quot;/var/tmp/backup_full_date&quot;
+19 prev_full=`/bin/cat $datefile`
+20 now=`/bin/date`
+21
+22 # See if today is the full backup day
+23 if (`echo $now | grep $fullday &gt; /dev/null`) 
+24 then
+25     # create and secure the new date file
+26     /bin/echo $now &gt; $datefile
+27     /bin/chmod 600 $datefile
+28
+29     # full backup
+30     for target in $targets
+31     do
+32     /bin/tar -cvzf $device_n \
+33         -V &quot;Full backup of $target on $now&quot; \
+34         $target
+35         # let the tape drive flush its buffer
+36         sleep 5
+37     done
+38 else
+39     # If today isn't the day to perform the full backup
+40     # then the differential backup is performed
+41     for target in $targets
+42     do
+43     /bin/tar -cvzf $device_n \
+44         -V &quot;Differential backup of $target from $prev_full to $now&quot; \
+45         -N &quot;$now&quot; \
+46         $target
+47           # let the tape drive flush its buffer
+48           sleep 5
+49     done
+50 fi
+51
+52 # rewind and eject the tape
+53 /bin/mt -f $device rewind
+54 sleep 1
+55 /bin/mt -f $device offline</PRE>
+                  <P class=docText>Now let's look at some of the key elements of 
+                  this script:</P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 7-8</SPAN></I> 
+                    <DD>
+                    <P class=docList>The <TT>targets</TT> variable contains a 
+                    space-separated list of directories to back up. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 10-11</SPAN></I> 
+                    <DD>
+                    <P class=docList><TT>fullday</TT> contains the day that full 
+                    backups should run. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 13-15</SPAN></I> 
+                    <DD>
+                    <P class=docList>We define the <TT>device</TT> and its 
+                    nonrewinding version.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 17-20</SPAN></I> 
+                    <DD>
+                    <P class=docList>We specify a <TT>datefile</TT>, which will 
+                    simply contain the output of the <SPAN 
+                    class=docEmphBold>date</SPAN> command at the start time of 
+                    each full backup. This date is used by <SPAN 
+                    class=docEmphBold>tar</SPAN> to determine which files belong 
+                    in subsequent differential backups. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 22-46</SPAN></I> 
+                    <DD>
+                    <P class=docList>We then check to see if we're on the full 
+                    backup day and then run <SPAN class=docEmphBold>tar</SPAN> 
+                    on each <TT>target</TT> accordingly, with all output going 
+                    to the same tape. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 36, 48, and 
+                    54</SPAN></I> 
+                    <DD>
+                    <P class=docList>Sometimes a tape drive indicates that it 
+                    has completed an operation before it is ready for another. 
+                    By adding some delays to the script, we can be sure that the 
+                    tape drive is ready. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Lines 53 and 55</SPAN></I> 
+                    <DD>
+                    <P class=docList>Finally, we rewind and unload the 
+                    tape.</P></DD></DL>
+                  <P class=docText>To execute this script daily, the following 
+                  entry is made in <SPAN class=docEmphasis>root</SPAN>'s <SPAN 
+                  class=docEmphBold>crontab</SPAN>: </P><PRE># run the backup script at 00:05 every day
+5 0 * * * /root/backup</PRE>
+                  <P class=docText>On Sunday night, a blank tape is inserted in 
+                  the drive for the full backup. During the week, other tapes 
+                  are used to record each differential backup. </P>
+                  <P class=docText>If necessary, a few weeks of full backups can 
+                  be retained for historical purposes. Differential backups are 
+                  sometimes retained for a short period, perhaps two weeks, to 
+                  allow the restoration of a file on a particular day. This is a 
+                  nice policy to implement, as it protects users by allowing 
+                  them access to intermediate versions of their work. </P>
+                  <P class=docText>As stated earlier, this is only a simple 
+                  backup scheme, and many improvements could be made to it. For 
+                  example, <SPAN class=docEmphasis>root</SPAN> will receive all 
+                  of the output from the <SPAN class=docEmphBold>tar</SPAN> 
+                  commands in the script via email, even for successful runs. 
+                  Since the system administrator may not wish to view all of 
+                  this good news, the script could be modified to alert the 
+                  administrator only when an error occurs. The script also does 
+                  not attempt to read the tape it just created, leaving the 
+                  administrator to verify backups manually. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.4.3></A>
+                  <H5 class=docSection3Title>7.5.4.3 Locked files and 
+                  single-user mode</H5>
+                  <P class=docText>Running the script in <a class="docLink" href="#lpicertnut-CHP-7-EX-5">Example  
+                  7-5</a> late at night may be sufficient to create a reasonable  
+                  general backup scheme in many situations. However, if users or  
+                  overnight processes are actively working in a filesystem as it  
+                  is backed up, the state of the files in the archive will be in  
+                  question. To avoid this problem, it may be safest to eliminate  
+                  the users and processes from the backup scheme completely by  
+                  putting Linux into single-user mode (runlevel 1) before  
+                  executing the backup. In this mode, users will not be logged  
+                  on, and most services, such as web or database servers, will  
+                  be shut down. With no active processes running, the filesystem  
+                  can be safely backed up. See <a class="docLink" href="05-0.htm">Chapter  
+                  5</a> for more information on changing runlevels. </P><A  
+                  name=lpicertnut-CHP-7-SECT-5.5></A>
+                  <H4 class=docSection2Title>7.5.5 Maintenance, Verification, 
+                  and Restoration</H4>
+                  <P class=docText>Verifying the integrity of your backups and 
+                  performing occasional file restorations and system maintenance 
+                  are easy processes. As mentioned earlier, backup schemes are 
+                  useless unless they successfully yield positive results during 
+                  a restoration. </P><A name=lpicertnut-CHP-7-SECT-5.5.1></A>
+                  <H5 class=docSection3Title>7.5.5.1 Caring for tape drive 
+                  mechanisms</H5>
+                  <P class=docText>Modern tape drives store large volumes of 
+                  data onto compact and relatively inexpensive media with a 
+                  surprisingly high degree of reliability. Their reliability is 
+                  so good that it is easy to forget that the tape drives require 
+                  routine cleaning. </P>
+                  <P class=docText>The surface of magnetic media is coated with 
+                  one or more layers of microscopic metal oxide particles. As 
+                  tapes pass over the tape drive mechanism, some of these 
+                  particles begin to accumulate on the heads of the tape drive. 
+                  A tape head is a very small and sensitive set of 
+                  electromagnets that pass over the tape. When oxide particles 
+                  accumulate on the heads, they become less effective and can 
+                  fail completely in extreme cases. Some devices are capable of 
+                  cleaning the heads themselves, but most require periodic 
+                  insertion of special cleaning media. These media look like 
+                  ordinary tapes, but they are formulated to extract loose 
+                  particles from the tape heads. In a production environment 
+                  with daily tape drive activity, it is common to use cleaning 
+                  media once every week or two. </P>
+                  <P class=docText>It is important to follow the recommendations 
+                  of the tape drive manufacturer for cleaning media selection 
+                  and cleaning frequency, and to keep the cleaning procedure a 
+                  prominent part of a solid backup methodology. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.5.2></A>
+                  <H5 class=docSection3Title>7.5.5.2 Media expiration</H5>
+                  <P class=docText>Some media manufacturers make claims that 
+                  their media are "guaranteed for life." But be careful here -- 
+                  the guarantee is probably good for only the cost of the media, 
+                  not for the data you've stored on it. The manufacturer's 
+                  guarantee won't get you very far if you're having difficulty 
+                  restoring priceless data from an old, overused, worn-out tape. 
+                  It's imperative that you implement a media rotation scheme to 
+                  place a limit on the number of uses of any given medium. 
+                  Adding a usage limit can help to avoid getting into trouble by 
+                  over-using a tape. There is no hard rule on how many times a 
+                  tape can be used, and any guidelines should be based on the 
+                  drive technology, recommendations from drive and tape 
+                  manufacturers, and direct personal experience. You may find 
+                  that your situation shows that media can be reused quite 
+                  often. Regardless, it is best to avoid thinking of media in 
+                  perpetual rotation. At the very least, replace your backup 
+                  media once or twice a year, just to be safe. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.5.3></A>
+                  <H5 class=docSection3Title>7.5.5.3 Verifying tar archives</H5>
+                  <P class=docText>Keeping tape drives clean and using fresh 
+                  media lay a solid foundation for reliable backups. In addition 
+                  to those preventive measures, you'll want to routinely verify 
+                  your backups to ensure that everything ran smoothly. 
+                  Verification is important on many levels. Clearly, it is 
+                  important to ensure that the data is correctly recorded. 
+                  Beyond that, you should also verify that the tape drives and 
+                  the backup commands function correctly during restoration. 
+                  Proper file restoration techniques should be established and 
+                  tested during normal operations, before tragedy strikes and 
+                  places your operation into an emergency situation. </P>
+                  <P class=docText>You can verify the contents of a <SPAN 
+                  class=docEmphBold>tar</SPAN> archive by simply listing its 
+                  contents. For example, suppose a backup has been made of the 
+                  <I>/etc</I> directory using the following command: </P><PRE># <B>tar cvzf /dev/st0 /etc</B></PRE>
+                  <P class=docText>After the backup is complete, the tape drive 
+                  rewinds. The archive can then be verified immediately by 
+                  reviewing the contents with the <SPAN 
+                  class=docEmphBold>-t</SPAN> option: </P><PRE># <B>tar tf /dev/st0</B></PRE>
+                  <P class=docText>This command lists the contents of the 
+                  archive so that you can verify the contents of the tarfile. 
+                  Additionally, any errors that may prevent <SPAN 
+                  class=docEmphBold>tar</SPAN> from reading the tape is 
+                  displayed at this time. If there are multiple archives on the 
+                  tape, they can be verified in sequence using the nonrewinding 
+                  device file: </P><PRE># <B>tar tf /dev/nst0</B>
+# <B>mt -f /dev/nst0 fsf 1</B>
+# <B>tar tf /dev/nst0</B>
+# <B>mt -f /dev/st0 rewind</B></PRE>
+                  <P class=docText>While this verification tells you that the 
+                  tapes are readable, it does not tell you that the data being 
+                  read is identical to that in the filesystem. If your backup 
+                  device supports them, the <SPAN 
+                  class=docEmphBold>tar</SPAN><I> </I>utility contains two 
+                  options -- <SPAN class=docEmphBold>verify</SPAN> and <SPAN 
+                  class=docEmphBold>compare</SPAN> -- that may be useful to you. 
+                  However, comparisons of files on the backup media against the 
+                  live filesystem may yield confusing results if your files are 
+                  changing constantly. In this situation, it may be necessary to 
+                  select specific files for comparison that you are certain will 
+                  not change after they are backed up. You would probably 
+                  restore those files to a temporary directory and compare them 
+                  manually, outside of <SPAN class=docEmphBold>tar</SPAN>. If it 
+                  is necessary to compare an entire archive, be aware that doing 
+                  so doubles the time required to complete the combined backup 
+                  and verify operation. </P><A 
+                  name=lpicertnut-CHP-7-SECT-5.5.4></A>
+                  <H5 class=docSection3Title>7.5.5.4 File restoration</H5>
+                  <P class=docText>Restoring files from a <SPAN 
+                  class=docEmphBold>tar</SPAN> archive is simple. However, you 
+                  must exercise caution regarding exactly where you place the 
+                  restored files in the filesystem. In some cases, you may be 
+                  restoring only one or two files, which may be safely written 
+                  to their original locations if you're sure the versions on 
+                  tape are the ones you need. However, restoring entire 
+                  directories to their original locations on a running system 
+                  can be disastrous, resulting in changes being made to the 
+                  system without warning as files are overwritten. For this 
+                  reason, it is common practice to restore files to a different 
+                  location and move those files you need into the directories 
+                  where you want them. </P>
+                  <P class=docText>Reusing a previous example, suppose a backup 
+                  has been made of the <I>/etc</I> directory: </P><PRE># <B>tar cvzf /dev/st0 /etc</B></PRE>
+                  <P class=docText>To restore the <I>/etc/hosts</I> file from 
+                  this archive, the following commands can be used: </P><PRE># <B>cd /tmp</B>
+# <B>tar xzf /dev/st0 etc/hosts</B></PRE>
+                  <P class=docText>The first command puts our restore operation 
+                  out of harm's way by switching to the <I>/tmp </I>directory. 
+                  (The directory selected could be anywhere, such as a home 
+                  directory or scratch partition.) The second command extracts 
+                  the specified file from the archive. Note that the file to 
+                  extract is specified without the leading slash. This file 
+                  specification will match the one originally written to the 
+                  media by <SPAN class=docEmphBold>tar</SPAN>, which strips the 
+                  slash to prevent overwriting the files upon restore. <SPAN 
+                  class=docEmphBold>tar</SPAN> will search the archive for the 
+                  specified file, create the <I>etc</I> directory under 
+                  <I>/tmp</I>, and then create the final file: 
+                  <I>/tmp/etc/hosts</I>. This file should then be examined by 
+                  the system administrator and moved to the appropriate place in 
+                  the filesystem only after its contents have been verified. 
+</P>
+                  <P class=docText>To restore the entire <I>/etc</I> directory, 
+                  simply specify that directory: </P><PRE># <B>tar xzf /dev/st0 etc</B></PRE>
+                  <P class=docText>To restore the <I>.bash_ profile </I>file for 
+                  user <I>jdean</I> from a second archive on the same tape, use 
+                  <SPAN class=docEmphBold>mt</SPAN> before using <SPAN 
+                  class=docEmphBold>tar</SPAN>: </P><PRE># <B>cd /tmp</B>
+# <B>mt -f /dev/nst0 fsf 1</B>
+# <B>tar xzf /dev/st0 /home/jdean/.bash_profile</B></PRE>
+                  <P class=docText>In this example, the nonrewinding tape device  
+                  file is used with <SPAN class=docEmphBold>mt</SPAN> to skip  
+                  forward over the first archive. This leaves the tape  
+                  positioned before the second archive, where it is ready for  
+                  <SPAN class=docEmphBold>tar</SPAN> to perform its extraction<A  
+                  name=IXTR3-49></A>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>This Objective on system backup isn't 
+                        specific about particular commands or techniques. 
+                        However, <SPAN class=docEmphBold>tar</SPAN> is among the 
+                        most common methods in use for simple backup schemes. 
+                        </P>
+                        <P class=docText>You should also know how to use the  
+                        <SPAN class=docEmphBold>mt</SPAN> command to position a  
+                        tape to extract the correct archive.<A  
+                        name=IXT-7-350249></A> </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="07-5.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-7-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)406ms
+(xml)312ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)1031ms
+--></BODY></HTML>

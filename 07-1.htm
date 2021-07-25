@@ -1,0 +1,771 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="07-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="07-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 7.&nbsp;  
+            Administrative Tasks (Topic 2.11)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-7-SECT-1></A>
+                  <H3 class=docSection1Title>7.1 Objective 1: Manage Users and 
+                  Group Accounts</H3>
+                  <P class=docText>Whether on a corporate server or personal  
+                  desktop machine, managing user accounts is an important aspect  
+                  of running a Linux system. The root, or superuser, account is  
+                  established when you first install Linux. Unlike single-user  
+                  systems (such as MS-DOS), <A name=IXT-7-350220></A>multiuser  
+                  systems (such as Linux) require the notion of an <SPAN  
+                  class=docEmphasis>owner</SPAN><A name=IXT-7-350221></A> for  
+                  files, processes, and other system objects. In many cases, an  
+                  object's owner is a human system user who created the object.  
+                  Many objects are also owned by system services, such as web  
+                  servers. Each of these owners is differentiated from others by  
+                  a unique <SPAN class=docEmphasis>user account</SPAN><A  
+                  name=IXT-7-350222></A>, which is assigned to it by the system  
+                  administrator. </P>
+                  <P class=docText>If you're building your own desktop system, 
+                  you may be tempted to use the root account for daily activity, 
+                  thus avoiding user account issues. In most cases, however, the 
+                  privileges that come with the superuser account aren't 
+                  required for much of your daily activity and can be a 
+                  double-edged sword. It is easy to make big mistakes when you 
+                  have full privileges across the entire system. Instead, 
+                  running your daily tasks with a standard user account and 
+                  reserving the use of the root account for tasks that require 
+                  those privileges is always safer, even for experts. </P><A 
+                  name=lpicertnut-CHP-7-SECT-1.1></A>
+                  <H4 class=docSection2Title>7.1.1 User Accounts and the 
+                  Password File</H4>
+                  <P class=docText>When a new user account is added to a Linux  
+                  system, an entry is added to a list of users in the <SPAN  
+                  class=docEmphasis>password file</SPAN><A 
+                  name=lpicertnut-IDXTERM-518></A>, which is stored in  
+                  <I>/etc/passwd</I><A name=lpicertnut-IDXTERM-519></A>. This  
+                  file gets its name from its original use, which was to store  
+                  user information including an encrypted form of the user's  
+                  password. The password file is in plain text and is readable  
+                  by everyone on the system. Each line in the password file  
+                  contains information for a single user account, with item  
+                  detail separated by colons as illustrated in <a class="docLink" href="#lpicertnut-CHP-7-FIG-1">Figure  
+                  7-1</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-7-FIG-1></A>Figure 7-1. Sample lines from  
+                  a password file</H5><IMG height=88 alt=figs/lpi_0701.gif  
+                  src="07-1.files/lpi_0701.gif" width=350 border=0></CENTER>
+                  <P class=docText>Each line in the file contains information 
+                  for a single system account and contains the following pieces 
+                  of information in colon-separated fields: </P><A 
+                  name=IXT-7-350223></A><A name=IXT-7-350224></A><A 
+                  name=IXT-7-350225></A><A name=IXT-7-350226></A><A 
+                  name=IXT-7-350227></A><A name=IXT-7-350228></A><A 
+                  name=IXT-7-350229></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Username</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-7-350223></A><A 
+                    name=IXT-7-350224></A>The first field on a line is a unique  
+                    <I>username</I> for the person or service using the account.  
+                    The username is usually a short form of the person's name,  
+                    such as <I>jdean</I>. </P> 
+                    <DT><I><SPAN class=docPubcolor>Password</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each username has an associated  
+                    <I>password</I><A name=IXT-7-350225></A>. The password  
+                    stored in this field is in an encrypted (unreadable) form.  
+                    Despite the encryption, for security reasons, most systems  
+                    now store users passwords in a separate <I>/etc/shadow</I>  
+                    file. If the password is not included, its field is filled  
+                    by the letter <I>x</I>, which indicates that the shadow  
+                    password system is in use. </P> 
+                    <DT><I><SPAN class=docPubcolor>User ID</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each username requires a unique <SPAN  
+                    class=docEmphasis>user identifier</SPAN><A 
+                    name=IXT-7-350226></A>, or <SPAN  
+                    class=docEmphasis>UID</SPAN>. The UID is simply a  
+                    nonnegative integer. The root account is assigned the UID of  
+                    0, which affords it global privilege on the system. Other  
+                    users have a positive UID, and it is not unusual to begin  
+                    the sequence for new users at a large number like 100, or on  
+                    some Linux distributions, 500. By convention, the UID values  
+                    from to 99 are reserved for administrative use; those over  
+                    99 are for regular system users. </P> 
+                    <DT><I><SPAN class=docPubcolor>Group ID</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each username has a default <SPAN  
+                    class=docEmphasis>group identifier</SPAN><A 
+                    name=IXT-7-350227></A>, or <SPAN  
+                    class=docEmphasis>GID</SPAN>. The GID is also a nonnegative  
+                    integer. Groups are a way of allowing users to share files  
+                    through mutual group membership. Group numbers and their  
+                    associated names are specified in the <I>/etc/group</I>  
+                    file. The GID stored for each user in <I>/etc/passwd</I> is  
+                    its default group ID, though a user may belong to many  
+                    groups. </P>
+                    <DT><I><SPAN class=docPubcolor>User's name (or other 
+                    comment)</SPAN></I> 
+                    <DD>
+                    <P class=docList>The user's name or other information is 
+                    stored as plain text and usually contains the user's full 
+                    name. This field may contain spaces. </P>
+                    <DT><I><SPAN class=docPubcolor>Home directory</SPAN></I> 
+                    <DD>
+                    <P class=docList>The <I>home directory</I><A  
+                    name=IXT-7-350228></A> is the default directory in the  
+                    filesystem for the account. If a new account is meant for a  
+                    person, a home directory will probably be created in the  
+                    filesystem with standard configuration files that the user  
+                    may then personalize. The full path to that home directory  
+                    is listed here. </P> 
+                    <DT><I><SPAN class=docPubcolor>Default shell</SPAN></I> 
+                    <DD>
+                    <P class=docList>This field specifies the <A  
+                    name=IXT-7-350229></A>default shell for the user or service,  
+                    which is the shell that runs when the user logs in or opens  
+                    a shell window. In most cases, the shell will be  
+                    <I>/bin/bash</I> or <I>/bin/tcsh</I>, but it can be any  
+                    shell, or even another executable program.<SUP  
+                    class=docFootnote>[1]</SUP> </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[1]</A></SUP> 
+                      Non-shell entries may be seen in the case of some services 
+                      that should own files but never log in interactively. You 
+                      may see the shell field filled with <I>/bin/false</I>, a 
+                      small program that does nothing but yield an error and 
+                      terminate. This ensures that a service account is secured 
+                      from login.</P></BLOCKQUOTE></DD></DL>
+                  <P class=docText>In looking back at <a class="docLink" href="#lpicertnut-CHP-7-FIG-1">Figure  
+                  7-1</a>, the first line shows the definition of the root  
+                  account with UID and GID of 0, a name of "root," a home  
+                  directory of <I>/root</I>, and a default shell of  
+                  <I>/bin/bash</I>. The second line shows a standard user  
+                  account for Jeff Dean, with UID and GID of 500. The home  
+                  directory is <I>/home/jdean</I> and the default shell is  
+                  <I>/bin/tcsh</I>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be prepared to name the fields 
+                        in the <I>passwd</I> file. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>In both cases, note that the password field 
+                  contains a single letter <I>x</I>. This indicates that the 
+                  password is stored in <I>/etc/shadow</I> and not 
+                  <I>/etc/passwd</I>; <I>/etc/shadow</I> is secured and readable 
+                  only by the root user. This technique reduces the likelihood 
+                  of an attack against passwords on your system. Shadow 
+                  passwords and the attacks they defend against are discussed 
+                  later in this Objective. </P><A 
+                  name=lpicertnut-CHP-7-SECT-1.2></A>
+                  <H4 class=docSection2Title>7.1.2 Groups and the Group 
+File</H4>
+                  <P class=docText>In addition to ownership by individual system  
+                  users, filesystem objects have separate ownership settings for  
+                  groups of users. This <I>group ownership </I><A  
+                  name=IXT-7-350230></A>allows an additional level of  
+                  user-specific access control beyond that of a file's  
+                  individual owner. Groups are similar to users in their  
+                  administration and are defined in the file <I>/etc/group</I><A  
+                  name=IXT-7-350231></A>. Like the <I>passwd </I>file, the  
+                  <I>group </I>file contains colon-separated fields: </P> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Group name</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each group must have a unique 
+                  name.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Group password</SPAN></I> 
+                    <DD>
+                    <P class=docList>Just as user accounts have passwords, 
+                    groups can have passwords for their membership. If the 
+                    password field is empty, the group does not require a 
+                    password. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Group ID</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each group requires a unique GID. Like a 
+                    UID, a GID is a nonnegative integer. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Group member list</SPAN></I> 
+                    <DD>
+                    <P class=docList>The last field is a list of group members 
+                    by username, separated by commas. </P></DD></DL>
+                  <P class=docText>Together, these pieces of information define 
+                  a group; colons separate the fields. Here are a few sample 
+                  lines from a group file: </P><PRE>root:x:0:root
+pppusers:x:230:jdean,jdoe
+finance:x:300:jdean,jdoe,bsmith
+jdean:x:500:
+jdoe:x:501:
+bsmith:x:502:</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that some distributions assign 
+                        all accounts to the <I>users</I> group while others 
+                        assign a group for each account. Red Hat Linux, for 
+                        example, creates single-user groups for all users. In 
+                        contrast, SuSE Linux assigns the <I>users</I> group (GID 
+                        100) as the default for all users. 
+                  </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>In this example, both <TT>jdean</TT> and  
+                  <TT>jdoe</TT> are members of the <TT>pppusers</TT> group (GID  
+                  230), and <TT>jdean</TT>, <TT>jdoe</TT>, and <TT>bsmith</TT>  
+                  are all members of the finance group (GID 300). The remaining  
+                  groups, <TT>root</TT>, <TT>jdean</TT>, <TT>jdoe</TT>, and  
+                  <TT>bsmith</TT> are single-user groups. These groups are not  
+                  intended for multiple users and do not contain additional  
+                  members. For security purposes, it is common to create new  
+                  users with their own personal single-user group. Doing this  
+                  enhances security because new files and directories will not  
+                  have group privileges for other users.<SUP  
+                  class=docFootnote>[2]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> Although 
+                    the GID of these single-user groups may match the UID of the 
+                    user for which they're created, there is no direct 
+                    relationship between the UID and GID.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-7-SECT-1.3></A>
+                  <H4 class=docSection2Title>7.1.3 The Shadow Password and 
+                  Shadow Group Systems</H4>
+                  <P class=docText>At one time, the encryption used on passwords 
+                  in the world-readable <I>/etc/passwd</I> file was a roadblock 
+                  to anyone trying to break into a Unix system account. The 
+                  encrypted passwords were meaningless, and there was no way to 
+                  reverse-engineer them. However, improved computer performance 
+                  has led to tools that can process encrypted passwords through 
+                  what is known as a <SPAN class=docEmphasis>dictionary 
+                  attack</SPAN>. In this form of attack, a list of common words 
+                  and typical passwords is encrypted. The encrypted words are 
+                  then compared against the publicly available encrypted 
+                  passwords. If a match is found, the account in question is 
+                  compromised and can then be used by someone other than its 
+                  owner. </P><A name=lpicertnut-CHP-7-SECT-1.3.1></A>
+                  <H5 class=docSection3Title>7.1.3.1 Shadow passwords</H5>
+                  <P class=docText>Encrypted passwords must be secure from all 
+                  users on the system, while leaving the remainder of the 
+                  information in <I>/etc/passwd</I> world-readable. To do this, 
+                  the encrypted password is moved to a new file that "shadows" 
+                  the password file line for line. The file is aptly called 
+                  <I>/etc/shadow</I> and is generally said to contain <SPAN 
+                  class=docEmphasis>shadow passwords</SPAN>. Here are a few 
+                  example lines from a shadow file: </P><PRE>root:$1$oxEaSzzdXZESTGTU:10927:0:99999:7:-1:-1:134538444
+jdean:$1$IviLopPn461z47J:10927:0:99999:7::11688:134538412</PRE>
+                  <P class=docText>The first two fields contain the username and 
+                  the encrypted passwords. The remaining fields contain optional 
+                  additional information on password aging information. </P><A 
+                  name=lpicertnut-CHP-7-SECT-1.3.2></A>
+                  <H5 class=docSection3Title>7.1.3.2 Group passwords and shadow 
+                  groups</H5>
+                  <P class=docText>Just as user accounts listed in  
+                  <I>/etc/passwd</I> are protected by encrypted passwords,  
+                  groups listed in <I>/etc/group</I> can also be protected by  
+                  passwords. A group password can be used to allow access to a  
+                  group by a user account that is not actually a member of the  
+                  group.<SUP class=docFootnote>[3]</SUP> Account  
+                  users can use the <SPAN class=docEmphBold>newgrp</SPAN>  
+                  command to change their default group and enter the group  
+                  password. If the password is correct, the account is granted  
+                  the group privileges, just as a group member would be. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> This begs 
+                    the question "Why not simply make that user a member of the 
+                    group instead of handing out group passwords?" Indeed, group 
+                    passwords are rarely used, precisely because group 
+                    membership is so simple to administer and is more secure 
+                    than publicly known passwords. It is unlikely that you will 
+                    need to use group passwords. Nevertheless, understanding 
+                    group passwords is a requirement for Exam 
+101.</P></BLOCKQUOTE>
+                  <P class=docText>The group definition file, like the password 
+                  file, is readable by everyone on the system. If group 
+                  passwords are stored there, a dictionary attack could be made 
+                  against them. To protect against such attacks, passwords in 
+                  <I>/etc/group</I> can be shadowed. The protected passwords are 
+                  stored in <I>/etc/gshadow</I>, which is readable only by <SPAN 
+                  class=docEmphasis>root</SPAN>. Here are a few sample lines 
+                  from a <I>gshadow</I> file: </P><PRE>root:::root
+pppusers:x::
+finance:0cf7ipLtpSBGg::
+jdean:x::
+jdoe:x::
+bsmith:x::</PRE>
+                  <P class=docText>In this example, the groups 
+                  <TT>pppusers</TT>, <TT>jdean</TT>, <TT>jdoe</TT>, and 
+                  <TT>bsmith</TT> do not have group passwords as indicated by 
+                  the <TT>x</TT> in the password field. The<I> 
+                  </I><TT>finance</TT> group is the only one with a password, 
+                  which is encrypted. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>A major contrast between  
+                        <I>passwd/group</I> and <I>shadow/gshadow</I> is the  
+                        permissions on the files. The standard files are  
+                        readable by everyone on the system, but the shadow files  
+                        are readable only by <SPAN  
+                        class=docEmphasis>root</SPAN>, which protects encrypted  
+                        passwords from theft and possible cracking.<A  
+                        name=IXTR3-47></A> <A  
+                    name=IXTR3-48></A></P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-7-SECT-1.4></A>
+                  <H4 class=docSection2Title>7.1.4 User and Group Management 
+                  Commands</H4>
+                  <P class=docText>Although possible, it is rarely necessary (or  
+                  advised) to manipulate the account and group definition files  
+                  manually with a text editor. Instead, a family of convenient  
+                  administrative commands is available for managing accounts,  
+                  groups, password shadowing, group shadowing, and password  
+                  aging.<SUP class=docFootnote>[4]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> Password 
+                    aging (rules governing change intervals and automated 
+                    expiration of passwords) is not an explicit Objective for 
+                    the LPIC Level 1 exams.</P></BLOCKQUOTE><A 
+                  name=p1_ch07-_Toc382100180></A><A name=IXT-7-350232></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>useradd</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100181></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>useradd [options] user</PRE><A 
+                  name=p1_ch07-_Toc382100182></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350232></A>Create the account  
+                  <I>user</I>on the system. Both system defaults and specified  
+                  <I>options</I> define how the account is configured. All  
+                  system account files are updated as required. An initial  
+                  password must subsequently be set for new users using the  
+                  <SPAN class=docEmphBold>passwd</SPAN> command. It is the  
+                  user's responsibility to go back and change that password when  
+                  he first logs in to the system. </P><A  
+                  name=p1_ch07-_Toc382100183></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN> "comment"</SPAN> 
+                    <DD>
+                    <P class=docList>Define the comment field, probably the 
+                    user's name.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> <I>homedir</I></SPAN> 
+                    <DD>
+                    <P class=docList>Use <I>homedir</I> as the user's home 
+                    directory.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-D</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List (and optionally change) system default 
+                    values.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-m</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Create and populate the home 
+                    directory.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN> <I>shell</I></SPAN> 
+                    <DD>
+                    <P class=docList>Use <I>shell</I> as the default for the 
+                    account.</P></DD></DL><A name=p1_ch07-_Toc382100184></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Add a new user, <I>bsmith</I>, with all 
+                  default settings: </P><PRE># <B>useradd bsmith</B></PRE>
+                  <P class=docText>Add a new user, <I>jdoe</I>, with a name, 
+                  default home directory, and the <SPAN 
+                  class=docEmphBold>tcsh</SPAN><I> </I>shell: </P><PRE># <B>useradd -mc &quot;Jane Doe&quot; -s /bin/tcsh jdoe</B></PRE><A 
+                  name=p1_ch07-_Toc382100185></A><A name=IXT-7-350233></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>usermod</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100186></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>usermod [options] user</PRE><A 
+                  name=p1_ch07-_Toc382100187></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350233></A>Modify an existing  
+                  user account. The <SPAN class=docEmphBold>usermod</SPAN>  
+                  command accepts many of the same options as <SPAN  
+                  class=docEmphBold>useradd</SPAN> does. </P><A  
+                  name=p1_ch07-_Toc382100188></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-L</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Lock the password, disabling the 
+                    account.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-U</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Unlock the user's password, enabling the 
+                    user to once again log into the system. </P></DD></DL><A 
+                  name=p1_ch07-_Toc382100189></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Change <I>jdoe</I>'s name in the comment 
+                  field:</P><PRE># <B>usermod -c &quot;Jane Deer-Doe&quot; jdoe</B></PRE>
+                  <P class=docText>Lock the password for <I>bsmith</I>:</P><PRE># <B>usermod -L bsmith</B> </PRE><A 
+                  name=p1_ch07-_Toc382100190></A><A name=IXT-7-350234></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>userdel</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100191></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>userdel [-r] user</PRE><A name=p1_ch07-_Toc382100192></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350234></A>Delete an existing  
+                  user account. When combined with the <SPAN  
+                  class=docEmphBold>-r</SPAN> option, the user's home directory  
+                  is deleted. Note that completely deleting accounts may lead to  
+                  confusion when files owned by the deleted user remain in other  
+                  system directories. For this reason, it is common to disable  
+                  an account rather than delete it. Accounts can be disabled  
+                  using the <SPAN class=docEmphBold>chage</SPAN>, <SPAN  
+                  class=docEmphBold>usermod</SPAN>, and <SPAN  
+                  class=docEmphBold>passwd</SPAN> commands. </P><A  
+                  name=p1_ch07-_Toc382100193></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Delete the user <I>bsmith</I>, including the 
+                  home directory: </P><PRE># <B>userdel -r bsmith</B> </PRE><A 
+                  name=p1_ch07-_Toc382100194></A><A name=IXT-7-350235></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>groupadd</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100195></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>groupadd group</PRE><A name=p1_ch07-_Toc382100196></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350235></A>Add <I>group</I>to  
+                  the system. In the rare case that a group password is desired  
+                  on <I>group</I>, it must be added using the <SPAN  
+                  class=docEmphBold>gpasswd</SPAN> command after the group is  
+                  created. </P><A name=p1_ch07-_Toc382100197></A><A 
+                  name=IXT-7-350236></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>groupmod</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100198></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>groupmod [option] group</PRE><A 
+                  name=p1_ch07-_Toc382100199></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350236></A>Modify the  
+                  parameters of <I>group</I><SPAN class=docEmphasis>.</SPAN>  
+                  </P><A name=p1_ch07-_Toc382100200></A>
+                  <H4 class=docRefsectTitle>Option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN> <I>name</I></SPAN> 
+                    <DD>
+                    <P class=docList>Change the name of group to 
+                    <I>name</I>.</P></DD></DL><A name=p1_ch07-_Toc382100201></A><A 
+                  name=IXT-7-350237></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>groupdel</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100202></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>groupdel group</PRE><A name=p1_ch07-_Toc382100203></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350237></A>Delete <I>group</I>  
+                  from the system. Deleted groups can lead to the same confusion  
+                  in the filesystem as described previously for deleting a user  
+                  (see <SPAN class=docEmphBold>userdel</SPAN>). </P><A  
+                  name=p1_ch07-_Toc382100204></A><A name=IXT-7-350238></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>passwd</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100205></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>passwd [options] username</PRE><A 
+                  name=p1_ch07-_Toc382100206></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350238></A>Interactively set  
+                  the password for <I>username</I>. The password cannot be  
+                  entered on the command line. </P><A  
+                  name=p1_ch07-_Toc382100207></A>
+                  <H4 class=docRefsectTitle>Option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Available only to the superuser, this 
+                    option locks the password for the account. </P></DD></DL><A 
+                  name=p1_ch07-_Toc382100208></A><A name=IXT-7-350239></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>gpasswd</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-12-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>gpasswd groupname</PRE><A name=p1_ch07-_Toc382100210></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350239></A>Interactively set  
+                  the group password for <I>groupname</I>. The password cannot  
+                  be entered on the command line. </P><A  
+                  name=lpicertnut-CHP-7-SECT-1.4.1></A>
+                  <H5 class=docSection3Title>7.1.4.1 Additional user and group 
+                  management commands</H5>
+                  <P class=docText>While they are not specifically required for 
+                  this Objective, this discussion would not be complete without 
+                  a few additional commands for managing users and groups. 
+                  </P><A name=p1_ch07-_Toc382100211></A><A 
+name=IXT-7-350240></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>pwconv</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100212></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>pwconv</PRE><A name=p1_ch07-_Toc382100213></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350240></A>Convert a standard  
+                  password file to a password and shadow password combination,  
+                  enabling shadow passwords on the system. </P><A  
+                  name=p1_ch07-_Toc382100214></A><A name=IXT-7-350241></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>pwunconv</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100215></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>pwunconv</PRE><A name=p1_ch07-_Toc382100216></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350241></A>Revert from a shadow  
+                  password configuration to a standard password file. </P><A  
+                  name=p1_ch07-_Toc382100217></A><A name=IXT-7-350242></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>grpconv</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100218></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>grpconv</PRE><A name=p1_ch07-_Toc382100219></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350242></A>Convert a standard  
+                  group file to a group and shadow group combination, enabling  
+                  shadow groups on the system. Shadow passwords are rarely  
+                  necessary. </P><A name=p1_ch07-_Toc382100220></A><A 
+                  name=IXT-7-350243></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>grpunconv</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100221></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>grpunconv</PRE><A name=p1_ch07-_Toc382100222></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350243></A>Revert from a shadow  
+                  group configuration to a standard group file. </P><A  
+                  name=p1_ch07-_Toc382100223></A><A name=IXT-7-350244></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>chage</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-17-fm2xml></A>
+                  <H4 class=docRefsectTitle></H4><A 
+                  name=p1_ch07-_Toc382100224></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>chage [options] user </PRE><A 
+                  name=p1_ch07-_Toc382100225></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350244></A>Modify password  
+                  aging and expiration settings for <SPAN  
+                  class=docEmphasis>user</SPAN>. Nonprivileged users may use  
+                  this command with the <SPAN class=docEmphBold>-l</SPAN> option  
+                  for their username only. </P><A  
+name=p1_ch07-_Toc382100226></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-E</SPAN> <I>expiredate</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the account to expiration date 
+                    <I>expiredate</I> in the form MM/DD/YY or MM/DD/YYYY. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List a user's password 
+                  settings.</P></DD></DL><A name=p1_ch07-_Toc382100227></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display password settings for user 
+                  <I>jdoe</I> (including nonprivileged user <I>jdoe</I>): </P><PRE>$ <B>chage -l jdoe</B></PRE><A 
+                  name=p1_ch07-_Toc382100228></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Set <I>jdoe</I>'s account expiration date to 
+                  January 1, 2002: </P><PRE># <B>chage -E 01/01/2002 jdoe</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be familiar with these account 
+                        management commands as well as be ready to specify 
+                        methods for adding, removing, and modifying user 
+                        accounts. </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-7-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)359ms
+(xml)297ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)969ms
+--></BODY></HTML>

@@ -1,0 +1,749 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-4.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-4.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-4></A>
+                  <H3 class=docSection1Title>4.4 Objective 4: Set and View Disk 
+                  Quotas</H3>
+                  <P class=docText>Managing disk space can be a difficult  
+                  problem. The available space is a finite resource and is often  
+                  consumed at an alarming rate, turning today's carefully sized  
+                  filesystem into tomorrow's expansion requirement. On multiuser  
+                  systems -- no matter how big the filesystem -- users will find  
+                  a way to fill it. The last thing you want is for a filesystem  
+                  to fill to capacity too early. One way to prevent that from  
+                  happening is to enforce <SPAN class=docEmphasis>disk  
+                  quotas</SPAN><A name=lpicertnut-IDXTERM-332></A> <A  
+                  name=lpicertnut-IDXTERM-333></A><A 
+                  name=lpicertnut-IDXTERM-334></A>, which allow you assign a  
+                  limit to the amount of space individual users or groups have  
+                  on a filesystem. </P> 
+                  <P class=docText>A typical quota size is usually much smaller 
+                  than the filesystem it is configured on, thus preventing the 
+                  user or group from consuming too much space. Quotas can be 
+                  configured for each filesystem mentioned in <I>/etc/fstab</I>, 
+                  though they are usually applied only where multiple end users 
+                  store files (i.e., <I>/home/username</I>). There is no need 
+                  for a quota on <I>/usr</I>, for example, since end users 
+                  cannot store files there. Quotas may be configured for 
+                  individual users listed in <I>/etc/passwd</I> and for groups 
+                  listed in <I>/etc/group</I>. </P><A 
+                  name=lpicertnut-CHP-4-SECT-4.1></A>
+                  <H4 class=docSection2Title>4.4.1 Quota Limits</H4>
+                  <P class=docText>Each filesystem has up to five types of <A  
+                  name=IXT-4-350067></A>quota limits that can be enforced on it.  
+                  These limits are specified in <A name=IXT-4-350068></A>disk  
+                  <I>blocks</I><A name=IXT-4-350069></A>, usually 1024 bytes  
+                  each: </P><A name=IXT-4-350070></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Per-user hard 
+                    limit</SPAN></I> 
+                    <DD>
+                    <P class=docList>The <SPAN class=docEmphasis>hard  
+                    limit</SPAN><A name=IXT-4-350070></A> is the maximum amount  
+                    of space an individual user can have on the system. Once the  
+                    user reaches his quota limit, he won't be allowed to write  
+                    files to the disk. </P></DD></DL><A name=IXT-4-350071></A> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Per-user soft 
+                    limit</SPAN></I> 
+                    <DD>
+                    <P class=docList>Each user is free to store data on the  
+                    filesystem until reaching her <SPAN class=docEmphasis>soft  
+                    limit</SPAN><A name=IXT-4-350071></A>. The soft limit  
+                    implements a sort of warning zone, instructing the user to  
+                    clean up while still allowing her to work. When the amount  
+                    of data exceeds this limit but does not exceed the hard  
+                    limit, a message is printed on the user's terminal,  
+                    indicating that her quota has been exceeded; however, the  
+                    write operation will succeed. </P></DD></DL> 
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Per-group hard 
+                    limit</SPAN></I> 
+                    <DD>
+                    <P class=docList>This is the final limit set for a group by 
+                    the quota system. Once this limit has been reached, none of 
+                    the users within that group will be allowed to write files 
+                    to the disk -- even if the user's individual limits are not 
+                    exceeded. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Per-group soft 
+                    limit</SPAN></I> 
+                    <DD>
+                    <P class=docList>This limit behaves in the same way as a 
+                    user's soft limit but is enforced based on group ownership 
+                    instead of individual ownership. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Grace period</SPAN></I> 
+                    <DD>
+                    <P class=docList>Once a soft limit is reached, the user or 
+                    group enters the <SPAN class=docEmphasis>grace 
+                    period</SPAN>. After the grace period expires, the soft 
+                    limit becomes a hard limit until enough files are deleted to 
+                    eliminate the over-quota situation. The grace period may be 
+                    specified for any number of months, weeks, days, hours, 
+                    minutes, or seconds. A typical value is seven days. 
+                  </P></DD></DL>
+                  <P class=docText>These limits are set using the <SPAN 
+                  class=docEmphBold>edquota</SPAN> command, detailed in the next 
+                  section. </P><A name=p1_ch04-91-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="04-4.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>When a disk write exceeds a hard 
+                              limit or an expired soft limit, only part of the 
+                              write operation will complete, leaving a truncated 
+                              and probably useless file. The messages reported 
+                              to the user when a quota is exceeded may be lost 
+                              if the shell he is using is hidden. This could 
+                              confuse the user, because the error message 
+                              generated by the application indicates that the 
+                              disk is full or write-protected. 
+                        </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-4-SECT-4.2></A>
+                  <H4 class=docSection2Title>4.4.2 Quota Commands</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-340></A><A 
+                  name=lpicertnut-IDXTERM-341></A>Linux <A  
+                  name=lpicertnut-IDXTERM-342></A>offers a host of commands to  
+                  manage, display, and report on filesystem quotas. Some of the  
+                  setup required to initially enable quotas is done manually and  
+                  without specific quota commands, a process that is covered in  
+                  the next section. </P><A name=p1_ch04-93-fm2xml></A><A  
+                  name=IXT-4-350072></A><A name=IXT-4-350073></A><A 
+                  name=IXT-4-350074></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>quota</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-95-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>quota [-u] [options] user
+quota -g [options] group</PRE><A name=p1_ch04-96-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350072></A><A 
+                  name=IXT-4-350073></A><A name=IXT-4-350074></A>Displays quota  
+                  limits on <I>user</I> or <I>group</I>. The <SPAN  
+                  class=docEmphBold>-u</SPAN><I> </I>option is the default. Only  
+                  the superuser may use the <SPAN class=docEmphBold>-u</SPAN>  
+                  flag and <I>user</I> to view the limits of other users. Other  
+                  users can use the <SPAN class=docEmphBold>-g</SPAN> flag and  
+                  <I>group</I> to view only the limits of groups of which they  
+                  are members, provided that the <I>quota.group</I> files are  
+                  readable by them. </P><A name=p1_ch04-97-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Sets quiet mode, which shows only 
+                    over-quota situations.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables verbose mode to display quotas even 
+                    if no storage space is allocated. </P></DD></DL><A 
+                  name=p1_ch04-98-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>As <I>root</I>, examine all quotas for user 
+                  <I>jdoe</I> : </P><PRE># <B>quota -uv jdoe</B>
+Disk quotas for user jdoe (uid 500):
+Filesystem  blks  quota limit grace  files quota limit grace
+/dev/sda9   9456  10000 10200           32     0     0
+/dev/hda1     23      0     0           17     0     0</PRE>
+                  <P class=docText>This example shows that <I>jdoe </I>is barely 
+                  within her soft limit of 10,000 blocks, with a corresponding 
+                  hard limit of 10,200 blocks on <I>/dev/sda9</I>, and has no 
+                  quota on <I>/dev/hda1</I>. The entry for <I>/dev/hda1</I> is 
+                  displayed in response to the <SPAN class=docEmphBold>-v</SPAN> 
+                  option. No values are shown for the grace periods, because the 
+                  soft limit has not been exceeded. </P><A 
+                  name=p1_ch04-99-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>As user <I>jdoe</I>, examine quotas for the 
+                  <I>finance</I> group, of which he is a member: </P><PRE>$ <B>quota -gv finance</B>
+Disk quotas for group finance (gid 501):
+Filesystem  blks  quota  limit grace  files quota limit grace
+/dev/sda9   1000* 990    1000  6days     34  3980  4000
+/dev/hda1         0      0     0          0     0     0</PRE>
+                  <P class=docText>Here, the <I>finance</I> group has exceeded 
+                  its meager soft limit of 990 blocks and has come up against 
+                  its hard limit of 1000 blocks. (The write operation that wrote 
+                  the 1000th block was probably incomplete.) The original grace 
+                  period in this example was set to seven days and has six days 
+                  remaining, meaning that one day has elapsed since the soft 
+                  limit was exceeded. </P><A name=p1_ch04-100-fm2xml></A><A 
+                  name=IXT-4-350075></A><A name=IXT-4-350076></A><A 
+                  name=IXT-4-350077></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>quotaon</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-102-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>quotaon [options] [filesystems]
+quotaon [options] -a</PRE><A name=p1_ch04-103-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350075></A><A 
+                  name=IXT-4-350076></A><A name=IXT-4-350077></A>Enable  
+                  previously configured disk quotas on one or more  
+                  <I>filesystems</I>. </P><A name=p1_ch04-104-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns quotas on for all filesystems in 
+                    <I>/etc/fstab</I> that are marked read-write with quotas. 
+                    This is normally used automatically at boot time to enable 
+                    quotas. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-g</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns on group quotas. This option is not 
+                    necessary when using the <SPAN class=docEmphBold>-a</SPAN> 
+                    option, which includes both user and group quotas. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns on user quotas; this is the 
+                    default.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables verbose mode to display a message 
+                    for each filesystem where quotas are turned on. 
+                  </P></DD></DL><A name=p1_ch04-105-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Turn on all quotas as defined in 
+                  <I>/etc/fstab </I>:</P><PRE># <B>quotaon -av</B>
+/dev/sda9: group quotas turned on
+/dev/sda9: user quotas turned on
+/dev/hda1: group quotas turned on
+/dev/hda1: user quotas turned on</PRE><A 
+                  name=p1_ch04-106-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Turn on user quotas only on the <I>/home</I> 
+                  filesystem:</P><PRE># <B>quotaon -gv /home</B>
+/dev/sda9: group quotas turned on</PRE><A 
+                  name=p1_ch04-107-fm2xml></A><A name=IXT-4-350078></A><A 
+                  name=IXT-4-350079></A><A name=IXT-4-350080></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>quotaoff</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-109-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>quotaoff [options] [filesystems]
+quotaoff [options] -a</PRE><A name=p1_ch04-110-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350078></A><A 
+                  name=IXT-4-350079></A><A name=IXT-4-350080></A>Disables disk  
+                  quotas on one or more <I>filesystems</I>. </P><A  
+                  name=p1_ch04-111-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns quotas off for all filesystems in 
+                    <I>/etc/fstab</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-g</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns off group quotas. This option is not 
+                    necessary when using the <SPAN class=docEmphBold>-a</SPAN> 
+                    option, which includes both user and group quotas. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Turns off user quotas; this is the 
+                    default.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables verbose mode to display a message 
+                    for each filesystem where quotas are turned off. 
+                  </P></DD></DL><A name=p1_ch04-112-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Turn off all quotas:</P><PRE># <B>quotaoff -av</B>
+/dev/sda9: group quotas turned off
+/dev/sda9: user quotas turned off
+/dev/hda1: group quotas turned off
+/dev/hda1: user quotas turned off</PRE><A 
+                  name=p1_ch04-113-fm2xml></A><A name=IXT-4-350081></A><A 
+                  name=IXT-4-350082></A><A name=IXT-4-350083></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>quotacheck</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-115-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>quotacheck [options] filesystems
+quotacheck [options] -a</PRE><A name=p1_ch04-116-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350081></A><A 
+                  name=IXT-4-350082></A><A name=IXT-4-350083></A>Examine  
+                  filesystems and compile quota databases. This command is not  
+                  specifically called out in the LPI Objectives for Exam 101,  
+                  but is an important component of the Linux quota system. You  
+                  should run the <SPAN class=docEmphBold>quotacheck -a</SPAN>  
+                  command on a regular basis (perhaps weekly) via <SPAN  
+                  class=docEmphBold>cron</SPAN>. </P><A 
+                  name=p1_ch04-117-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Checks all of the quotas for the 
+                    filesystems mentioned in <I>/etc/fstab</I>. Both user and 
+                    group quotas are checked as indicated by the <SPAN 
+                    class=docEmphBold>usrquota</SPAN> and <SPAN 
+                    class=docEmphBold>grpquota</SPAN> options. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-g</SPAN> <I>group</I></SPAN> 
+                    <DD>
+                    <P class=docList>Compiles information only on 
+                    <I>group</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN> <I>user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Compiles information only on <I>user</I>; 
+                    this is the default action. However, if the <SPAN 
+                    class=docEmphBold>-g</SPAN> option is specified, then this 
+                    option should also be specified when both group and user 
+                    quotas are to be processed. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables verbose mode to display information 
+                    about what the program is doing. This option shows activity 
+                    by displaying a spinning character in the terminal. This is 
+                    nice but could be a problem if you are logged in over a slow 
+                    modem link. </P></DD></DL><A name=p1_ch04-118-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Initialize all quota files:</P><PRE># <B>quotaoff -a</B>
+# <B>quotacheck -aguv</B>
+Scanning /dev/sda9 [/home] done
+Checked 237 directories and 714 files
+Using quotafile /home/quota.user
+Using quotafile /home/quota.group
+Scanning /dev/hda1 [/mnt/hd] done
+Checked 3534 directories and 72673 files
+Using quotafile /mnt/hd/quota.user
+Using quotafile /mnt/hd/quota.group
+# <B>quotaon -a</B></PRE>
+                  <P class=docText>By turning off quotas during the update, the 
+                  quota database files are updated. </P><A 
+                  name=p1_ch04-119-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>With quotas active, update the user quotas in 
+                  memory for <I>/home </I>: </P><PRE># <B>quotacheck -v /home</B>
+Scanning /dev/sda9 [/home] done
+Checked 237 directories and 714 files
+Using quotafile /home/quota.user
+Updating in-core user quotas</PRE><A 
+                  name=p1_ch04-120-fm2xml></A><A name=IXT-4-350084></A><A 
+                  name=IXT-4-350085></A><A name=IXT-4-350086></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>edquota</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-121-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>edquota [-p proto-user] [options] names
+edquota [options] -t</PRE><A name=p1_ch04-122-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350084></A><A 
+                  name=IXT-4-350085></A><A name=IXT-4-350086></A>Modify user or  
+                  group quotas. This interactive command uses a text editor to  
+                  configure quota parameters for users or groups. The <SPAN  
+                  class=docEmphBold>vi</SPAN> editor is used by default unless  
+                  either the <TT>EDITOR</TT> or <TT>VISUAL</TT> environment  
+                  variables are set to another editor, such as Emacs. When the  
+                  command is issued, the <SPAN class=docEmphBold>vi</SPAN><I>  
+                  </I>editor is launched with a temporary file containing quota  
+                  settings. When the temporary file is saved and the editor is  
+                  terminated, the changes are saved in the quota databases. </P> 
+                  <P class=docText>In the first form, a space-separated list of 
+                  users or groups specified in <I>names</I> is modified. If 
+                  <I>proto-user</I> is specified with the <SPAN 
+                  class=docEmphBold>-p</SPAN> option, quotas of that user or 
+                  group are copied and used for <I>names</I> and no editor is 
+                  launched. In the second form with the <SPAN 
+                  class=docEmphBold>-t</SPAN> option, the soft limit settings 
+                  are edited interactively for each filesystem. </P><A 
+                  name=p1_ch04-123-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-g</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Modify group quotas. If <SPAN 
+                    class=docEmphBold>-g</SPAN> is specified, all <I>names</I> 
+                    are assumed to be groups and not users, even if <SPAN 
+                    class=docEmphBold>-u</SPAN> is also specified. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN> <I>proto-user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Duplicate the quotas of the prototypical 
+                    user or group <I>proto-user</I> for each user or group 
+                    specified. This is the normal mechanism used to initialize 
+                    quotas for multiple users or groups at the same time. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Modify soft limits. Time units of 
+                    <I>sec</I>(onds), <I>min</I>(utes), <I>hour </I>(s), <I>day 
+                    </I>(s), <I>week </I>(s), and <I>month </I>(s) are 
+                    understood. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Modify user quotas. This is the default 
+                    action. This option is ignored if <SPAN 
+                    class=docEmphBold>-g</SPAN> is also specified. 
+                  </P></DD></DL><A name=p1_ch04-125-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="04-4.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>The following examples use the 
+                              <SPAN class=docEmphBold>vi</SPAN><I> </I>editor. 
+                              The contents of the edit buffer -- not program 
+                              output -- are shown after each example. 
+                          </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-126-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Modify the user quotas for <I>jdoe </I>:</P><PRE># <B>edquota -u jdoe</B>
+Quotas for user jdoe:
+/dev/sda9: blocks in use: 87, limits (soft = 99900, 
+        hard = 100000)
+        inodes in use: 84, limits (soft = 0, hard = 0)
+/dev/hda1: blocks in use: 0, limits (soft = 0, hard = 0)
+        inodes in use: 0, limits (soft = 0, hard = 0)
+~
+~
+&quot;/tmp/EdP.auHTZJ0&quot; 5 lines, 241 characters</PRE>
+                  <P class=docText>Here, <I>jdoe </I>has been allocated a soft 
+                  limit of 99,900 blocks, a hard limit of 100,000 blocks, and no 
+                  file limits on <I>/dev/sda9</I>. She has no limits on 
+                  <I>/dev/hda1</I>. </P><A name=p1_ch04-127-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Modify soft limits for users on all 
+                  filesystems:</P><PRE># <B>edquota -tu</B>
+Time units may be: days, hours, minutes, or seconds
+Grace period before enforcing soft limits for users:
+/dev/sda9: block grace period: 7 days, 
+   file grace period: 3 days
+/dev/hda1: block grace period: 7 days, 
+   file grace period: 3 days
+~
+~
+&quot;/tmp/EdP.aiTShJB&quot; 5 lines, 249 characters</PRE>
+                  <P class=docText>Here, the user grace periods have been set to 
+                  seven days for blocks (disk space) and three days for files 
+                  (inodes). </P><A name=p1_ch04-128-fm2xml></A><A 
+                  name=IXT-4-350087></A><A name=IXT-4-350088></A><A 
+                  name=IXTR3-32></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>repquota</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-129-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>repquota [options] filesystems
+repquota -a [options]</PRE><A name=p1_ch04-130-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350087></A><A 
+                  name=IXT-4-350088></A>Used to report on the status of quotas.  
+                  In the first form, <SPAN class=docEmphBold>repquota</SPAN>  
+                  displays a summary report on the quotas for the given  
+                  <I>filesystems</I> on a per-user or per-group basis. In the  
+                  second form, the <SPAN class=docEmphBold>-a</SPAN> option  
+                  causes a summary for all filesystems with quotas to be  
+                  displayed. This command fails for non-root users unless the  
+                  quota database files are world-readable. The current number of  
+                  files and the amount of space utilized are printed for each  
+                  user, along with any quotas created with <SPAN  
+                  class=docEmphBold>edquota</SPAN>. </P><A 
+                  name=p1_ch04-131-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Report on all of the quotas for the 
+                    read-write filesystems mentioned in <I>/etc/fstab</I>. Both 
+                    user and group quotas are reported as indicated by the <SPAN 
+                    class=docEmphBold>usrquota</SPAN> and <SPAN 
+                    class=docEmphBold>grpquota</SPAN> options. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-g</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Report quotas for groups.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Report quotas for users; this is the 
+                    default action.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enable verbose mode, which adds a 
+                    descriptive header to the output.</P></DD></DL><A 
+                  name=p1_ch04-132-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Report user quotas for <I>/home:</I></P><A 
+                  name=IXTR3-32></A><PRE># <B>repquota -v /home</B>
+*** Report for user quotas on /dev/sda9 (/home)
+                         Block limits     File limits
+User         used  soft   hard grace used soft hard grace
+root   --  418941     0      0        269    0    0
+328    --    1411     0      0         20    0    0
+jdean  --    9818 99900 100000        334    0    0
+u1     --      44     0      0         43    0    0
+u2     --      44     0      0         43    0    0
+u3     --     127   155    300        124    0    0
+jdoe   --      87 99900 100000         84    0    0
+bsmith --      42  1990   2000         41    0    0</PRE><A 
+                  name=lpicertnut-CHP-4-SECT-4.3></A>
+                  <H4 class=docSection2Title>4.4.3 Enabling Quotas</H4>
+                  <P class=docText>In order to use quotas, they must first be  
+                  enabled.<SUP class=docFootnote>[5]</SUP> This is not  
+                  a difficult process, but unfortunately it is not completely  
+                  straightforward either. To clarify the procedure, this section  
+                  provides a brief tutorial on how to enable user and group  
+                  quotas for a filesystem on <I>/dev/sda9</I> mounted under  
+                  <I>/home</I>. Note that you may enable user quotas only, group  
+                  quotas only, or both, as your needs dictate. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> Quota  
+                    support must also be compiled into the kernel. In the  
+                    unlikely event that your kernel does not contain quota  
+                    support, you will need to recompile the kernel (see <a class="docLink" href="15-0.htm">Chapter  
+                    15</a> for more details on how to compile a  
+                  kernel).</P></BLOCKQUOTE><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Set options in <I>/etc/fstab</I>. On the 
+                    line containing the <I>/home</I> filesystem, add the <SPAN 
+                    class=docEmphBold>userquota</SPAN> and <SPAN 
+                    class=docEmphBold>grpquota</SPAN> options to the existing 
+                    <I>default</I> option, like this: </P><PRE>/dev/sda9   /home    ext2    defaults,usrquota,grpquota  1  2</PRE>
+                    <P class=docList>These options tell quota configuration 
+                    utilities which partitions should be managed when the 
+                    utilities reference <I>/etc/fstab</I>. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Create the <I>quota.user</I> and 
+                    <I>quota.group</I> files at the top of the <I>/home</I> 
+                    filesystem and set their protection bits for root access 
+                    only: </P><PRE># <B>touch /home/quota.user /home/quota.group</B>
+# <B>chmod 600 /home/quota.user /home/quota.group</B></PRE>
+                    <P class=docList>These two files are the databases for user 
+                    and group quotas. Each filesystem with quotas uses its own 
+                    quota databases. When quotas are enabled, these files will 
+                    contain binary data (that is, they're not text files). Note 
+                    that if you want end users to be able to examine quotas on 
+                    groups to which they belong, <I>quota.group</I> will need a 
+                    protection mode of 644 instead of 600. </P></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Run <SPAN 
+                    class=docEmphBold>quotacheck</SPAN> to initialize the 
+                    databases: </P><PRE># <B>quotacheck -avug</B>
+Scanning /dev/sda9 [/home] done
+Checked 236 directories and 695 files
+Using quotafile /home/quota.user
+Using quotafile /home/quota.group</PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Then verify that your quota database files 
+                    have been initialized by noting that they are no longer of 
+                    size zero (here they're 16,192 bytes each): </P><PRE># <B>ls -al /home/quota.*</B>
+-rw-------  1 root  root 16192 Dec 27 19:53 /home/quota.group
+-rw-------  1 root  root 16192 Dec 27 19:53 /home/quota.user</PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Run <SPAN class=docEmphBold>quotaon</SPAN> 
+                    to enable the quota system: </P><PRE># <B>quotaon -a</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Verify that your system's initialization 
+                    script ( <I>/etc/rc.d/rc.sysinit</I> or similar) will turn 
+                    on quotas when your system boots. Something along these 
+                    lines is appropriate, although your system may be very 
+                    different: </P><PRE>if [ -x /sbin/quotacheck ]
+then
+   echo &quot;Checking quotas.&quot;
+   /sbin/quotacheck -avug
+   echo &quot; Done.&quot;
+fi
+if [ -x /sbin/quotaon ]
+then
+   echo &quot;Turning on quotas.&quot;
+   /sbin/quotaon -avug
+fi</PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Add a command script to a system <SPAN 
+                    class=docEmphasis>crontab</SPAN> directory (such as the 
+                    directory <I>/etc/crontab.weekly</I>) to execute <SPAN 
+                    class=docEmphBold>quotacheck</SPAN> on a routine basis. An 
+                    executable script file like the following will work: </P><PRE>#!/bin/bash
+/sbin/quotacheck -avug</PRE>
+                    <P class=docList>If you prefer, you could instead put 
+                    <I>/sbin/quotacheck</I> in root's <I>crontab</I> file (using 
+                    the <SPAN class=docEmphBold>crontab -e</SPAN> command) for 
+                    weekly execution, like this: </P><PRE># run quotacheck weekly
+0 3 * * 0   /sbin/quotacheck -avug</PRE></SPAN></LI></OL></SPAN>
+                  <P class=docText>At this point the <I>/home</I> filesystem is 
+                  ready to accept quotas on a per-user and per-group basis, 
+                  enforce them, and report on them. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>A general understanding of quotas is  
+                        necessary for the exam. In particular, you should know  
+                        the function of each command. Also remember that quotas  
+                        are set on a per-filesystem basis.<A name=IXTR3-33></A>  
+                        <A name=IXTR3-34></A><A name=IXTR3-35></A><A  
+                        name=IXTR3-36></A><A 
+                  name=IXTR3-37></A></P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="04-4.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-4
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)454ms
+(xml)187ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)672ms
+--></BODY></HTML>

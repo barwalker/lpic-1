@@ -1,0 +1,822 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-6-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="06-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="06-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 6.&nbsp;  
+            Documentation (Topic 1.8)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-6-SECT-1></A>
+                  <H3 class=docSection1Title>6.1 Objective 1: Use and Manage 
+                  Local System Documentation</H3>
+                  <P class=docText>Each Linux system is configured out of the 
+                  box with extensive documentation from programmers, authors, 
+                  and other contributors. Some of this documentation is formal 
+                  while some is quite informal. Combined, this documentation 
+                  offers a comprehensive body of knowledge for Linux users. 
+                  </P><A name=lpicertnut-CHP-6-SECT-1.1></A>
+                  <H4 class=docSection2Title>6.1.1 Text and Paging</H4>
+                  <P class=docText><A name=IXT-6-350171></A>At a fundamental  
+                  level, documents stored electronically may be encoded in a  
+                  bewildering variety of formats. For example, most word  
+                  processors use proprietary file formats to store characters,  
+                  text formatting, and printing control languages such as Adobe  
+                  PostScript to manage printer hardware. While these relatively  
+                  modern features can be found on Linux systems, most of the  
+                  documents and configuration files are in plain text. </P> 
+                  <P class=docText>In the context of Linux systems, "plain text"  
+                  means files or streams of both printable characters and  
+                  control characters. Each is represented using a standard  
+                  encoding scheme, such as the American Standard Code for  
+                  Information Interchange (ASCII) and its relatives. Text files  
+                  are most conveniently viewed using a <SPAN  
+                  class=docEmphasis>paging</SPAN><A name=IXT-6-350172></A> 
+                  program. </P><A name=lpicertnut-CHP-6-SECT-1.1.1></A> 
+                  <H5 class=docSection3Title>6.1.1.1 Paging programs</H5>
+                  <P class=docText>The most popular pager for Unix systems was  
+                  once the <SPAN class=docEmphBold>more</SPAN><A  
+                  name=IXT-6-350173></A> command, so named because it gave you  
+                  "one more screen." <SPAN class=docEmphBold>more</SPAN> exists  
+                  on Linux systems and probably every recent Unix variant;  
+                  however, <SPAN class=docEmphBold>more</SPAN> is somewhat  
+                  limited in its capability. The <SPAN  
+                  class=docEmphBold>less</SPAN> command (so named because, of  
+                  course, "less is more!") is more commonly used. The <SPAN  
+                  class=docEmphBold>less</SPAN> <A name=IXT-6-350174></A>command  
+                  is a full-featured text pager that emulates <SPAN  
+                  class=docEmphBold>more</SPAN> but offers an extended set of  
+                  capabilities. </P>
+                  <P class=docText>One particularly important feature of <SPAN 
+                  class=docEmphBold>less</SPAN> is that it does not read all of 
+                  its input before starting, which makes it faster for large 
+                  input than an editor. <SPAN class=docEmphBold>less</SPAN> also 
+                  offers many useful features and is available for almost every 
+                  operating environment. </P>
+                  <P class=docText><SPAN class=docEmphBold>less</SPAN> begins  
+                  execution by first examining the environment in which it is  
+                  running. It needs to know some things about the terminal (or  
+                  window) in which its output will be displayed. Once that's  
+                  known, <SPAN class=docEmphBold>less</SPAN> formats the text  
+                  and displays the first screen's output. The last line of the  
+                  screen is reserved for user interaction with the program.  
+                  <SPAN class=docEmphBold>less</SPAN> will display a <A  
+                  name=IXT-6-350175></A><A name=IXT-6-350176></A>colon on the  
+                  first column of the last line and leave the cursor there. This  
+                  colon is a command prompt, awaiting command input from the  
+                  user. Most commands to <SPAN class=docEmphBold>less</SPAN> are  
+                  single-character entries, and <SPAN  
+                  class=docEmphBold>less</SPAN> will act upon them immediately  
+                  and without a subsequent carriage return (this is known as  
+                  <I>cbreak</I>mode). The most basic command to <SPAN  
+                  class=docEmphBold>less</SPAN> (and <SPAN  
+                  class=docEmphBold>more</SPAN>) is a single space, which  
+                  instructs the pager to move ahead in the text by one screen. <a class="docLink" href="#lpicertnut-CHP-6-TABLE-1">Table  
+                  6-1</a> lists commonly used <SPAN  
+                  class=docEmphBold>less</SPAN> commands. </P><A  
+                  name=lpicertnut-CHP-6-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 6-1. Commonly Used less 
+                    Commands </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Command</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Space</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Scroll forward one screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>D</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Scroll forward one-half 
+                    screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Return</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Scroll forward one line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>B</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Scroll backward one screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>U</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Scroll backward one-half 
+                    screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>Y</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Scroll backward one line.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>g</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Go to the beginning of the text (could 
+                        be slow with large amounts of text). </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>G</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Go to the end of the text (could be 
+                        slow with large amounts of text).</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>/</TT><I>pattern</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Search forward for <SPAN 
+                        class=docEmphasis>pattern</SPAN>, which can be a regular 
+                        expression. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>?</TT><I>pattern</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Search backward for <SPAN 
+                        class=docEmphasis>pattern</SPAN>, which can be a regular 
+                        expression. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>H</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Display a help screen.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:n</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Display next file from command line 
+                        (two-character command).</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>:p</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Display previous file from command line 
+                        (two-character 
+                  command).</P></TD></TR></TBODY></TABLE>
+                  <P class=docText><SPAN class=docEmphBold>less</SPAN> has a 
+                  rich command set, and its behavior can be modified as needed 
+                  for your use. See the <SPAN class=docEmphBold>less</SPAN> 
+                  manpage for further details. </P>
+                  <P class=docText><A name=IXT-6-350177></A>Pagers are important  
+                  to the topic of manpages because they provide the user with an  
+                  interface to the <SPAN class=docEmphBold>man</SPAN> program.  
+                  For each <SPAN class=docEmphBold>man</SPAN> command you enter,  
+                  the <SPAN class=docEmphBold>man</SPAN> program works quietly  
+                  to locate a manual page (or pages) to match your query, then  
+                  displays the result using a pager. </P><A  
+                  name=lpicertnut-CHP-6-SECT-1.2></A>
+                  <H4 class=docSection2Title>6.1.2 The man Facility</H4>
+                  <P class=docText>Traditional computer manuals covered  
+                  everything from physical maintenance to programming libraries.  
+                  While the books were convenient, many users didn't always want  
+                  to dig through printed documentation. So, as space became  
+                  available, the <SPAN class=docEmphBold>man</SPAN><A  
+                  name=IXT-6-350178></A> (for <SPAN  
+                  class=docEmphasis>manual</SPAN> ) facility was created to put  
+                  the books on the system, allowing users immediate access to  
+                  the information they needed. </P> 
+                  <P class=docText>There is a <A name=IXT-6-350179></A>manpage  
+                  for most commands on your system. There are also manpages for  
+                  important files, library functions, shells, languages,  
+                  devices, and other features. The <SPAN  
+                  class=docEmphBold>man</SPAN> facility is to your system what a  
+                  dictionary is to your written language. That is, nearly  
+                  everything is defined in exacting detail, but you probably  
+                  need to know in advance just what you're looking for. Manpages  
+                  are generally written for those who already have an idea of  
+                  what the item in question does, but regardless of your level  
+                  of experience, manpages are invaluable. </P><A  
+                  name=p1_ch06-5-fm2xml></A><A name=IXT-6-350180></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>man</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch06-7-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>man [options] [section] command</PRE><A 
+                  name=p1_ch06-8-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-6-350180></A>Format and display  
+                  manpages from manual <I>section</I> on the topic of  
+                  <I>command</I> using a pager. If <I>section</I> is omitted,  
+                  the first manpage found is displayed. </P><A  
+                  name=p1_ch06-9-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Normally, <SPAN 
+                    class=docEmphBold>man</SPAN> exits after displaying a single 
+                    manpage. The <SPAN class=docEmphBold>-a</SPAN> option 
+                    instructs <SPAN class=docEmphBold>man</SPAN> to display all 
+                    manpages that match <I>name</I>, in a sequential fashion. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display debugging information.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Print the locations of manpages instead of 
+                    displaying them.</P></DD></DL><A name=p1_ch06-10-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>View a manpage for <SPAN 
+                  class=docEmphBold>mkfifo</SPAN><I>:</I> </P><PRE>$ <B>man mkfifo</B>
+...</PRE>
+                  <P class=docText>Results for the first manpage found are 
+                  scrolled on the screen using a pager. </P><A 
+                  name=p1_ch06-11-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Determine what manpages are available for 
+                  <SPAN class=docEmphBold>mkfifo</SPAN><I>:</I> </P><PRE>$ <B>man -wa mkfifo</B>
+/usr/man/man1/mkfifo.1
+/usr/man/man3/mkfifo.3</PRE>
+                  <P class=docText>This shows that two manpages are available, 
+                  one in section 1 (<I>mkfifo.1</I>) of the manual and another 
+                  in section 3 (<I>mkfifo.3</I>). See the next section for a 
+                  description of manpage sections. </P><A 
+                  name=p1_ch06-12-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Display the <SPAN 
+                  class=docEmphBold>mkfifo</SPAN> manpage from manual section 3: 
+                  </P><PRE>$ <B>man 3 mkfifo</B></PRE><A 
+                  name=lpicertnut-CHP-6-SECT-1.2.1></A>
+                  <H5 class=docSection3Title>6.1.2.1 Manual sections</H5>
+                  <P class=docText><A name=IXT-6-350181></A>Manpages are grouped  
+                  into <I>sections</I>, and there are times when you should know  
+                  the appropriate section in which to search for an item. For  
+                  example, if you were interested in the <SPAN  
+                  class=docEmphBold>mkfifo</SPAN> C-language function rather  
+                  than the command, you must tell the <SPAN  
+                  class=docEmphBold>man</SPAN> program to search the section on  
+                  library functions (in this case, section 3, <SPAN  
+                  class=docEmphasis>Linux Programmer's Manual</SPAN> ): </P><PRE>$ <B>man 3 mkfifo</B></PRE> 
+                  <P class=docText><A name=IXT-6-350182></A><A 
+                  name=IXT-6-350183></A>An alternative would be to have the  
+                  <SPAN class=docEmphBold>man</SPAN> program search all manual  
+                  sections: </P><PRE>$ <B>man -a mkfifo</B></PRE>
+                  <P class=docText>The first example returns the <I>mkfifo(3) 
+                  </I>manpage regarding the library function. The second returns 
+                  pages for both the command and the function. In this case, the 
+                  pages are delivered separately; terminating the pager on the 
+                  first manpage with <SPAN class=docEmphBold>Ctrl-C</SPAN> 
+                  causes the second to be displayed. </P>
+                  <P class=docText><A name=IXT-6-350184></A>Manual sections are  
+                  numbered 1 through 9 and N. They are searched in the order  
+                  shown in <a class="docLink" href="#lpicertnut-CHP-6-TABLE-2">Table  
+                  6-2</a> by default. </P><A name=lpicertnut-CHP-6-TABLE-2></A> 
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 6-2. Man Sections and Search 
+                    Order </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Section</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Executable programs or shell 
+                        commands</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>8</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>System administration 
+commands</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>System calls</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>3</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Library calls</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>4</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Special files (usually found in 
+                        <I>/dev</I>)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>5</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>File formats and conventions</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>6</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Games (sorry, no Quake here!)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>7</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Macro packages and 
+conventions</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>9</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Kernel routines</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>N</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Tcl/Tk 
+                    commands</P></TD></TR></COLGROUP></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-6-SECT-1.2.2></A>
+                  <H5 class=docSection3Title>6.1.2.2 Manpage format</H5>
+                  <P class=docText>Most <A name=IXT-6-350185></A>manpages are  
+                  presented in a concise format with information grouped under  
+                  well-known standard headings such as those shown in <a class="docLink" href="#lpicertnut-CHP-6-TABLE-3">Table  
+                  6-3</a>. Other manpage headings depend on the context of the  
+                  individual manpage. </P><A name=lpicertnut-CHP-6-TABLE-3></A> 
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 6-3. Standard Manpage Headings 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Heading</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Name</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>The name of the item, along with a 
+                        description</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Synopsis</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A complete description of syntax or 
+                        usage</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Description</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A brief description of the 
+                    item</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Options</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Detailed information on each 
+                        command-line option (for commands)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Return values</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Information on function return values 
+                        (for programming references)</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>See also</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A list of related items that may be 
+                        helpful</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Bugs</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Descriptions of unusual program 
+                        behavior or known defects</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Files</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A list of important files related to 
+                        the item, such as configuration files </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Copying or Copyright</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A description of how the item is to be 
+                        distributed or protected</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Authors</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A list of those who are responsible for 
+                        the item</P></TD></TR></COLGROUP></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-6-SECT-1.2.3></A>
+                  <H5 class=docSection3Title>6.1.2.3 man mechanics</H5>
+                  <P class=docText>System manpages are stored in <I>/usr/man</I>  
+                  and elsewhere. At any time, the manual pages available to the  
+                  <SPAN class=docEmphBold>man</SPAN> command are contained  
+                  within directories configured in your <SPAN  
+                  class=docEmphBold>man</SPAN> configuration file,  
+                  <I>/etc/man.config</I><A name=IXT-6-350186></A>. This file  
+                  contains directives to the <SPAN class=docEmphBold>man</SPAN>,  
+                  telling it where to search for pages (the <A  
+                  name=IXT-6-350187></A>MANPATH directive), the paging program  
+                  to use (<A name=IXT-6-350188></A>PAGER), and many others. This  
+                  file essentially controls how <SPAN  
+                  class=docEmphBold>man</SPAN> works on your system. To observe  
+                  this, use the debug (<SPAN class=docEmphBold>-d</SPAN>) option  
+                  to <SPAN class=docEmphBold>man</SPAN> to watch as it  
+                  constructs a <I>manpath</I><A name=IXT-6-350189></A> (a  
+                  directory search list) and prepares to display your selection:  
+                  </P><PRE>$ <B>man -d mkfifo</B></PRE><A 
+                  name=lpicertnut-CHP-6-SECT-1.3></A>
+                  <H4 class=docSection2Title>6.1.3 Information in /usr/doc</H4>
+                  <P class=docText><A name=IXT-6-350190></A>Manpages <A  
+                  name=IXT-6-350191></A>are particularly useful when you know  
+                  what you're looking for, or at least have some good leads on  
+                  how to find it. However, they are not tutorial in nature, nor  
+                  do they often describe overall concepts. Fortunately,  
+                  individuals in the Linux world not only contribute their  
+                  programming skills, but many also generate excellent tutorial  
+                  documents to assist others with features, procedures, or  
+                  common problems. Many of these documents end up as HOWTO  
+                  guides, FAQs (lists of Frequently Asked Questions), README  
+                  files, or even exhaustive user manuals. These documents are  
+                  often part of the source distribution of a particular program,  
+                  and while valuable, don't fit elsewhere on the Linux system  
+                  and are deposited in <I>/usr/doc</I>. Most of these files are  
+                  ASCII text, which can be viewed with a pager, such as <SPAN  
+                  class=docEmphBold>less,</SPAN> or with your favorite text  
+                  editor. Some documents may be written in HTML for use with  
+                  your web browser. Some text files may also be compressed with  
+                  the <SPAN class=docEmphBold>gzip</SPAN> program, and thus have  
+                  the <I>.gz</I> extension. The handy <SPAN  
+                  class=docEmphBold>zless</SPAN> <A  
+                  name=IXT-6-350192></A>utility allows you to page these files  
+                  without first decompressing them. </P> 
+                  <P class=docText>The contents of <I>/usr/doc</I> can be 
+                  classified broadly into these categories: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Package-related</SPAN></I> 
+                    <DD>
+                    <P class=docList>These documents are typically useful 
+                    snippets of information included with program source 
+                    distributions. Packages offering this type of documentation 
+                    will install a subdirectory in <I>/usr/doc</I> that contains 
+                    the documentation files and may be specific to a version of 
+                    the package. </P>
+                    <P class=docList>For example, <I>/usr/doc/tcsh-6.08.00</I> 
+                    contains the following files related to the <SPAN 
+                    class=docEmphBold>tcsh</SPAN> shell, Version 6.08.00: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>FAQ</I></SPAN> 
+                      <DD>
+                      <P class=docList>A list of frequently asked questions 
+                      about <SPAN class=docEmphBold>tcsh</SPAN> </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>NewThings</I></SPAN> 
+                      <DD>
+                      <P class=docList>Aptly named, contains descriptions of new 
+                      features in this release (and previous releases) of <SPAN 
+                      class=docEmphBold>tcsh</SPAN> </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>Complete.tcsh</I></SPAN> 
+                      <DD>
+                      <P class=docList>An interesting portion of source code 
+                      from <SPAN class=docEmphBold>tcsh</SPAN> </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>eight-bit.txt</I></SPAN> 
+                      <DD>
+                      <P class=docList>A description of ways to use 8-bit 
+                      (international) characters with <SPAN 
+                      class=docEmphBold>tcsh</SPAN> </P></DD></DL>
+                    <P class=docList>In this example, no general documentation  
+                    is included in <I>/usr/doc</I>, though this particular  
+                    command has a thorough manpage. Of the files available, the  
+                    FAQ and perhaps the version information file (see <a class="docLink" href="#lpicertnut-CHP-6-SECT-1.4">Section  
+                    6.1.4</a>) will be of interest to most users. </P></DD></DL><A  
+                  name=IXT-6-350193></A><A name=IXT-6-350194></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Frequently Asked Questions 
+                    </SPAN></I>
+                    <DD>
+                    <P class=docList><A name=IXT-6-350193></A>A <A  
+                    name=IXT-6-350194></A>Frequently Asked Questions (FAQ) page  
+                    contains detailed information in a Q&amp;A format. FAQ  
+                    topics can range from simple questions such as "What is  
+                    Linux," to more specific questions about how to configure or  
+                    troubleshoot a particular program. While FAQs may be found  
+                    for specific packages in a <I>/usr/doc</I> package directory  
+                    (as with <SPAN class=docEmphBold>tcsh</SPAN>), a number of  
+                    important FAQs reside in <I>/usr/doc/FAQ</I>. FAQ lists are  
+                    generated in many different formats. Inside  
+                    <I>/usr/doc/FAQ</I> are subdirectories for these formats,  
+                    including: </P>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>html</I></SPAN> 
+                      <DD>
+                      <P class=docList>HTML files suitable for viewing with a 
+                      web browser</P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>ps</I></SPAN> 
+                      <DD>
+                      <P class=docList>PostScript files, suitable for viewing 
+                      with a reader such as Ghostscript or in a printer-friendly 
+                      format </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>txt</I></SPAN> 
+                      <DD>
+                      <P class=docList>Plain text files</P></DD></DL></DD></DL><A 
+                  name=IXT-6-350195></A><A name=IXT-6-350196></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>HOWTO documents</SPAN></I> 
+                    <DD>
+                    <P class=docList>A <A name=IXT-6-350195></A>HOWTO <A  
+                    name=IXT-6-350196></A>document details information on  
+                    completing a particular task. They can be as simple as a  
+                    narrative describing one individual's success in configuring  
+                    some software under Linux, or they can be a complete  
+                    author's description. For example,  
+                    <I>/usr/doc/HOWTO/Printing-HOWTO</I> (a text file) tells you  
+                    how to configure a printer under Linux. HOWTOs often serve  
+                    as reference material for new administrators working with  
+                    printers. Like FAQs, many HOWTO documents are stored in  
+                    their own directory under <I>/usr/doc/HOWTO</I>. Some  
+                    smaller HOWTO documents are titled <SPAN  
+                    class=docEmphasis>mini-HOWTOs</SPAN>, which are generally of  
+                    limited scope and can be found in  
+                    <I>/usr/doc/HOWTO/mini</I>. </P></DD></DL><A 
+                  name=lpicertnut-CHP-6-SECT-1.4></A>
+                  <H4 class=docSection2Title>6.1.4 Info Pages</H4>
+                  <P class=docText><A name=IXT-6-350197></A><A 
+                  name=IXT-6-350198></A>Among the many contributions from the  
+                  Free Software Foundation (<A class=docLink  
+                  href="http://www.fsf.org/" 
+                  target=_blank>http://www.fsf.org/</A>) is the GNU  
+                  documentation format called <SPAN  
+                  class=docEmphasis>info</SPAN>. Info pages are part of a system  
+                  called <SPAN class=docEmphasis>Texinfo</SPAN>, which uses a  
+                  single source file to display information on screen and on  
+                  paper. <A name=IXT-6-350199></A>Texinfo is hypertext and  
+                  creates a browser-like interface on a terminal or terminal  
+                  window (Emacs users will recognize the menu system as the  
+                  editor's online help). For GNU software, Texinfo is the  
+                  definitive documentation mechanism. Texinfo can be viewed by  
+                  running the <SPAN class=docEmphBold>info</SPAN>command. For  
+                  example, the Texinfo document on <SPAN  
+                  class=docEmphBold>mkfifo</SPAN> can be displayed using the  
+                  following command: </P><PRE>$ <B>info mkfifo</B></PRE> 
+                  <P class=docText>The result will be a display similar to the  
+                  example in <a class="docLink" href="#lpicertnut-CHP-6-FIG-1">Figure  
+                  6-1</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-6-FIG-1></A>Figure 6-1. Info display in a  
+                  terminal window</H5><IMG height=245 alt=figs/lpi_0601.gif  
+                  src="06-1.files/lpi_0601.gif" width=361 border=0></CENTER>
+                  <P class=docText>Basic navigation commands for the <A  
+                  name=IXT-6-350200></A>info system are listed in <a class="docLink" href="#lpicertnut-CHP-6-TABLE-4">Table  
+                  6-4</a>. </P><A name=lpicertnut-CHP-6-TABLE-4></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 6-4. Info Commands 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Command</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description </P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Tab</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move among hypertext links.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Enter</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Follow hypertext links.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>d</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Return to the top (directory node) of 
+                        the menu.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>?</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>List all info commands.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>p</TT> and <TT>n</TT></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move to previous and next pages, 
+                        respectively.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>u</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Move up one level in the Texinfo 
+                        hierarchy. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>q</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Terminate the system.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>h</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Show a primer for first-time 
+                      users.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>/</TT><I>string</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Enter a string.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><TT>/</TT><I>pattern</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Search forward for <I>pattern</I>, 
+                        which can be a regular expression. 
+                    </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>Manpages and other types of system 
+                  documentation are packaged and installed by default with most 
+                  Linux distributions. For example, this means that both the 
+                  manpage and executable program for <SPAN 
+                  class=docEmphBold>wc</SPAN> are contained in the <SPAN 
+                  class=docEmphBold>textutils</SPAN> package. Other 
+                  documentation, such as LDP guides and HOWTOs, may be contained 
+                  in standalone packages, depending on the distribution. </P><A 
+                  name=lpicertnut-CHP-6-SECT-1.5></A>
+                  <H4 class=docSection2Title>6.1.5 Oddities</H4>
+                  <P class=docText>Occasionally you'll come across an  
+                  application or program that provides excellent documentation  
+                  but places it in nonstandard locations. <A  
+                  name=IXT-6-350201></A><A name=IXT-6-350202></A>Perl is one  
+                  such program. Perl's online documentation is very thorough and  
+                  detailed. However, Perl uses the <SPAN  
+                  class=docEmphBold>man</SPAN> facility to document not just the  
+                  syntax and options for the <SPAN class=docEmphBold>perl</SPAN>  
+                  program, but just about anything you'd want to know about the  
+                  Perl interpreter and language. By adding a large number of  
+                  <SPAN class=docEmphBold>man</SPAN> targets, the Perl  
+                  distribution documents its function library, its FAQ, data  
+                  structures, syntax, and many others. This extensive use of  
+                  <SPAN class=docEmphBold>man</SPAN> ensures that the Perl  
+                  documentation will be available to anyone who needs it.  
+                  However, despite Perl's ubiquitous presence on the Linux  
+                  system, it is not mentioned in <I>/usr/doc</I>. It's worth  
+                  remembering that documentation for the concept you're after is  
+                  probably available, but you may need to check multiple  
+                  sources. </P><A name=lpicertnut-CHP-6-SECT-1.6></A>
+                  <H4 class=docSection2Title>6.1.6 Using the locate Command</H4>
+                  <P class=docText>While the availability of these various  
+                  sources of information is reassuring, finding what you want  
+                  when time is limited can sometimes be frustrating. To assist,  
+                  most Linux systems will periodically create a database of  
+                  files on the system that you can query using the <SPAN  
+                  class=docEmphBold>locate</SPAN><A name=IXT-6-350203></A> 
+                  command. If the database is configured correctly, such a query  
+                  returns all instances of the command or command fragment you  
+                  enter. For example, entering a locate request for the <SPAN  
+                  class=docEmphBold>gzip</SPAN> utility, using only a fragment  
+                  of "gzip," yields something similar to this: </P><PRE>$ <B>locate gzi</B>
+/usr/bin/gzip
+/usr/doc/gzip-1.2.4
+/usr/doc/gzip-1.2.4/NEWS
+/usr/doc/gzip-1.2.4/README
+/usr/info/gzip.info.gz
+/usr/man/man1/gzip.1
+/bin/gzip</PRE> 
+                  <P class=docText>These results can be extremely helpful, as 
+                  they tell you:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>The only item matching "<I>gzi</I> " is 
+                    <SPAN class=docEmphBold>gzip</SPAN>, because nothing other 
+                    than <I>gzip</I> was found. </P>
+                    <LI>
+                    <P class=docList>Exactly where <SPAN 
+                    class=docEmphBold>gzip</SPAN> is located in the filesystem 
+                    (<I> /bin/gzip</I>, and its symbolic link 
+                    <I>/usr/bin/gzip</I>). </P>
+                    <LI>
+                    <P class=docList>That there is a package directory under 
+                    <I>/usr/doc </I>(<I> /usr/doc/gzip-1.2.4</I> ). </P>
+                    <LI>
+                    <P class=docList>That there are both <SPAN 
+                    class=docEmphBold>man</SPAN> and <SPAN 
+                    class=docEmphBold>info</SPAN> pages for <SPAN 
+                    class=docEmphBold>gzip</SPAN>. </P>
+                    <LI>
+                    <P class=docList><SPAN class=docEmphBold>gzip</SPAN> is a 
+                    user command, because its manpage is found in section 1 (<I> 
+                    /usr/man/man1</I>). </P></LI></UL>
+                  <P class=docText>Typically, to proceed from this point with 
+                  researching <SPAN class=docEmphBold>gzip</SPAN>, you would 
+                  use<I> </I><SPAN class=docEmphBold>info gzip</SPAN> or perhaps 
+                  <SPAN class=docEmphBold>man gzip</SPAN>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="06-1.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText><SPAN 
+                              class=docEmphBold>locate</SPAN> <A  
+                              name=IXT-6-350204></A>is dependent on a database  
+                              created by the <SPAN  
+                              class=docEmphBold>updatedb</SPAN> <A  
+                              name=IXT-6-350205></A>command. This utility  
+                              searches the filesystem and constructs the index  
+                              used by <SPAN class=docEmphBold>locate</SPAN>.  
+                              Depending on your system's configuration, this  
+                              update could be set to occur periodically at night  
+                              when your system might be off. The cron facility  
+                              is used to schedule these updates. Many routine  
+                              tasks such as the use of updatedb will be placed  
+                              in special files under the /etc directory, grouped  
+                              for their frequency. The /etc/crontab file  
+                              contains instructions for cron to execute the  
+                              commands in these special files on a routine  
+                              basis. In this case, your locate database may be  
+                              stale. To refresh the database, you can run <SPAN  
+                              class=docEmphBold>updatedb</SPAN> manually or  
+                              leave your system running overnight to execute  
+                              periodic updates. See <a class="docLink" href="04-8.htm">Section  
+                              4.8</a> for more on <SPAN  
+                              class=docEmphBold>locate</SPAN> and <SPAN  
+                              class=docEmphBold>updatedb</SPAN>. 
+                          </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-6-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-6-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-6-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)406ms
+(xml)282ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)1000ms
+--></BODY></HTML>

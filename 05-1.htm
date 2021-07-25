@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-5-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="05-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="05-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 5.&nbsp;  
+            Boot, Initialization, Shutdown, and Runlevels (Topic  
+            2.6)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-5-SECT-1></A>
+                  <H3 class=docSection1Title>5.1 Objective 1: Boot the 
+                  System</H3>
+                  <P class=docText>It is the Linux Loader's (LILO) job to launch  
+                  a Linux kernel or other operating system at boot time (LILO  
+                  configuration is described in <a class="docLink" href="14-2.htm">Section  
+                  14.2</a>. In some cases, that task requires the ability to  
+                  deliver to the Linux kernel certain information, which may be  
+                  required to configure peripherals. This information is sent  
+                  using kernel parameters on the LILO command line. </P><A  
+                  name=lpicertnut-CHP-5-SECT-1.1></A>
+                  <H4 class=docSection2Title>5.1.1 Boot-Time Kernel 
+                  Parameters</H4>
+                  <P class=docText>The Linux kernel has the capability to accept  
+                  information at boot time in the form of a sort of command  
+                  line. The idea is similar to an argument list in <SPAN  
+                  class=docEmphasis>name</SPAN> or <SPAN  
+                  class=docEmphasis>name=value</SPAN> forms that might be  
+                  specified for a program. These values are used to supply the  
+                  kernel with information that it may not be able to determine  
+                  on its own. Kernel parameters can also be used to override  
+                  known values. In either case, they convey vital information to  
+                  hardware drivers compiled into the kernel.<SUP  
+                  class=docFootnote>[2]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[2]</A></SUP> Boot 
+                    prompt arguments do not affect kernel 
+modules.</P></BLOCKQUOTE>
+                  <P class=docText>Kernel parameters are entered either in the  
+                  <I>lilo</I> configuration file or at the <TT>LILO</TT> prompt.  
+                  For example, to boot with a root partition other than the one  
+                  specified in <a class="docLink" href="04-3.htm#lpicertnut-CHP-4-EX-1">Example  
+                  4-1</a> (see <a class="docLink" href="04-3.htm">Section  
+                  4.3</a>), the user could enter the following at the  
+                  <TT>LILO</TT> prompt: </P><PRE>LILO: <B>linux root=/dev/hda9</B></PRE> 
+                  <P class=docText>This command boots the kernel whose label is 
+                  <TT>linux</TT> and overrides the default value of 
+                  <I>/dev/hda1</I> to <I>/dev/hda9</I> for the root filesystem. 
+                  </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>There are far too many kernel 
+                        parameters to list in this book. Consequently, you must 
+                        familiarize yourself with them in general terms so that 
+                        you can answer questions on their form. Remember that 
+                        they are specified to LILO <SPAN 
+                        class=docEmphasis>after</SPAN> a kernel image name, and 
+                        that they consist of either a single item, such as 
+                        <I>ro</I>, or <SPAN class=docEmphasis>name=value</SPAN> 
+                        pairs such as <I>root=/dev/hda2</I>. Multiple parameters 
+                        are space-separated. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>There are many boot-time kernel parameters. 
+                  While unlikely, depending upon your hardware configuration and 
+                  use of modules, you may need to use these parameters to 
+                  specify resource settings (such as I/O ports and interrupts) 
+                  for hardware such as Ethernet or SCSI adapters. For detailed 
+                  information on these parameters, see the Linux 
+                  <I>/usr/doc/HOWTO/BootPrompt-HOWTO</I>. </P><A 
+                  name=lpicertnut-CHP-5-SECT-1.2></A>
+                  <H4 class=docSection2Title>5.1.2 Introduction to Kernel Module 
+                  Configuration</H4>
+                  <P class=docText>Modern Linux kernels are <SPAN 
+                  class=docEmphasis>modular</SPAN>, in that modules of code 
+                  traditionally compiled into the kernel (say, a sound driver) 
+                  are loaded as needed. The modules are separate from the kernel 
+                  and can be inserted and removed by the superuser if necessary. 
+                  While parameters in the <I>lilo</I> configuration file and the 
+                  <SPAN class=docEmphBold>lilo</SPAN><I> </I>command line affect 
+                  the kernel, they do not control kernel modules. </P>
+                  <P class=docText>To send parameters to a kernel module, they  
+                  are inserted into the file <I>/etc/conf.modules</I> (<I>  
+                  /etc/modules.conf </I>on some Linux distributions) as text.  
+                  Common module options you may find in your module  
+                  configuration file are I/O address, interrupt, and DMA channel  
+                  settings for your sound device. This file will also probably  
+                  carry PCMCIA driver information when installed on laptops.  
+                  Module configuration will probably be handled by your  
+                  distribution's installation procedure but may require  
+                  modifications if hardware is added or changed later. <a class="docLink" href="#lpicertnut-CHP-5-EX-1">Example  
+                  5-1</a> shows a typical <I>/etc/conf.modules</I> file. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-5-EX-1></A>Example 5-1. A Typical  
+                  /etc/conf.modules File </H5><PRE>alias scsi_hostadapter aic7xxx 
+alias eth0 3c59x 
+alias parport_lowlevel parport_pc 
+pre-install pcmcia_core /etc/rc.d/init.d/pcmcia start 
+alias sound opl3sa2 
+pre-install sound insmod sound dmabuf=1 
+alias midi opl3 
+options opl3 io=0x388 
+options opl3sa2 mss_io=0x530 irq=5 dma=0 dma2=1 mpu_io=0x388 
+   io=0x370 </PRE> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Read questions that ask about kernel or 
+                        module parameters carefully. Kernel options can be 
+                        passed on the LILO command line; module options are 
+                        specified in <I>conf.modules</I>. 
+                  </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>In this example, note first that an alias 
+                  named <I>sound</I> is created for the audio driver 
+                  <I>opl3sa2</I>. Further, you can see that various I/O port, 
+                  interrupt request (IRQ), and DMA channel settings are 
+                  specified for that driver. The installer determines the 
+                  settings. Unless you're aware of a specific parameter or 
+                  option that needs to be sent to a specific kernel module, you 
+                  probably won't need to change <I>conf.modules</I>. </P><A 
+                  name=lpicertnut-CHP-5-SECT-1.2.1></A>
+                  <H5 class=docSection3Title>5.1.2.1 Kernel boot-time 
+                  messages</H5>
+                  <P class=docText>As the Linux kernel boots, it gives detailed  
+                  status of its progress in the form of console messages.<SUP  
+                  class=docFootnote>[3]</SUP> Modules that  
+                  are loaded also yield status messages. These messages contain  
+                  important information regarding the health and configuration  
+                  of your hardware. Generally, the kinds of messages you will  
+                  see are: </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> These 
+                    messages may take users used to other, less verbose, 
+                    operating systems by surprise due to their detailed nature. 
+                    You'll learn a lot about your hardware by booting a Linux 
+                    kernel.</P></BLOCKQUOTE>
+                  <UL>
+                    <LI>
+                    <P class=docList>Kernel identification</P>
+                    <LI>
+                    <P class=docList>Memory and CPU information</P>
+                    <LI>
+                    <P class=docList>Information on detected hardware, such as 
+                    pointers (mice), serial ports, and disks </P>
+                    <LI>
+                    <P class=docList>Partition information and checks</P>
+                    <LI>
+                    <P class=docList>Network initialization</P>
+                    <LI>
+                    <P class=docList>Kernel module output for modules that load 
+                    at boot time</P></LI></UL>
+                  <P class=docText>These messages are displayed on the system 
+                  console at boot time but often scroll off the screen too fast 
+                  to be read. The messages are also logged to disk. They can 
+                  easily be viewed using the <SPAN 
+                  class=docEmphBold>dmesg</SPAN> command, which displays 
+                  messages logged at the last system boot. For example, to view 
+                  messages from the last boot sequence, simply pipe the output 
+                  of <SPAN class=docEmphBold>dmesg</SPAN> to <SPAN 
+                  class=docEmphBold>less</SPAN>: </P><PRE># <B>dmesg | less</B></PRE>
+                  <P class=docText>It is also common to use <SPAN 
+                  class=docEmphBold>dmesg</SPAN> to dump boot messages to a file 
+                  for later inspection or archive, by simply redirecting the 
+                  output: </P><PRE># <B>dmesg &gt; bootmsg.txt</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="05-1.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>For more information on the Linux  
+                              kernel, including the compilation and installation  
+                              of a new kernel and modules, see <a class="docLink" href="15-0.htm">Chapter  
+                              15</a>.</P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-5-SECT-1.2.2></A>
+                  <H5 class=docSection3Title>5.1.2.2 Reviewing system logs</H5>
+                  <P class=docText>In addition to kernel messages, many other  
+                  boot-time messages will be logged using the <I>syslog</I>  
+                  system. Such messages will be found in the system log files  
+                  such as <I>/var/log/messages</I>. For example, <SPAN  
+                  class=docEmphBold>dmesg</SPAN> displays information on your  
+                  network adapter when it was initialized. However, the  
+                  configuration and status of that adapter is logged in  
+                  <I>/var/log/messages</I> as a result of the network startup.  
+                  When examining and debugging boot activity on your system, you  
+                  need to review both kinds of information. <I>syslog</I>, its  
+                  configuration, and log file examination are covered in <a class="docLink" href="07-3.htm">Section  
+                  7.3</a>.<A name=IXTR3-43></A> </P>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-5-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-5-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-5-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)422ms
+(xml)203ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)657ms
+--></BODY></HTML>

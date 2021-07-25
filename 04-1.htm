@@ -1,0 +1,1001 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-1.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-1.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-1></A>
+                  <H3 class=docSection1Title>4.1 Objective 1: Create Partitions 
+                  and Filesystems</H3>
+                  <P class=docText>In many PCs, disk organization schemes use a 
+                  single disk containing a single filesystem. This filesystem 
+                  contains all data on the computer, mixing system files and 
+                  user files together. On MS-DOS and Windows systems, that 
+                  volume is usually labeled <SPAN class=docEmphasis>C:</SPAN> 
+                  and thought of as the <SPAN class=docEmphasis>C drive</SPAN>. 
+                  If additional space is made available, it is seen as one or 
+                  more additional volumes, each with a separate drive letter. If 
+                  these separate drives are intended for user data, it is the 
+                  user's responsibility to remember which drive letter to use 
+                  when storing files. While this simplicity has some value for 
+                  most users, others prefer the ability to create filesystems 
+                  across multiple partitions, devices, and even multiple 
+                  computers. Linux offers this ability. </P><A 
+                  name=lpicertnut-CHP-4-SECT-1.1></A>
+                  <H4 class=docSection2Title>4.1.1 Disk Drives Under Linux</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-273></A>Linux  
+                  supports many types of disk devices and formats. Any SCSI or  
+                  IDE <A name=IXT-4-350012></A><A name=IXT-4-350013></A>hard  
+                  disk will work with Linux, as will floppy disks, CD-ROMs,  
+                  CD-Rs, Zip&reg; and Jaz&reg; disks, and other types of removable  
+                  media. These media can contain the standard Linux <I>ext2</I>  
+                  filesystem, FAT, FAT32, NTFS, as well as other filesystem  
+                  types. This flexibility makes Linux coexist nicely with other  
+                  operating systems on multiboot systems. </P> 
+                  <P class=docText>The most commonly found hard disks on PCs are  
+                  <A name=IXT-4-350014></A><A name=IXT-4-350015></A>IDE  
+                  (Integrated Device Electronics) drives. These disks feature a  
+                  relatively simple system interface, and most of the "smarts"  
+                  of the disk are onboard the disk itself. The IDE standard  
+                  allows disk manufacturers to sell their product at a very  
+                  attractive price point. Also used on PCs are Small Computer  
+                  System Interface (SCSI, pronounced "scuzzy") drives. SCSI is  
+                  an older standard for connecting peripherals; however, modern  
+                  SCSI versions are quite fast and flexible. </P> 
+                  <P class=docText><A name=IXT-4-350016></A>In general, IDE  
+                  disks offer reasonable performance at a low price point, which  
+                  is highly desirable for consumer products. A single IDE  
+                  interface is capable of attaching two disk drives to a system.  
+                  One device is named <SPAN class=docEmphasis>master</SPAN><A  
+                  name=IXT-4-350017></A> and the other is the <SPAN  
+                  class=docEmphasis>slave</SPAN><A name=IXT-4-350018></A> (an  
+                  unfortunate naming convention). Most PCs have a <SPAN  
+                  class=docEmphasis>primary</SPAN><A name=IXT-4-350019></A> <A  
+                  name=IXT-4-350020></A>and <SPAN  
+                  class=docEmphasis>secondary</SPAN> <A  
+                  name=IXT-4-350021></A>IDE interface. Together, these  
+                  interfaces allow up to four devices (primary master, primary  
+                  slave, secondary master, and secondary slave). At a minimum,  
+                  these devices will include a hard disk and a CD-ROM, leaving  
+                  two available positions for CD-R, Zip, tape, or other IDE  
+                  devices. Adding additional IDE controllers or specialized IDE  
+                  subsystems can further expand a PC's capabilities. </P> 
+                  <P class=docText>Compared to IDE, <A name=IXT-4-350022></A><A  
+                  name=IXT-4-350023></A>SCSI offers excellent performance, lower  
+                  CPU utilization, and a much more flexible connection scheme  
+                  capable of handling up to 15 devices on a single bus. These  
+                  conveniences allow SCSI systems to grow as space requirements  
+                  increase without major hardware reconfiguration.  
+                  Unfortunately, SCSI usually implies higher cost, which reduces  
+                  demand for SCSI in the cost-sensitive PC market. </P> 
+                  <P class=docText>Typically, IDE is considered appropriate for 
+                  desktop use. SCSI is usually specified for servers, for 
+                  high-performance workstations, and in situations in which 
+                  expansion capability is a concern. </P><A 
+                  name=lpicertnut-CHP-4-SECT-1.1.1></A>
+                  <H5 class=docSection3Title>4.1.1.1 Hard disk devices</H5>
+                  <P class=docText><A name=IXT-4-350024></A>By default, Linux  
+                  defines IDE device files as follows: </P><A  
+                  name=IXT-4-350025></A><A name=IXT-4-350026></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/hda</I></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-4-350025></A><A 
+                    name=IXT-4-350026></A>Primary master IDE (often the hard  
+                    disk) </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/hdb</I></SPAN> 
+                    <DD>
+                    <P class=docList>Primary slave IDE</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/hdc</I></SPAN> 
+                    <DD>
+                    <P class=docList>Secondary master IDE (often a 
+                    CD-ROM)</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/hdd</I></SPAN> 
+                    <DD>
+                    <P class=docList>Secondary slave IDE</P></DD></DL>
+                  <P class=docText>SCSI device files are similar, except that 
+                  there is no four-device limitation: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/sda</I></SPAN> 
+                    <DD>
+                    <P class=docList>First SCSI drive</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/sdb</I></SPAN> 
+                    <DD>
+                    <P class=docList>Second SCSI drive</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev/sdc</I></SPAN> 
+                    <DD>
+                    <P class=docList>Third SCSI drive (and so on)</P></DD></DL>
+                  <P class=docText>Under Linux, a typical PC with a single hard 
+                  disk on the primary IDE interface and a single CD-ROM on the 
+                  secondary IDE interface would have disk drive <I>/dev/hda</I> 
+                  and CD-ROM <I>/dev/hdc</I>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be prepared to identify IDE 
+                        and SCSI devices based on their device filenames. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-4-SECT-1.1.2></A>
+                  <H5 class=docSection3Title>4.1.1.2 Disk partitions</H5>
+                  <P class=docText><A name=IXT-4-350027></A><A 
+                  name=IXT-4-350028></A>On <A name=IXT-4-350029></A>each disk in  
+                  a PC, there may be between 1 and 16 <SPAN  
+                  class=docEmphasis>partitions</SPAN>. A partition can be  
+                  thought of as a container on the disk, into which a filesystem  
+                  (or in one circumstance, more partitions) can be placed.  
+                  Unlike MS-DOS, which assigns letter names to partitions, each  
+                  partition under Linux is assigned an integer number on the  
+                  disk, which is appended to the disk's device name. For  
+                  example, the first partition on IDE disk <I>/dev/hda</I> is  
+                  <I>/dev/hda1</I>. There are three types of partitions found on  
+                  PCs: </P><A name=IXT-4-350030></A><A name=IXT-4-350031></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Primary partitions</SPAN></I> 
+
+                    <DD>
+                    <P class=docList><A name=IXT-4-350030></A>This type of  
+                    partition contains a filesystem. At least one primary  
+                    partition must exist, and up to four can exist on a single  
+                    physical disk. If all four primary partitions exist, they  
+                    are numbered as follows: </P> 
+                    <UL>
+                      <LI>
+                      <P class=docList><I>/dev/hda1</I></P>
+                      <LI>
+                      <P class=docList><I>/dev/hda2</I></P>
+                      <LI>
+                      <P class=docList><I>/dev/hda3</I></P>
+                      <LI>
+                      <P class=docList><I>/dev/hda4</I></P></LI></UL>
+                    <P class=docList>One of these primary partitions may be  
+                    marked <SPAN class=docEmphasis>active</SPAN><A  
+                    name=IXT-4-350031></A>, in which case the PC BIOS will be  
+                    able to select it for boot. </P></DD></DL><A  
+                  name=IXT-4-350032></A><A name=IXT-4-350033></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Extended 
+                    partitions</SPAN></I> 
+                    <DD>
+                    <P class=docList>An <A name=IXT-4-350032></A>extended  
+                    partition is a variant of the primary partition but cannot  
+                    contain a filesystem. Instead, it contains <SPAN  
+                    class=docEmphasis>logical partitions</SPAN><A 
+                    name=IXT-4-350033></A>. Only one extended partition may  
+                    exist on a single physical disk. If an extended partition  
+                    exists, it takes one of the four possible spots for primary  
+                    partitions, leaving room for only three primary partitions.  
+                    The partitions on a disk with one primary partition and the  
+                    sole extended partition are numbered as follows: </P> 
+                    <UL>
+                      <LI>
+                      <P class=docList><I>/dev/hda1</I> (primary)</P>
+                      <LI>
+                      <P class=docList><I>/dev/hda2</I> 
+                    (extended)</P></LI></UL></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Logical partitions</SPAN></I> 
+
+                    <DD>
+                    <P class=docList>Logical partitions exist <SPAN 
+                    class=docEmphasis>within</SPAN> the extended partition. 1 to 
+                    12 logical partitions may be created. Logical partitions are 
+                    numbered from 5 to 16. The partitions on a disk with one 
+                    primary partition, the sole extended partition, and four 
+                    logical partitions are numbered as follows: </P>
+                    <UL>
+                      <LI>
+                      <P class=docList><I>/dev/hda1</I> (primary)</P>
+                      <LI>
+                      <P class=docList><I>/dev/hda2</I> (extended)</P>
+                      <LI>
+                      <P class=docList><I>/dev/hda5</I> (logical)</P>
+                      <LI>
+                      <P class=docList><I>/dev/hda6</I> (logical)</P>
+                      <LI>
+                      <P class=docList><I>/dev/hda7</I> (logical)</P>
+                      <LI>
+                      <P class=docList><I>/dev/hda8</I> 
+                    (logical)</P></LI></UL></DD></DL>
+                  <P class=docText>Under this PC partitioning scheme, a maximum 
+                  of 15 partitions with filesystems may exist on a single 
+                  physical disk (3 primary plus 12 logical), more than enough 
+                  for any Linux installation. In practice, the last example is 
+                  typical for a Linux installation. It is unlikely that all of 
+                  the 15 possible partitions on a disk would be necessary just 
+                  to support Linux. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure that you understand how  
+                        partition numbering works. In particular, pay attention  
+                        to the differences in numbering between primary,  
+                        extended, and logical partitions.<A name=IXTR3-30></A>  
+                        </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-4-SECT-1.1.3></A>
+                  <H5 class=docSection3Title>4.1.1.3 The root filesystem and 
+                  mount points</H5>
+                  <P class=docText>As a Linux system boots, the first filesystem  
+                  that becomes available is the top level, or <I>root</I><A  
+                  name=IXT-4-350034></A> <A name=IXT-4-350035></A>filesystem,  
+                  denoted with a single forward slash.<SUP class=docFootnote>[1]</SUP> In a simple  
+                  installation, the root filesystem could contain nearly  
+                  everything on the system. However, such an arrangement could  
+                  lead to system failure if the root filesystem fills to  
+                  capacity. Instead, multiple partitions are typically defined,  
+                  each containing one of the directories under <I>/</I>. As the  
+                  Linux kernel boots, the partitions are <SPAN  
+                  class=docEmphasis>mounted</SPAN> to the root filesystem, and  
+                  together create a single unified filesystem. (Mounting is the  
+                  subject of Objective 3.) Everything on the system that is not  
+                  stored in a mounted partition is stored locally in <I>/</I>.  
+                  The mounted filesystems are placed on separate partitions and  
+                  possibly multiple disk drives. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[1]</A></SUP> The 
+                    <I>root </I>filesystem <I>/</I>, often called the <I>root 
+                    directory</I>, shouldn't be confused with the <I>root 
+                    </I>superuser account or the superuser's home directory, 
+                    <I>/root</I>. The distinct directories <I>/ </I>and <I>/root 
+                    </I>are unrelated and are not required to share the same 
+                    disk partition.</P></BLOCKQUOTE>
+                  <P class=docText>The choice of which directories are placed 
+                  into separate partitions is both a personal and technical 
+                  decision. Here are some guidelines for individual partitions: 
+                  </P><A name=IXT-4-350036></A><A name=IXT-4-350037></A><A 
+                  name=IXT-4-350038></A><A name=IXT-4-350039></A><A 
+                  name=IXT-4-350040></A><A name=IXT-4-350041></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/ </I><A 
+                    name=IXT-4-350036></A>(the root directory)</SPAN>  
+                    <DD>
+                    <P class=docList>Since the only filesystem mounted at the 
+                    start of the boot process is <I>/</I>, certain directories 
+                    must be part of it in order to be available for the boot 
+                    process. These include: </P><A name=IXT-4-350037></A><A 
+                    name=IXT-4-350038></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>/bin</I><A 
+                      name=IXT-4-350037></A> and <I>/sbin</I><A  
+                      name=IXT-4-350038></A></SPAN> 
+                      <DD>
+                      <P class=docList>Contain required system binary 
+                      programs</P></DD></DL><A name=IXT-4-350039></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>/dev</I><A 
+                      name=IXT-4-350039></A></SPAN> 
+                      <DD>
+                      <P class=docList>Contains device files</P></DD></DL><A 
+                    name=IXT-4-350040></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>/etc</I><A 
+                      name=IXT-4-350040></A></SPAN> 
+                      <DD>
+                      <P class=docList>Contains boot configuration 
+                      information</P></DD></DL><A name=IXT-4-350041></A>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><I>/lib</I><A 
+                      name=IXT-4-350041></A></SPAN> 
+                      <DD>
+                      <P class=docList>Contains program libraries</P></DD></DL>
+                    <P class=docList>These directories are always part of the 
+                    single <I>/</I> partition. See the description of the FHS in 
+                    Objective 8 for more on the requirements for the root 
+                    filesystem. </P></DD></DL><A name=IXT-4-350042></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/boot</I><A 
+                    name=IXT-4-350042></A></SPAN> 
+                    <DD>
+                    <P class=docList>This directory holds static files used by 
+                    the boot loader, including kernel images. On systems where 
+                    kernel development activity occurs regularly, making 
+                    <I>/boot</I> a separate partition eliminates the possibility 
+                    that <I>/</I> will fill with kernel images and associated 
+                    files during development. </P></DD></DL><A 
+                  name=IXT-4-350043></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/home</I><A 
+                    name=IXT-4-350043></A></SPAN> 
+                    <DD>
+                    <P class=docList>User files are usually placed in a separate 
+                    partition. This is often the largest partition on the system 
+                    and may be located on a separate physical disk or disk 
+                    array. </P></DD></DL><A name=IXT-4-350044></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/tmp</I><A 
+                    name=IXT-4-350044></A></SPAN> 
+                    <DD>
+                    <P class=docList>This directory is often a separate 
+                    partition used to prevent temporary files from filling. 
+                    </P></DD></DL><A name=IXT-4-350045></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var</I><A 
+                    name=IXT-4-350045></A></SPAN> 
+                    <DD>
+                    <P class=docList>Log files are stored here. Just like 
+                    <I>/tmp</I>, log files could grow unchecked unless they are 
+                    rotated regularly, filling. </P></DD></DL><A 
+                  name=IXT-4-350046></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr</I><A 
+                    name=IXT-4-350046></A></SPAN> 
+                    <DD>
+                    <P class=docList>This directory holds a hierarchy of 
+                    directories containing user commands, source code, and 
+                    documentation. It is often quite large, making it a good 
+                    candidate for its own partition. Because much of the 
+                    information stored under <I>/usr</I> is static, some users 
+                    prefer that it be mounted as read-only, making it impossible 
+                    to corrupt. </P></DD></DL>
+                  <P class=docText>In addition to the preceding six partitions  
+                  listed, a <I>/swap </I>partition is also necessary for a Linux  
+                  system to enable virtual memory. For information on  
+                  determining the size of a swap partition, see <a class="docLink" href="14-0.htm">Chapter  
+                  14</a> later in this book. </P> 
+                  <P class=docText>Using these guidelines at installation time,  
+                  the disk partitions for an IDE-based system with two physical  
+                  disks on the primary IDE controller might look as described in 
+                  <a class="docLink" href="#lpicertnut-CHP-4-TABLE-1">Table  
+                  4-1</a>. </P><A name=lpicertnut-CHP-4-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-1. An Example Partitioning 
+                    Scheme </H5></CAPTION>
+                    <COLGROUP span=4>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Partition</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Type</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Mounted Filesystem</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Size</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda1</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Primary</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>300 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda2</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Extended</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>-</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>-</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda5</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Logical</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/boot</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>300 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda6</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Logical</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/opt</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>300 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda7</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Logical</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/tmp</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>300 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda8</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Logical</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/usr</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>600 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda9</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Logical</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/var</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>300 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hda10</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Logical</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>(<SPAN class=docEmphasis>/swap</SPAN> 
+                        partition)</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>128 MB</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/dev/hdb1</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Primary</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText><I>/home</I></P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>6 
+                  GB</P></TD></TR></COLGROUP></TBODY></TABLE>
+                  <P class=docText>See <a class="docLink" href="04-5.htm#lpicertnut-CHP-4-FIG-1">Figure  
+                  4-1</a> later in this chapter for a graphical depiction of  
+                  this partitioning scheme. </P> 
+                  <P class=docText>Once a disk is partitioned, it can be 
+                  difficult or risky to change the partition sizes. Commercial 
+                  and open source tools are available for this task, but a full 
+                  backup is recommended prior to their use. </P><A 
+                  name=lpicertnut-CHP-4-SECT-1.1.4></A>
+                  <H5 class=docSection3Title>4.1.1.4 Managing partitions</H5>
+                  <P class=docText>Linux has two basic options for partitioning 
+                  disk drives. The <SPAN class=docEmphBold>fdisk</SPAN> command 
+                  is a text-based program that is easy to use and exists on 
+                  every Linux distribution. It is also required for Exam 101. 
+                  Another option you may wish to explore after mastering <SPAN 
+                  class=docEmphBold>fdisk</SPAN> is <SPAN 
+                  class=docEmphBold>cfdisk</SPAN>, which is still a text-mode 
+                  program but which uses the <SPAN 
+                  class=docEmphasis>curses</SPAN> system to produce a GUI-style 
+                  display. </P><A name=p1_ch04-11-fm2xml></A><A 
+                  name=lpicertnut-IDXTERM-310></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>fdisk</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-13-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>fdisk [device]</PRE><A name=p1_ch04-14-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-310></A>Manipulate  
+                  or display the partition table for <I>device</I> using a  
+                  command-driven interactive text interface. <I>device</I> is a  
+                  physical disk such as <I>/dev/hda</I>, not a partition such as  
+                  <I>/dev/hda1</I>. If omitted, <I>device</I> defaults to  
+                  <I>/dev/hda</I>. Interactive commands to <SPAN  
+                  class=docEmphBold>fdisk</SPAN> are a single letter followed by  
+                  a carriage return. The commands do not take arguments, but  
+                  start an interactive dialog. Commands that operate on a  
+                  partition will request the <I>partition number</I>, which is  
+                  an integer. For primary and extended partitions, the partition  
+                  number is from 1 to 4. For logical partitions, which are  
+                  available only if the extended partition already exists to  
+                  contain them, the partition number is from 5 to 16. </P> 
+                  <P class=docText>When making changes to the partition table, 
+                  <SPAN class=docEmphBold>fdisk</SPAN> accumulates changes 
+                  without writing them to the disk, until it receives the <SPAN 
+                  class=docEmphBold>write</SPAN> command. </P><A 
+                  name=lpicertnut-CHP-4-SECT-1.1.5></A>
+                  <H5 class=docSection3Title>4.1.1.5 Frequently used 
+                  commands</H5>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Toggle the <I>bootable</I> flag on/off for 
+                    a primary partition. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>d</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Delete a partition. You are prompted for 
+                    the partition number to delete. If you delete a logical 
+                    partition when higher numbered logical partitions exist, the 
+                    partition numbers are decremented to keep logical partition 
+                    numbers contiguous. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List the known partition types. A table of 
+                    partition types is printed.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>m</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the brief help menu for these 
+                    commands.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>n</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Add a new partition. You are prompted for  
+                    the partition type (primary, extended, or logical).<SUP  
+                    class=docFootnote>[2]</SUP> For  
+                    primary and extended partitions, you are asked for the  
+                    partition number (1- 4). For logical partitions, the next  
+                    logical partition number is selected automatically. You are  
+                    then prompted for the starting disk cylinder for the  
+                    partition and are offered the next free cylinder as a  
+                    default. Finally, you are prompted for the last cylinder or  
+                    a size, such as "+300M." By default, new partitions are  
+                    assigned as Linux <I>ext2</I>, type 83. To create another  
+                    partition type, such as a swap partition, first create the  
+                    partition with the <SPAN class=docEmphBold>n</SPAN> command,  
+                    then change the type with the <SPAN  
+                    class=docEmphBold>t</SPAN> command. </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[2]</A></SUP> Note 
+                      that <SPAN class=docEmphBold>fdisk</SPAN> displays options 
+                      for extended and primary partition types if an extended 
+                      partition does not yet exist. If the extended partition 
+                      already exists, <SPAN class=docEmphBold>fdisk</SPAN> 
+                      displays options for logical and primary partition 
+                      types.</P></BLOCKQUOTE></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the partition table as it exists in 
+                    memory. This depiction will differ from the actual partition 
+                    table on disk if changes have not been saved. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Quit without saving changes.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>t</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Change a partition's system ID. This is an 
+                    octal number that indicates the type of filesystem the 
+                    partition is to contain. Linux <I>ext2</I> partitions are 
+                    type 83, and Linux swap partitions are type 82. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>w</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Write (save) the partition table to disk 
+                    and exit. No changes are saved until the <SPAN 
+                    class=docEmphBold>w</SPAN> command is issued. </P></DD></DL><A 
+                  name=IXT-4-350047></A><A name=IXT-4-350048></A><A 
+                  name=IXT-4-350049></A><A name=IXTR3-31></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-16-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display the existing partition table on 
+                  <I>/dev/hda</I> without making any changes: </P><PRE># <B>fdisk /dev/hda</B>
+Command (m for help): <B>p</B>
+
+Disk /dev/hda: 255 heads, 63 sectors, 1027 cylinders
+Units = cylinders of 16065 * 512 bytes
+
+   Device Boot    Start       End    Blocks   Id  System
+/dev/hda1   *         1       250   2008093+  83  Linux
+/dev/hda2           251       280    240975   82  Linux swap
+/dev/hda3           281      1027   6000277+   5  Extended
+/dev/hda5           281       293    104391   83  Linux
+/dev/hda6           294       306    104391   83  Linux
+/dev/hda7           307       319    104391   83  Linux
+
+Command (m for help): <B>q</B>
+
+#</PRE>
+                  <P class=docText>In this configuration, <I>/dev/hda</I> has 
+                  two primary partitions, <I>/dev/hda1</I>, which is bootable, 
+                  and <I>/dev/hda2</I>, which is the swap partition. The disk 
+                  also has an extended partition <I>/dev/hda3</I>, which 
+                  contains three logical partitions, <I>/dev/hda5</I>, 
+                  <I>/dev/hda6</I>, and <I>/dev/hda7</I>. All other primary and 
+                  logical partitions are Linux <I>ext2</I> partitions. </P><A 
+                  name=p1_ch04-17-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Starting with a blank partition table, create 
+                  a bootable primary partition of 300 MB on <I>/dev/hda1</I>, 
+                  the extended partition on <I>/dev/hda2</I> containing the 
+                  remainder of the disk, a logical partition of 200 MB on 
+                  <I>/dev/hda5</I>, a logical swap partition of 128 MB on 
+                  <I>/dev/hda6</I>, and a logical partition on <I>/dev/hda7</I> 
+                  occupying the remainder of the extended partition: </P><PRE># <B>fdisk /dev/hda</B>
+
+Command (m for help): <B>n</B>
+Command action
+   e   extended
+   p   primary partition (1-4)
+<B>p</B>
+Partition number (1-4): <B>1</B>
+First cylinder (1-1027, default 1):
+Using default value 1
+Last cylinder or +size or +sizeM or +sizeK (1-1027, 
+   default 1027): <B>+300M</B>
+
+Command (m for help): <B>a</B>
+Partition number (1-4): <B>1</B>
+
+Command (m for help): <B>n</B>
+Command action
+   e   extended
+   p   primary partition (1-4)
+<B>e</B>
+Partition number (1-4): <B>2</B>
+First cylinder (40-1027, default 40):
+Using default value 40
+Last cylinder or +size or +sizeM or +sizeK (40-1027, 
+   default 1027):&lt;return&gt;
+Using default value 1027
+
+Command (m for help): <B>n</B>
+Command action
+   l   logical (5 or over)
+   p   primary partition (1-4)
+<B>l</B>
+First cylinder (40-1027, default 40):
+Using default value 40
+Last cylinder or +size or +sizeM or +sizeK (40-1027, 
+   default 1027): <B>+200M</B>
+
+Command (m for help): <B>n</B>
+Command action
+   l   logical (5 or over)
+   p   primary partition (1-4)
+<B>l</B>
+First cylinder (79-1027, default 79):
+Using default value 79
+Last cylinder or +size or +sizeM or +sizeK (79-1027, 
+   default 1027): <B>+128M</B>
+
+Command (m for help): <B>t</B>
+Partition number (1-6): <B>6</B>
+Hex code (type L to list codes): <B>82</B>
+Changed system type of partition 6 to 82 (Linux swap)
+
+Command (m for help): <B>n</B>
+Command action
+   l   logical (5 or over)
+   p   primary partition (1-4)
+<B>l</B>
+First cylinder (118-1027, default 118):
+Using default value 118
+Last cylinder or +size or +sizeM or +sizeK (118-1027, 
+   default 1027):&lt;return&gt;
+Using default value 1027
+
+Command (m for help): <B>p</B>
+
+Disk /dev/hda: 255 heads, 63 sectors, 1027 cylinders
+Units = cylinders of 16065 * 512 bytes
+
+   Device Boot    Start       End    Blocks   Id  System
+/dev/hda1   *         1        39    313236   83  Linux
+/dev/hda2            40      1027   7936110    5  Extended
+/dev/hda5            40        65    208813+  82  Linux swap
+/dev/hda6            66        82    136521   83  Linux
+/dev/hda7            83      1027   7590681   83  Linux
+
+Command (m for help): <B>w</B>
+
+The partition table has been altered!
+
+Calling ioctl(  ) to re-read partition table.
+Syncing disks.
+
+#</PRE>
+                  <P class=docText>Note the use of defaults for the partition 
+                  start cylinders and for end cylinder selections, indicated by 
+                  <TT><I>&lt;return&gt;</I></TT> in this example. Other 
+                  partition sizes are specified in megabytes using responses 
+                  such as <TT><B>+128M</B></TT> . </P>
+                  <P class=docText>At boot time, the BIOS of many PCs can access  
+                  only the first <A name=IXT-4-350047></A>1024 cylinders of the  
+                  disk. The Linux kernel, however, has no such limitation, but  
+                  the BIOS must be able to load the boot loader LILO and the  
+                  entire kernel image into memory. Thus, the entire contents of  
+                  <I>/boot</I><A name=IXT-4-350048></A>, either as part of  
+                  <I>/</I> or as a separate partition, must be located within  
+                  the 1024-cylinder boundary. In April 2000, Version 0.21.4.2 of  
+                  LILO was released; which is within the 1024-cylinder limit. If  
+                  you have a Linux distribution that includes a newer version of  
+                  LILO, you may not need to worry about this issue. Check your  
+                  LILO documentation to be sure. </P> 
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=36 
+                              src="04-1.files/warning_yellow.gif" width=51></TD>
+                            <TD vAlign=top>
+                              <P class=docText><A name=IXT-4-350049></A>If you  
+                              are attempting to create partitions for other  
+                              operating systems with the Linux <SPAN  
+                              class=docEmphBold>fdisk</SPAN> utility, you could  
+                              run into a few problems. As a rule, it is safest  
+                              to prepare the partitions for an operating system  
+                              using the native tools of that operating system.  
+                              </P>
+                              <P class=docText>As you might expect, using <SPAN 
+                              class=docEmphBold>fdisk</SPAN> on a working system 
+                              can be dangerous, because one errant <SPAN 
+                              class=docEmphBold>w</SPAN> command can render your 
+                              disk useless. Use extreme caution when working 
+                              with the partition table of a working system, and 
+                              be sure you know exactly what you intend to do and 
+                              how to do it. 
+                    </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should understand disk partitions  
+                        and the process of creating them using <SPAN  
+                        class=docEmphBold>fdisk.</SPAN><A name=IXTR3-31></A> 
+                      </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-4-SECT-1.1.6></A>
+                  <H5 class=docSection3Title>4.1.1.6 Creating filesystems</H5>
+                  <P class=docText>Once a disk is partitioned, filesystems may  
+                  be created in those partitions using the <SPAN  
+                  class=docEmphBold>mkfs</SPAN> utility. Usually, partitions  
+                  intended for use with Linux will use the native <I>second  
+                  extended</I> filesystem, or <I>ext2</I>. MS-DOS filesystems  
+                  can also be created.<SUP class=docFootnote>[3]</SUP> In reality,  
+                  <SPAN class=docEmphBold>mkfs</SPAN> is a front-end program for  
+                  filesystem-specific creation tools named <I>mkfs.ext2</I> and  
+                  <I>mkfs.msdos</I>, which are in turn linked to <I>mke2fs</I>  
+                  and <I>mkdosfs</I>, respectively. <SPAN  
+                  class=docEmphBold>mkfs</SPAN><I> </I>offers a unified  
+                  front-end, while the links provide convenient names. The  
+                  choice of which executable to call is up to you. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[3]</A></SUP> You can 
+                    also use <SPAN class=docEmphBold>mkfs</SPAN> to create 
+                    filesystems of type <I>minix</I>, in the rare event that you 
+                    encounter such a requirement.</P></BLOCKQUOTE><A 
+                  name=p1_ch04-21-fm2xml></A><A name=IXT-4-350050></A><A 
+                  name=IXT-4-350051></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>mkfs</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-22-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>mkfs [-t fs_type] [ fs_options] device</PRE><A 
+                  name=p1_ch04-23-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350050></A><A 
+                  name=IXT-4-350051></A>Make a filesystem of type <I>fs_type</I>  
+                  on <I>device</I>. The <I>fs_type </I>is either <I>ext2</I> or  
+                  <I>msdos</I>. If <I>fs_type</I> is omitted, <I>ext2</I> is  
+                  used by default. When called by <SPAN  
+                  class=docEmphBold>mkfs</SPAN>, these programs are passed any  
+                  <I>fs_options</I> included on the command line. See the  
+                  manpages for <SPAN class=docEmphBold>mke2fs</SPAN> and <SPAN  
+                  class=docEmphBold>mkdosfs</SPAN> for full details on their  
+                  individual options. </P><A name=p1_ch04-24-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used 
+                  <I>fs_options</I></H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Check <I>device</I> for bad blocks (<SPAN 
+                    class=docEmphBold>mke2fs</SPAN> and <SPAN 
+                    class=docEmphBold>mkdosfs</SPAN>). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-L</SPAN> <I>label</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the volume <I>label</I> for the 
+                    filesystem (<SPAN class=docEmphBold>mke2fs</SPAN> only). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-n</SPAN> <I>label</I></SPAN> 
+                    <DD>
+                    <P class=docList>Set the 11-character volume label for the 
+                    filesystem (<SPAN class=docEmphBold>mkdosfs</SPAN> only). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-q</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Uses <SPAN class=docEmphBold>mkfs</SPAN> in 
+                    quiet mode, resulting in very little output (<SPAN 
+                    class=docEmphBold>mke2fs</SPAN> only). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Used to enter verbose mode (<SPAN 
+                    class=docEmphBold>mke2fs</SPAN> and <SPAN 
+                    class=docEmphBold>mkdosfs</SPAN>). </P></DD></DL><A 
+                  name=p1_ch04-25-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Using defaults, quietly create an <I>ext2</I> 
+                  partition on <I>/dev/hda3</I>: </P><PRE># <B>mkfs -q /dev/hda3</B>
+mke2fs 1.14, 9-Jan-1999 for EXT2 FS 0.5b, 95/08/09
+#</PRE><A name=p1_ch04-26-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Create an <I>ext2</I> filesystem labeled 
+                  <I>rootfs</I> on existing partition <I>/dev/hda3</I>, checking 
+                  for bad blocks and with full verbose output: </P><PRE># <B>mkfs -t ext2 -L rootfs -cv /dev/hda3</B>
+mke2fs 1.14, 9-Jan-1999 for EXT2 FS 0.5b, 95/08/09
+Linux ext2 filesystem format
+Filesystem label=rootfs
+26208 inodes, 104422 blocks
+5221 blocks (5.00%) reserved for the super user
+First data block=1
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+13 block groups
+8192 blocks per group, 8192 fragments per group
+2016 inodes per group
+Superblock backups stored on blocks:
+        8193, 16385, 24577, 32769, 40961, 49153, 
+        57345, 65537, 73729, 81921, 90113, 98305
+
+Checking for bad blocks (read-only test): done
+Writing inode tables: done
+Writing superblocks and filesystem accounting 
+   information: done
+
+#</PRE>
+                  <P class=docText>Additional options are available in the <SPAN 
+                  class=docEmphBold>mke2fs</SPAN> and <SPAN 
+                  class=docEmphBold>mkdosfs</SPAN> programs, which may be needed 
+                  to fine-tune specific filesystem parameters for special 
+                  situations. In most cases, the default parameters are 
+                  appropriate and adequate. </P>
+                  <P class=docText>An additional command not specifically cited 
+                  in the LPI Objectives for this Topic is <SPAN 
+                  class=docEmphBold>mkswap</SPAN>. This command prepares a 
+                  partition for use as Linux swap space and is needed if you 
+                  plan to fully configure a disk from scratch. It is also needed 
+                  if you need to add an additional swap partition. </P><A 
+                  name=p1_ch04-27-fm2xml></A><A name=IXT-4-350052></A><A 
+                  name=IXT-4-350053></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>mkswap</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-28-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>mkswap device</PRE><A name=p1_ch04-29-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350052></A><A 
+                  name=IXT-4-350053></A>Prepare a partition for use as swap  
+                  space. This command can also set up swap space in a file on  
+                  another filesystem. </P><A name=p1_ch04-30-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>On an existing partition, which should be set 
+                  to type 82 (Linux swap), ready swap space: </P><PRE># <B>mkswap /dev/hda5</B>
+Setting up swapspace version 1, size = 139792384 bytes
+#</PRE>
+                  <P class=docText>Running any of the filesystem creation 
+                  programs is, like <SPAN class=docEmphBold>fdisk</SPAN>, 
+                  potentially dangerous. All data in any previously existing 
+                  filesystems in the specified partition will be deleted. Since 
+                  <SPAN class=docEmphBold>mkfs</SPAN> does not warn you prior to 
+                  creating the filesystem, be certain that you are operating on 
+                  the correct partition. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>The exam is likely to contain general 
+                        questions about using <I>mkfs</I>, though details such 
+                        as inode allocation are beyond the scope of the LPIC 
+                        Level 1 exams. </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-1&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-1
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)454ms
+(xml)328ms
+(xsl)31ms
+(ent)0ms
+(buf)0ms
+
+(tot)1125ms
+--></BODY></HTML>

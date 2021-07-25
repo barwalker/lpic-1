@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-6-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="06-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="06-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 6.&nbsp;  
+            Documentation (Topic 1.8)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-6-SECT-3></A>
+                  <H3 class=docSection1Title>6.3 Objective 3: Write System 
+                  Documentation</H3>
+                  <P class=docText><A name=IXT-6-350216></A>Through daily  
+                  activity as a system administrator, you have a unique  
+                  opportunity to observe the needs of multiple users on your  
+                  systems. Based on that vantage point, you will probably be  
+                  writing scripts and other utilities specific to your location  
+                  and business. Such things can be as simple as login or shell  
+                  scripts, or as complex as full-featured applications. As these  
+                  tools make their way into the lives of other people, the need  
+                  to document your work becomes a necessary part of being a  
+                  system administrator. To be useful, such documentation should  
+                  appear in locations where end users will expect to find it. In  
+                  effect, creating a tool that is intended for an audience  
+                  beyond yourself implies the responsibility to document that  
+                  tool. </P><A name=lpicertnut-CHP-6-SECT-3.1></A>
+                  <H4 class=docSection2Title>6.3.1 Creating Manpages</H4>
+                  <P class=docText><A name=IXT-6-350217></A>System manpages are  
+                  an excellent place to create local documentation. Manpages are  
+                  simple to create; the mechanism is well known, and your users  
+                  will be comfortable using it. You can produce formatted  
+                  documentation, including bold and underlined text from <SPAN  
+                  class=docEmphBold>nroff</SPAN> source files. These text files  
+                  contain extra markup information that controls the display  
+                  formatting on screen. However, you can also use plain text  
+                  files by employing a special performance feature of the man  
+                  system. </P>
+                  <P class=docText>Typically, the raw files used by <SPAN 
+                  class=docEmphBold>man</SPAN> are processed from their raw 
+                  <SPAN class=docEmphBold>nroff</SPAN> form to create the 
+                  displayable form. At one time, this processing took a long 
+                  time, particularly for large manpages. To make manpage access 
+                  faster for subsequent requests for the same manpage, the 
+                  system often would save a version of the formatted page on 
+                  disk. The raw, unformatted system pages are stored in 
+                  <I>/usr/man/man.1</I>, <I>/usr/man/man.2</I>, and so on for 
+                  each section in the manual. In addition, the directories 
+                  <I>/usr/cat/cat.1</I>, <I>/usr/cat/cat.2</I>, and so on, can 
+                  hold the previously formatted files. The <SPAN 
+                  class=docEmphBold>cat</SPAN> <SPAN 
+                  class=docEmphasis>directory</SPAN> setup on your system may be 
+                  different and is defined by <I>/etc/man.config</I>. Wherever 
+                  they are, these directories can contain text files for use 
+                  with <SPAN class=docEmphBold>man</SPAN> rather than raw <SPAN 
+                  class=docEmphBold>nroff</SPAN> files. </P>
+                  <P class=docText>You can take advantage of this feature to 
+                  create simple manpages for your own system. Simply generate a 
+                  text file that looks like a typical manpage (sans fancy 
+                  formatting) and place it in the appropriate <SPAN 
+                  class=docEmphBold>cat</SPAN> directory. The file must be named 
+                  with a trailing dot and the section name, just as the 
+                  formatted files are. This method couldn't get any easier and 
+                  yields a result expected by the end user. The missing 
+                  formatting probably won't be noticed. </P>
+                  <P class=docText>For those of you needing to get a little more 
+                  serious and generate formatted manpages, you may want to start 
+                  with an existing manpage to use as a template. To do this, 
+                  simply find a manpage that makes a suitable starting point and 
+                  copy it to the appropriate name in the appropriate man 
+                  directory. Again, the name must have the trailing dot and man 
+                  section. For example, we could copy the existing file 
+                  <I>/usr/man/man1/ln.1</I> to 
+                  <I>/usr/local/man/man1/mycmd.1</I>: </P><PRE>cp /usr/man/man1/ln.1 /usr/local/man/man1/mycmd.1 </PRE>
+                  <P class=docText>Edit the file with a text editor, changing  
+                  sections and text as needed but leaving the formatting macros  
+                  intact. When editing your new file, you'll find a number of  
+                  <I>man macros</I> inside that handle complex text formatting.  
+                  The macros consist of a dot (<TT>.</TT>) and one or two  
+                  characters representing the formatting feature. Some of the  
+                  more important macros are listed in <a class="docLink" href="#lpicertnut-CHP-6-TABLE-6">Table  
+                  6-6</a>. </P><A name=lpicertnut-CHP-6-TABLE-6></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 6-6. Commonly Used man Macros 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Macro</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Function</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>.TH</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A manpage header. Includes title, 
+                        section, date, description, and author. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>.SH</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A section heading. You can add your own 
+                        sections to the standard sections as required. 
+</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>.PP</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A paragraph separator. Without this 
+                        macro, lines of text will flow together. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>.TP</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>A hanging indent macro, used for 
+                        command options.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>.B</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Everything on the line following this 
+                        macro is bold. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>.I</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Everything on the line following this 
+                        macro is italic (or sometimes underlined). </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>\fB</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This inline macro makes text following 
+                        on the line bold.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>\fI</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This inline macro makes text following 
+                        on the line italic (or sometimes underlined). </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell><PRE>\fR</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>This inline macro returns the text to 
+                        the default 
+style.</P></TD></TR></TBODY></TABLE>
+                  <P class=docText>Using these macros, you can create and format  
+                  your own manpages. <a class="docLink" href="#lpicertnut-CHP-6-EX-1">Example  
+                  6-1</a> contains an example of a very simple manpage using  
+                  these macros. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-6-EX-1></A>Example 6-1. Sample Source for  
+                  a Manpage </H5><PRE>.\&quot; This is a comment line.
+.\&quot;
+.\&quot; .TH defines your man page header, including
+.\&quot; the title, manual section, date, description, and author.
+.TH MYPAGE 1 &quot;TheDate&quot; &quot;My Page Description&quot; &quot;Me&quot;
+.\&quot;
+.\&quot; .SH defines a section.  This is the NAME section.
+.SH NAME
+mypage \- make your own manpage
+.\&quot;
+.\&quot; This is the SYNOPSIS section.
+.SH SYNOPSIS
+.\&quot;
+.\&quot; .B is a font change macro, yielding bold for 
+.\&quot; everything on the line.
+.B mypage
+.\&quot;
+.\&quot; \fI, \fB, and \fR are in-line font changes for italic, 
+.\&quot; bold, and roman, respectively.
+.\&quot; 
+.\&quot; 
+.\&quot; This is the DESCRIPTION section.
+.SH DESCRIPTION
+.\&quot;
+This is paragraph 1 of your description.
+.\&quot; 
+.\&quot; .PP is a paragraph separator.
+.PP
+This is paragraph 2 of your description.
+To create a manpage, the most important man macros 
+are \fB.TH\fR
+.\&quot; 
+.\&quot; .TP precedes command options.
+.TP
+\fB\-a\fR
+option a
+.TP
+\fB\-b\fR
+option b
+.\&quot;
+.\&quot; This is the multiword &quot;reporting bugs&quot; section,
+.\&quot; which is why it is quoted.
+.SH &quot;REPORTING BUGS&quot;
+Report bugs to &lt;someone@somewhere.com&gt;.
+.\&quot;
+.\&quot; This is the multiword &quot;see also&quot; section.
+.SH &quot;SEE ALSO&quot;
+.\&quot;
+.B yourpage(1)</PRE> 
+                  <P class=docText>Your manpages will most likely go in the  
+                  directory reserved for local additions to the system,  
+                  <I>/usr/local/man</I>. While there's nothing preventing you  
+                  from storing your manpages in the system <I>/man</I>  
+                  directories, you may forget about customizations you make  
+                  there -- therefore, you could lose customizations when you  
+                  upgrade your system and that directory gets overwritten with  
+                  newer manpages.<A name=IXTR3-45></A> </P><A  
+                  name=p1_ch06-29-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="06-3.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText>At the time of this writing,  
+                              there are no questions for <a class="docLink" href="06-3.htm">Section  
+                              6.3</a> Write System Documentation," on the LPIC  
+                              Level 1 Exam.  
+                    </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="06-3.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-6-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-6-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-6-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)469ms
+(xml)172ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)657ms
+--></BODY></HTML>

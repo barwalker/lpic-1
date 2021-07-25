@@ -1,0 +1,583 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-3></A>
+                  <H3 class=docSection1Title>4.3 Objective 3: Control Filesystem 
+                  Mounting and Unmounting</H3>
+                  <P class=docText>As discussed in Objective 1, the Linux 
+                  directory hierarchy is usually made up of multiple partitions, 
+                  each joined to the root filesystem. Filesystems on removable 
+                  media, such as CD-ROMs, Zip disks, and floppy disks, are 
+                  joined in the same way, but usually on a temporary basis. Each 
+                  of these separate filesystems is <SPAN 
+                  class=docEmphasis>mounted</SPAN> to the parent filesystem as a 
+                  directory (or <SPAN class=docEmphasis>mount point</SPAN>) in 
+                  the unified hierarchy. </P>
+                  <P class=docText>Directories intended as mount points usually 
+                  don't contain files or other directories. Instead, they're 
+                  just empty directories created solely to mount a filesystem. 
+                  If a directory that already contains files is used as a mount 
+                  point, its files are obscured and unavailable until the 
+                  filesystem is unmounted. Typical mount points include the 
+                  directories <I>/usr</I>, <I>/home</I>, <I>/var</I>, and 
+                  others. </P><A name=lpicertnut-CHP-4-SECT-3.1></A>
+                  <H4 class=docSection2Title>4.3.1 Managing the Filesystem 
+                  Table</H4>
+                  <P class=docText>Since the Linux filesystem hierarchy is 
+                  spread across separate partitions and/or multiple drives, it 
+                  is necessary to automatically mount those filesystems at boot 
+                  time. In addition, removable media and filesystems on remote 
+                  NFS servers may be used regularly with recurring mount 
+                  properties. All of this information is recorded in the 
+                  <I>/etc/fstab</I> file. Filesystems defined in this file are 
+                  checked and mounted when the system boots. Entries in this 
+                  file are consulted for default information when users wish to 
+                  mount removable media. </P>
+                  <P class=docText>The <I>/etc/fstab</I> file (see <a class="docLink" href="#lpicertnut-CHP-4-EX-1">Example  
+                  4-1</a>) is plain text and consists of lines with six fields:  
+                  </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Device</SPAN></I> 
+                    <DD>
+                    <P class=docList>This field specifies the device file of the 
+                    partition holding the filesystem -- for example, 
+                    <I>/dev/hda1</I>. This field cannot contain a whole device, 
+                    such as <I>/dev/hda</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Mount point</SPAN></I> 
+                    <DD>
+                    <P class=docList>This field specifies the directory upon 
+                    which the filesystem is to be mounted. For example, if 
+                    <I>/dev/hda1</I> contains the root filesystem, it is mounted 
+                    at <I>/</I>. The root filesystem will contain additional 
+                    directories intended as mount points for other filesystems. 
+                    For example, <I>/boot</I> may be an empty directory intended 
+                    to mount the filesystem that contains kernel images and 
+                    other information required at boot time. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Filesystem type</SPAN></I> 
+                    <DD>
+                    <P class=docList>Next, the type of filesystem is specified. 
+                    These include some <I>ext2</I> filesystems, as well as 
+                    <I>swap</I>, <I>iso9660</I> (CD-ROM), and others. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Mount options</SPAN></I> 
+                    <DD>
+                    <P class=docList>This field contains a comma-separated list 
+                    of options. Some options are specific to particular 
+                    filesystem types. Options are described later in this 
+                    Objective. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Dump frequency</SPAN></I> 
+                    <DD>
+                    <P class=docList>The <SPAN class=docEmphBold>dump</SPAN> 
+                    program, a standard Unix backup utility, may consult 
+                    <I>/etc/fstab</I> for information on how often to dump each 
+                    filesystem. This field holds an integer, usually set to 1 
+                    for <I>ext2</I> filesystems and to for others. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor>Pass number for <SPAN 
+                    class=docEmphBold>fsck</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This field is used by the <SPAN 
+                    class=docEmphBold>fsck</SPAN> utility when the <SPAN 
+                    class=docEmphBold>-A</SPAN> option is specified, usually at 
+                    boot time. It is a flag that may contain only the values 
+                    <I>0</I>, <I>1</I>, or <I>2</I>. </P></DD></DL>
+                  <UL>
+                    <LI>
+                    <P class=docList>A <I>0</I> instructs <SPAN 
+                    class=docEmphBold>fsck</SPAN> not to check the filesystem. 
+                    </P>
+                    <LI>
+                    <P class=docList>A <I>1</I> should be entered for the root 
+                    filesystem and instructs <SPAN class=docEmphBold>fsck</SPAN> 
+                    to check that filesystem first. </P>
+                    <LI>
+                    <P class=docList>A <I>2</I> instructs <SPAN 
+                    class=docEmphBold>fsck</SPAN> to check corresponding 
+                    filesystems after those with a <I>1.</I> </P></LI></UL>
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-4-EX-1></A>Example 4-1. Sample /etc/fstab  
+                  File </H5><PRE>/dev/sda1      /                ext2    defaults        1 1
+/dev/sda5      /boot            ext2    defaults        1 2
+/dev/sda9      /home            ext2    defaults        1 2
+/dev/sda6      /root            ext2    defaults        1 2
+/dev/sda10     /tmp             ext2    defaults        1 2
+/dev/sda8      /usr             ext2    defaults        1 2
+/dev/sda7      /var             ext2    defaults        1 2
+/dev/sda11     swap             swap    defaults        0 0
+/dev/fd0       /mnt/floppy      ext2    noauto,users    0 0
+/dev/hdc       /mnt/cdrom       iso9660 noauto,ro,users 0 0
+/dev/hdd       /mnt/zip         vfat    noauto,users    0 0
+fs1:/share     /fs1             nfs     defaults        0 0</PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>fstab</SPAN> in <a class="docLink" href="#lpicertnut-CHP-4-EX-1">Example  
+                  4-1</a> depicts a system with a single SCSI disk,  
+                  <I>/dev/sda</I>. The first partition, <I>/dev/sda1</I>,  
+                  contains an <I>ext2</I> root filesystem. Partition  
+                  <I>/dev/sda11</I> is swap. Partitions <I>/dev/sda5</I> through  
+                  <I>/dev/sda10</I> contain <I>ext2</I> partitions for  
+                  <I>/boot</I>, <I>/home</I>, <I>/root</I>, <I>/tmp</I>,  
+                  <I>/usr</I>, and <I>/var</I>, respectively. All of the local  
+                  <I>ext2</I> partitions are to be checked by <SPAN  
+                  class=docEmphBold>fsck</SPAN> and dumped. Entries for the  
+                  floppy disk ( <I>/dev/fd0</I>), CD-ROM ( <I>/dev/hdc</I>), and  
+                  IDE Zip drive ( <I>/dev/hdd</I> ) hold appropriate mount  
+                  properties, making manual mounting of these devices simple.  
+                  Finally, this example shows a remote NFS mount of directory  
+                  <I>/share</I> of system <I>fs1</I>. It is mounted locally at  
+                  <I>/fs1</I>. </P>
+                  <P class=docText>The <I>/etc/fstab</I> file is automatically 
+                  created when Linux is installed and is based on the 
+                  partitioning and mount point configuration specified. This 
+                  file can be changed at any time to add devices and options, 
+                  tailoring the filesystem to meet your specific needs. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should memorize the functions of 
+                        each column in <I>/etc/fstab</I> and be prepared to 
+                        answer questions on each. </P></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-4-SECT-3.2></A>
+                  <H4 class=docSection2Title>4.3.2 Mounting Filesystems</H4>
+                  <P class=docText>Filesystems are mounted using the <SPAN 
+                  class=docEmphBold>mount</SPAN> command. At boot time, those 
+                  filesystems with a nonzero pass number in <I>/etc/fstab</I> 
+                  are checked and automatically mounted. Later, you can run 
+                  <SPAN class=docEmphBold>mount</SPAN> manually to add other 
+                  filesystems to the filesystem hierarchy. </P><A 
+                  name=p1_ch04-69-fm2xml></A><A name=IXT-4-350061></A><A 
+                  name=IXT-4-350062></A><A name=IXT-4-350063></A><A 
+                  name=IXT-4-350064></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>mount</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-71-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>mount [command_line_options] device 
+mount [command_line_options] directory
+mount [command_line_options] device directory</PRE><A 
+                  name=p1_ch04-72-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350061></A><A 
+                  name=IXT-4-350062></A>Used to mount filesystems onto the  
+                  filesystem hierarchy. The first and second forms consult  
+                  <I>/etc/fstab</I> and mount the filesystem located on  
+                  <I>device</I> or intended to be attached to <I>directory</I>,  
+                  respectively. In both cases, information necessary to complete  
+                  the mount operation is taken from <I>/etc/fstab</I>. The third  
+                  form is independent of <I>/etc/fstab</I> and mounts the  
+                  filesystem on <I>device</I> at mount point <I>directory</I>.  
+                  </P>
+                  <P class=docText>The <SPAN class=docEmphBold>mount</SPAN>  
+                  command accepts two kinds of options: <SPAN  
+                  class=docEmphasis>command-line</SPAN> and <I>mount</I>. The  
+                  command-line options provide general direction for the <SPAN  
+                  class=docEmphBold>mount</SPAN><I> </I>command. The <I></I><A  
+                  name=IXT-4-350063></A>mount options, which are generally  
+                  alphanumeric words, word fragments, or abbreviations, are used  
+                  to specify additional information about the device being  
+                  mounted. </P><A name=p1_ch04-73-fm2xml></A>
+                  <H4 class=docRefsectTitle>Command-line options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Mounts all of the partitions specified in 
+                    <I>/etc/fstab</I>, except those with the <SPAN 
+                    class=docEmphBold>noauto</SPAN> option. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Displays help on the <SPAN 
+                    class=docEmphBold>mount</SPAN> command.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-o</SPAN> <I>mount_options</I> </SPAN>
+                    <DD>
+                    <P class=docList>Specifies mount options on the command 
+                    line.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Mounts the filesystem as 
+                  read-only.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>fstype</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specifies that the filesystem to be mounted 
+                    is of type <I>fstype</I>. This option is typically used 
+                    interactively, when no entry for the mount exists in 
+                    <I>/etc/fstab</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Sets verbose mode.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-w</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Mounts the filesystem read/write 
+                    mode.</P></DD></DL><A name=p1_ch04-74-fm2xml></A>
+                  <H4 class=docRefsectTitle>Mount options</H4>
+                  <P class=docText>A number of parameters are available as 
+                  options for mounting filesystems. These options may be 
+                  specified in <I>/etc/fstab</I> or as arguments of the <SPAN 
+                  class=docEmphBold>-o</SPAN> command-line <SPAN 
+                  class=docEmphBold>mount</SPAN> argument. These options modify 
+                  the way <SPAN class=docEmphBold>mount</SPAN> configures the 
+                  mounted filesystem. Some of the options can provide added 
+                  security by controlling some operations on the filesystem. 
+                  Others protect the filesystem from damage. Here is a partial 
+                  list: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>async</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Establishes asynchronous I/O to the mounted 
+                    filesystem. The opposite is <I>sync</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>auto</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables a mount specification in 
+                    <I>/etc/fstab</I> to be processed with the -<SPAN 
+                    class=docEmphBold>a</SPAN> command-line option, as needed at 
+                    boot time. The opposite is <I>noauto</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>defaults</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Implies <I>rw</I>, <I>suid</I>, <I>dev</I>, 
+                    <I>exec</I>, <I>auto</I>, <I>nouser</I>, and <I>async</I>. 
+                    It is commonly found on <I>/etc/fstab</I> entries for 
+                    <I>ext2</I> mount points. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>dev</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Interprets character or block special 
+                    devices on the filesystem.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>exec</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables the execution of programs contained 
+                    on the mounted partition. The opposite is <SPAN 
+                    class=docEmphBold>noexec</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>noauto</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Prohibits automatic mounting with the <SPAN 
+                    class=docEmphBold>-a</SPAN> option. This is usually 
+                    specified for removable media. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>noexec</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Prohibits the execution of executable 
+                    programs, a potential security measure. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>nosuid</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Prohibits the effect of <SPAN 
+                    class=docEmphBold>suid</SPAN> or <SPAN 
+                    class=docEmphBold>sgid</SPAN> bits on executable files. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>nouser</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Forbids non-root users from mounting and 
+                    unmounting the filesystem. See <SPAN 
+                    class=docEmphBold>user</SPAN> and <SPAN 
+                    class=docEmphBold>users</SPAN> for the opposite effect. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>ro</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Equivalent to specifying the command-line 
+                    option <SPAN class=docEmphBold>-r</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>rw</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Equivalent to specifying the command-line 
+                    option <SPAN class=docEmphBold>-w</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>suid</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Enables the effect of <SPAN 
+                    class=docEmphBold>suid</SPAN> and <SPAN 
+                    class=docEmphBold>sgid</SPAN> bits on executable files. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>sync</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Establishes synchronous I/O to the mounted 
+                    filesystem. The opposite is <SPAN 
+                    class=docEmphBold>async</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>user</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Allows an ordinary user to mount the 
+                    filesystem but prohibits other ordinary users from 
+                    unmounting it. This is useful for removable media that an 
+                    individual requires control over. See also <SPAN 
+                    class=docEmphBold>users</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>users</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Allows any user to mount and unmount the 
+                    filesystem.</P></DD></DL>
+                  <P class=docText>Note that the <SPAN 
+                  class=docEmphBold>user</SPAN> and <SPAN 
+                  class=docEmphBold>users</SPAN> options make the <SPAN 
+                  class=docEmphBold>mount</SPAN> and <SPAN 
+                  class=docEmphBold>umount</SPAN><I> </I>commands available to 
+                  non-root users. This may be important for some systems where 
+                  end users must have the ability to mount removable media. 
+                  </P><A name=p1_ch04-75-fm2xml></A>
+                  <H4 class=docRefsectTitle>Filesystem types</H4>
+                  <P class=docText>Mount must be aware of the type of filesystem  
+                  it is mounting, which is specified with a single <I>filesystem  
+                  type</I><A name=IXT-4-350064></A>. This parameter may be  
+                  included on the command line using the <SPAN  
+                  class=docEmphBold>-t</SPAN> option, or in the third field in  
+                  <I>/etc/fstab</I>. Linux can mount a variety of filesystems.  
+                  Here are some of the more popular ones: </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>ext2</I></SPAN> 
+                    <DD>
+                    <P class=docList>The standard Linux filesystem.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>msdos</I></SPAN> 
+                    <DD>
+                    <P class=docList>The MS-DOS FAT filesystem, limited to "8.3" 
+                    filenames (eight characters, a dot, and a three-character 
+                    extension). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>vfat</I></SPAN> 
+                    <DD>
+                    <P class=docList>Virtual FAT, used instead of <I>msdos</I> 
+                    when long filenames must be preserved. For example, you may 
+                    wish to have access to Windows partitions on systems 
+                    configured to boot both Linux and Windows. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>iso9660</I></SPAN> 
+                    <DD>
+                    <P class=docList>The CD-ROM format, also the default 
+                    type.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>nfs</I></SPAN> 
+                    <DD>
+                    <P class=docList>Remote servers.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>swap</I></SPAN> 
+                    <DD>
+                    <P class=docList>Swap partitions.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>proc</I></SPAN> 
+                    <DD>
+                    <P class=docList>This type represents the <I>proc</I> 
+                    filesystem, which is not really a filesystem at all. The 
+                    virtual files found in this virtual filesystem provide a 
+                    window into the kernel. It is usually mounted on 
+                    <I>/proc</I>. </P></DD></DL><A name=p1_ch04-76-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Display filesystems currently mounted on the 
+                  system:</P><PRE># <B>mount</B>
+/dev/sda1 on / type ext2 (rw)
+none on /proc type proc (rw)
+/dev/sda5 on /boot type ext2 (rw)
+/dev/sda9 on /home type ext2 (rw)
+/dev/sda6 on /root type ext2 (rw)
+/dev/sda10 on /tmp type ext2 (rw)
+/dev/sda8 on /usr type ext2 (rw)
+/dev/sda7 on /var type ext2 (rw)
+none on /dev/pts type devpts (rw,mode=0622)
+/dev/hdd on /mnt/zip type vfat (rw,noexec,nosuid,nodev)</PRE>
+                  <P class=docText>In this example, you can see that most of the  
+                  filesystems specified in the <I>/etc/fstab</I> from <a class="docLink" href="#lpicertnut-CHP-4-EX-1">Example  
+                  4-1</a> are already mounted. </P><A  
+name=p1_ch04-77-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Mount the IDE CD-ROM device found on 
+                  <I>/dev/hdc</I> to the existing directory <I>/cdrom</I>, 
+                  read-only of course: </P><PRE># <B>mount -rt iso9660 /dev/hdc /cdrom</B> </PRE>
+                  <P class=docText>Note that without the <SPAN 
+                  class=docEmphBold>-r</SPAN> option, you will receive a warning 
+                  but still get appropriate results: </P><PRE># <B>mount -t iso9660 /dev/hdc /mnt/cdrom</B>
+mount: block device /dev/hdc is write-protected, 
+   mounting read-only</PRE><A name=p1_ch04-78-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Mount an MS-DOS floppy in the first floppy 
+                  disk drive <I>/dev/fd0</I> (<I>A:</I> in MS-DOS) to the 
+                  existing directory <I>/floppy </I>: </P><PRE># <B>mount -t msdos /dev/fd0 /floppy</B></PRE><A 
+                  name=p1_ch04-79-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>The filesystems mounted at <I>/home</I> and 
+                  <I>/opt</I> have been unmounted for some kind of maintenance 
+                  and are now remounted using the <SPAN 
+                  class=docEmphBold>-a</SPAN> option: </P><PRE># <B>mount -av</B>
+mount: /dev/hda5 already mounted on /root
+mount: /dev/hda9 already mounted on /usr
+mount: /dev/hda7 already mounted on /var
+mount: none already mounted on /proc
+mount: none already mounted on /dev/pts
+mount: 192.168.0.2:/ already mounted on /smp
+/dev/hda10 on /home type ext2 (rw)
+/dev/hda8 on /opt type ext2 (rw)</PRE>
+                  <P class=docText>Note that <SPAN 
+                  class=docEmphBold>mount</SPAN> should work silently without 
+                  the <SPAN class=docEmphBold>-v</SPAN> option. It also safely 
+                  skips filesystems that have been previously mounted. </P><A 
+                  name=lpicertnut-CHP-4-SECT-3.3></A>
+                  <H4 class=docSection2Title>4.3.3 Unmounting Filesystems</H4>
+                  <P class=docText>Filesystems can be unmounted using the <SPAN 
+                  class=docEmphBold>umount</SPAN> command. When a filesystem is 
+                  unmounted, the buffers of the filesystem are synchronized with 
+                  the actual contents on disk and the filesystem is made 
+                  unavailable, freeing the mount point. If the filesystem is 
+                  busy, <SPAN class=docEmphBold>umount</SPAN> yields an error. 
+                  This will happen, for example, when the filesystem contains 
+                  open files or when a process has a working directory within 
+                  the filesystem. Other less obvious errors can occur when 
+                  removable media are exchanged without being unmounted first. 
+                  </P><A name=p1_ch04-81-fm2xml></A><A name=IXT-4-350065></A><A 
+                  name=IXT-4-350066></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>umount</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-83-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>umount [options] device 
+umount [options] directory</PRE><A name=p1_ch04-84-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350065></A><A 
+                  name=IXT-4-350066></A>Unmount the filesystem on <I>device</I>  
+                  or mounted on <I>directory</I>. </P> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Unmounts all of the filesystems described 
+                    in <I>/etc/mtab</I>. This file is maintained by the <SPAN 
+                    class=docEmphBold>mount</SPAN> and <SPAN 
+                    class=docEmphBold>umount</SPAN> commands and contains an 
+                    up-to-date list of mounted filesystems. This option is 
+                    typically used at shutdown time. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>fstype</I></SPAN> 
+                    <DD>
+                    <P class=docList>Unmounts only filesystems of type 
+                    <I>fstype</I>.</P></DD></DL><A name=p1_ch04-85-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Unmount the CD-ROM mounted on <I>/dev/hdc</I> 
+                  at <I>/cdrom</I>: </P><PRE># <B>umount /cdrom</B></PRE>
+                  <P class=docText>or:</P><PRE># <B>umount /dev/hdc</B></PRE><A 
+                  name=p1_ch04-86-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Unmount all NFS filesystems:</P><PRE># <B>umount -at nfs</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Be sure that you understand how to use 
+                        <SPAN class=docEmphBold>mount</SPAN> and mount points 
+                        and how <I>/etc/fstab</I> is used when mounting files. 
+                        </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="04-3.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)438ms
+(xml)172ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)640ms
+--></BODY></HTML>

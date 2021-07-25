@@ -1,0 +1,637 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-5-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="05-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="05-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 5.&nbsp;  
+            Boot, Initialization, Shutdown, and Runlevels (Topic  
+            2.6)</SPAN><BR><BR><BR>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-5-SECT-2></A>
+                  <H3 class=docSection1Title>5.2 Objective 2: Change Runlevels 
+                  and Shutdown or Reboot the System</H3>
+                  <P class=docText>As mentioned in the introduction, Linux and  
+                  many Unix systems share the concept of <A  
+                  name=lpicertnut-IDXTERM-455></A>runlevels. This concept  
+                  specifies how a system is used by controlling which services  
+                  are running. For example, a system that operates a web server  
+                  program is configured to boot and initiate processing in a  
+                  runlevel designated for sharing data, at which point the web  
+                  server is started. However, the same system would not run the  
+                  web server in a runlevel used for emergency administration,  
+                  when all but the most basic services are shut down. </P> 
+                  <P class=docText>Runlevels are specified by the integers 
+                  through 6 as well as a few single characters. Runlevels and 6 
+                  are unusual in that they specify the transitional states of 
+                  shutdown and reboot, respectively. By instructing Linux to 
+                  enter runlevel 0, it begins a clean shutdown procedure. 
+                  Similarly, the use of runlevel 6 begins a reboot. The 
+                  remaining runlevels differ in meaning slightly among Linux 
+                  distributions and other Unix systems. </P>
+                  <P class=docText>When a Linux system boots, the <SPAN  
+                  class=docEmphBold>init</SPAN> process is responsible for  
+                  taking the system to the default runlevel, which is usually  
+                  either 3 or 5. Typical runlevel meanings are listed in <a class="docLink" href="#lpicertnut-CHP-5-TABLE-1">Table  
+                  5-1</a>. </P><A name=lpicertnut-CHP-5-TABLE-1></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 5-1. Typical Runlevels 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Runlevel</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Halt the system; runlevel is a special 
+                        transitional device used by administrators to shut down 
+                        the system quickly. This, of course, shouldn't be a 
+                        default runlevel, because the system would never come up 
+                        -- it would shutdown immediately when the kernel 
+                        launches the <SPAN class=docEmphBold>init</SPAN> 
+                        process. Also see runlevel 6. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>1, s, S</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Single-user mode, sometimes called 
+                        "maintenance mode." In this mode, system services such 
+                        as network interfaces, web servers, and file sharing are 
+                        not started. This mode is usually used for interactive 
+                        filesystem maintenance. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Multiuser with no NFS file 
+                      sharing.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>3</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Full multiuser mode. This is often used 
+                        as the default runlevel by the <SPAN 
+                        class=docEmphBold>init</SPAN> process. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>4</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Typically unused.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>5</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Full multiuser mode with GUI login. In 
+                        runlevel 3, <SPAN class=docEmphBold>init</SPAN> does not 
+                        attempt to launch the X11 system. In runlevel 5, X11 is 
+                        started and the text-mode login is replaced with a GUI 
+                        login. This is often used as the default runlevel but 
+                        can cause problems if X11 cannot start for some reason. 
+                        </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>6</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Reboot the system; used by system 
+                        administrators. Just like runlevel 0, this is a 
+                        transitional device for administrators. It shouldn't be 
+                        a default runlevel because the system would eternally 
+                        reboot. </P></TD></TR></COLGROUP></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-5-SECT-2.1></A>
+                  <H4 class=docSection2Title>5.2.1 Single-User Mode</H4>
+                  <P class=docText>Runlevel 1, the <SPAN  
+                  class=docEmphasis>single-user</SPAN>  runlevel,<SUP 
+                  class=docFootnote>[4]</SUP> is a  
+                  bare-bones operating environment intended for system  
+                  maintenance. In single-user mode, remote logins are disabled,  
+                  networking is disabled, and most daemons are shut down. One  
+                  common reason you might be forced to use single-user mode is  
+                  to correct problems with a corrupt filesystem that the system  
+                  cannot handle automatically. Single-user mode is also used for  
+                  the installation of software and other system configuration  
+                  tasks that must be performed with no user activity. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> Runlevel 
+                    1 can also be specified using <I>S </I>or <I>s</I>. The 
+                    three designations are equivalent.</P></BLOCKQUOTE>
+                  <P class=docText>If you wish to boot directly into single-user 
+                  mode, you may specify it at boot time at the <TT>LILO</TT> 
+                  prompt. After entering your kernel image name, give the 
+                  argument <SPAN class=docEmphBold>single</SPAN> or simply the 
+                  numeral <SPAN class=docEmphBold>1</SPAN>. These arguments are 
+                  not interpreted as kernel arguments but are instead passed 
+                  along to the <SPAN class=docEmphBold>init</SPAN> process. For 
+                  example, if your kernel image is named "<I>linux,</I>" these 
+                  commands would take the system to single-user mode, bypassing 
+                  the default: </P><PRE>LILO: <B>linux single</B></PRE>
+                  <P class=docText>or:</P><PRE>LILO: <B>linux 1</B></PRE>
+                  <P class=docText>To switch into single-user mode from another 
+                  runlevel, you can simply issue a runlevel change command with 
+                  <SPAN class=docEmphBold>init</SPAN>: </P><PRE># <B>init 1</B></PRE>
+                  <P class=docText>If others are using resources on the system, 
+                  they will be unpleasantly surprised, so be sure to give users 
+                  plenty of warning before doing this. To change from the 
+                  text-mode login to the X login screen, simply initiate the 
+                  X-enabled runlevel, usually 5: </P><PRE># <B>init 5</B></PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Make certain that you understand the 
+                        use of the transitional runlevels and 6, the single-user 
+                        runlevel, and the difference between GUI and text login 
+                        configurations. You should also be prepared to 
+                        demonstrate how to change the runlevel of a running 
+                        system. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>If X is configured improperly, starting the X  
+                  login screen will lead to problems because X may die. It will  
+                  be automatically restarted, and this will go on in an infinite  
+                  loop until you reconfigure X. It is important to be sure X is  
+                  working correctly before attempting the GUI logon.<SUP  
+                  class=docFootnote>[5]</SUP><A 
+                  name=IXTR3-44></A> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[5]</A></SUP> The X  
+                    Window System is described in <a class="docLink" href="18-0.htm">Chapter  
+                    18</a>.</P></BLOCKQUOTE><A 
+                  name=lpicertnut-CHP-5-SECT-2.1.1></A>
+                  <H5 class=docSection3Title>5.2.1.1 Overview of the /etc/rc.d 
+                  directory tree and the init process</H5>
+                  <P class=docText>By themselves, the runlevels listed in <a class="docLink" href="#lpicertnut-CHP-5-TABLE-1">Table  
+                  5-1</a> don't mean much. It's what the <SPAN  
+                  class=docEmphBold>init</SPAN> process does as a result of a  
+                  runlevel specification or change that affects the system. The  
+                  actions of <SPAN class=docEmphBold>init</SPAN><I> </I>for each  
+                  runlevel are derived from Unix System V-style initialization  
+                  and are specified in a series of directories and script files  
+                  under <I>/etc/rc.d</I>. </P> 
+                  <P class=docText>When a Linux system starts, a number of  
+                  scripts in <I>/etc/rc.d</I> are used to initially configure  
+                  the system and switch among runlevels:<SUP 
+                  class=docFootnote>[6]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> System 
+                    initialization techniques differ among Linux distributions. 
+                    The examples here are typical of a Red Hat Linux 
+                  system.</P></BLOCKQUOTE>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>rc.sysinit</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file is a script launched by <SPAN 
+                    class=docEmphBold>init</SPAN> at boot time. It handles some 
+                    essential chores to ready the system for use, such as 
+                    mounting filesystems. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>rc.local</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file is a script that is called by 
+                    <I>rc.sysinit</I>. It contains local customizations 
+                    affecting system startup and provides an alternative to 
+                    modifying <I>rc.sysinit</I>. Many administrators prefer to 
+                    avoid changing <I>rc.sysint</I> because those changes could 
+                    be lost during a system upgrade. The contents of 
+                    <I>rc.local</I> are not lost in an upgrade. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>rc</I></SPAN> 
+                    <DD>
+                    <P class=docList>This file is a script that is used to 
+                    change between runlevels.</P></DD></DL>
+                  <P class=docText>The job of starting and stopping system 
+                  services such as web servers is handled by the files and 
+                  symbolic links in <I>/etc/rc.d/init.d</I> and by a series of 
+                  runlevel-specific directories, <I>rc0.d</I> through 
+                  <I>rc6.d</I> : </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>init.d</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directory contains individual 
+                    startup/shutdown scripts for each service on the system. For 
+                    example, the script <I>/etc/rc.d/init.d/httpd</I> is a 
+                    Bourne shell script that safely starts or stops the Apache 
+                    web server. These scripts have a standard basic form and 
+                    take a single argument. Valid arguments are at least the 
+                    words <SPAN class=docEmphBold>start</SPAN> and <SPAN 
+                    class=docEmphBold>stop</SPAN>. Additional arguments are 
+                    sometimes required by the script; examples are <SPAN 
+                    class=docEmphBold>restart</SPAN>, <SPAN 
+                    class=docEmphBold>status</SPAN>, and sometimes <SPAN 
+                    class=docEmphBold>reload</SPAN> (to ask the service to 
+                    reconfigure itself without exiting). Administrators can use 
+                    these scripts directly to start and stop services. For 
+                    example, to restart Apache, an administrator could issue 
+                    commands like these: </P><PRE># <B>/etc/rc.d/init.d/httpd stop</B>
+# <B>/etc/rc.d/init.d/httpd start</B></PRE>
+                    <P class=docList>or simply:</P><PRE># <B>/etc/rc.d/init.d/httpd restart</B></PRE>
+                    <P class=docList>Either form would completely shut down and 
+                    start up the web server. To ask Apache to remain running but 
+                    reread its configuration file, you might enter: </P><PRE># <B>/etc/rc.d/init.d/httpd reload</B></PRE>
+                    <P class=docList>This has the effect of sending the SIGHUP  
+                    signal to the running <SPAN class=docEmphBold>httpd</SPAN>  
+                    process, instructing it to initialize.<SUP  
+                    class=docFootnote>[7]</SUP> </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[7]</A></SUP> Signals  
+                      such as SIGHUP are covered in <a class="docLink" href="03-5.htm">Section  
+                      3.5</a>.</P></BLOCKQUOTE>
+                    <P class=docList>If you add a new service (a daemon, 
+                    intended to always run in the background), one of these 
+                    initialization files may be installed automatically for you. 
+                    In other cases, you may need to create one yourself, or as a 
+                    last resort, place startup commands in the <I>rc.local</I> 
+                    file. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor>Directories <I>rc0.d</I> through 
+                    <I>rc6.d</I></SPAN> 
+                    <DD>
+                    <P class=docList>The initialization scripts in  
+                    <I>/etc/rc.d/init.d</I> are not directly executed by the  
+                    <SPAN class=docEmphBold>init</SPAN> process. Instead, each  
+                    of the directories <I>/etc/rc.d/rc0.d</I> through  
+                    <I>rc6.d</I> contain symbolic (soft) links<SUP  
+                    class=docFootnote>[8]</SUP> to the  
+                    scripts in directory <I>init.d</I>. When the <SPAN  
+                    class=docEmphBold>init</SPAN> process enters runlevel <SPAN  
+                    class=docEmphasis>n</SPAN>, it examines all of the links in  
+                    the associated <I>rc</I><TT>n</TT><I>.d </I>directory. These  
+                    links are given special names in the form of  
+                    [<I>K</I>|<I>S</I> ][<I>nn</I> ][<I>init.d_name</I> ],  
+                    described as follows: </P> 
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[8]</A></SUP> These 
+                      symbolic links could also be files, but using script files 
+                      in each of the directories would be an administrative 
+                      headache, as changes to any of the startup scripts would 
+                      mean identical edits to multiple files.</P></BLOCKQUOTE>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphasis>K</SPAN> and <SPAN 
+                      class=docEmphasis>S</SPAN> prefixes</SPAN> 
+                      <DD>
+                      <P class=docList>The <SPAN class=docEmphasis>K</SPAN> and 
+                      <SPAN class=docEmphasis>S</SPAN> prefixes mean <SPAN 
+                      class=docEmphBold>kill</SPAN> and <SPAN 
+                      class=docEmphBold>start</SPAN>, respectively. A runlevel 
+                      implies a state in which certain services are running and 
+                      all others are not. The <SPAN class=docEmphasis>S</SPAN> 
+                      prefix is used for all services that are to be running 
+                      (<SPAN class=docEmphBold>start</SPAN>ed) for the runlevel. 
+                      The <SPAN class=docEmphasis>K</SPAN> prefix is used for 
+                      all other services, which should not be running. 
+                    </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphasis>nn</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>Sequence number. This part of the link 
+                      name is a two-digit integer (with a leading zero, if 
+                      necessary). It specifies the relative order for services 
+                      to be started or stopped. The lowest number is the first 
+                      link executed by <SPAN class=docEmphBold>init</SPAN>, and 
+                      the largest number is the last. There are no hard-and-fast 
+                      rules for choosing these numbers, but it is important when 
+                      adding a new service to be sure that it starts <SPAN 
+                      class=docEmphasis>after</SPAN> any other required services 
+                      are already running. If two services have an identical 
+                      start order number, the order is indeterminate but 
+                      probably alphabetical. </P></DD></DL>
+                    <DL class=docList>
+                      <DT><SPAN class=docPubcolor><SPAN 
+                      class=docEmphasis>init.d_name</SPAN></SPAN> 
+                      <DD>
+                      <P class=docList>By convention, the name of the script 
+                      being linked is used as the last part of the link name. 
+                      <SPAN class=docEmphBold>init</SPAN> does not use this 
+                      name, but excluding it makes things difficult for human 
+                      readers. </P></DD></DL>
+                    <P class=docList>As an example, when <SPAN 
+                    class=docEmphBold>init</SPAN><I> </I>enters runlevel 3 at 
+                    boot time, all of the links with the <SPAN 
+                    class=docEmphasis>S</SPAN> prefix in 
+                    <I>/etc/init.d/rc3.d</I> will be executed in the order given 
+                    by their sequence number. They will be run with the single 
+                    argument <SPAN class=docEmphBold>start</SPAN> to launch 
+                    their respective services. After the last of the scripts is 
+                    executed, the requirements for runlevel 3 are satisfied. 
+                    </P></DD></DL><A name=lpicertnut-CHP-5-SECT-2.1.2></A>
+                  <H5 class=docSection3Title>5.2.1.2 Setting the default 
+                  runlevel</H5>
+                  <P class=docText>To determine the default runlevel at boot 
+                  time, <SPAN class=docEmphBold>init</SPAN> reads the 
+                  configuration file <I>/etc/inittab</I> looking for a line 
+                  containing the word <I>initdefault</I>, which will look like 
+                  this: </P><PRE>id:n:initdefault:</PRE>
+                  <P class=docText>In the preceding, <TT>n</TT> is a valid 
+                  runlevel number, such as 3. This number is used as the default 
+                  runlevel by <SPAN class=docEmphBold>init</SPAN>. The <SPAN 
+                  class=docEmphasis>S</SPAN> scripts in the corresponding 
+                  <I>/etc/rc.d/rc</I> <TT>n</TT><I>.d</I> directory are executed 
+                  to start their respective services. If you change the default 
+                  runlevel for your system, it will most likely be to switch 
+                  between the standard text login runlevel and the GUI login 
+                  runlevel. In any case, never change the default runlevel to or 
+                  6, or your system will not boot to a usable state. </P><A 
+                  name=lpicertnut-CHP-5-SECT-2.1.3></A>
+                  <H5 class=docSection3Title>5.2.1.3 Determining your system's 
+                  runlevel</H5>
+                  <P class=docText>From time to time, you may be unsure just  
+                  what <A name=IXT-5-350167></A>runlevel your system is in. For  
+                  example, you may have logged into a Linux system from a remote  
+                  location and not know how it was booted or maintained. You may  
+                  also need to know what runlevel your system was in prior to  
+                  its current runlevel -- perhaps wondering if the system was  
+                  last in single-user mode for maintenance. </P> 
+                  <P class=docText>To determine this runlevel information, use  
+                  the <SPAN class=docEmphBold>runlevel</SPAN> command. When  
+                  executed, <SPAN class=docEmphBold>runlevel</SPAN> displays the  
+                  previous and current runlevel as integers, separated by a  
+                  space, on standard output. If no runlevel change has occurred  
+                  since the system was booted, the previous runlevel is  
+                  displayed as the letter <SPAN class=docEmphasis>N</SPAN>. For  
+                  a <A name=IXT-5-350168></A>system that was in runlevel 3 and  
+                  is now in runlevel 5, the output<I> </I>is: </P><PRE># <B>runlevel</B>
+3 5</PRE> 
+                  <P class=docText>For a system with a default runlevel of 5 
+                  that has just completed booting, the output would be: </P><PRE># <B>runlevel</B>
+N 5</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Determining the present and previous 
+                        runlevel -- including the correct interpretation of the 
+                        <SPAN class=docEmphasis>N</SPAN> response in the output 
+                        from <SPAN class=docEmphBold>runlevel</SPAN> -- is 
+                        important. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText><SPAN class=docEmphBold>runlevel</SPAN> does 
+                  not alter the system runlevel. To do this, use either the 
+                  <SPAN class=docEmphBold>init</SPAN><I> </I>or the <SPAN 
+                  class=docEmphBold>telinit</SPAN> commands. </P><A 
+                  name=lpicertnut-CHP-5-SECT-2.2></A>
+                  <H4 class=docSection2Title>5.2.2 Changing runlevels with init 
+                  and telinit</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>init</SPAN> 
+                  process is the "grandfather" of all processes. If used as a 
+                  command on a running system, <SPAN 
+                  class=docEmphBold>init</SPAN> sends signals to the executing 
+                  <SPAN class=docEmphBold>init</SPAN> process, instructing it to 
+                  change to a specified runlevel. You must be logged in as the 
+                  superuser to use the <SPAN class=docEmphBold>init</SPAN> 
+                  command. </P><A name=p1_ch05-20-fm2xml></A><A 
+                  name=IXT-5-350169></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>init</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch05-22-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>init n</PRE><A name=p1_ch05-23-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-5-350169></A>The number of the  
+                  runlevel, <SPAN class=docEmphasis>n</SPAN>, can be changed to  
+                  an integer from through 6 or with the letter arguments <SPAN  
+                  class=docEmphBold>S</SPAN>, <SPAN class=docEmphBold>s</SPAN>,  
+                  or <SPAN class=docEmphBold>q</SPAN>. The numeric arguments  
+                  instruct <SPAN class=docEmphBold>init</SPAN> to switch to the  
+                  specified runlevel. The <SPAN class=docEmphBold>S</SPAN> and  
+                  <SPAN class=docEmphBold>s</SPAN> runlevels are equivalent to  
+                  runlevel 1. The <SPAN class=docEmphBold>q</SPAN><I>  
+                  </I>argument is used to tell <SPAN  
+                  class=docEmphBold>init</SPAN> to reread its configuration  
+                  file, <I>/etc/inittab</I>. </P><A name=p1_ch05-24-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Shut down immediately:</P><PRE># <B>init 0</B></PRE>
+                  <P class=docText>Reboot immediately:</P><PRE># <B>init 6</B></PRE>
+                  <P class=docText>Go to single-user mode immediately:</P><PRE># <B>init 1</B></PRE>
+                  <P class=docText>or:</P><PRE># <B>init s</B> </PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>telinit</SPAN> 
+                  command may be used in place of <SPAN 
+                  class=docEmphBold>init</SPAN>. <SPAN 
+                  class=docEmphBold>telinit</SPAN> is simply a hard link to 
+                  <SPAN class=docEmphBold>init</SPAN>, and the two may be used 
+                  interchangeably. </P>
+                  <P class=docText>Generally, you will use a runlevel change for 
+                  the following reasons:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>To shut down the system using runlevel 
+                    0.</P>
+                    <LI>
+                    <P class=docList>To go to single-user mode using runlevel 
+                    1.</P>
+                    <LI>
+                    <P class=docList>To reboot the system using runlevel 6.</P>
+                    <LI>
+                    <P class=docList>To switch between text-based and X11 GUI 
+                    login modes, usually runlevels 3 and 5, respectively. 
+                    </P></LI></UL>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that <SPAN 
+                        class=docEmphBold>init</SPAN> and <SPAN 
+                        class=docEmphBold>telinit</SPAN> can be used 
+                        interchangeably, since they both point to the same file. 
+                        </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>If you are working on a personal Linux 
+                  workstation with no logged-in users, shared files, or other 
+                  shared resources, changing the state of your system is pretty 
+                  much at your discretion. You're aware of the important 
+                  processes that are active and will surely save your work 
+                  before any runlevel change. You can then simply direct <SPAN 
+                  class=docEmphBold>init</SPAN> to change the runlevel as 
+                  desired. However, if you are working on a system acting as a 
+                  file or web server, or some other public resource, changing a 
+                  runlevel without notification could be a disaster for other 
+                  users. It is imperative to notify users before any major 
+                  system changes are made. Using <SPAN 
+                  class=docEmphBold>init</SPAN> to shutdown the system doesn't 
+                  automatically provide this courtesy, and in these situations 
+                  the <SPAN class=docEmphBold>shutdown</SPAN> command is 
+                  preferred. </P><A name=lpicertnut-CHP-5-SECT-2.3></A>
+                  <H4 class=docSection2Title>5.2.3 System shutdown with 
+                  shutdown</H4>
+                  <P class=docText>When <SPAN class=docEmphBold>shutdown</SPAN> 
+                  is initiated, all users who are logged into terminal sessions 
+                  are notified that the system is going down. In addition, 
+                  further logins are blocked to prevent new users from entering 
+                  the system as it is being shut down. </P><A 
+                  name=p1_ch05-28-fm2xml></A><A name=IXT-5-350170></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>shutdown</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch05-30-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>shutdown [options] time [warning message]</PRE><A 
+                  name=p1_ch05-31-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-5-350170></A>The <SPAN  
+                  class=docEmphBold>shutdown</SPAN> command brings the system  
+                  down in a secure, organized fashion. By default, <SPAN  
+                  class=docEmphBold>shutdown</SPAN> takes the system to  
+                  single-user mode. Options can be used to either halt or reboot  
+                  instead. The command uses <SPAN class=docEmphBold>init</SPAN>  
+                  with an appropriate runlevel argument to affect the system  
+                  change. </P>
+                  <P class=docText>The mandatory <I>time</I> argument tells the 
+                  shutdown command when to initiate the shutdown procedure. It 
+                  can be a time of day in the form <SPAN 
+                  class=docEmphasis>hh:mm</SPAN>, or it can be in the form <SPAN 
+                  class=docEmphasis>+n</SPAN>, where <SPAN 
+                  class=docEmphasis>n</SPAN> is a number of minutes to wait. The 
+                  <SPAN class=docEmphasis>time</SPAN> can also be the word <SPAN 
+                  class=docEmphasis>now</SPAN>, in which case the shutdown 
+                  proceeds immediately. If the <SPAN 
+                  class=docEmphasis>time</SPAN> specified is more than 15 
+                  minutes away, <SPAN class=docEmphBold>shutdown</SPAN> waits 
+                  until 15 minutes remain before shutdown before making its 
+                  first announcement. </P>
+                  <P class=docText>If <SPAN class=docEmphasis>warning 
+                  message</SPAN> (a text string) is provided, it is used in the 
+                  system's announcements to end users. No quoting is necessary 
+                  for <I>warning message</I> unless the message includes special 
+                  characters such as <SPAN class=docEmphBold>*</SPAN> or <SPAN 
+                  class=docEmphBold>&amp;</SPAN>. </P><A 
+                  name=p1_ch05-32-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Fast boot; this skips filesystem checks on 
+                    the next boot.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-F</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Force filesystem checks on the next 
+                    boot.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Halt after shutdown.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-k</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Don't really shutdown, but send the warning 
+                    messages anyway.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Reboot after shutdown.</P></DD></DL><A 
+                  name=p1_ch05-33-fm2xml></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>To reboot immediately:</P><PRE># <B>shutdown -r now</B></PRE>
+                  <P class=docText>To reboot in five minutes with a maintenance 
+                  message:</P><PRE># <B>shutdown -r +5 System maintenance is required</B></PRE>
+                  <P class=docText>To halt the system just before midnight 
+                  tonight:</P><PRE># <B>shutdown -h 23:59</B></PRE>
+                  <P class=docText>The two most common uses of shutdown by 
+                  individuals are:</P><PRE># <B>shutdown -h now</B> </PRE>
+                  <P class=docText>and </P><PRE># <B>shutdown -r now</B></PRE>
+                  <P class=docText>These initiate for immediate halts and 
+                  reboots, respectively. Although it's not really a bug, the 
+                  <SPAN class=docEmphBold>shutdown</SPAN> manpage notes that 
+                  omission of the required <SPAN class=docEmphasis>time</SPAN> 
+                  argument yields unusual results. If you do forget the 
+                  <I>time</I> argument, <SPAN class=docEmphBold>shutdown</SPAN> 
+                  will probably exit without an error message. This might lead 
+                  you to believe that a shutdown is starting, so it's important 
+                  to be sure of your syntax when using <SPAN 
+                  class=docEmphBold>shutdown</SPAN>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Make certain that you are aware of the 
+                        differences between system shutdown using <SPAN 
+                        class=docEmphBold>init</SPAN> (and its link <SPAN 
+                        class=docEmphBold>telinit</SPAN>) and <SPAN 
+                        class=docEmphBold>shutdown</SPAN>. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="05-2.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-5-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-5-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-5-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)187ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)610ms
+--></BODY></HTML>

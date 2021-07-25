@@ -1,0 +1,516 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-2.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-2.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-2></A>
+                  <H3 class=docSection1Title>4.2 Objective 2: Maintain the 
+                  Integrity of Filesystems</H3>
+                  <P class=docText>Over the course of time, active filesystems 
+                  can develop problems, such as: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>A filesystem fills to capacity, causing 
+                    programs or perhaps the entire system to fail. </P>
+                    <LI>
+                    <P class=docList>A filesystem is corrupted, perhaps due to a 
+                    power failure or system crash. </P>
+                    <LI>
+                    <P class=docList>A filesystem runs out of inodes, meaning 
+                    that new filesystem objects cannot be created. </P></LI></UL>
+                  <P class=docText>Carefully monitoring and checking Linux 
+                  filesystems on a regular basis can help prevent and correct 
+                  these types of problems. </P><A 
+                  name=lpicertnut-CHP-4-SECT-2.1></A>
+                  <H4 class=docSection2Title>4.2.1 Monitoring Free Disk Space 
+                  and Inodes</H4>
+                  <P class=docText>A read/write filesystem isn't much good if it 
+                  grows to the point that it won't accept any more files. This 
+                  could happen if the filesystem fills to capacity or runs out 
+                  of <I>inodes</I>. </P>
+                  <P class=docText>Inodes are the data structures within 
+                  filesystems that describe files on disk. Every filesystem 
+                  contains a finite number of inodes, set when the filesystem is 
+                  created. This number is also the maximum number of files that 
+                  the filesystem can accommodate. Because filesystems are 
+                  created with a huge number of inodes, you'll probably never 
+                  create as many files as it would take to run out of inodes. 
+                  However, it is possible to run out of inodes if a partition 
+                  contains many small files. </P>
+                  <P class=docText>It is important to prevent space and inode 
+                  shortages from occurring on system partitions. The <SPAN 
+                  class=docEmphBold>df</SPAN> command gives you the information 
+                  you need on the status of both disk space utilization and 
+                  inode utilization. </P><A name=p1_ch04-34-fm2xml></A><A 
+                  name=IXT-4-350054></A><A name=IXT-4-350055></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>df</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-36-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>df [options] [directories]</PRE><A 
+                  name=p1_ch04-37-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350054></A><A 
+                  name=IXT-4-350055></A>Display overall disk utilization  
+                  information for mounted filesystems on<I> directories</I>.  
+                  Usually, <I>directories</I> are device files for partitions,  
+                  such as <I>/dev/hda1</I>, but using another file or directory  
+                  name yields information on the partition that holds the file  
+                  or directory. If <I>directories</I> are omitted, information  
+                  for mounted filesystems on all devices in <I>/etc/fstab</I>  
+                  are displayed. </P><A name=p1_ch04-38-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Displays results in a human-readable 
+                    format, including suffixes such as <TT>M</TT> (megabytes) 
+                    and <TT>G</TT> (gigabytes). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Displays information on remaining inodes 
+                    rather than the default disk space information. 
+                  </P></DD></DL><A name=p1_ch04-39-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Check disk space utilization on all 
+                  filesystems:</P><PRE># <B>df -h</B>
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda1             387M   56M  311M  15% /
+/dev/sda5             296M  5.2M  276M   2% /boot
+/dev/sda9             1.9G  406M  1.4G  22% /home
+/dev/sda6              53M   12M   39M  23% /root
+/dev/sda10             99M  104k   93M   0% /tmp
+/dev/sda8             972M  507M  414M  55% /usr
+/dev/sda7             296M  9.3M  272M   3% /var</PRE>
+                  <P class=docText>This example shows that of the seven 
+                  filesystems mounted by default, none exceeds 55 percent 
+                  capacity. </P><A name=p1_ch04-40-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Check the same filesystems for inode 
+                  utilization:</P><PRE># <B>df -i</B>
+Filesystem            Inodes   IUsed   IFree IUse% Mounted on
+/dev/sda1             102800    7062   95738    7% /
+/dev/sda5              78312      29   78283    0% /boot
+/dev/sda9             514000     934  513066    0% /home
+/dev/sda6              14056     641   13415    5% /root
+/dev/sda10             26104      60   26044    0% /tmp
+/dev/sda8             257040   36700  220340   14% /usr
+/dev/sda7              78312     269   78043    0% /var</PRE>
+                  <P class=docText>Among these partitions, the largest 
+                  consumption of inodes is a mere 14 percent. It is clear that 
+                  none of the filesystems is anywhere near consuming the maximum 
+                  number of inodes available. Note that the <I>/usr</I> 
+                  partition (with 14 percent of inodes used) has used 55 percent 
+                  of the disk space. With utilization like this, the <I>/usr</I> 
+                  volume will most likely fill to capacity long before the 
+                  inodes are exhausted. </P><A name=p1_ch04-41-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Quickly determine which partition the current 
+                  working directory (represented simply by a single dot) is 
+                  located: </P><PRE># <B>df .</B>
+/dev/sda1             102800    7062   95738    7% /</PRE>
+                  <P class=docText>When a filesystem is nearing capacity, files 
+                  may simply be deleted to make additional space available. 
+                  However, in the rare case in which an inode shortage occurs, 
+                  the filesystem must be recreated with a larger number of 
+                  inodes unless a significant number of files can be deleted. 
+                  </P><A name=lpicertnut-CHP-4-SECT-2.2></A>
+                  <H4 class=docSection2Title>4.2.2 Monitoring Disk Usage</H4>
+                  <P class=docText>Have you ever found yourself wondering, 
+                  "Where did all the disk space go?" Some operating systems make 
+                  answering this question surprisingly difficult using only 
+                  native tools. On Linux, the <SPAN class=docEmphBold>du</SPAN> 
+                  command can help display disk utilization information on a 
+                  per-directory basis and perhaps answer that question. <SPAN 
+                  class=docEmphBold>du</SPAN> recursively examines directories 
+                  and reports detailed or summarized information on the amount 
+                  of space consumed. </P><A name=p1_ch04-43-fm2xml></A><A 
+                  name=IXT-4-350056></A><A name=IXT-4-350057></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>du</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-45-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>du [options] [directories]</PRE><A 
+                  name=p1_ch04-46-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350056></A><A 
+                  name=IXT-4-350057></A>Display disk utilization information for  
+                  <I>directories</I>. If <I>directories</I> are omitted, the  
+                  current working directory is searched. </P><A  
+                  name=p1_ch04-47-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-a</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Shows all files, not just 
+                    directories.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Produces a grand total for all listed 
+                    items.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-h</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Displays results in a human-readable 
+                    format, including suffixes such as <TT>M</TT> (megabytes) 
+                    and <TT>G</TT> (gigabytes). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Prints a summary for each of the 
+                    <I>directories</I> specified, instead of totals for each 
+                    subdirectory found recursively. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-S</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Excludes subdirectories from counts and 
+                    totals, limiting totals to <I>directories</I>. 
+                  </P></DD></DL><A name=p1_ch04-48-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Examine disk utilization in 
+                  <I>/etc/rc.d</I>:</P><PRE>#<B> du /etc/rc.d</B>
+882     /etc/rc.d/init.d
+1       /etc/rc.d/rc0.d
+1       /etc/rc.d/rc1.d
+1       /etc/rc.d/rc2.d
+1       /etc/rc.d/rc3.d
+1       /etc/rc.d/rc4.d
+1       /etc/rc.d/rc5.d
+1       /etc/rc.d/rc6.d
+904     /etc/rc.d</PRE><A name=p1_ch04-49-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Display utilization by files in <I>/etc</I>, 
+                  including subdirectories beneath it: </P><PRE># <B>du -s /etc</B>
+13002   /etc</PRE><A name=p1_ch04-50-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Display utilization by files in <I>/etc</I>, 
+                  but not in subdirectories beneath it: </P><PRE># <B>du -Ss /etc</B>
+1732    /etc</PRE><A name=p1_ch04-51-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Show a summary of all subdirectories under 
+                  <I>/home</I>, with human-readable output: </P><PRE># <B>du -csh /home/*</B>
+42k     /home/bsmith
+1.5M    /home/httpd
+9.5M    /home/jdean
+42k     /home/jdoe
+12k     /home/lost+found
+1.0k    /home/samba
+11M     total</PRE>
+                  <P class=docText>This result shows that 11 MB of total disk 
+                  space is used.</P><A name=p1_ch04-52-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 5</H4>
+                  <P class=docText>Show the same summary, but sort the results 
+                  to display in order of largest to smallest disk utilization: 
+                  </P><PRE># <B>du -cs /home/* | sort -nr</B>
+11386   total
+9772    jdean
+1517    httpd
+42      jdoe
+42      bsmith
+12      lost+found
+1       samba</PRE>
+                  <P class=docText>This result shows that user <I>jdean</I> is 
+                  consuming the largest amount of space. Note that the 
+                  human-readable format does not sort in this way, since <SPAN 
+                  class=docEmphBold>sort</SPAN> is unaware of the human-readable 
+                  size specifications. </P><A 
+name=lpicertnut-CHP-4-SECT-2.3></A>
+                  <H4 class=docSection2Title>4.2.3 Checking Filesystem 
+                  Integrity</H4>
+                  <P class=docText>No matter how stable, computers do fail, even 
+                  due to something as simple as a power cable being accidentally 
+                  unplugged. Unfortunately, such an interruption can make a mess 
+                  of a filesystem. If a disk write operation is aborted before 
+                  it completes, the data in transit could be lost, and the 
+                  portions of the disk that were allocated for it are left 
+                  marked as used. In addition, filesystem writes are cached in 
+                  memory, and a power loss or other crash prevents the kernel 
+                  from synchronizing the cache with the disk. Both of these 
+                  scenarios lead to inconsistencies in the filesystem and must 
+                  be corrected to ensure reliable operation. </P>
+                  <P class=docText>Filesystems are checked with <SPAN 
+                  class=docEmphBold>fsck</SPAN>. Like <SPAN 
+                  class=docEmphBold>mkfs</SPAN>, <SPAN 
+                  class=docEmphBold>fsck</SPAN> is a front-end to filesystem- 
+                  specific utilities -- including <I>fsck.ext2</I>, which is a 
+                  link to the <SPAN class=docEmphBold>e2fsck</SPAN> program (see 
+                  its manpage for detailed information). </P>
+                  <P class=docText>Part of the information written on disk to 
+                  describe a filesystem is known as the <I>superblock</I>, 
+                  written in block 1 of the partition. If this area of the disk 
+                  is corrupted, the filesystem is inaccessible. Because the 
+                  superblock is so important, copies of it are made in the 
+                  filesystem at regular intervals, by default every 8192 blocks. 
+                  The first superblock copy is located at block 8193, the second 
+                  copy is at block 16385, and so on. As you'll see, <SPAN 
+                  class=docEmphBold>fsck</SPAN> can use the information in the 
+                  superblock copies to restore the main superblock. </P><A 
+                  name=p1_ch04-54-fm2xml></A><A name=IXT-4-350058></A><A 
+                  name=IXT-4-350059></A><A name=IXT-4-350060></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>fsck</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-55-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>fsck [options] [-t type] [fs-options] filesystems</PRE><A 
+                  name=p1_ch04-56-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350058></A><A 
+                  name=IXT-4-350059></A><A name=IXT-4-350060></A>Check  
+                  <I>filesystems</I> for errors and optionally correct them. By  
+                  default, <SPAN class=docEmphBold>fsck</SPAN> assumes the  
+                  <I>ext2</I> filesystem type and runs interactively, pausing to  
+                  ask for permission before applying fixes. </P><A  
+                  name=p1_ch04-57-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options for <SPAN 
+                  class=docEmphBold>fsck</SPAN></H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-A</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Run checks on all filesystems specified in 
+                    <I>/etc/fstab</I>. This option is intended for use at boot 
+                    time, before filesystems are mounted. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-N</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Don't execute, but show what would be 
+                    done.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-t</SPAN> <I>type</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specify the type of filesystem to check; 
+                    the default is <I>ext2</I>. The value of <I>type</I> 
+                    determines which filesystem-specific checker is called. 
+                    </P></DD></DL><A name=p1_ch04-58-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options for 
+                  e2fsck</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-b</SPAN> <I>superblock</I></SPAN> 
+                    <DD>
+                    <P class=docList>Use an alternative copy of the 
+                    <I>superblock</I>. In interactive mode, <SPAN 
+                    class=docEmphBold>e2fsck</SPAN> automatically uses 
+                    alternative <I>superblocks</I>. Typically, you'll try <SPAN 
+                    class=docEmphBold>-b 8193</SPAN> in non-interactive mode to 
+                    restore a bad <I>superblock</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Check for bad blocks.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Force a check, even if the filesystem looks 
+                    clean.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-p</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Automatically repair the filesystem without 
+                    prompting.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-y</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Answers "yes" to all interactive prompts, 
+                    allowing <SPAN class=docEmphBold>e2fsck</SPAN> to be used 
+                    noninteractively. </P></DD></DL><A name=p1_ch04-59-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Check the <I>ext2</I> filesystem on 
+                  <I>/dev/hda5</I>, which is not mounted: </P><PRE># <B>fsck /dev/hda5</B>
+[/sbin/fsck.ext2 -- ] fsck.ext2 /dev/hda5
+Parallelizing fsck version 1.14 (9-Jan-1999)
+e2fsck 1.14, 9-Jan-1999 for EXT2 FS 0.5b, 95/08/09
+/dev/hda5: clean, 1011/34136 files, 4360/136521 blocks</PRE>
+                  <P class=docText>The partition was clean, so <SPAN 
+                  class=docEmphBold>fsck</SPAN> didn't really check it. </P><A 
+                  name=p1_ch04-60-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Force a check:</P><PRE># <B>fsck -f /dev/hda5</B>
+Parallelizing fsck version 1.14 (9-Jan-1999)
+e2fsck 1.14, 9-Jan-1999 for EXT2 FS 0.5b, 95/08/09
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/hda5: 1011/34136 files (0.1% non-contiguous), 
+   4360/136521 blocks</PRE><A name=p1_ch04-61-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Force another check, this time with verbose 
+                  output:</P><PRE># <B>fsck -fv /dev/hda5</B>
+Parallelizing fsck version 1.14 (9-Jan-1999)
+e2fsck 1.14, 9-Jan-1999 for EXT2 FS 0.5b, 95/08/09
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+
+    1011 inodes used (2%)
+       1 non-contiguous inodes (0.1%)
+         # of inodes with ind/dind/tind blocks: 0/0/0
+    4360 blocks used (3%)
+       0 bad blocks
+
+    1000 regular files
+       2 directories
+       0 character device files
+       0 block device files
+       0 fifos
+       0 links
+       0 symbolic links (0 fast symbolic links)
+       0 sockets
+--------
+    1002 files</PRE><A name=p1_ch04-62-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Allow <SPAN class=docEmphBold>fsck</SPAN> to 
+                  automatically perform all repairs on a damaged filesystem by 
+                  specifying the <SPAN class=docEmphBold>-y</SPAN> option to run 
+                  the command automatically: </P><PRE>[root@smp /mnt]# <B>fsck -y /dev/hda5</B>
+Parallelizing fsck version 1.14 (9-Jan-1999)
+e2fsck 1.14, 9-Jan-1999 for EXT2 FS 0.5b, 95/08/09
+Couldn't find ext2 superblock, trying backup blocks...
+/dev/hda5 was not cleanly unmounted, check forced.
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+Block bitmap differences:  +1 +2 +3 +4
+Fix? yes
+
+Inode bitmap differences:  +1 +2 +3 +4 +5 +6
+Fix? yes
+
+/dev/hda5: ***** FILE SYSTEM WAS MODIFIED *****
+/dev/hda5: 1011/34136 files (0.1% non-contiguous), 
+   4360/136521 blocks</PRE>
+                  <P class=docText>When Linux boots, the kernel performs a check  
+                  of all filesystems in <I>/etc/fstab</I> using the <SPAN  
+                  class=docEmphBold>-A</SPAN> option to <SPAN  
+                  class=docEmphBold>fsck</SPAN>.<SUP class=docFootnote>[4]</SUP> Any  
+                  filesystems that were not cleanly unmounted are checked. If  
+                  that check finds any significant errors, the system drops into  
+                  single-user mode so you can run <SPAN  
+                  class=docEmphBold>fsck</SPAN> manually. Unfortunately, unless  
+                  you have detailed knowledge of the inner workings of the  
+                  filesystem, there's little you can do other than to have <SPAN  
+                  class=docEmphBold>fsck</SPAN> do all of the repairs. As a  
+                  result, it is common to use the <SPAN  
+                  class=docEmphBold>-y</SPAN> option and hope for the best. </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[4]</A></SUP> Unless 
+                    the <I>/etc/fstab </I>entry contains the <SPAN 
+                    class=docEmphBold>noauto</SPAN> option.</P></BLOCKQUOTE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Familiarity with <SPAN 
+                        class=docEmphBold>du</SPAN>, <SPAN 
+                        class=docEmphBold>df</SPAN>, and <SPAN 
+                        class=docEmphBold>fsck</SPAN> is important. Be sure you 
+                        understand the differences between the commands and when 
+                        each is used. </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="04-2.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-2&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-2
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)453ms
+(xml)172ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)656ms
+--></BODY></HTML>

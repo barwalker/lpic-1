@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="07-3.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="07-3.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 7.&nbsp;  
+            Administrative Tasks (Topic 2.11)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-7-SECT-3></A>
+                  <H3 class=docSection1Title>7.3 Objective 3: Configure and Use 
+                  System Log Files</H3>
+                  <P class=docText>Many events occur on your Linux system that 
+                  should be logged for administrative purposes. Linux uses the 
+                  <SPAN class=docEmphBold>syslog</SPAN> system to display and 
+                  record messages describing these events. This system allows 
+                  finely controlled logging of messages from the kernel as well 
+                  as processes running on your system and remote systems. 
+                  Messages can be placed on the console display, in log files, 
+                  and on the text screens of users logged in to the system. 
+                  </P><A name=lpicertnut-CHP-7-SECT-3.1></A>
+                  <H4 class=docSection2Title>7.3.1 Configuring syslog </H4>
+                  <P class=docText>The behavior of <SPAN 
+                  class=docEmphBold>syslog</SPAN> is controlled by its 
+                  configuration file, <I>/etc/syslog.conf</I>. This text file 
+                  contains lines indicating what is to be logged and where. Each 
+                  line contains directives in this form: </P>
+                  <DL class=docList>
+                    <DD><I>facility.level action</I> </DD></DL>
+                  <P class=docText>The directives are defined as follows:</P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>facility</I></SPAN> 
+                    <DD>
+                    <P class=docList>This represents the creator of the message  
+                    (that is, the kernel or a process) and is one of the  
+                    following:<I> auth</I>,<I> authpriv</I>,<I> cron</I>,<I> 
+                    daemon</I>,<I> kern</I>,<I> lpr</I>,<I> mail</I>,<I> 
+                    mark</I>,<I> news</I>,<I> syslog</I>,<I> 
+                    user</I>,or<I>local0</I>through<I>local7</I>. The use of  
+                    these facility designators allows you to control the  
+                    destination of messages based on their origin. Facilities  
+                    <I>local0</I> through <I>local7</I> are for any use you may  
+                    wish to assign to them in your own programs and scripts.<SUP  
+                    class=docFootnote>[6]</SUP> </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[6]</A></SUP> It's 
+                      possible that your distribution has assigned one or more 
+                      of the local facilities already. Check your configuration 
+                      before using a local facility.</P></BLOCKQUOTE></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>level</I></SPAN> 
+                    <DD>
+                    <P class=docList>Specifies a severity threshold beyond which 
+                    messages are logged, and is one of the following (from 
+                    lowest to highest severity):<I> debug</I>, <I>info</I>, 
+                    <I>notice</I>, <I>warning</I>, <I>err</I>, <I>crit</I>, 
+                    <I>alert</I>, or<I>emerg</I>. There is also a special level 
+                    called <I>none</I> that will disable a facility. The level 
+                    defines the amount of detail recorded in the log file. A 
+                    single period separates the facility from the level, and 
+                    together they comprise the <SPAN class=docEmphasis>message 
+                    selector</SPAN>. The asterisk (<SPAN 
+                    class=docEmphBold>*</SPAN>) can be used to describe all 
+                    facilities or all levels. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>action</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>action </I>directive is arguably 
+                    misnamed. It represents the destination for messages that 
+                    correspond to a given selector (<I> facility.level</I> ). 
+                    The action can be a filename (including the full pathname), 
+                    a hostname preceded by the <SPAN class=docEmphBold>@</SPAN> 
+                    sign, or a comma-separated list of users or asterisk (this 
+                    means all logged-in users will be included). The action is 
+                    to send the message to the specified destination. 
+                  </P></DD></DL>
+                  <P class=docText>For example, if you wanted to create a 
+                  separate log file for activity reported by the scripts you 
+                  write, you might include a line like this in 
+                  <I>/etc/syslog.conf</I> : </P><PRE># Define a new log file for the local5 facility
+local5.*                           /var/log/local5</PRE>
+                  <P class=docText>You could then use the <SPAN  
+                  class=docEmphBold>logger</SPAN> utility to write messages to  
+                  the facility from your shell script:<SUP class=docFootnote>[7]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[7]</A></SUP> <SPAN 
+                    class=docEmphBold>syslog</SPAN> must be restarted or 
+                    signaled to reinitialize before the new log file is 
+                    created.</P></BLOCKQUOTE><PRE>$ logger -p local5.info &quot;Script terminated normally&quot;</PRE>
+                  <P class=docText>The message "Script terminated normally"  
+                  would be placed into <I>/var/log/local5</I>, along with a  
+                  timestamp and the hostname that sent the message. <a class="docLink" href="#lpicertnut-CHP-7-EX-3">Example  
+                  7-3</a> contains an example <I>/etc/syslog.conf</I> file. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-7-EX-3></A>Example 7-3. Sample  
+                  /etc/syslog.conf File </H5><PRE># Log everything except mail &amp; authpriv of level info 
+# or higher to messages
+*.info;mail.none;authpriv.none     /var/log/messages
+
+# The authpriv file has restricted access.
+authpriv.*                         /var/log/secure
+
+# Log all the mail messages in one place.
+mail.*                             /var/log/maillog
+
+# Everybody gets emergency messages
+*.emerg                            *
+
+# Save boot messages also to boot.log
+local7.*                           /var/log/boot.log</PRE> 
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>If you're not yet familiar with <SPAN 
+                        class=docEmphBold>syslog</SPAN>, spend some time with 
+                        it, modifying <I>/etc/syslog.conf</I> and directing 
+                        messages to various files. An understanding of <SPAN 
+                        class=docEmphBold>syslog</SPAN> is critical because so 
+                        many programs depend on it. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>If you examine this <I>syslog.conf</I> file, 
+                  you'll see that nearly all system messages are sent to the 
+                  <I>/var/log/messages</I> file via the <I>*.info</I> message 
+                  selector. In this case, the asterisk directs <SPAN 
+                  class=docEmphBold>syslog</SPAN><I> </I>to send messages from 
+                  all facilities except <I>mail </I>and <I>authpriv</I>, which 
+                  are excluded using the special <TT>none</TT> level. The 
+                  <I>/var/log/messages</I> file is the default system message 
+                  destination, and you will consult it frequently for 
+                  information on processes running (or failing to run) and other 
+                  events on your system. In this example, the low severity level 
+                  of <TT>info</TT> is used for the <I>messages</I> file, which 
+                  logs all but debugging messages. On heavily loaded servers, 
+                  this may result in an unwieldy file size due to message 
+                  volume. Depending upon your available disk space, you may 
+                  choose to save less information by raising the level for the 
+                  <I>messages</I> file. </P><A 
+                  name=lpicertnut-CHP-7-SECT-3.2></A>
+                  <H4 class=docSection2Title>7.3.2 Log File Rotation</H4>
+                  <P class=docText>Most distributions will install a default 
+                  <SPAN class=docEmphBold>syslog</SPAN> configuration for you, 
+                  including logging to <I>messages</I> and other log files in 
+                  <I>/var/log</I>. To prevent any of these files from growing 
+                  unattended to extreme sizes, a <SPAN class=docEmphasis>log 
+                  file rotation</SPAN> scheme should be installed as well. The 
+                  <SPAN class=docEmphBold>cron</SPAN> system issues commands on 
+                  a regular basis (usually once per day) to establish new log 
+                  files; the old files are renamed with numeric suffixes (see 
+                  Objective 4 for more on <SPAN class=docEmphBold>cron</SPAN>). 
+                  With this kind of rotation, yesterday's 
+                  <I>/var/log/messages</I> file becomes today's 
+                  <I>messages.1</I>, and a new <I>messages</I> file is created. 
+                  The rotation is configured with a maximum number of files to 
+                  keep, and the oldest log files are deleted when the rotation 
+                  is run. </P>
+                  <P class=docText>The utility that establishes the rotation is  
+                  <SPAN class=docEmphBold>logrotate</SPAN>. This privileged  
+                  command is configured using one or more files, which are  
+                  specified as arguments to the <SPAN  
+                  class=docEmphBold>logrotate</SPAN><I> </I>command. These  
+                  configuration files can contain directives to include other  
+                  files as well. The default configuration file is  
+                  <I>/etc/logrotate.conf</I>. <a class="docLink" href="#lpicertnut-CHP-7-EX-4">Example  
+                  7-4</a> depicts an example <I>logrotate.conf</I> file. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-7-EX-4></A>Example 7-4. Sample  
+                  /etc/logrotate.conf File </H5><PRE># global options
+# rotate log files weekly
+weekly
+
+# keep 4 weeks worth of backlogs
+rotate 4
+
+# send errors to root
+errors root
+
+# create new (empty) log files after rotating old ones
+create
+
+# compress log files 
+compress
+
+# specific files
+
+/var/log/wtmp {
+    monthly
+    create 0664 root utmp
+    rotate 1
+}
+
+/var/log/messages {
+    postrotate
+        /usr/bin/killall -HUP syslogd
+    endscript
+}</PRE> 
+                  <P class=docText>This example specifies rotations for two 
+                  files, <I>/var/log/wtmp</I> and <I>/var/log/messages</I>. Your 
+                  configuration will be much more complete, automatically 
+                  rotating all log files on your system. A complete 
+                  understanding of <I>logrotate</I> configuration is not 
+                  necessary for LPIC Level 1 exams, but you must be familiar 
+                  with the concepts involved. See the <I>logrotate</I> manpages 
+                  for more information. </P><A 
+                  name=lpicertnut-CHP-7-SECT-3.3></A>
+                  <H4 class=docSection2Title>7.3.3 Examining Log Files</H4>
+                  <P class=docText>You can learn a lot about the activity of 
+                  your system by reviewing the log files it creates. At times, 
+                  it will be necessary to debug problems using logged 
+                  information. Since most of the log files are plain text, it is 
+                  very easy to review their contents with tools such as <SPAN 
+                  class=docEmphBold>tail</SPAN>, <SPAN 
+                  class=docEmphBold>less</SPAN>, and <SPAN 
+                  class=docEmphBold>grep</SPAN>. </P>
+                  <P class=docText><SPAN class=docEmphBold>syslog</SPAN> stores 
+                  the messages it creates with the following information, 
+                  separated by (but also including) spaces: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>Date/time</P>
+                    <LI>
+                    <P class=docList>Origin hostname</P>
+                    <LI>
+                    <P class=docList>Message sender (such as <I>kernel</I>, 
+                    <I>sendmail</I>, or a username) </P>
+                    <LI>
+                    <P class=docList>Message text</P></LI></UL>
+                  <P class=docText>Typical messages will look like this:</P><PRE>Dec  8 10:41:23 smp kernel: Symbols match kernel 
+      version 2.2.5.
+Dec  8 10:41:23 smp kernel: Loaded 182 symbols 
+      from 12 modules.
+Dec  8 10:50:19 smp kernel: Kernel logging (proc) stopped.
+Dec  8 10:50:19 smp kernel: Kernel log daemon terminating.</PRE>
+                  <P class=docText>In this case, <TT>smp</TT> is the hostname, 
+                  and the messages are coming from the kernel. At any time you 
+                  can review the entire contents of your log files using <SPAN 
+                  class=docEmphBold>less</SPAN>: </P><PRE># <B>less /var/log/messages</B></PRE>
+                  <P class=docText>You can then page through the file. This is a 
+                  good way to become familiar with the types of messages you'll 
+                  see on your system. To actively monitor the output to your 
+                  <I>messages</I> file, you could use <SPAN 
+                  class=docEmphBold>tail</SPAN>: </P><PRE># <B>tail -f /var/log/messages</B></PRE>
+                  <P class=docText>This might be useful, for example, to watch 
+                  system activity as an Internet connection is established via 
+                  modem. To look specifically for messages regarding your mouse, 
+                  you might use <SPAN class=docEmphBold>grep</SPAN>: </P><PRE># <B>grep '[Mm]ouse' /var/log/messages</B>
+Dec  8 00:15:28 smp kernel: Detected PS/2 Mouse Port. 
+Dec  8 10:55:02 smp gpm: Shutting down gpm mouse services: </PRE>
+                  <P class=docText>Often, if you are using <SPAN 
+                  class=docEmphBold>grep</SPAN> to look for a particular item 
+                  you expect to find in <I>/var/log/messages</I>, you will need 
+                  to search all of the rotated files with a wildcard. For 
+                  example, to look for all messages from <I>sendmail</I>, you 
+                  may issue a command like this: </P><PRE># <B>grep 'sendmail:' /var/log/messages*</B></PRE>
+                  <P class=docText>When you note problems in log files, look at 
+                  the hostname and sender of the message first, then the message 
+                  text. In many cases, you will be able to determine what is 
+                  wrong from the message. Sometimes the messages are only clues, 
+                  so a broader review of your logs may be necessary. In this 
+                  case, it may be helpful to temporarily turn on more messaging 
+                  by using the debug level in <I>/etc/syslog.conf</I> to help 
+                  yield additional information that can lead you to the problem. 
+                  </P><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="07-3.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-3&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-7-SECT-3
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)375ms
+(xml)172ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)578ms
+--></BODY></HTML>

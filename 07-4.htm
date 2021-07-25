@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="07-4.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="07-4.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 7.&nbsp;  
+            Administrative Tasks (Topic 2.11)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-7-SECT-4></A>
+                  <H3 class=docSection1Title>7.4 Objective 4: Automate System 
+                  Administration Tasks</H3>
+                  <P class=docText>There is a surprising amount of housekeeping 
+                  that must be done to keep a complex operating system such as 
+                  Linux running smoothly. Log file rotation, cleanup of 
+                  temporary files and directories, system database rebuilds, 
+                  backups, and other tasks should be done routinely. Clearly 
+                  such mundane things should be automated by the system, freeing 
+                  weary system administrators for more interesting work. 
+                  Fortunately, any system task that can be accomplished without 
+                  real-time human intervention can be automated on Linux using 
+                  the <SPAN class=docEmphBold>cron</SPAN> and <SPAN 
+                  class=docEmphBold>at</SPAN> facilities. Both have the ability 
+                  to execute system commands, which may start any executable 
+                  program or script, at selectable times. Further, <SPAN 
+                  class=docEmphBold>cron</SPAN> and <SPAN 
+                  class=docEmphBold>at</SPAN> can execute these commands on 
+                  behalf of any authorized system user. <SPAN 
+                  class=docEmphBold>cron</SPAN> is intended mainly for regularly 
+                  scheduled recurring activities, and <SPAN 
+                  class=docEmphBold>at</SPAN> is most useful for scheduling 
+                  single commands for execution in the future. <SPAN 
+                  class=docEmphBold>cron</SPAN> gets its name from the "<SPAN 
+                  class=docEmphasis>chron-</SPAN>" prefix of "<SPAN 
+                  class=docEmphasis>chronology</SPAN> " (time). </P><A 
+                  name=lpicertnut-CHP-7-SECT-4.1></A>
+                  <H4 class=docSection2Title>7.4.1 Using cron</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>cron</SPAN>  
+                  facility consists of two programs:<SUP class=docFootnote>[8]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[8]</A></SUP> There is 
+                    no individual program called "cron," which is the overall 
+                    name given to the facility. If you execute <SPAN 
+                    class=docEmphBold>man cron</SPAN> however<SPAN 
+                    class=docEmphBold>,</SPAN> you will, see the manpage for 
+                    <SPAN class=docEmphBold>crond</SPAN>.</P></BLOCKQUOTE>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>crond</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This is the <SPAN 
+                    class=docEmphBold>cron</SPAN> daemon. This is the process 
+                    that executes your instructions. It starts at system 
+                    initialization time and runs in the background thereafter. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>crontab</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>This is the <I>cron table</I> manipulation 
+                    program. This program gives you access to your cron table or 
+                    <SPAN class=docEmphBold>crontab</SPAN> file. Each authorized 
+                    user may have his own <SPAN 
+                    class=docEmphBold>crontab</SPAN><I> </I>file to run commands 
+                    and processes on a regular basis. </P></DD></DL>
+                  <P class=docText>The <SPAN class=docEmphBold>cron</SPAN> 
+                  daemon wakes up every minute and examines all <SPAN 
+                  class=docEmphBold>crontab</SPAN> files, executing any commands 
+                  scheduled for that time. </P><A 
+                  name=lpicertnut-CHP-7-SECT-4.1.1></A>
+                  <H5 class=docSection3Title>7.4.1.1 User crontab files</H5>
+                  <P class=docText>To use the <SPAN 
+                  class=docEmphBold>cron</SPAN> facility, users do not need to 
+                  interact directly with the <SPAN 
+                  class=docEmphBold>crond</SPAN> daemon. Instead, each system 
+                  user has access to the <SPAN class=docEmphBold>cron</SPAN> 
+                  facility through her <SPAN class=docEmphBold>crontab</SPAN> 
+                  file. These files are stored together in a single directory 
+                  (usually <I>/var/spool/cron</I>) and are created and 
+                  maintained using the <SPAN class=docEmphBold>crontab</SPAN> 
+                  utility. </P><A name=p1_ch07-_Toc382100239></A><A 
+                  name=IXT-7-350245></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>crontab</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-_Toc382100240></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>crontab [options]</PRE><A name=p1_ch07-_Toc382100241></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350245></A>View or edit <SPAN  
+                  class=docEmphBold>crontab</SPAN> files. </P><A  
+                  name=p1_ch07-_Toc382100242></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-e</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Interactively edit the <SPAN 
+                    class=docEmphBold>crontab</SPAN><I> </I>file. Unless 
+                    otherwise specified in either the <TT>EDITOR</TT> or 
+                    <TT>VISUAL</TT> environment variables, the editor is <SPAN 
+                    class=docEmphBold>vi</SPAN>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Display the contents of the <SPAN 
+                    class=docEmphBold>crontab</SPAN><I> </I>file. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-r</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Remove the <SPAN 
+                    class=docEmphBold>crontab</SPAN><I> </I>file. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-u</SPAN> <I>user</I></SPAN> 
+                    <DD>
+                    <P class=docList>Operate on <I>user</I> 's <SPAN 
+                    class=docEmphBold>crontab</SPAN> file instead of your own. 
+                    Only <SPAN class=docEmphasis>root</SPAN> can edit or delete 
+                    the <SPAN class=docEmphBold>crontab</SPAN> files of other 
+                    users. </P></DD></DL><A name=p1_ch07-_Toc382100243></A>
+                  <H4 class=docRefsectTitle>Examples</H4>
+                  <P class=docText>Display the <SPAN 
+                  class=docEmphBold>crontab</SPAN> file for user <I>jdoe</I> : 
+                  </P><PRE># <B>crontab -l -u jdoe</B></PRE>
+                  <P class=docText>Edit your own <SPAN 
+                  class=docEmphBold>crontab</SPAN><I> </I>file: </P><PRE>$ <B>crontab -e</B> </PRE>
+                  <P class=docText><SPAN class=docEmphBold>crontab</SPAN> files 
+                  use a flexible format to specify times for command execution. 
+                  Each line contains six fields: </P><PRE>minute  hour  day  month  dayofweek   command</PRE>
+                  <P class=docText>These fields are specified as follows:</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>Minute (0 through 59)</P>
+                    <LI>
+                    <P class=docList>Hour (0 through 23)</P>
+                    <LI>
+                    <P class=docList>Day of the month (1 through 31)</P>
+                    <LI>
+                    <P class=docList>Month (1 through 12 or jan through dec)</P>
+                    <LI>
+                    <P class=docList>Day of the week (0 through 6 [where 0 is 
+                    Sunday] or sun through sat)</P>
+                    <LI>
+                    <P class=docList>Command (any valid command, including 
+                    spaces and standard bourne shell syntax) </P></LI></UL>
+                  <P class=docText>For example, to execute <I>myprogram</I> once 
+                  per day at 6:15 a.m., use this <SPAN 
+                  class=docEmphBold>crontab</SPAN> entry: </P><PRE># run myprogram at 6:15am
+15 6 * * *   myprogram</PRE>
+                  <P class=docText>Lines that begin with the pound sign 
+                  (<TT>#</TT>) are <SPAN class=docEmphasis>comment lines</SPAN> 
+                  and are ignored by <SPAN class=docEmphBold>crond</SPAN>. 
+                  Comments must begin on a new line and may not appear within 
+                  commands. The asterisks in this <SPAN 
+                  class=docEmphBold>crontab</SPAN> are placeholders and match 
+                  any date or time for the field where they're found. Here, they 
+                  indicate that <I>myprogram</I> should execute at 6:15 a.m. on 
+                  all days of the month, every month, all days of the week. </P>
+                  <P class=docText>Each of the time specifications may be 
+                  single, list (<TT>1,3,5</TT>), or range (<TT>1-5</TT> or 
+                  <TT>wed-fri</TT>) entries or combinations thereof. To modify 
+                  the previous example to execute at 6:15 and 18:15 on the 1st 
+                  and 15th of the month, use: </P><PRE># run myprogram at 6:15am and 6:15pm on the 1st and 15th
+15 6,18 1,15 * *   myprogram</PRE>
+                  <P class=docText>As you can see, the time specifications are 
+                  very flexible.</P>
+                  <P class=docText>Because the <SPAN 
+                  class=docEmphBold>cron</SPAN> daemon evaluates each <SPAN 
+                  class=docEmphBold>crontab</SPAN> entry when it executes each 
+                  minute, it is not necessary to restart or reinitialize <SPAN 
+                  class=docEmphBold>crond</SPAN> when <SPAN 
+                  class=docEmphBold>crontab</SPAN> entries are changed or new 
+                  files are created. </P><A 
+name=lpicertnut-CHP-7-SECT-4.1.2></A>
+                  <H5 class=docSection3Title>7.4.1.2 System crontab files</H5>
+                  <P class=docText>In addition to <SPAN 
+                  class=docEmphBold>crontab</SPAN> files owned by individual 
+                  users, <SPAN class=docEmphBold>crond</SPAN> also looks for the 
+                  system <SPAN class=docEmphBold>crontab</SPAN> files 
+                  <I>/etc/crontab</I> and files in the directory 
+                  <I>/etc/cron.d</I>. The format for these system <SPAN 
+                  class=docEmphBold>crontab</SPAN>s differs slightly from user 
+                  <SPAN class=docEmphBold>crontab</SPAN>s. System <SPAN 
+                  class=docEmphBold>crontab</SPAN>s<I> </I>have an additional 
+                  field for a username between the time specifications and the 
+                  command. For example: </P><PRE># /etc/crontab
+# run myprogram at 6:15am as root
+15 6 * * *   root   myprogram</PRE>
+                  <P class=docText>In this example, <TT>myprogram</TT> will be 
+                  executed by <SPAN class=docEmphBold>cron</SPAN> as the <SPAN 
+                  class=docEmphasis>root</SPAN> user. </P>
+                  <P class=docText>System <SPAN class=docEmphBold>crontab</SPAN> 
+                  files located in <I>/etc/cron.d</I> are of the same form as 
+                  <I>/etc/crontab</I>, including the extra user field. These 
+                  files are usually associated with some package or service that 
+                  includes a system <SPAN class=docEmphBold>crontab</SPAN>. 
+                  Allowing a collection of files in <I>/etc/cron.d</I> allows 
+                  software installation and upgrade procedures to keep the <SPAN 
+                  class=docEmphBold>cron</SPAN> configuration up-to-date on an 
+                  individual package basis. In most cases, however, you won't 
+                  need to change the <SPAN class=docEmphBold>crontab</SPAN> 
+                  files in <I>/etc/cron.d</I>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Memorize the sequence of time/date 
+                        fields used in <SPAN class=docEmphBold>crontab</SPAN> 
+                        files. </P></TD></TR></TBODY></TABLE>
+                  <P class=docText>On most Linux distributions, 
+                  <I>/etc/crontab</I> contains some standard content to enable 
+                  the execution of programs and scripts on the minute, hour, 
+                  week, and month. These arrangements allow you to simply drop 
+                  executable files into the appropriate directory (such as 
+                  <I>/etc/cron.hourly</I>), where they are executed 
+                  automatically. This eliminates <SPAN 
+                  class=docEmphBold>cron</SPAN><I> </I>configuration altogether 
+                  for many tasks and avoids cluttering the root <SPAN 
+                  class=docEmphBold>crontab</SPAN><I> </I>file with common 
+                  commands. </P><A name=lpicertnut-CHP-7-SECT-4.2></A>
+                  <H4 class=docSection2Title>7.4.2 Using at</H4>
+                  <P class=docText>The <SPAN class=docEmphBold>cron</SPAN><I> 
+                  </I>facility is intended for the execution of commands on a 
+                  regular, periodic schedule. When you need to simply delay 
+                  execution of a command or a group of commands to some other 
+                  time in the future, you should use <SPAN 
+                  class=docEmphBold>at</SPAN>. The <SPAN 
+                  class=docEmphBold>at</SPAN> facility accepts commands from 
+                  standard input or from a file. </P><A 
+                  name=p1_ch07-_Toc382100246></A><A name=IXT-7-350246></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>at</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch07-26-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>at [-f file] time 
+at [options] </PRE><A name=p1_ch07-_Toc382100248></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-7-350246></A>In the first form,  
+                  enter commands to the <SPAN class=docEmphBold>at</SPAN> queue  
+                  for execution at <I>time</I>. <SPAN  
+                  class=docEmphBold>at</SPAN><I> </I>allows fairly complex time  
+                  specifications. It accepts times of the form <I>HH:MM</I> to  
+                  run a job at a specific time of day. (If that time is already  
+                  past, the next day is assumed.) You may also specify  
+                  <I>midnight</I>, <I>noon</I>, or <I>teatime</I> (4 p.m.), and  
+                  you suffix a time of day with <I>AM</I> or <I>PM</I> for  
+                  running in the morning or evening. You can also say what day  
+                  the job will be run by giving a date in month-day form, with  
+                  the year being optional, or by giving a date in <I>MMDDYY</I>,  
+                  <I>MM/DD/YY</I> or <I>DD.MM.YY</I> form. The date  
+                  specification must follow the time-of-day specification. You  
+                  can also give times like <I>now + count</I> <I>time-units</I>,  
+                  where time-units can be minutes, hours, days, or weeks, you  
+                  can tell <SPAN class=docEmphBold>at</SPAN> to run the job  
+                  today by suffixing the time with <I>today</I>, and you can  
+                  tell it to run the job tomorrow by suffixing the time with  
+                  <I>tomorrow</I>. </P>
+                  <P class=docText>If <SPAN class=docEmphBold>-f</SPAN><I> 
+                  file</I> is given, commands are taken from the <I>file</I>, 
+                  otherwise <SPAN class=docEmphBold>at</SPAN><I> </I>will prompt 
+                  the user for commands. </P>
+                  <P class=docText>In the second form, list or delete jobs from 
+                  the <SPAN class=docEmphBold>at</SPAN> queue. </P><A 
+                  name=p1_ch07-_Toc382100249></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-d</SPAN> <I>job1</I> <SPAN 
+                    class=docPubcolor><SPAN class=docMonofont>[,</SPAN></SPAN> 
+                    <I>job2</I><SPAN class=docPubcolor><SPAN class=docMonofont>, 
+                    ...]</SPAN></SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Delete jobs from the <SPAN 
+                    class=docEmphBold>at</SPAN> queue by number (same as the 
+                    <SPAN class=docEmphBold>atrm</SPAN> command). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-l</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>List items in the <SPAN 
+                    class=docEmphBold>at</SPAN> queue (same as the <SPAN 
+                    class=docEmphBold>atq</SPAN> command). </P></DD></DL><A 
+                  name=p1_ch07-_Toc382100250></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Run <I>myprogram</I> once at 6:15 p.m. 
+                  tomorrow:</P><PRE>$ <B>at 6:15pm tomorrow</B>
+at&gt; myprogram
+at&gt; <B>^D</B></PRE>
+                  <P class=docText>In the previous code listing, <TT>^D</TT> 
+                  indicates that the user typed <SPAN 
+                  class=docEmphBold>Ctrl-D</SPAN> on the keyboard, sending the 
+                  end-of-file character to terminate the <SPAN 
+                  class=docEmphBold>at</SPAN> command. </P><A 
+                  name=p1_ch07-_Toc382100251></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Run commands that are listed in the file 
+                  <I>command_list</I> at 9 p.m. two days from now: </P><PRE>$ <B>at -f command_list 9pm + 2 days</B></PRE>
+                  <P class=docText>List items in the <SPAN 
+                  class=docEmphBold>at</SPAN> queue (root sees all users' 
+                  entries): </P><PRE>$ <B>at -l</B></PRE>
+                  <P class=docText>Remove job number 5 from the <SPAN 
+                  class=docEmphBold>at</SPAN> queue: </P><PRE>$ <B>at -d 5</B></PRE>
+                  <P class=docText>Using <SPAN class=docEmphBold>at</SPAN> to 
+                  schedule jobs for delayed execution, such as while you're 
+                  asleep or on vacation, is simple and doesn't require creation 
+                  of a recurring <SPAN class=docEmphBold>cron</SPAN> entry. 
+                  </P><A name=lpicertnut-CHP-7-SECT-4.3></A>
+                  <H4 class=docSection2Title>7.4.3 Controlling User Access to 
+                  cron and at</H4>
+                  <P class=docText>In most cases, it is safe to allow users to 
+                  use the <SPAN class=docEmphBold>cron</SPAN> and <SPAN 
+                  class=docEmphBold>at</SPAN> facilities. However, if your 
+                  circumstances dictate that one or more users should be 
+                  prohibited from using these services, two simple authorization 
+                  files exist for each: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList><I>cron.allow</I>, <I>cron.deny</I></P>
+                    <LI>
+                    <P class=docList><I>at.allow</I>, <I>at.deny</I></P></LI></UL>
+                  <P class=docText>These files are simply lists of account 
+                  names. If the <I>allow</I> file exists, only those users 
+                  listed in the <I>allow </I>file may use the service. If the 
+                  <I>allow</I> file does not exist but the <I>deny</I> file 
+                  does, only those users not listed in the <I>deny</I> file may 
+                  use the service. For <SPAN class=docEmphBold>cron</SPAN>, if 
+                  neither file exists, all users have access to <SPAN 
+                  class=docEmphBold>cron</SPAN>. For <SPAN 
+                  class=docEmphBold>at</SPAN>, if neither file exists, only root 
+                  has access to <SPAN class=docEmphBold>at</SPAN>. An empty 
+                  <I>at.deny</I> file allows access to all users and is the 
+                  default. </P>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-7-SECT-4&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-7-SECT-4
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)391ms
+(xml)172ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)594ms
+--></BODY></HTML>

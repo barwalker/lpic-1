@@ -1,0 +1,809 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-5.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-5.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-5></A>
+                  <H3 class=docSection1Title>4.5 Objective 5: Use File 
+                  Permissions to Control Access to Files</H3>
+                  <P class=docText>Filesystem security is a fundamental  
+                  requirement for any multiuser operating system. The system's  
+                  files, such as the kernel, configuration files, and programs,  
+                  must be protected from accidents and tampering by unauthorized  
+                  people. Users' files must be protected from modification by  
+                  other users and sometimes must be kept completely private. In  
+                  general, a form of <SPAN class=docEmphasis>access  
+                  control</SPAN><A name=lpicertnut-IDXTERM-366></A> must be  
+                  implemented to allow secure operations. </P><A  
+                  name=lpicertnut-CHP-4-SECT-5.1></A>
+                  <H4 class=docSection2Title>4.5.1 Linux Access Control</H4>
+                  <P class=docText><A name=lpicertnut-IDXTERM-367></A>Native  
+                  Linux filesystem access control is implemented using a set of  
+                  properties, maintained separately for each file. These  
+                  properties are collectively called the <SPAN  
+                  class=docEmphasis>access mode</SPAN><A name=IXT-4-350089></A>,  
+                  or simply the <SPAN class=docEmphasis>mode</SPAN>, of the  
+                  file. The mode is a part of the file's <A  
+                  name=IXT-4-350090></A>inode, the information retained in the  
+                  filesystem that describes the file. A file's mode controls  
+                  access by these three classes of <A  
+                  name=IXT-4-350091></A>users: </P>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>User</SPAN></I> 
+                    <DD>
+                    <P class=docList>The user that owns the file.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Group</SPAN></I> 
+                    <DD>
+                    <P class=docList>The group that owns the file.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Other</SPAN></I> 
+                    <DD>
+                    <P class=docList>All other users on the system.</P></DD></DL>
+                  <P class=docText>Like the <I>mode</I>, user and group  
+                  ownership properties are a part of the inode, and both are  
+                  assigned when a file is created. Usually, the owner is the  
+                  user who created the file. The file's group is usually set to  
+                  its creator's default group.<SUP class=docFootnote>[6]</SUP> Group  
+                  ownership adds flexibility in situations in which a team  
+                  shares files. The "other" users are those who aren't members  
+                  of the file's group and are not the file's owner. For each of  
+                  these three user classes, the access mode defines three types  
+                  of permissions, which apply differently for files and  
+                  directories. The permissions are listed in <a class="docLink" href="#lpicertnut-CHP-4-TABLE-2">Table  
+                  4-2</a>. </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[6]</A></SUP> On some 
+                    Linux distributions, the default group for all new accounts 
+                    is set to a general <I>users </I>group. However, if everyone 
+                    is in the same group by default, group permissions don't 
+                    offer added security. For this reason, other distributions 
+                    define a unique default group for every 
+                  user.</P></BLOCKQUOTE><A name=lpicertnut-CHP-4-TABLE-2></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-2. File Permissions 
+                    </H5></CAPTION>
+                    <COLGROUP span=4>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Permission</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Mnemonic</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>File Permission</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Directory Permission</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Read</P></TD>
+                      <TD class=docTableCell><PRE>r</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Examine the contents of the 
+file.</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>List directory contents.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Write</P></TD>
+                      <TD class=docTableCell><PRE>w</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Write to, or change, the file.</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Create and remove files in the 
+                        directory.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Execute</P></TD>
+                      <TD class=docTableCell><PRE>x</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Run the file as a program.</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Read and write files contained in the 
+                        directory.</P></TD></TR></TBODY></TABLE>
+                  <P class=docText>These three permissions apply to the three  
+                  different classes of users: <SPAN  
+                  class=docEmphasis>user</SPAN>, <SPAN  
+                  class=docEmphasis>group</SPAN>, and <SPAN  
+                  class=docEmphasis>other.</SPAN> Each has <SPAN  
+                  class=docEmphasis>read</SPAN><A name=IXT-4-350092></A>, <SPAN  
+                  class=docEmphasis>write</SPAN><A name=IXT-4-350093></A>, and  
+                  <SPAN class=docEmphasis>execute</SPAN> <A  
+                  name=IXT-4-350094></A>capabilities, as shown in <a class="docLink" href="#lpicertnut-CHP-4-FIG-1">Figure  
+                  4-1</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-4-FIG-1></A>Figure 4-1. Access Mode  
+                  bits</H5><IMG height=132 alt=figs/lpi_0401.gif 
+                  src="04-5.files/lpi_0401.gif" width=360 border=0></CENTER>
+                  <P class=docText>All of the permissions are binary (either  
+                  granted or not granted) and are thought of as single binary  
+                  bits in the access mode. When written, the permissions use the  
+                  mnemonic in <a class="docLink" href="#lpicertnut-CHP-4-TABLE-2">Table  
+                  4-2</a> for the true state and a hyphen for the false state.  
+                  To represent only the read permission, for example,  
+                  <TT>r--</TT> would be used. Read and execute together, typical  
+                  for directories, would be denoted <TT>r-x</TT>. These  
+                  notations are usually offered in sets of three, such as: </P><PRE>rw-rw-r--</PRE> 
+                  <P class=docText>A file with this setting would give 
+                  read/write permission to the user and group, and read-only 
+                  permission to everyone else. </P>
+                  <P class=docText>In addition to the nine bits for user, group, 
+                  and other, the access mode contains three more bits, which 
+                  control special attributes for executable files and 
+                  directories: </P><A name=IXT-4-350095></A><A 
+                  name=IXT-4-350096></A><A name=IXT-4-350097></A><A 
+                  name=IXT-4-350098></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>SUID (Set User ID)</SPAN></I> 
+
+                    <DD>
+                    <P class=docList><A name=IXT-4-350095></A>The SUID property  
+                    is for executable files only and has no effect on  
+                    directories. Normally the user who launches a program owns  
+                    the resulting process. However, if an executable file has  
+                    its SUID bit set, the <SPAN class=docEmphasis>file's  
+                    owner</SPAN> owns the resulting process, no matter who  
+                    launched it. When SUID is used, the file's owner is usually  
+                    root. This offers anyone temporary root access for the  
+                    duration of the command. An example of an SUID program is  
+                    <SPAN class=docEmphBold>lpr</SPAN><A name=IXT-4-350096></A>,  
+                    the <I>line print</I> command. This command needs special  
+                    access to manipulate the print spools, and runs as user  
+                    root. </P>
+                    <P class=docList>Using the SUID bit in cases like <SPAN 
+                    class=docEmphBold>lpr</SPAN> enhances security by allowing 
+                    access to secure functions without giving away the root 
+                    password. On the other hand, SUID can be a security risk if 
+                    access is granted unwisely. </P>
+                    <DT><I><SPAN class=docPubcolor>SGID (Set Group 
+                    ID)</SPAN></I> 
+                    <DD>
+                    <P class=docList><A name=IXT-4-350097></A>The SGID property  
+                    works the same way as SUID for executable files, setting the  
+                    process group owner to the file's group. In addition, the  
+                    SGID property has a special effect on directories. When SGID  
+                    is set on a directory, new files created within that  
+                    directory are assigned the same group ownership as the  
+                    directory itself. For example, if directory <I>/home/fin</I>  
+                    has the group <I>finance</I> and has SGID enabled, then all  
+                    files under <I>/home/fin</I> are created with group  
+                    ownership of <I>finance</I>, regardless of the creator's  
+                    group. This is an important attribute for teams, ensuring  
+                    that shared files all have the same group ownership. </P> 
+                    <DT><I><SPAN class=docPubcolor>Sticky</SPAN></I> 
+                    <DD>
+                    <P class=docList>At one time, the sticky property (more  
+                    commonly known as the <I>sticky bit</I><A  
+                    name=IXT-4-350098></A>), applied to executable programs,  
+                    flagging the system to keep an image of the program in  
+                    memory after the program finished running. This capability  
+                    increased performance for subsequent uses by eliminating the  
+                    programs' load phase, and was applied to programs that were  
+                    large or were run frequently. Modern virtual memory  
+                    techniques have made this use unnecessary, and under Linux  
+                    there is no need to use the sticky bit on executable  
+                    programs. </P>
+                    <P class=docList>When applied to a directory, the sticky bit 
+                    offers additional security for files within the directory. 
+                    Regardless of file permissions, the only users who can 
+                    rename or delete the files from a directory with the sticky 
+                    bit set are the file owner, the directory owner, and root. 
+                    When used in a team environment, the sticky bit allows 
+                    groups to create and modify files but allows only file 
+                    owners the privilege of deleting or renaming them. 
+                  </P></DD></DL>
+                  <P class=docText>Like the other access controls, these special 
+                  properties are binary and are considered bits in the access 
+                  mode. </P><A name=lpicertnut-CHP-4-SECT-5.1.1></A>
+                  <H5 class=docSection3Title>4.5.1.1 The mode bits</H5>
+                  <P class=docText><A name=IXT-4-350099></A><A 
+                  name=IXT-4-350100></A>The <I>special</I>, <I>user</I>,  
+                  <I>group</I>, and <I>other</I> permissions can be represented  
+                  in a string of 12 binary bits, as shown in <a class="docLink" href="#lpicertnut-CHP-4-FIG-2">Figure  
+                  4-2</a>. </P>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-4-FIG-2></A>Figure 4-2. Changing  
+                  permission bits to an octal number.</H5><IMG height=400  
+                  alt=figs/lpi_0402.gif src="04-5.files/lpi_0402.gif" width=432 
+                  border=0></CENTER>
+                  <P class=docText><A name=IXT-4-350101></A><A 
+                  name=IXT-4-350102></A>It is common to refer to these bits in  
+                  four sets of three, translated into four octal (base-8)  
+                  digits. The first octal digit represents the special  
+                  permissions SUID, SGID, and sticky. The other three represent  
+                  the read, write, and execute permissions, respectively, in  
+                  each of the user, group, and other user classes. Octal  
+                  notation is used as shorthand for binary strings like the  
+                  access mode, and each group of three bits has 23 = 8 possible  
+                  values, listed in <a class="docLink" href="#lpicertnut-CHP-4-TABLE-3">Table  
+                  4-3</a>. </P><A name=lpicertnut-CHP-4-TABLE-3></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-3. Octal Numbers 
+                    </H5></CAPTION>
+                    <COLGROUP span=2>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Octal Value</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Binary Equivalent</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>0</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>000</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>1</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>001</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>2</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>010</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>3</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>011</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>4</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>100</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>5</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>101</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>6</P></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>110</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>7</P></TD>
+                      <TD class=docTableCell>
+                        <P 
+                  class=docText>111</P></TD></TR></COLGROUP></TBODY></TABLE>
+                  <P class=docText>The read permission by itself is  
+                  <TT>r--</TT>, which can be thought of as binary 100, or octal  
+                  4. Adding the write permission yields <TT>rw-</TT>, or binary  
+                  110, which is octal 6. <a class="docLink" href="#lpicertnut-CHP-4-FIG-3">Figure  
+                  4-3</a> shows how to total bit values into the octal  
+                  equivalents.<SUP class=docFootnote>[7]</SUP> </P>
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[7]</A></SUP> 
+                    Memorizing, or even writing, the binary-to-octal equivalents 
+                    may be easier on the exam than adding bit values. Use the 
+                    technique that works best for you.</P></BLOCKQUOTE>
+                  <P class=docText>To turn the mode bits <TT>110111101001</TT> 
+                  into an octal representation, first separate them into chunks 
+                  of three bits: <TT>110</TT>, <TT>111</TT>, <TT>101</TT>, and 
+                  <TT>001</TT>. The first group, representing the special 
+                  permissions, is 110. This can be thought of as 4 + 2 + = 6. 
+                  The second group, representing user permissions, is 
+                  <TT>111</TT>, or 4 + 2 + 1 = 7. The third group, representing 
+                  group permissions, is <TT>101</TT>, or 4 + + 1 = 5. The last 
+                  group, representing other permissions, is <TT>001</TT>, or + + 
+                  1 = 1. The mode string for this example can then be written as 
+                  the octal 6751. </P>
+                  <P class=docText>This is the form used to display the file 
+                  mode in the output from the <SPAN 
+                  class=docEmphBold>stat</SPAN> command. Here, the octal access 
+                  mode for the <SPAN class=docEmphBold>lpr</SPAN> command is 
+                  4755: </P><PRE># <B>stat /usr/bin/lpr</B>
+  File: &quot;/mnt/hd/usr/bin/lpr&quot;
+  Size: 235672       Filetype: Regular File
+  Mode: (4755/-rwsr-xr-x)  Uid: ( 0/ root)  Gid: ( 0/  root)
+Device:  3,1   Inode: 176133    Links: 1
+Access: Tue Aug 10 23:57:11 1999(00144.11:34:49)
+Modify: Tue Aug 10 23:57:11 1999(00144.11:34:49)
+Change: Wed Dec  8 20:59:02 1999(00024.13:32:58)   </PRE>
+                  <P class=docText>The special permissions are represented in 
+                  this example by octal 4, or binary 100, indicating that the 
+                  SUID permission is set (<TT>-rws</TT>). The user permission is 
+                  octal 7, or binary 111, indicating read, write, and execute 
+                  for the file's owner (in this case, root). Both the group and 
+                  other permissions are set to octal 5, or binary 101, 
+                  indicating read and execute, but not write. </P><A 
+                  name=lpicertnut-CHP-4-SECT-5.1.2></A>
+                  <H5 class=docSection3Title>4.5.1.2 The mode string</H5>
+                  <P class=docText><A name=IXT-4-350103></A><A 
+                  name=IXT-4-350104></A>As mentioned earlier, the user, group,  
+                  and other permissions are often spelled out in symbolic mode  
+                  descriptions such as <TT>rwxr-xr-x</TT>. This notation is  
+                  found in the output of the <SPAN class=docEmphBold>ls  
+                  -l</SPAN> and <SPAN class=docEmphBold>stat</SPAN> commands. As  
+                  you can see in the access mode for <SPAN  
+                  class=docEmphBold>lpr</SPAN>, this scheme is modified slightly  
+                  in the presence of special permissions. Instead of adding  
+                  three more bits to the left of <TT>rwxr-xr-x</TT>, the SUID  
+                  permission is indicated in the string by changing the user  
+                  execute position from <TT>x</TT> to <TT>s</TT>. SGID  
+                  permission is handled the same way. The sticky permission is  
+                  indicated by replacing <TT>x</TT> in the other execute  
+                  position with <TT>T</TT>. For example, an executable program  
+                  with mode 6755 would have the following equivalent symbolic  
+                  mode: </P><PRE>rwsr-sr-x</PRE>
+                  <P class=docText>A directory with mode 1774 would have this 
+                  equivalent string:</P><PRE>rwxr-xr-T</PRE>
+                  <P class=docText>While this layering of special permissions  
+                  may appear to obscure the underlying execute permissions, it  
+                  makes sense. The special permissions are relatively rare in  
+                  the filesystem, so depicting the three extra bits would waste  
+                  space on your terminal or terminal window. In addition, the  
+                  special permissions are used only for executable programs and  
+                  directories, where the underlying executable permission is  
+                  understood to be set.<SUP class=docFootnote>[8]</SUP> </P> 
+                  <BLOCKQUOTE>
+                    <P class=docFootnote><SUP><A name="">[8]</A></SUP> For the 
+                    purists among us, note that the special bits may be set 
+                    without setting the execute permission, although to do so is 
+                    meaningless. In this case, the string's <TT>s</TT> and 
+                    <TT>t</TT> values are replaced with <TT>S</TT> and 
+                    <TT>T</TT>, respectively.</P></BLOCKQUOTE>
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-4-FIG-3></A>Figure 4-3. Hard and symbolic  
+                  links</H5><IMG height=396 alt=figs/lpi_0403.gif 
+                  src="04-5.files/lpi_0403.gif" width=191 border=0></CENTER><A 
+                  name=lpicertnut-CHP-4-SECT-5.2></A>
+                  <H4 class=docSection2Title>4.5.2 Setting Access Modes</H4>
+                  <P class=docText>New files are created with a default access 
+                  mode to automatically set the permission levels. But just 
+                  because a permission level is set automatically doesn't mean 
+                  that you have to live with what you're given. Access modes on 
+                  existing files can be changed or modified. </P><A 
+                  name=lpicertnut-CHP-4-SECT-5.2.1></A>
+                  <H5 class=docSection3Title>4.5.2.1 New files</H5>
+                  <P class=docText><A name=IXT-4-350105></A>When new files are  
+                  created, the protection bits are set according to the user's  
+                  default setting. That default is established using the <SPAN  
+                  class=docEmphBold>umask</SPAN> command, probably in a startup  
+                  script. This command accepts only one argument, which is a  
+                  three-digit octal string that masks the user, group, and other  
+                  permission bits for newly created files and directories.  
+                  Without a value, <SPAN class=docEmphBold>umask</SPAN><A  
+                  name=IXT-4-350106></A> reports the current value: </P><PRE>$ <B>umask</B>
+22</PRE> 
+                  <P class=docText>When provided with an integer, <SPAN 
+                  class=docEmphBold>umask</SPAN> sets the value for the current 
+                  shell: </P><PRE>$ <B>umask 2</B>
+$ <B>umask</B>
+2</PRE>
+                  <P class=docText>A <SPAN class=docEmphBold>umask</SPAN> of 22 
+                  can be rewritten as 022, or as 000010010 in binary. </P>
+                  <P class=docText><A name=IXT-4-350107></A>The process of  
+                  creating the initial mode for newly created files begins with  
+                  a raw initial mode string, as defined in <a class="docLink" href="#lpicertnut-CHP-4-TABLE-4">Table  
+                  4-4</a>. </P><A name=lpicertnut-CHP-4-TABLE-4></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-4. Initial Access Modes 
+                    </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Form</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>For Files</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>For Directories</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Symbolic</P></TD>
+                      <TD class=docTableCell><PRE>rw-rw-rw-</PRE></TD>
+                      <TD class=docTableCell><PRE>rwxrwxrwx</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Binary</P></TD>
+                      <TD class=docTableCell><PRE>110110110</PRE></TD>
+                      <TD class=docTableCell><PRE>111111111</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Octal</P></TD>
+                      <TD class=docTableCell><PRE>  6  6  6</PRE></TD>
+                      <TD class=docTableCell><PRE>  7  7  7</PRE></TD></TR></TBODY></TABLE>
+                  <P class=docText>The special bits are always turned off and 
+                  are not masked by the <SPAN class=docEmphBold>umask</SPAN>. 
+                  When a file is created, the <SPAN 
+                  class=docEmphBold>umask</SPAN> is subtracted from 666; for 
+                  directories, it is subtracted from 777. This calculation 
+                  yields the effective protection mode for the file or 
+                  directory. For example, a <SPAN class=docEmphBold>umask</SPAN> 
+                  of 2 (002) is applied to a new file, masking the write 
+                  permission for group and other user classes: </P><PRE>   110 110 110
+ - 000 010 010
+--------------
+   110 100 100</PRE>
+                  <P class=docText>This is the same as mode 644, or 
+                  <TT>rw-r--r--</TT>.</P>
+                  <P class=docText>Using the same mask on a directory yields a 
+                  similar result:</P><PRE>    111 111 111
+- 000 010 010
+--------------
+  111 101 101</PRE>
+                  <P class=docText>This is the same as mode 755 or 
+                  <TT>rwxr-xr-x</TT>, which is appropriate for directories. A 
+                  <SPAN class=docEmphBold>umask</SPAN> of 002 or 022 is typical, 
+                  though if you wish to ensure maximum privacy, a <SPAN 
+                  class=docEmphBold>umask</SPAN> of 077 blocks all access except 
+                  for the superuser. To set a custom <SPAN 
+                  class=docEmphBold>umask</SPAN>, enter the <SPAN 
+                  class=docEmphBold>umask</SPAN> command in a startup script, 
+                  such as <I>.bash_ profile</I>. Here's an example of the <SPAN 
+                  class=docEmphBold>umask</SPAN> in action: </P><PRE>$ <B>umask 27</B>
+$ <B>touch afile</B>
+$ <B>mkdir adir</B>
+$ <B>ls -ld adir afile</B>
+drwxr-x---   2 jdean    jdean        1024 Jan  2 20:31 adir
+-rw-r-----   1 jdean    jdean           0 Jan  2 20:31 afile</PRE>
+                  <P class=docText>In this case, the <SPAN 
+                  class=docEmphBold>umask</SPAN> of 27 makes the file <I>afile 
+                  </I>read-only to members of the group and disallows access to 
+                  the file to all others. </P>
+                  <P class=docText>In the previous example, the command <SPAN 
+                  class=docEmphBold>ls -ld</SPAN> adds an extra letter at the 
+                  beginning of the mode string for the <I>adir </I>directory. 
+                  This symbol indicates the type of file being listed and is not 
+                  part of the access mode. The letter <SPAN 
+                  class=docEmphBold>d</SPAN> indicates a directory, a - 
+                  indicates a file, the letter <SPAN class=docEmphBold>l</SPAN> 
+                  indicates a symbolic link, a <SPAN class=docEmphBold>b</SPAN> 
+                  indicates a block device (such as a disk), and a <SPAN 
+                  class=docEmphBold>c</SPAN> indicates a character device (such 
+                  as a terminal). </P><A name=lpicertnut-CHP-4-SECT-5.2.2></A>
+                  <H5 class=docSection3Title>4.5.2.2 Changing access modes</H5>
+                  <P class=docText>Access modes can be changed with the <SPAN  
+                  class=docEmphBold>chmod</SPAN> command, which accepts either  
+                  <SPAN class=docEmphasis>octal</SPAN> or <SPAN  
+                  class=docEmphasis>symbolic</SPAN> access mode specifications.  
+                  Octal bits, as shown in the previous section, are specified  
+                  explicitly. However, some people prefer to use symbolic forms  
+                  because they usually modify an existing mode instead of  
+                  completely replacing it. Symbolic mode specifications have  
+                  three parts, made up of individual characters, as shown in <a class="docLink" href="#lpicertnut-CHP-4-TABLE-5">Table  
+                  4-5</a>. </P><A name=lpicertnut-CHP-4-TABLE-5></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-5. Symbolic Modes for the 
+                    chmod Command </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>
+                        <P class=docText>Category</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Mode </P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Description</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>User class</P></TD>
+                      <TD class=docTableCell><PRE>u</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>User.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>g</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Group.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>o</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Other.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>a</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>All classes.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Operation</P></TD>
+                      <TD class=docTableCell><PRE> -</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Take away permission.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE> +</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Add permission.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE> =</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Set permission exactly.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Permissions</P></TD>
+                      <TD class=docTableCell><PRE>  r</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Read permission.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>  w</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Write permission.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>  x</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Execute permission.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>  X</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Execute permission for directories and 
+                        files with another execute permission, but not plain 
+                        files. </P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>  s</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>SUID or SGID permissions.</P></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>&nbsp;</TD>
+                      <TD class=docTableCell><PRE>  t</PRE></TD>
+                      <TD class=docTableCell>
+                        <P class=docText>Sticky 
+                  bit.</P></TD></TR></TBODY></TABLE>
+                  <P class=docText>The individual user class characters and 
+                  permissions characters may be grouped to form compound 
+                  expressions, such as <SPAN class=docEmphBold>ug</SPAN> for 
+                  <I>user</I> and <I>group</I> combined or <SPAN 
+                  class=docEmphBold>rw</SPAN> for <I>read</I> and <I>write</I>. 
+                  Here are some examples of symbolic mode specifications: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>u+x</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Add execute permission for the 
+                    <I>user</I>.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>go-w</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Remove write permission from <I>group</I> 
+                    and <I>other</I> classes. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>o+t</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Set the sticky bit.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>a=rw</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Set read and write, but not execute, 
+                    permissions for everyone.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>a+X</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Give everyone execute permission for 
+                    directories and for those files with any existing execute 
+                    permission. </P></DD></DL>
+                  <P class=docText>The <SPAN class=docEmphBold>chmod</SPAN> 
+                  command is used to modify the mode. </P><A 
+                  name=p1_ch04-144-fm2xml></A><A name=IXT-4-350108></A><A 
+                  name=IXT-4-350109></A><A name=IXT-4-350110></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>chmod</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-146-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>chmod [options] symbolic_mode[,symbolic_mode]... files
+chmod [options] octal_mode files
+chmod [options] --reference=rfile files</PRE><A 
+                  name=p1_ch04-147-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350108></A><A 
+                  name=IXT-4-350109></A><A name=IXT-4-350110></A>Modify the  
+                  access mode on <I>files</I>. In the first form, use one or  
+                  more comma-separated <I>symbolic_mode</I> specifications to  
+                  modify <I>files</I>. In the second form, use an  
+                  <I>octal_mode</I> to modify <I>files</I>. In the third form,  
+                  use the mode of <I>rfile</I> as a template to be applied to  
+                  <I>files</I>. </P><A name=p1_ch04-148-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Like verbose mode, but report only 
+                    changes.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-R</SPAN> </SPAN>
+                    <DD>
+                    <P class=docList>Use recursive mode, descending through 
+                    directory hierarchies under <I>files</I> and making 
+                    modifications throughout. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use verbose behavior, reporting actions for 
+                    all <I>files</I>. </P></DD></DL><A 
+name=p1_ch04-149-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Set the mode for a file to 
+                  <TT>rw-r--r--</TT>, using an octal specification: </P><PRE>$ <B>chmod 644 afile</B>
+$ <B>ls -l afile</B>
+-rw-r--r--   1 jdean    jdean           0 Jan  2 20:31 afile</PRE><A 
+                  name=p1_ch04-150-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Set the same permission using a symbolic 
+                  specification, using the verbose option: </P><PRE>$ <B>chmod -v u=rw,go=r afile</B>
+mode of afile retained as 0644 (rw-r--r--)</PRE><A 
+                  name=p1_ch04-151-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Recursively remove all permissions for 
+                  <I>other</I> on a directory: </P><PRE>$ <B>chmod -v o-rwx adir</B>
+mode of adir retained as 0770 (rwxrwx---)
+mode of adir/file1 changed to 0660 (rw-rw----)
+mode of adir/file2 changed to 0660 (rw-rw----)
+mode of adir/file3 changed to 0660 (rw-rw----)
+mode of adir/file4 changed to 0660 (rw-rw----)
+mode of adir/dir1 changed to 0770 (rwxrwx---)
+mode of adir/dir1/file6 changed to 0660 (rw-rw----)
+mode of adir/dir1/file5 changed to 0660 (rw-rw----)
+mode of adir/dir2 changed to 0770 (rwxrwx---)</PRE><A 
+                  name=p1_ch04-152-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 4</H4>
+                  <P class=docText>Set the sticky bit on a directory:</P><PRE>$ <B>chmod -v +t adir</B> 
+mode of adir changed to 1770 (rwxrwx--T) </PRE><A 
+                  name=lpicertnut-CHP-4-SECT-5.3></A>
+                  <H4 class=docSection2Title>4.5.3 Setting Up a Workgroup 
+                  Directory</H4>
+                  <P class=docText>The steps you may use to create a useful 
+                  workgroup directory for a small team of people are briefly 
+                  described here. The goals of the directory are as follows: 
+</P>
+                  <UL>
+                    <LI>
+                    <P class=docList>The workgroup is to be called <I>sales</I> 
+                    and has members <I>jdoe</I>, <I>bsmith</I>, and 
+                    <I>jbrown</I>. </P>
+                    <LI>
+                    <P class=docList>The directory is <I>/home/sls</I>.</P>
+                    <LI>
+                    <P class=docList>Only the creators of files in 
+                    <I>/home/sls</I> should be able to delete them. </P>
+                    <LI>
+                    <P class=docList>Members shouldn't need to worry about file 
+                    ownership, and all group members require full access to 
+                    files. </P>
+                    <LI>
+                    <P class=docList>Nonmembers should have no access to any of 
+                    the files.</P></LI></UL>
+                  <P class=docText>The following steps will satisfy the 
+                  goals:</P><SPAN style="FONT-WEIGHT: bold">
+                  <OL class=docList type=1>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Create the new group:</P><PRE># <B>groupadd sales</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Add the existing users to the group:</P><PRE># <B>usermod -G sales jdoe</B>
+# <B>usermod -G sales bsmith</B>
+# <B>usermod -G sales jbrown</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Create a directory for the group:</P><PRE># <B>mkdir /home/sls</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Set the ownership of the new directory: 
+</P><PRE># <B>chgrp sales /home/sls</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Protect the directory from others:</P><PRE># <B>chmod 770 /home/sls</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Set the SGID bit to ensure that the 
+                    <I>sales</I> group will own all new files. Also set the 
+                    sticky bit to protect files from deletion by non-owners: 
+</P><PRE># <B>chmod g+s,o+t /home/sls</B></PRE></SPAN>
+                    <LI><SPAN style="FONT-WEIGHT: normal">
+                    <P class=docList>Test it:</P><PRE># <B>su - jdoe</B>
+$ <B>cd /home/sls</B>
+$ <B>touch afile</B>
+$ <B>ls -l afile</B>
+-rw-rw-r--   1 jdoe     sales      0 Jan  3 02:44 afile
+$ <B>exit</B>
+# <B>su - bsmith</B>
+# <B>cd /home/sls</B>
+# <B>rm afile</B>
+rm: cannot unlink `afile': Operation not permitted</PRE></SPAN></LI></OL></SPAN>
+                  <P class=docText>After the <SPAN class=docEmphBold>ls</SPAN> 
+                  command, we see that the group ownership is correctly set to 
+                  <I>sales</I>. After the <SPAN class=docEmphBold>rm</SPAN> 
+                  command, we see that <I>bsmith</I> cannot delete <I>afile</I>, 
+                  which was created by <I>jdoe. </I>We also note that although 
+                  <I>afile</I> has mode 664, the directory containing it has 
+                  mode 770, preventing <I>other</I> users from reading the file. 
+                  </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>For the exam, you should be prepared to 
+                        answer questions on file and directory permissions in 
+                        both symbolic and numeric (octal) forms. You should also 
+                        be able to translate between the two forms given an 
+                        example. </P></TD></TR></TBODY></TABLE><A 
+                  href="http://safari.informit.com/?xmlid=1-56592-748-6/3071532"><IMG 
+                  height=1 src="04-5.files/pixel.htm" width=1 border=0></A>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-5&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-5
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)375ms
+(xml)172ms
+(xsl)32ms
+(ent)0ms
+(buf)0ms
+
+(tot)890ms
+--></BODY></HTML>

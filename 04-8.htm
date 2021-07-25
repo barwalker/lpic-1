@@ -1,0 +1,1049 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-8&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-8.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-8.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-8></A>
+                  <H3 class=docSection1Title>4.8 Objective 8: Find System Files 
+                  and Place Files in the Correct Location</H3>
+                  <P class=docText>In 1993, the Linux community formed a project 
+                  to provide a standardized filesystem layout for all 
+                  general-purpose distributions of Linux. The intent of this 
+                  standardization was to provide advice on how to create a 
+                  low-maintenance filesystem, and to reduce the proliferation of 
+                  proprietary Linux filesystem layouts and their possible 
+                  contribution to market fragmentation. </P>
+                  <P class=docText>The project released a document describing  
+                  the <A name=IXT-4-350128></A>Linux Filesystem Standard,  
+                  usually abbreviated FSSTND, in 1994. The following year, the  
+                  group began to reduce Linux-specific content and to refine the  
+                  standard to include other Unix or Unix-like operating systems.  
+                  As the FSSTND attracted broader appeal, it was renamed the <A  
+                  name=lpicertnut-IDXTERM-412></A><SPAN 
+                  class=docEmphasis>Filesystem Hierarchy Standard</SPAN>, or  
+                  FHS. Although the FHS is not a requirement of Linux developers  
+                  and distributors, the Linux community understands the  
+                  importance of standards, and all major distributions support  
+                  the standard. </P><A name=lpicertnut-CHP-4-SECT-8.1></A> 
+                  <H4 class=docSection2Title>4.8.1 Data Types</H4>
+                  <P class=docText><A name=IXT-4-350129></A><A 
+                  name=IXT-4-350130></A>In <A name=IXT-4-350131></A>order to  
+                  frame its recommendations, the FHS defines two categories of  
+                  data use, each with two opposing subtypes: </P><A  
+                  name=IXT-4-350132></A><A name=IXT-4-350133></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Data sharing</SPAN></I> 
+                    <DD>
+                    <P class=docList>This category defines the scope of data use 
+                    in a networked environment: </P><A name=IXT-4-350132></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Sharable</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-4-350132></A>Sharable data  
+                      can be used by multiple host systems on a network.  
+                      Sharable files contain general-purpose information,  
+                      without ties to any specific host. Examples include user  
+                      datafiles, many executable program files, and common  
+                      configuration files such as <I>hosts</I>. </P></DD></DL><A  
+                    name=IXT-4-350133></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Non-sharable</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-4-350133></A>Data is not  
+                      sharable when linked to a specific host, such as a unique  
+                      configuration file. Examples include the <I>passwd</I>  
+                      file, network configuration files, and system logs.  
+                      </P></DD></DL></DD></DL><A name=IXT-4-350134></A><A 
+                  name=IXT-4-350135></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Data modification</SPAN></I> 
+                    <DD>
+                    <P class=docList>This category specifies how data 
+                    changes:</P><A name=IXT-4-350134></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Variable</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-4-350134></A>Data is  
+                      considered variable when changed by natural, frequent  
+                      processes. Examples include user files and system log  
+                      files, such as <I>/var/log/messages</I>. </P></DD></DL><A  
+                    name=IXT-4-350135></A>
+                    <DL class=docList>
+                      <DT><I><SPAN class=docPubcolor>Static</SPAN></I> 
+                      <DD>
+                      <P class=docList><A name=IXT-4-350135></A>Static data is  
+                      left alone for the most part, remaining the same from day  
+                      to day or even year to year. Examples include binary  
+                      programs such as <SPAN class=docEmphBold>ls</SPAN> and  
+                      <SPAN class=docEmphBold>bash</SPAN>, which change only  
+                      when the system administrator performs an upgrade.  
+                      </P></DD></DL></DD></DL>
+                  <P class=docText>Some directories in the Linux filesystem are  
+                  intended to hold specific types of data. For example, the  
+                  executable files in <I>/usr</I> are rarely changed, and thus  
+                  could be defined as <SPAN class=docEmphasis>static</SPAN>  
+                  because they are needed by all users on a network. Before  
+                  disks were as large as they are today, the files commonly  
+                  found in <I>/usr </I>were often mounted from remote servers to  
+                  preserve local disk space. Thus, in addition to being static,  
+                  <I>/usr</I> is said to be <SPAN  
+                  class=docEmphasis>sharable</SPAN>. Keeping files organized  
+                  with respect to these attributes can simplify file sharing,  
+                  system administration, and backup complexity, as well as  
+                  reduce storage requirements. The FHS arranges the preceding  
+                  data categories into a 2 x 2 matrix, as shown with a few  
+                  example directories in <a class="docLink" href="#lpicertnut-CHP-4-TABLE-6">Table  
+                  4-6</a>. </P><A name=lpicertnut-CHP-4-TABLE-6></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-6. FHS Data Types 
+                    </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>&nbsp;</TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Sharable</P></TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>Non-sharable</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Static</P></TD>
+                      <TD class=docTableCell><PRE>/usr
+/usr/local</PRE></TD>
+                      <TD class=docTableCell><PRE>/etc
+/boot</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Variable</P></TD>
+                      <TD class=docTableCell><PRE>/var/mail
+/home</PRE></TD>
+                      <TD class=docTableCell><PRE>/var/log
+/proc</PRE></TD></TR></TBODY></TABLE>
+                  <P class=docText>On many networks, <I>/usr</I> and 
+                  <I>/usr/local</I> are mounted by individual workstations from 
+                  an NFS server. This can save a considerable amount of local 
+                  storage on the workstations. More important, placing these 
+                  directories on another system can make upgrades and additions 
+                  much simpler. These directories are usually shared as 
+                  read-only filesystems because they are never modified by most 
+                  end users. The <I>/var/mail</I> and <I>/home</I> directories, 
+                  on the other hand, are shared but must be changed regularly by 
+                  users. The <I>/etc</I> and <I>/boot</I> directories contain 
+                  files that are static in the sense that only the administrator 
+                  changes them, but sharing them is not necessary or advised, 
+                  since they are local configuration files. The <I>/var/log</I> 
+                  and <I>/proc</I> directories are very dynamic but also of 
+                  local interest only. </P><A 
+name=lpicertnut-CHP-4-SECT-8.2></A>
+                  <H4 class=docSection2Title>4.8.2 The root Filesystem</H4>
+                  <P class=docText>The FHS offers a significant level of detail 
+                  describing the exact locations of files, using rationale 
+                  derived from the static/variable and sharable/nonsharable 
+                  definitions. However, knowledge of the location of every file 
+                  is not necessary or required for Exam 101. This section 
+                  discusses the major portions of the FHS directory hierarchy 
+                  overall, with specific example files offered as illustrations. 
+                  </P><A name=p1_ch04-184-fm2xml></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="90%" align=center 
+                  bgColor=black border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=6 width="100%" 
+                        bgColor=white border=0>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top width=60><IMG height=54 
+                              src="04-8.files/tip_yellow.gif" width=50></TD>
+                            <TD vAlign=top>
+                              <P class=docText><A name=IXT-4-350136></A>While  
+                              the FHS is a defining document for the Linux  
+                              filesystem, it does not follow that all  
+                              directories described in the FHS will be present  
+                              in all Linux installations. Some directory  
+                              locations cited in the FHS are package-dependent  
+                              or open to customization by the vendor.  
+                          </P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+                  <P class=docText>The <A name=IXT-4-350137></A>root filesystem  
+                  is located at the top of the entire directory hierarchy. The  
+                  FHS defines these goals for the root filesystem: </P> 
+                  <UL>
+                    <LI>
+                    <P class=docList>It must contain utilities and files 
+                    sufficient to boot the operating system, including the 
+                    ability to mount other filesystems. This includes utilities, 
+                    device files, configuration, boot loader information, and 
+                    other essential start-up data. </P>
+                    <LI>
+                    <P class=docList>It should contain the utilities needed by 
+                    the system administrator to repair or restore a damaged 
+                    system. </P>
+                    <LI>
+                    <P class=docList>It should be relatively small. Small 
+                    partitions are less likely to be corrupted due to a system 
+                    crash or power failure than large ones are. In addition, the 
+                    root partition should contain non-sharable data to maximize 
+                    the remaining disk space for sharable data. </P>
+                    <LI>
+                    <P class=docList>Software should not create files or 
+                    directories in the root filesystem. </P></LI></UL>
+                  <P class=docText>While a Linux system with everything in a 
+                  single root partition may be created, doing so would not meet 
+                  these goals. Instead, the root filesystem should contain only 
+                  essential system directories, along with mount points for 
+                  other filesystems. Essential root filesystem directories 
+                  include: </P><A name=IXT-4-350138></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/bin</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/bin</I><A name=IXT-4-350138></A>  
+                    directory contains executable system commands such as <SPAN  
+                    class=docEmphBold>cp</SPAN>, <SPAN  
+                    class=docEmphBold>date</SPAN>, <SPAN  
+                    class=docEmphBold>ln</SPAN>, <SPAN  
+                    class=docEmphBold>ls</SPAN>, <SPAN  
+                    class=docEmphBold>mkdir</SPAN>, and <SPAN  
+                    class=docEmphBold>more</SPAN>. These commands are deemed  
+                    essential to system administration in case of a problem.  
+                    </P></DD></DL><A name=IXT-4-350139></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/dev</I></SPAN> 
+                    <DD>
+                    <P class=docList><A name=IXT-4-350139></A>Device files,  
+                    necessary for accessing disks and other devices, are stored  
+                    in <I>/dev</I>. Examples include disk partitions, such as  
+                    <I>hda1</I>, and terminals, such as <I>tty1</I>. Devices  
+                    must be present at boot time for proper mounting and  
+                    configuration. </P></DD></DL><A name=IXT-4-350140></A><A 
+                  name=IXT-4-350141></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/etc</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/etc</I><A name=IXT-4-350140></A>  
+                    directory contains configuration information unique to the  
+                    system and is required for boot time. No binary executable  
+                    programs are stored here.<SUP class=docFootnote>[9]</SUP> Example  
+                    files include <I>passwd</I>, <I>hosts</I>, and  
+                    <I>login.defs</I>. </P>
+                    <BLOCKQUOTE>
+                      <P class=docFootnote><SUP><A name="">[9]</A></SUP> <A  
+                      name=IXT-4-350141></A>Prior practice in various versions  
+                      of Unix had administrative executable programs stored in  
+                      <I>/etc</I>. These have been moved to <I>/sbin</I> under  
+                      the FHS.</P></BLOCKQUOTE></DD></DL><A name=IXT-4-350142></A> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/lib</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/lib</I><A name=IXT-4-350142></A>  
+                    directory contains shared libraries and kernel modules, both  
+                    essential for system initialization. </P></DD></DL><A  
+                  name=IXT-4-350143></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/mnt</I></SPAN> 
+                    <DD>
+                    <P class=docList>This <A name=IXT-4-350143></A>directory is  
+                    empty except for some mount points for temporary partitions,  
+                    including <I>cdrom</I> and <I>floppy</I>. </P></DD></DL><A  
+                  name=IXT-4-350144></A><A name=IXT-4-350145></A><A 
+                  name=IXT-4-350146></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/root</I></SPAN> 
+                    <DD>
+                    <P class=docList>The typical home directory for the  
+                    superuser is <I>/root</I><A name=IXT-4-350144></A> <A  
+                    name=IXT-4-350145></A><A name=IXT-4-350146></A>. While it is  
+                    not absolutely essential for <I>/root</I> to be on the root  
+                    filesystem, it is customary and convenient, because doing so  
+                    keeps root's configuration files available for system  
+                    maintenance or recovery. </P></DD></DL><A  
+                  name=IXT-4-350147></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/sbin</I></SPAN> 
+                    <DD>
+                    <P class=docList>Essential utilities used for system  
+                    administration are stored in <I>/sbin</I><A  
+                    name=IXT-4-350147></A>. Examples include <SPAN  
+                    class=docEmphBold>fdisk</SPAN>, <SPAN  
+                    class=docEmphBold>fsck</SPAN>, and <SPAN  
+                    class=docEmphBold>mkfs</SPAN>. </P></DD></DL>
+                  <P class=docText>The remaining top-level directories in the 
+                  root filesystem are considered non-essential for emergency 
+                  procedures: </P><A name=IXT-4-350148></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/boot</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/boot</I><A name=IXT-4-350148></A>  
+                    directory contains files for LILO. Because it is typically  
+                    small, it can be left in the root filesystem. However, it is  
+                    often separated to keep the boot loader files within the  
+                    first 1024 cylinders of a physical disk. </P></DD></DL><A  
+                  name=IXT-4-350149></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/home</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/home</I><A name=IXT-4-350149></A>  
+                    directory contains home directories for system users. This  
+                    is usually a separate filesystem and is often the largest  
+                    variable filesystem in the hierarchy. </P></DD></DL><A  
+                  name=IXT-4-350150></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/opt</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/opt</I><A name=IXT-4-350150></A>  
+                    directory is intended for the installation of software other  
+                    than that packaged with the operating system. This is often  
+                    the location selected by third-party software vendors for  
+                    their products. </P></DD></DL><A name=IXT-4-350151></A> 
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/tmp</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/tmp</I><A name=IXT-4-350151></A>  
+                    directory is for the storage of temporary files. The  
+                    contents are deleted upon every system boot. </P></DD></DL><A  
+                  name=IXT-4-350152></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/usr</I><A name=IXT-4-350152></A>  
+                    directory contains a significant hierarchy of executable  
+                    programs deemed nonessential for emergency procedures. It is  
+                    usually contained in a separate partition. It contains  
+                    sharable, read-only data, and is often mounted locally  
+                    read-only and shared via NFS read-only. <I>/usr</I> is  
+                    described in detail in the next section. </P></DD></DL><A  
+                  name=IXT-4-350153></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var</I></SPAN> 
+                    <DD>
+                    <P class=docList>Like <I>/usr</I>, the <I>/var</I><A  
+                    name=IXT-4-350153></A> directory contains a large hierarchy  
+                    and is usually contained in a separate partition. It holds  
+                    data that varies over time, such as logs, mail, and spools.  
+                    </P></DD></DL><A name=lpicertnut-CHP-4-SECT-8.2.1></A>
+                  <H5 class=docSection3Title>4.8.2.1 The /usr filesystem</H5>
+                  <P class=docText>The <I>/usr</I><A name=IXT-4-350154></A>  
+                  filesystem hierarchy contains system utilities and programs  
+                  that do not appear in the root partition. For example, user  
+                  programs such as <SPAN class=docEmphBold>awk</SPAN>, <SPAN  
+                  class=docEmphBold>less</SPAN>, and <SPAN  
+                  class=docEmphBold>tail</SPAN> are found in <I>/usr/bin</I>.  
+                  <I>/usr/sbin</I> contains system administration commands such  
+                  as <SPAN class=docEmphBold>adduser</SPAN> and <SPAN  
+                  class=docEmphBold>traceroute</SPAN>, and a number of daemons  
+                  needed only on a normally operating system. No host-specific  
+                  or variable data is stored in <I>/usr</I>. Also disallowed is  
+                  the placement of directories directly under <I>/usr</I> for  
+                  large software packages. An exception to this rule is made for  
+                  X11, which has a strong precedent for this location. The  
+                  following subdirectories can be found under <I>/usr </I>:  
+                  </P><A name=IXT-4-350155></A>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/X11R6</I><A 
+                    name=IXT-4-350155></A></SPAN> 
+                    <DD>
+                    <P class=docList>This directory contains files for XFree86. 
+                    Because X is deployed directly under <I>/usr</I> on many 
+                    Unix systems, X breaks the rule that usually prohibits a 
+                    custom <I>/usr</I> directory for a software package. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/bin</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/usr/bin</I> directory is the 
+                    primary location for user commands that are not considered 
+                    essential for emergency system maintenance (and thus are 
+                    stored here rather than in <I>/bin</I>). </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/games</I></SPAN> 
+                    <DD>
+                    <P class=docList>It's unlikely that you'll find anything of 
+                    significant interest here. This location was used for older 
+                    console (text) games and utilities. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/include</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>/usr/include</I> is the standard 
+                    location for <SPAN class=docEmphasis>include</SPAN> or <SPAN 
+                    class=docEmphasis>header</SPAN> files, used for C and C++ 
+                    programming. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/lib</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directory contains shared libraries 
+                    that support various programs. FHS also allows the creation 
+                    of software-specific directories here. For example, 
+                    <I>/usr/lib/perl5</I> contains the standard library of Perl 
+                    modules that implement programming functions in that 
+                    language. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/local</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>/usr/local</I> is the top level of 
+                    another hierarchy of binary files, intended for use by the 
+                    system administrator. It contains subdirectories much like 
+                    <I>/usr</I> itself, such as <I>/bin</I>, <I>/include</I>, 
+                    <I>/lib</I>, and <I>/sbin</I>. After a fresh Linux 
+                    installation, this directory contains no files but may 
+                    contain an empty directory hierarchy. Example items that may 
+                    be found here are locally created documents in 
+                    <I>/usr/local/doc</I> or <I>/usr/local/man</I>, and 
+                    executable scripts and binary utilities provided by the 
+                    system administrator in <I>/usr/local/bin</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/sbin</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/usr/sbin</I> directory is the 
+                    primary location for system administration commands that are 
+                    not considered essential for emergency system maintenance 
+                    (and thus are stored here rather than in <I>/sbin</I>). 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/share</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>/usr/share</I> contains a hierarchy of 
+                    datafiles that are independent of, and thus can be shared 
+                    among, various hardware architectures and operating system 
+                    versions. This is in sharp contrast to 
+                    architecture-dependant files such as those in 
+                    <I>/usr/bin</I>. For example, in an enterprise that uses 
+                    both i386- and Alpha-based Linux systems, <I>/usr/share</I> 
+                    could be offered to all systems via NFS. However, since the 
+                    two processors are not binary-compatible, <I>/usr/bin</I> 
+                    would have two NFS shares, one for each architecture. </P>
+                    <P class=docList>The information stored in <I>/usr/share</I> 
+                    is static data, such as the GNU <SPAN 
+                    class=docEmphBold>info</SPAN> system files, dictionary 
+                    files, and support files for software packages. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/usr/src</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>/usr/src</I> contains Linux source code, 
+                    if installed. For example, if kernel development files are 
+                    installed, <I>/usr/src/linux</I> contains the complete tree 
+                    of source and configuration files necessary to build a 
+                    custom kernel. </P></DD></DL><A 
+                  name=lpicertnut-CHP-4-SECT-8.2.2></A>
+                  <H5 class=docSection3Title>4.8.2.2 The /var filesystem</H5>
+                  <P class=docText>The <I>/var</I> filesystem contains data such 
+                  as printer spools and log files that vary over time. Since 
+                  variable data is always changing and growing, <I>/var</I> is 
+                  usually contained in a separate partition to prevent the root 
+                  partition from filling. The following subdirectories can be 
+                  found under <I>/var </I>: </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/account</I></SPAN> 
+                    <DD>
+                    <P class=docList>Some systems maintain process accounting 
+                    data in this directory.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/cache</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>/var/cache</I> is intended for use by 
+                    programs for the temporary storage of intermediate data, 
+                    such as the results of lengthy computations. Programs using 
+                    this directory must be capable of regenerating the cached 
+                    information at any time, which allows the system 
+                    administrator to delete files as needed. Because it holds 
+                    transient data, <I>/var/cache</I> never has to be backed up. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/crash</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directory holds crash dumps for 
+                    systems that support that feature. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/games</I></SPAN> 
+                    <DD>
+                    <P class=docList>Older games may use this directory to store 
+                    state information, user score data, and other transient 
+                    items. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/lock</I></SPAN> 
+                    <DD>
+                    <P class=docList>Lock files, used by applications to signal 
+                    their existence to other processes, are stored here. Lock 
+                    files usually contain no data. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/log</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/var/log</I> directory is the main 
+                    repository for system log files, such as those created by 
+                    the <I>syslog</I> system. For example, the default system 
+                    log file is <I>/var/log/messages</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/mail</I></SPAN> 
+                    <DD>
+                    <P class=docList>This is the system mailbox, with mail files 
+                    for each user. <I>/var/mail</I> is a replacement for 
+                    <I>/var/spool/mail</I> and aligns FHS with many other Unix 
+                    implementations. You may find that your Linux distribution 
+                    still uses <I>/var/spool/mail</I>. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/opt</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directory is defined as a location for 
+                    temporary files of programs stored in <I>/opt</I>. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/run</I></SPAN> 
+                    <DD>
+                    <P class=docList><I>/var/run</I> contains various files 
+                    describing the present state of the system. All such files 
+                    may be deleted at system boot time. This is the default 
+                    location for PID files, which contain the PIDs of the 
+                    processes for which they are named. For example, if the 
+                    Apache web server, <SPAN class=docEmphBold>httpd</SPAN>, is 
+                    running as process number 534, <I>/var/run/httpd.pid</I> 
+                    will contain that number: </P></DD></DL><PRE># <B>cat /var/run/httpd.pid</B>
+534</PRE>
+                  <P class=docText>Such files are needed by utilities that must 
+                  be able to find a PID for a running process. Also located here 
+                  is the <I>utmp</I> file, used by commands such as <SPAN 
+                  class=docEmphBold>last</SPAN> and <SPAN 
+                  class=docEmphBold>who,</SPAN> to display logged-in users. </P>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/spool</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/var/spool</I> directory contains 
+                    information that is queued for processing. Examples include 
+                    print queues, outgoing mail, and crontab files. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/state</I></SPAN> 
+                    <DD>
+                    <P class=docList>The <I>/var/state</I> directory is intended 
+                    to contain information that helps applications preserve 
+                    state across multiple invocations or multiple instances. 
+                    </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/tmp</I></SPAN> 
+                    <DD>
+                    <P class=docList>As with <I>/tmp</I> in the root 
+                    filesystem,<I> /var/tmp</I> is used for storage of temporary 
+                    files. Unlike <I>/tmp</I>, the files in <I>/var/tmp</I> are 
+                    expected to survive across multiple system boots. The 
+                    information found in <I>/var/tmp</I> could be considered 
+                    more persistent than information in <I>/tmp</I>. 
+</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><I>/var/yp</I></SPAN> 
+                    <DD>
+                    <P class=docList>This directory contains the database files 
+                    of the Network Information Service (NIS), if implemented. 
+                    NIS was formerly known as the <I>yellow pages</I> (not to be 
+                    confused with the big yellow book). </P></DD></DL>
+                  <P class=docText><a class="docLink" href="#lpicertnut-CHP-4-FIG-5">Figure  
+                  4-5</a> depicts an example filesystem hierarchy. This figure  
+                  is a graphical depiction of the partitioning scheme listed in <a class="docLink" href="04-1.htm#lpicertnut-CHP-4-TABLE-1">Table  
+                  4-1</a> earlier in this chapter. The root partition contains  
+                  full directories for <I>/bin</I>, <I>/dev</I>, <I>/etc</I>,  
+                  <I>/lib</I>, <I>/mnt</I>, <I>/root</I>, and <I>/sbin</I>.  
+                  Top-level directories <I>/boot</I>, <I>/home</I>, <I>/opt</I>,  
+                  <I>/tmp</I>, <I>/usr</I>, and <I>/var</I> exist on the root  
+                  filesystem, but they are empty and act as mount points for  
+                  other filesystems. </P> 
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-4-FIG-5></A>Figure 4-5. Example filesystem  
+                  hierarchy</H5><IMG height=245 alt=figs/lpi_0405.gif 
+                  src="04-8.files/lpi_0405.gif" width=361 border=0></CENTER><A 
+                  name=lpicertnut-CHP-4-SECT-8.2.3></A>
+                  <H5 class=docSection3Title>4.8.2.3 Linux annex</H5>
+                  <P class=docText>Since FHS migrated away from being a 
+                  Linux-only document and expanded to cover other operating 
+                  systems, information specific to any one operating system was 
+                  moved to an <SPAN class=docEmphasis>annex</SPAN>. The only 
+                  annex listed in v2.0 of FHS is the Linux annex, which mentions 
+                  a few guidelines and makes allowances for the placement of 
+                  additional program files in <I>/sbin</I>. The Linux annex also 
+                  mentions and supports the use of the <I>/proc</I> filesystem 
+                  for the processing of kernel, memory, and process information. 
+                  </P><A name=lpicertnut-CHP-4-SECT-8.2.4></A>
+                  <H5 class=docSection3Title>4.8.2.4 Where's that binary?</H5>
+                  <P class=docText>Compiled executable files, called <SPAN  
+                  class=docEmphasis>binary files,</SPAN> or just <SPAN  
+                  class=docEmphasis>binaries</SPAN>, can be located in a number  
+                  of places in an FHS-compliant filesystem. However, it's easy  
+                  to become a little confused over why a particular executable  
+                  file is placed where it is in the FHS. This is particularly  
+                  true for <I>bin</I> and <I>sbin</I> directories, which appear  
+                  in multiple locations. <a class="docLink" href="#lpicertnut-CHP-4-TABLE-7">Table  
+                  4-7</a> lists these directories and shows how each is used.  
+                  </P><A name=lpicertnut-CHP-4-TABLE-7></A>
+                  <P>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" border=1>
+                    <CAPTION>
+                    <H5 class=docTableTitle>Table 4-7. Binary File Locations 
+                    </H5></CAPTION>
+                    <COLGROUP span=3>
+                    <TBODY>
+                    <TR>
+                      <TH class=docTableHeader>&nbsp;</TH>
+                      <TH class=docTableHeader>
+                        <P class=docText>User Commands</P></TH> 
+                      <TH class=docTableHeader>
+                        <P class=docText>System Admininistration 
+                    Commands</P></TH></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Vendor-supplied, essential (<I>root</I> 
+                        filesystem)</P></TD>
+                      <TD class=docTableCell><PRE>/bin</PRE></TD>
+                      <TD class=docTableCell><PRE>/sbin</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Vendor-supplied, nonessential 
+                        <I>(/usr</I> filesystem)</P></TD>
+                      <TD class=docTableCell><PRE>/usr/bin</PRE></TD>
+                      <TD class=docTableCell><PRE>/usr/sbin</PRE></TD></TR>
+                    <TR>
+                      <TD class=docTableCell>
+                        <P class=docText>Locally supplied, nonessential (<I> 
+                        /usr </I>filesystem)</P></TD>
+                      <TD class=docTableCell><PRE>/usr/local/bin</PRE></TD>
+                      <TD class=docTableCell><PRE>/usr/local/sbin</PRE></TD></TR></TBODY></TABLE><A 
+                  name=lpicertnut-CHP-4-SECT-8.3></A>
+                  <H4 class=docSection2Title>4.8.3 Locating Files</H4>
+                  <P class=docText>FHS offers the Linux community an excellent 
+                  resource that assures consistency across distributions and 
+                  other operating systems. In practice, however, file location 
+                  problems can be frustrating, and the need arises to find files 
+                  in the system quickly. These file location tools are required 
+                  for Exam 101: <SPAN class=docEmphBold>which</SPAN>, <SPAN 
+                  class=docEmphBold>find</SPAN>, <SPAN 
+                  class=docEmphBold>locate</SPAN>, <SPAN 
+                  class=docEmphBold>updatedb</SPAN>, <SPAN 
+                  class=docEmphBold>whatis</SPAN>, and <SPAN 
+                  class=docEmphBold>apropos</SPAN>. </P>
+                  <P class=docText><SPAN class=docEmphBold>which</SPAN> uses the 
+                  PATH variable to locate executable files. <SPAN 
+                  class=docEmphBold>find</SPAN> searches specified areas in the 
+                  filesystem. <SPAN class=docEmphBold>updatedb</SPAN>, <SPAN 
+                  class=docEmphBold>whatis</SPAN>, and <SPAN 
+                  class=docEmphBold>apropos</SPAN> utilize databases to do quick 
+                  searches to identify and locate files. <SPAN 
+                  class=docEmphBold>locate</SPAN> offers a quick alternative to 
+                  <SPAN class=docEmphBold>find</SPAN> for filename searches and 
+                  is suited for locating files that are not moved around in the 
+                  filesystem. Without a fresh database to search, <SPAN 
+                  class=docEmphBold>locate</SPAN> is not suitable for files 
+                  recently created or renamed. </P>
+                  <P class=docText><SPAN class=docEmphBold>whatis</SPAN> and 
+                  <SPAN class=docEmphBold>apropos</SPAN> work similarly to <SPAN 
+                  class=docEmphBold>locate</SPAN> but use a different database. 
+                  The <SPAN class=docEmphBold>whatis</SPAN> database is a set of 
+                  files containing short descriptions of system commands, 
+                  created by <SPAN class=docEmphBold>makewhatis</SPAN>. Note 
+                  that these commands are not specifically mentioned in this 
+                  Objective but may appear on Exam 101. </P><A 
+                  name=p1_ch04-190-fm2xml></A><A name=IXT-4-350156></A><A 
+                  name=IXT-4-350157></A><A name=IXT-4-350158></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>which</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-192-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>which command</PRE><A name=p1_ch04-193-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350156></A><A 
+                  name=IXT-4-350157></A><A name=IXT-4-350158></A>Determine the  
+                  location of <I>command</I> and display the full pathname of  
+                  the executable program that the shell would launch to execute  
+                  it. <SPAN class=docEmphBold>which</SPAN> has no options.  
+                  </P><A name=p1_ch04-194-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Determine the shell that would be started by 
+                  entering the <I>tcsh</I> command: </P><PRE># <B>which tcsh</B>
+/bin/tcsh</PRE>
+                  <P class=docText><SPAN class=docEmphBold>which</SPAN> is small 
+                  and does only one thing: determines what executable program 
+                  will be found and called by the shell. Such a search is 
+                  particularly useful if you're having trouble with the setup of 
+                  your PATH environment variable or if you are creating a new 
+                  version of an existing utility and want to be certain you're 
+                  executing the experimental version. </P><A 
+                  name=p1_ch04-195-fm2xml></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>find</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-197-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>find paths expression </PRE><A 
+                  name=p1_ch04-198-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText>Locate files that match an <I>expression</I> 
+                  starting at <I>paths</I> and continuing recursively. The <SPAN 
+                  class=docEmphBold>find</SPAN> command has a rich set of 
+                  <I>expression</I> directives for locating just about anything 
+                  in the filesystem. </P><A name=p1_ch04-199-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>To find files by name located in the 
+                  <I>/usr</I> directory hierarchy that might have something to 
+                  do with the <SPAN class=docEmphBold>csh</SPAN> shell or its 
+                  variants, you might use the -<SPAN 
+                  class=docEmphBold>name</SPAN><I> filename</I> directive: </P><PRE># <B>find /usr -name &quot;*csh*&quot;</B>
+/usr/bin/sun-message.csh
+/usr/doc/tcsh-6.08.00
+/usr/doc/tcsh-6.08.00/complete.tcsh
+/usr/doc/vim-common-5.3/syntax/csh.vim
+/usr/man/man1/tcsh.1
+/usr/share/apps/ktop/pics/csh.xpm
+/usr/share/apps/ktop/pics/tcsh.xpm
+/usr/share/emacs/20.3/etc/emacs.csh
+/usr/share/vim/syntax/csh.vim
+/usr/src/linux-2.2.5/fs/lockd/svcshare.c</PRE>
+                  <P class=docText>Some of these results are clearly related to 
+                  <SPAN class=docEmphBold>csh</SPAN> or to <SPAN 
+                  class=docEmphBold>tcsh</SPAN>, while others are questionable. 
+                  In addition, this command may take a while because <SPAN 
+                  class=docEmphBold>find</SPAN> must traverse the entire 
+                  <I>/usr</I> hierarchy, examining each filename for a match. 
+                  This example demonstrates that if filename wildcards are used, 
+                  the entire string must be quoted to prevent expansion by the 
+                  shell prior to launching <SPAN class=docEmphBold>find</SPAN>. 
+                  </P>
+                  <P class=docText><SPAN class=docEmphBold>find</SPAN> is among 
+                  the most useful commands in the Linux administrator's toolkit 
+                  and has a variety of useful options. <SPAN 
+                  class=docEmphBold>find</SPAN> is handy in certain cases. For 
+                  example: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>You need to limit a search to a particular 
+                    location in the filesystem.</P>
+                    <LI>
+                    <P class=docList>You must search for an attribute other than 
+                    the filename.</P>
+                    <LI>
+                    <P class=docList>Files you are searching for were recently 
+                    created or renamed, in which case <SPAN 
+                    class=docEmphBold>locate</SPAN> may not be appropriate. 
+                    </P></LI></UL>
+                  <P class=docText>Unfortunately, <SPAN  
+                  class=docEmphBold>find</SPAN> can take a long time to run.  
+                  Refer to <a class="docLink" href="03-1.htm">Section  
+                  3.1</a>for additional information on the <SPAN  
+                  class=docEmphBold>find</SPAN><I> </I>command. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should have a general understanding 
+                        of <SPAN class=docEmphBold>find</SPAN>. Remember that by 
+                        default, <SPAN class=docEmphBold>find</SPAN> prints 
+                        matching directory entries to the screen. However, 
+                        detailed knowledge of <SPAN 
+                        class=docEmphBold>find</SPAN> options and usage are 
+                        beyond the scope of LPIC Level 1 exams. 
+                    </P></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-202-fm2xml></A><A name=IXT-4-350159></A><A 
+                  name=IXT-4-350160></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>locate</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-203-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>locate patterns</PRE><A name=p1_ch04-204-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350159></A><A 
+                  name=IXT-4-350160></A>Locate files whose names match one or  
+                  more <I>patterns</I> by searching an index of files previously  
+                  created. </P><A name=p1_ch04-205-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Locate files by name in the entire directory 
+                  hierarchy that might have something to do with the <SPAN 
+                  class=docEmphBold>csh</SPAN> shell or its variants: </P><PRE># <B>locate &quot;*csh*&quot;</B>
+/home/jdean/.tcshrc
+/root/.cshrc
+/root/.tcshrc
+/usr/bin/sun-message.csh
+/usr/doc/tcsh-6.08.00
+/usr/doc/tcsh-6.08.00/FAQ
+/usr/doc/tcsh-6.08.00/NewThings
+/usr/doc/tcsh-6.08.00/complete.tcsh
+/usr/doc/tcsh-6.08.00/eight-bit.txt
+/usr/doc/vim-common-5.3/syntax/csh.vim
+/usr/man/man1/tcsh.1
+/usr/share/apps/ktop/pics/csh.xpm
+/usr/share/apps/ktop/pics/tcsh.xpm
+/usr/share/emacs/20.3/etc/emacs.csh
+/usr/share/vim/syntax/csh.vim
+/usr/src/linux-2.2.5/fs/lockd/svcshare.c
+/etc/csh.cshrc
+/etc/profile.d/kde.csh
+/etc/profile.d/mc.csh
+/bin/csh
+/bin/tcsh </PRE>
+                  <P class=docText>The <SPAN class=docEmphBold>locate</SPAN> 
+                  command must have a recent database to search, and that 
+                  database must be updated periodically to incorporate changes 
+                  in the filesystem. If the database is stale, using <SPAN 
+                  class=docEmphBold>locate</SPAN> yields a warning: </P><PRE># <B>locate tcsh</B>
+locate: warning: database /var/lib/slocate/slocate.db' is 
+   more than 8 days old</PRE><A name=p1_ch04-206-fm2xml></A><A 
+                  name=IXT-4-350161></A><A name=IXT-4-350162></A><A 
+                  name=IXT-4-350163></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>updatedb</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-207-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>updatedb [options]</PRE><A name=p1_ch04-208-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350161></A>Refresh (or create)  
+                  the <SPAN class=docEmphasis>slocate</SPAN><A  
+                  name=IXT-4-350162></A> database in  
+                  <I>/var/lib/slocate/slocate.db</I><A name=IXT-4-350163></A>. 
+                  </P><A name=p1_ch04-209-fm2xml></A>
+                  <H4 class=docRefsectTitle>Option</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-e</SPAN> <I>directories</I></SPAN> 
+                    <DD>
+                    <P class=docList>Exclude a comma-separated list of 
+                    <I>directories</I> from the database. </P></DD></DL><A 
+                  name=p1_ch04-210-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4>
+                  <P class=docText>Refresh the <SPAN 
+                  class=docEmphasis>slocate</SPAN> database, excluding files in 
+                  temporary locations: </P><PRE># <B>updatedb -e &quot;/tmp,/var/tmp,/usr/tmp,/afs,/net,/proc&quot;</B></PRE>
+                  <P class=docText><SPAN class=docEmphBold>updatedb</SPAN> is 
+                  typically executed periodically via <SPAN 
+                  class=docEmphBold>cron</SPAN>. </P>
+                  <P class=docText>Some Linux distributions (Debian, for 
+                  example) come with a version of <SPAN 
+                  class=docEmphBold>updatedb</SPAN> that accepts additional 
+                  options that can be specified on the command line: </P><A 
+                  name=p1_ch04-211-fm2xml></A>
+                  <H4 class=docRefsectTitle>Additional options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    netpaths='</SPAN><I>path1</I> <I>path2</I> <SPAN 
+                    class=docPubcolor><SPAN 
+                    class=docMonofont>...</SPAN></SPAN><SPAN 
+                    class=docEmphBold>'</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Add network <I>paths</I> to the search 
+                    list.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    prunepaths='</SPAN><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>path1 path2 ...</SPAN></SPAN><SPAN 
+                    class=docEmphBold>'</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Eliminate <I>paths</I> from the search 
+                    list.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN class=docEmphBold>-- 
+                    prunefs='</SPAN><SPAN class=docPubcolor><SPAN 
+                    class=docMonofont>filesystems ...</SPAN></SPAN><SPAN 
+                    class=docEmphBold>'</SPAN> </SPAN>
+                    <DD>
+                    <P class=docList>Eliminate entire types of 
+                    <I>filesystems</I>, such as NFS. </P></DD></DL>
+                  <P class=docText>These options modify the behavior of <SPAN  
+                  class=docEmphBold>updatedb</SPAN> on some Linux systems by  
+                  prohibiting the parsing of certain filesystem locations and by  
+                  adding others. There are a few more of these options than  
+                  those listed here, but these three are special in that they  
+                  can also be specified through the use of environment variables  
+                  set prior to <SPAN class=docEmphBold>updatedb</SPAN>  
+                  execution. The variables are <TT>NETPATHS</TT>,  
+                  <TT>PRUNEPATHS</TT>, and <TT>PRUNEFS</TT>. These variables and  
+                  the options to <SPAN class=docEmphBold>updatedb</SPAN> are  
+                  discussed here because this Objective makes specific mention  
+                  of <I>updatedb.conf</I>, a sort of control file for <SPAN  
+                  class=docEmphBold>updatedb</SPAN>. Despite its name,  
+                  <I>updatedb.conf</I> isn't really a configuration file, but  
+                  rather a fragment of a Bourne shell script that sets these  
+                  environment variables. <a class="docLink" href="#lpicertnut-CHP-4-EX-2">Example  
+                  4-2</a> shows a sample <I>updatedb.conf </I>file. </P> 
+                  <H5 class=docExampleTitle><A 
+                  name=lpicertnut-CHP-4-EX-2></A>Example 4-2. Sample  
+                  updatedb.conf File </H5><PRE># This file sets environment variables used by updatedb
+# filesystems which are pruned from updatedb database:
+PRUNEFS=&quot;NFS nfs afs proc smbfs autofs auto iso9660&quot;
+export PRUNEFS
+# paths which are pruned from updatedb database:
+PRUNEPATHS=&quot;/tmp /usr/tmp /var/tmp /afs /amd /alex&quot;
+export PRUNEPATHS
+# netpaths which are added:
+NETPATHS=&quot;/mnt/fs3&quot;
+export NETPATHS</PRE> 
+                  <P class=docText>In this example, the <TT>PRUNEFS</TT> and 
+                  <TT>PRUNEPATHS</TT> variables cause <SPAN 
+                  class=docEmphBold>updatedb</SPAN> to ignore types of 
+                  filesystems and particular paths, respectively. 
+                  <TT>NETPATHS</TT> is used to add network paths from remote 
+                  directory <I>/mnt/fs3.</I> </P>
+                  <P class=docText><I>updatedb.conf</I> doesn't directly control 
+                  <SPAN class=docEmphBold>updatedb</SPAN>, but eliminates the 
+                  need for lengthy options on the <SPAN 
+                  class=docEmphBold>updatedb</SPAN> command line, which can make 
+                  <SPAN class=docEmphBold>crontab</SPAN> files a bit cleaner. 
+                  </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that <SPAN 
+                        class=docEmphBold>updatedb</SPAN> does not require 
+                        configuration to execute. On systems that provide for 
+                        configuration, <I>updatedb.conf</I> can specify a few 
+                        extra options to <SPAN class=docEmphBold>updatedb</SPAN> 
+                        by way of environment variables. 
+                  </P></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-214-fm2xml></A><A name=IXT-4-350164></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>whatis</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-216-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>whatis keywords</PRE><A name=p1_ch04-217-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350164></A>Search the <SPAN  
+                  class=docEmphBold>whatis</SPAN> database for exact matches to  
+                  <I>keywords</I> and display results. </P><A  
+                  name=p1_ch04-218-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE># <B>whatis mksw</B>
+mksw: nothing appropriate</PRE><A 
+                  name=p1_ch04-219-fm2xml></A><A name=IXT-4-350165></A><A 
+                  name=IXTR3-41></A><A name=IXTR3-42></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>apropos</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-220-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>apropos keywords</PRE><A name=p1_ch04-221-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350165></A>Search the <SPAN  
+                  class=docEmphBold>whatis</SPAN> database for partial word  
+                  matches to <I>keywords</I> and display results. </P><A  
+                  name=p1_ch04-222-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example</H4><PRE># <B>apropos mksw</B>
+mkswap (8)           - set up a Linux swap area</PRE>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You must be familiar with the FHS  
+                        concept and the contents of its major directories. Be  
+                        careful about the differences between (and reasons for)  
+                        <I>/bin </I>and <I>/sbin</I>, root partition and  
+                        <I>/usr</I> partition, and locally supplied commands.  
+                        Also practice with various file location techniques and  
+                        be able to differentiate among them.<A  
+                        name=IXTR3-41></A> <A  
+                    name=IXTR3-42></A></P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-8&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-8&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-8
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)468ms
+(xml)235ms
+(xsl)15ms
+(ent)0ms
+(buf)0ms
+
+(tot)1031ms
+--></BODY></HTML>

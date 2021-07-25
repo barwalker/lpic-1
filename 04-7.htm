@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-7&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-7.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-7.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-7></A>
+                  <H3 class=docSection1Title>4.7 Objective 7: Create and Change 
+                  Hard and Symbolic Links</H3>
+                  <P class=docText>A <SPAN class=docEmphasis>link</SPAN><A  
+                  name=lpicertnut-IDXTERM-396></A> is a <A  
+                  name=IXT-4-350115></A>pseudofile that creates a shortcut to  
+                  the original file located elsewhere on the filesystem. Links  
+                  don't take up very much space, as they don't contain any real  
+                  data. While the concept of links may seem a little odd, they  
+                  are very useful and can be used for anything from creating a  
+                  shortcut, to launching an application, to mirroring the  
+                  kernel's source. </P> 
+                  <P class=docText>There are two types of links used on 
+                  Linux:</P><A name=IXT-4-350116></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Symbolic links</SPAN></I> 
+                    <DD>
+                    <P class=docList>A <A name=IXT-4-350116></A>symbolic link is  
+                    really a tiny file that contains a pointer to another file.  
+                    When Linux opens a symbolic link, it reads the pointer and  
+                    then finds the intended file that contains the actual data.  
+                    Symbolic links can point to other filesystems, both local  
+                    and on networked computers, and they can point to  
+                    directories. They are clearly listed as being a link with  
+                    the <SPAN class=docEmphBold>ls -l</SPAN> command by  
+                    displaying a special "l" (a lowercase <SPAN  
+                    class=docEmphasis>L</SPAN>) in column one, and they have no  
+                    file protections of their own (the actual file's permissions  
+                    are used instead). Note that if a file with a symbolic link  
+                    is deleted, then the symbolic link points to nothing and is  
+                    said to be stale. </P></DD></DL><A name=IXT-4-350117></A><A  
+                  name=IXT-4-350118></A>
+                  <DL class=docList>
+                    <DT><I><SPAN class=docPubcolor>Hard links</SPAN></I> 
+                    <DD>
+                    <P class=docList>A <A name=IXT-4-350117></A>hard link is not  
+                    really a "link" at all, but a copy of another directory  
+                    entry. The two directory entries have different names but  
+                    point to the same inode and thus to the same actual data,  
+                    ownership, permissions, and so on. In fact, if a file with a  
+                    hard link is deleted, the link remains, still pointing to  
+                    the valid inode. Except for its name, including its location  
+                    in the directory hierarchy, the link is indistinguishable  
+                    from the original file. </P> 
+                    <P class=docList>Hard links have two important limitations.  
+                    First, because they share inodes, files and any hard links  
+                    to them must reside on the same filesystem (<A  
+                    name=IXT-4-350118></A>inode numbers aren't expected to be  
+                    unique across filesystems). Second, hard links cannot point  
+                    to directories. However, hard links take no disk space  
+                    beyond an additional directory entry. </P></DD></DL> 
+                  <P class=docText>Symbolic links are used more often than hard 
+                  links because they are more versatile and easier to manage, 
+                  yet still consume a trivial amount of disk space. </P><A 
+                  name=lpicertnut-CHP-4-SECT-7.1></A>
+                  <H4 class=docSection2Title>4.7.1 Why Links?</H4>
+                  <P class=docText><A name=IXT-4-350119></A>To see an example of  
+                  the use of links in practice, consider the directories in  
+                  <I>/etc/rc.d:</I> </P><PRE>drwxr-xr-x   2 root     root     1024 Dec 15 23:05 init.d
+-rwxr-xr-x   1 root     root     2722 Apr 15  1999 rc
+-rwxr-xr-x   1 root     root      693 Aug 17  1998 rc.local
+-rwxr-xr-x   1 root     root     9822 Apr 13  1999 rc.sysinit
+drwxr-xr-x   2 root     root     1024 Dec  2 09:41 rc0.d
+drwxr-xr-x   2 root     root     1024 Dec  2 09:41 rc1.d
+drwxr-xr-x   2 root     root     1024 Dec 24 15:15 rc2.d
+drwxr-xr-x   2 root     root     1024 Dec 24 15:15 rc3.d
+drwxr-xr-x   2 root     root     1024 Dec 24 15:16 rc4.d
+drwxr-xr-x   2 root     root     1024 Dec 24 15:16 rc5.d
+drwxr-xr-x   2 root     root     1024 Dec 14 23:37 rc6.d</PRE>
+                  <P class=docText>Inside <I>init.d</I><A name=IXT-4-350120></A>  
+                  are scripts to start and stop many of the services on your  
+                  system, such as <SPAN class=docEmphBold>httpd</SPAN>, <SPAN  
+                  class=docEmphBold>cron</SPAN>, and <SPAN  
+                  class=docEmphBold>syslog</SPAN>. Some of these files are to be  
+                  executed with a <SPAN class=docEmphBold>start</SPAN> argument,  
+                  while others are run with a <SPAN  
+                  class=docEmphBold>stop</SPAN> argument, depending upon the  
+                  <I>runlevel</I> of your system. To determine just which files  
+                  are run and what argument they receive, a scheme of additional  
+                  directories has been devised. These directories are named  
+                  <I>rc0.d</I> through <I>rc6.d</I>, one for each runlevel (see <a class="docLink" href="05-0.htm">Chapter  
+                  5</a> <SPAN class=docEmphasis>Boot, Initialization, Shutdown,  
+                  and Runlevels (Topic 2.6)</SPAN>, for a complete description  
+                  of this scheme). Each of the runlevel-specific directories  
+                  contains several links, each with a name that helps determine  
+                  the configuration of services on your system. For example,  
+                  <I>rc3.d</I> contains the following links, among many others:  
+                  </P><PRE>S30syslog -&gt; ../init.d/syslog
+S40crond -&gt; ../init.d/crond
+S85httpd -&gt; ../init.d/httpd</PRE>
+                  <P class=docText>All of these links point back to the scripts 
+                  in <I>init.d </I>as indicated by the arrows (<TT>-&gt;</TT>) 
+                  after the script name. If these links were copies of the 
+                  scripts, editing would be required for all of the 
+                  runlevel-specific versions of the same script just to make a 
+                  single change. Instead, links allow us to: </P>
+                  <UL>
+                    <LI>
+                    <P class=docList>Make changes to the original file once. 
+                    References to the links will yield the updated contents as 
+                    long as the filename doesn't change. </P>
+                    <LI>
+                    <P class=docList>Avoid wasting disk space by having multiple 
+                    copies of the same file in different places for 
+                    "convenience." </P></LI></UL>
+                  <P class=docText>As another example, consider the directory 
+                  for the kernel source, <I>/usr/src/linux </I>: </P><PRE>linux -&gt; linux-2.2.10
+linux-2.2.10</PRE>
+                  <P class=docText><A name=IXT-4-350121></A>Makefiles and other  
+                  automated tools can refer to <I>/usr/src/linux</I><A  
+                  name=IXT-4-350122></A>, but in reality, they reference  
+                  <I>/usr/src/linux-2.2.10</I>. If a new kernel is added, say  
+                  Version 2.2.14, its source would be placed into an  
+                  appropriately named directory and the <I>linux </I>link would  
+                  be reset, as follows: </P><PRE>linux -&gt; linux-2.2.14
+linux-2.2.10
+linux-2.2.14</PRE> 
+                  <P class=docText>Now the appropriate directory can be selected 
+                  simply by changing the link. No files need to be moved or 
+                  deleted. Once created, links are normal directory entries, 
+                  which may be copied, renamed, deleted, and backed up. </P>
+                  <P class=docText>Symbolic and hard links are created with the 
+                  <SPAN class=docEmphBold>ln</SPAN> command. </P><A 
+                  name=p1_ch04-170-fm2xml></A><A name=IXT-4-350123></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>ln</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-172-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>ln [options] file link
+ln [options] files directory</PRE><A 
+                  name=p1_ch04-173-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350123></A>Create links between  
+                  files. In the first form, a new <I>link</I> is created to  
+                  point to <I>file</I>, which must already exist. In the second  
+                  form, links are created in <I>directory</I> for all  
+                  <I>files</I> specified. </P><A name=p1_ch04-174-fm2xml></A> 
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-f</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Overwrite (force) existing links, or 
+                    existing files in the destination <I>directory</I>. 
+                  </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-i</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Prompt interactively before overwriting 
+                    destination files.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-s</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Create a symbolic link rather than a hard 
+                    link; this is the default.</P></DD></DL><A 
+                  name=p1_ch04-175-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>Note that the Bourne shell <SPAN 
+                  class=docEmphBold>sh</SPAN> on a Linux system is a symbolic 
+                  link to <SPAN class=docEmphBold>bash</SPAN>: </P><PRE>$ <B>ls -l /bin/bash /bin/sh</B>
+/bin/bash
+/bin/sh -&gt; bash</PRE><A name=p1_ch04-176-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>Create a file named <I>myfile</I>, a symbolic 
+                  link to that file named <I>myslink</I>, and a hard link to 
+                  that file named <I>myhlink</I>, then examine them: </P><PRE>$ <B>touch myfile</B>
+$ <B>ln -s myfile myslink</B>
+$ <B>ln myfile myhlink</B>
+$ <B>ls -l my*</B>
+-rw-r--r--   2 jdoe  jdoe  0 Jan  3 13:21 myfile
+-rw-r--r--   2 jdoe  jdoe  0 Jan  3 13:21 myhlink
+lrwxrwxrwx   1 jdoe  jdoe  6 Jan  3 13:21 myslink -&gt; myfile</PRE>
+                  <P class=docText>Using the <SPAN class=docEmphBold>stat</SPAN> 
+                  command on <SPAN class=docEmphBold>my*</SPAN> demonstrates 
+                  that they all ultimately reference the same inode (the inode 
+                  numbers are the same) and indicates the number of links to the 
+                  file (two links, one symbolic and one hard): </P><PRE># <B>stat my*</B>
+File: &quot;myfile&quot;
+  Size: 0            Filetype: Regular File
+  Mode: (0644/-rw-r--r--) Uid: (0/ root)  Gid: (0/ root)
+Device:  8,6   Inode: 30        Links: 2
+Access: Mon Jan  3 14:33:04 2000(00000.00:06:05)
+Modify: Mon Jan  3 14:33:04 2000(00000.00:06:05)
+Change: Mon Jan  3 14:33:25 2000(00000.00:05:44)
+
+  File: &quot;myhlink&quot;
+  Size: 0            Filetype: Regular File
+  Mode: (0644/-rw-r--r--) Uid: (0/ root)  Gid: (0/ root)
+Device:  8,6   Inode: 30        Links: 2
+Access: Mon Jan  3 14:33:04 2000(00000.00:06:05)
+Modify: Mon Jan  3 14:33:04 2000(00000.00:06:05)
+Change: Mon Jan  3 14:33:25 2000(00000.00:05:44)
+
+  File: &quot;myslink&quot;
+  Size: 0            Filetype: Regular File
+  Mode: (0644/-rw-r--r--) Uid: (0/ root)  Gid: (0/ root)
+Device:  8,6   Inode: 30        Links: 2
+Access: Mon Jan  3 14:33:04 2000(00000.00:06:05)
+Modify: Mon Jan  3 14:33:04 2000(00000.00:06:05)
+Change: Mon Jan  3 14:33:25 2000(00000.00:05:44)</PRE>
+                  <P class=docText>However, the symbolic link has an inode of 
+                  its own, which is displayed using the <SPAN 
+                  class=docEmphBold>-i</SPAN> option to <SPAN 
+                  class=docEmphBold>ls</SPAN>: </P><PRE># <B>ls -li my*</B>
+30 -rw-r--r--   2 root root  0 Jan  3 14:33 myfile
+30 -rw-r--r--   2 root root  0 Jan  3 14:33 myhlink
+41 lrwxrwxrwx   1 root root  6 Jan  3 14:33 myslink -&gt; myfile</PRE>
+                  <P class=docText>Here you can see that the directory entries 
+                  for <I>myfile</I> and <I>myhlink</I> both point to inode 30, 
+                  while the directory entry for <I>myslink</I> points to inode 
+                  41. That inode contains the symbolic link to <I>myfile</I>. 
+                  </P>
+                  <P class=docText>As another example, consider the two  
+                  filesystems in <a class="docLink" href="#lpicertnut-CHP-4-FIG-4">Figure  
+                  4-4</a>. The root partition on <I>/dev/sda1</I> holds a file  
+                  intended as an example <SPAN class=docEmphBold>bash</SPAN>  
+                  startup file, located in <I>/etc/bashrc_user</I>. On the same  
+                  filesystem, the <I>root</I> user has elected to use  
+                  <I>/etc/bashrc_user</I>. Not wanting to maintain both files  
+                  individually, <SPAN class=docEmphasis>root</SPAN> has created  
+                  a hard link, <I>/root/.bashrc</I>, to the example file. Both  
+                  of the directory entries, <I>/etc/bashrc_user</I> and  
+                  <I>/root/.bashrc</I>, point to the same text data in the same  
+                  file, described by the same inode, on <I>/dev/sda1</I>. User  
+                  <I>jdoe</I> has also elected to link to the example file.  
+                  However, since his home directory is located in <I>/home</I>  
+                  on <I>/dev/sda9</I>, <I>jdoe</I> cannot use a hard link to the  
+                  file on <I>/dev/sda1</I>. Instead, he created a symbolic link,  
+                  <I>/home/jdoe/.bashrc</I>, which points to a small file on  
+                  <I>/dev/sda9</I>. This contains the pointer to directory entry  
+                  <I>/etc/bashrc_user</I>, which finally points at the  
+                  <I>text</I>. The result for <I>root </I>and <I>jdoe </I>is  
+                  identical, though the two styles of links implement the  
+                  reference in completely different ways. </P> 
+                  <CENTER>
+                  <H5 class=docFigureTitle><A 
+                  name=lpicertnut-CHP-4-FIG-4></A>Figure 4-4. Hard and symbolic  
+                  links</H5><IMG height=292 alt=figs/lpi_0404.gif 
+                  src="04-7.files/lpi_0404.gif" width=413 border=0></CENTER><A 
+                  name=lpicertnut-CHP-4-SECT-7.1.1></A>
+                  <H5 class=docSection3Title>4.7.1.1 Preserving links</H5>
+                  <P class=docText><A name=IXT-4-350124></A>Programs such as  
+                  <SPAN class=docEmphBold>tar</SPAN> and <SPAN  
+                  class=docEmphBold>cp</SPAN> contain options that control  
+                  whether symbolic links are followed during operation. In the  
+                  case of a <SPAN class=docEmphBold>tar</SPAN> backup, this may  
+                  be important if you have multiple links to large files,  
+                  because you would get many redundant backups of the same data.  
+                  </P>
+                  <P class=docText>When a symbolic link is encountered with  
+                  <SPAN class=docEmphBold>cp</SPAN><A name=IXT-4-350125></A> <A  
+                  name=IXT-4-350126></A><A name=IXT-4-350127></A>, the contents  
+                  of the file to which the link points are copied unless the  
+                  <SPAN class=docEmphBold>-d</SPAN> option is specified. This  
+                  "no dereference" operator causes <SPAN  
+                  class=docEmphBold>cp</SPAN> to copy the links themselves  
+                  instead. For example, consider a directory <I>dir1</I>  
+                  containing a symbolic link, which is recursively copied to  
+                  other directories with and without the <SPAN  
+                  class=docEmphBold>-d</SPAN> option: </P><PRE># <B>ls -l dir1</B>
+total 13
+lrwxrwxrwx 1 root root      19 Jan  4 02:43 file1 -&gt; /file1
+-rw-r--r-- 1 root root   10240 Dec 12 17:12 file2
+# <B>cp -r dir1 dir2</B>
+# <B>ls -l dir2</B>
+total 3117
+-rw-r--r-- 1 root root 3164160 Jan  4 02:43 file1
+-rw-r--r-- 1 root root   10240 Jan  4 02:43 file2
+# <B>cp -rd dir1 dir3</B>
+# <B>ls -l dir3</B>
+total 13
+lrwxrwxrwx 1 root root      19 Jan  4 02:43 file1 -&gt; /file1
+-rw-r--r-- 1 root root   10240 Jan  4 02:43 file2</PRE> 
+                  <P class=docText>Directory <I>dir2</I> has a copy of the 
+                  entire <I>file1</I>, which is large, probably wasting disk 
+                  space. Directory <I>dir3</I>, created with <SPAN 
+                  class=docEmphBold>cp -rd</SPAN>, is the same as <I>dir1</I> 
+                  (including the symbolic link) and takes very little space. 
+                  </P><A name=lpicertnut-CHP-4-SECT-7.1.2></A>
+                  <H5 class=docSection3Title>4.7.1.2 Finding links to a 
+file</H5>
+                  <P class=docText>Finding the file pointed to by a symbolic 
+                  link is simple. The <SPAN class=docEmphBold>ls -l</SPAN> 
+                  command displays a convenient pointer notation, indicating 
+                  just where links are pointing: </P><PRE>lrwxrwxrwx 1 root root      19 Jan  4 02:43 file1 -&gt; /file1</PRE>
+                  <P class=docText>Going the other way and finding symbolic 
+                  links to a file is less obvious but is still relatively easy. 
+                  The <SPAN class=docEmphBold>-lname</SPAN><I> </I>option to the 
+                  <SPAN class=docEmphBold>find</SPAN> utility locates them for 
+                  you by searching for symbolic links containing the original 
+                  filename. Here, the entire local filesystem is searched for 
+                  <I>myfile</I>, turning up three symbolic links: </P><PRE># <B>find / -lname myfile</B>
+/home/world/rootsfile
+/home/finance/hisfile
+/root/myslink</PRE>
+                  <P class=docText>Remember that symbolic links could be  
+                  anywhere, including being located on a remote system (if  
+                  you're sharing files), so you may not be able to locate them  
+                  all. (See<a class="docLink" href="03-1.htm">Section  
+                  3.1</a> for additional information on the <SPAN  
+                  class=docEmphBold>find</SPAN><I> </I>command). </P>
+                  <P class=docText>Since hard links aren't really links, but 
+                  duplicate directory entries, you can locate them by searching 
+                  directory entries for the inode, which is identical in all the 
+                  links. Unlike symbolic links, you are guaranteed to find all 
+                  of the links since hard links cannot cross filesystem 
+                  boundaries. First, identify the inode you're interested in, as 
+                  well as the filesystem that contains the links: </P><PRE># <B>df file1</B>
+Filesystem    1k-blocks      Used Available Use% Mounted on
+/dev/sda9       1981000    451115   1427473  24% /home
+# <B>ls -i file</B>
+90469 file1</PRE>
+                  <P class=docText>Here, <I>file1</I> is on the <I>/home</I> 
+                  filesystem, and its inode number is 90469. Next, <SPAN 
+                  class=docEmphBold>find</SPAN><I> </I>is used with the -<SPAN 
+                  class=docEmphBold>inum</SPAN> option to locate all instances 
+                  of inode 90469: </P><PRE># <B>find /home -inum 90469</B>
+/home/world/file1
+/home/finance/file1
+/home/jdoe/private/.myfile1</PRE>
+                  <P class=docText>This example turns up three links to 
+                  <I>file1</I>, including one that user <I>jdoe</I> appears to 
+                  be hiding! </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>You should be prepared to identify the  
+                        differences between hard and symbolic links, when each  
+                        is used, and their limitations.<A name=IXTR3-40></A>  
+                      </P></TD></TR></TBODY></TABLE>
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-7&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-7&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-7
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)515ms
+(xml)188ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)735ms
+--></BODY></HTML>

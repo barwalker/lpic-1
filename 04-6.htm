@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0172)http://safari.informit.com/JVXSL.asp?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1 -->
+<HTML><HEAD><TITLE>InformIT Online Books > LPI Linux Certification in a Nutshell</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5"><LINK 
+href="04-6.files/style.css" type=text/css rel=STYLESHEET><LINK 
+href="04-6.files/docsafari.css" type=text/css rel=STYLESHEET>
+<SCRIPT>
+      function OpenWin(url, w, h)
+      {
+        if(!w) w = 400;
+        if(!h) h = 300;
+        window.open(url, "_new", "width=" + w + ",height=" + h + ",menubar=no,toobar=no,scrollbars=yes", true);
+      }
+    </SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><A 
+name=toppage></A><SPAN class=v2></SPAN>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD align=left>
+      <TABLE width="95%">
+        <TBODY>
+        <TR>
+          <TD align=left><BR><SPAN class=printhdr><B>Book: </B>LPI Linux  
+            Certification in a Nutshell<BR><B>Section: </B>Chapter 4.&nbsp;  
+            Devices, Linux Filesystems, and the Filesystem Hierarchy Standard  
+            (Topic 2.4)</SPAN><BR><BR><BR> 
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A name=lpicertnut-CHP-4-SECT-6></A>
+                  <H3 class=docSection1Title>4.6 Objective 6: Manage File 
+                  Ownership</H3>
+                  <P class=docText>Modification of ownership parameters may 
+                  become necessary when moving files, setting up workgroups, or 
+                  working in a user's directory as root. This is accomplished 
+                  using the <SPAN class=docEmphBold>chown</SPAN> command, which 
+                  can change user and group ownership, and the <SPAN 
+                  class=docEmphBold>chgrp</SPAN> command for modifying group 
+                  ownership. </P>
+                  <P class=docText>The <SPAN class=docEmphBold>chown</SPAN> 
+                  command supersedes <SPAN class=docEmphBold>chgrp</SPAN> 
+                  because all of the <SPAN class=docEmphBold>chgrp</SPAN> 
+                  command's functions are available in <SPAN 
+                  class=docEmphBold>chown</SPAN>. However, many system 
+                  administrators still habitually use <SPAN 
+                  class=docEmphBold>chgrp</SPAN>, and it is often found in 
+                  scripts and makefiles. </P><A name=p1_ch04-156-fm2xml></A><A 
+                  name=IXT-4-350111></A><A name=IXT-4-350112></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>chown</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-157-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>chown [options] user-owner files
+chown [options] user-owner. files
+chown [options] user-owner.group-owner files
+chown [options] .group-owner files
+chown [options] --reference=rfile files</PRE><A 
+                  name=p1_ch04-158-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350111></A><A 
+                  name=IXT-4-350112></A>Used to change the owner and/or group of  
+                  <I>files</I> to <I>user-owner</I> and/or <I>group-owner</I>.  
+                  In the first form, <I>user-owner</I> is made the owner of  
+                  <I>files</I> and the group is not affected. In the second form  
+                  (note the trailing dot on <SPAN  
+                  class=docEmphasis>user-owner</SPAN>), the <I>user-owner</I> is  
+                  made the owner of <I>files</I> and the group of the files is  
+                  changed to <I>user-owner</I>'s default group. In the third  
+                  form, both <I>user-owner</I> and <I>group-owner</I> are  
+                  assigned to <I>files. </I>In the fourth form, only the  
+                  <I>group-owner</I> is assigned to <I>files,</I> and the user  
+                  is not affected. In the fifth form, the owner and group of  
+                  <I>rfile</I> is used as a template and applied to  
+                  <I>files</I>. Since this program can handle all types of  
+                  changes to groups, it replaces the <SPAN  
+                  class=docEmphBold>chgrp</SPAN> command. Only the superuser may  
+                  change file ownership, but group ownership may be set by  
+                  anyone belonging to the target <I>group-owner</I>. </P><A  
+                  name=p1_ch04-159-fm2xml></A>
+                  <H4 class=docRefsectTitle>Frequently used options</H4>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-c</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Like verbose mode, but report only 
+                    changes.</P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-R</SPAN> </SPAN>
+                    <DD>
+                    <P class=docList>Use recursive mode, descending through 
+                    directory hierarchies under <I>files</I> and making 
+                    modifications throughout. </P></DD></DL>
+                  <DL class=docList>
+                    <DT><SPAN class=docPubcolor><SPAN 
+                    class=docEmphBold>-v</SPAN></SPAN> 
+                    <DD>
+                    <P class=docList>Use verbose behavior, reporting actions for 
+                    all <I>files</I>. </P></DD></DL><A 
+name=p1_ch04-160-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 1</H4>
+                  <P class=docText>As root, set the user of a file:</P><PRE># <B>chown -v jdoe afile</B>
+owner of afile changed to jdoe</PRE><A 
+                  name=p1_ch04-161-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 2</H4>
+                  <P class=docText>As root, set the user and group of a 
+file:</P><PRE># <B>chown -v jdoe.sales afile</B>
+owner of afile changed to jdoe.sales</PRE><A 
+                  name=p1_ch04-162-fm2xml></A>
+                  <H4 class=docRefsectTitle>Example 3</H4>
+                  <P class=docText>Recursively change the group of the entire 
+                  <I>sls</I> directory: </P><PRE># <B>chown -Rv .sales sls</B>
+owner of sls changed to .sales
+owner of sls/file1 changed to .sales
+owner of sls/file2 changed to .sales
+...</PRE><A name=p1_ch04-163-fm2xml></A><A 
+                  name=IXT-4-350113></A><A name=IXT-4-350114></A><A 
+                  name=IXTR3-38></A><A name=IXTR3-39></A>
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left><B><I>chgrp</I></B></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE>
+                  <HR align=left width=515 color=black noShade SIZE=3>
+
+                  <TABLE cellPadding=5 width=515 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=left></TD>
+                      <TD align=right></TD></TR></TBODY></TABLE><A 
+                  name=p1_ch04-164-fm2xml></A>
+                  <H4 class=docRefsectTitle>Syntax</H4><PRE>chgrp [options] group-owner files
+chgrp [options] --reference=rfile files</PRE><A 
+                  name=p1_ch04-165-fm2xml></A>
+                  <H4 class=docRefsectTitle>Description</H4>
+                  <P class=docText><A name=IXT-4-350113></A><A 
+                  name=IXT-4-350114></A>Change the group parameter of  
+                  <I>files</I> to <I>group-owner</I>. In the first form, set the  
+                  <I>group-owner</I> of <I>files</I>. In the second form, the  
+                  group of <I>rfile</I> is used as a template and applied to  
+                  <I>files</I>. Options and usage are the same as that of <SPAN  
+                  class=docEmphBold>chown</SPAN>. </P>
+                  <P>
+                  <TABLE cellSpacing=0 width="90%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <H2 class=docSidebarTitle>On the Exam</H2>
+                        <P class=docText>Remember that only root can change file  
+                        ownership. Also remember that <SPAN  
+                        class=docEmphBold>chown</SPAN> can change not only the  
+                        user but also the group ownership.<A name=IXTR3-38></A>  
+                        <A name=IXTR3-39></A></P></TD></TR></TBODY></TABLE> 
+                  <UL></UL></TD></TR></TBODY></TABLE>
+            
+            
+          </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=middle colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=4></TD></TR></TBODY></TABLE><!--
+(guidin)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(guidout)E27BF90A-F934-4C61-81-75-7B-D0-9D-40-33-86
+(ip)211.76.97.228
+(host)safari.informit.com
+(portal)informit
+(ref)http://safari.informit.com/JVXSL.asp?x=1&mode=section&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(base)?x=1&mode=print&sortKey=title&sortOrder=asc&view=Z&xmlid=1-56592-748-6/lpicertnut-CHP-4-SECT-6&open=false&catid=&s=1&b=1&f=1&t=1&c=1&u=1
+(mode)print
+(xmlid)1-56592-748-6/lpicertnut-CHP-4-SECT-6
+(key)77BDD37BD144271538599547F3F513CCC632FE7317BE1B3D26790352FECE7B23F00108F67F49C1D8
+(user)84132/106143
+
+(xsl)0ms
+(lib)438ms
+(xml)171ms
+(xsl)16ms
+(ent)0ms
+(buf)0ms
+
+(tot)625ms
+--></BODY></HTML>
